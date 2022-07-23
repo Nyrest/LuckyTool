@@ -17,4 +17,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "ColorOSExt"
-include ':app'
+include ':colorosext'
