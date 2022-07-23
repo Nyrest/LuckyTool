@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="xposed_scope">
+<!--        系统-->
+        <item>android</item>
+        <item>com.android.systemui</item>
+        <item>com.android.packageinstaller</item>
+        <item>com.android.launcher</item>
+        <item>com.oplus.camera</item>
+        <item>com.oplus.safecenter</item>
+        <item>com.coloros.alarmclock</item>
+        <item>com.heytap.themestore</item>
+        <item>com.oplus.games</item>
+        <item>com.heytap.cloud</item>
+<!--        第三方-->
+        <item>com.east2d.everyimage</item>
+        <item>com.chan.cwallpaper</item>
+    </string-array>
+</resources>

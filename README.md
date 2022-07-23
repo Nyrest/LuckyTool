@@ -1,4 +1,28 @@
-# ColorOSExt  
-旨在对ColorOS系统的各种扩展优化  
-The purpose is to optimize various extensions of ColorOS system.  
+# ColorOSExt
 
+- 旨在对 ColorOS 系统的各种扩展优化  
+- The purpose is to optimize various extensions of ColorOS system
+
+---
+
+## 系统版本
+
+- ColorOS 12+
+
+---
+
+## 作用域
+
+- 系统框架,安全中心, 时钟,系统界面,系统桌面,相机,应用包安装程序,游戏助手,云服务,主题商店
+
+---
+
+## Xposed API
+
+- [YukiHookAPI](https://github.com/fankes/YukiHookAPI) -> https://github.com/fankes/YukiHookAPI
+
+---
+
+## License
+
+- [GPL-3.0](https://www.gnu.org/licenses/gpl-3.0.html)  
