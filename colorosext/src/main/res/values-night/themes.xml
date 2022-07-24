@@ -1,28 +1,16 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="Theme.ColorOSExt" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/black</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l" tools:ignore="ObsoleteSdkInt">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+<resources>
+    <style name="Theme.ColorOSExt" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:forceDarkAllowed">true</item>
+        <!-- Status bar color -->
+        <item name="android:statusBarColor">?attr/colorOnPrimary</item>
+        <!-- Status bar text color,true : black,false : white -->
+        <item name="android:windowLightStatusBar">false</item>
     </style>
-    <style name="Theme.ColorOSExt.MD3" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/black</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l" tools:ignore="ObsoleteSdkInt">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+    <style name="Theme.ColorOSExt.MD3" parent="Theme.Material3.Light.NoActionBar">
+        <item name="android:forceDarkAllowed">true</item>
+        <!-- Status bar color -->
+        <item name="android:statusBarColor">?attr/colorOnPrimary</item>
+        <!-- Status bar text color,true : black,false : white -->
+        <item name="android:windowLightStatusBar">false</item>
     </style>
 </resources>

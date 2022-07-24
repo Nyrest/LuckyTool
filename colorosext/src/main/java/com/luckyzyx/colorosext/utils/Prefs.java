@@ -6,9 +6,14 @@ public class Prefs {
     public static String XposedPreference;
     public static String MagiskPreference;
 
-    public Prefs(){
-        SettingsPreference = "SettingsPrefs";
-        XposedPreference = "XposedPrefs";
-        MagiskPreference = "MagiskPrefs";
+    public static String SettingsPreference(){
+        return "SettingsPrefs";
+    }
+
+    public static String XposedPreference(){
+        return "XposedPrefs";
+    }
+    public static String MagiskPreference(){
+        return "MagiskPrefs";
     }
 }

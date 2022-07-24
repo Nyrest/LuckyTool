@@ -1,12 +1,28 @@
 <resources>
-    <!-- Reply Preference -->
-    <string-array name="reply_entries">
-        <item>Reply</item>
-        <item>Reply to all</item>
+    <string-array name="xposed_scope">
+        <item>android</item>
+        <item>com.android.systemui</item>
+        <item>com.android.packageinstaller</item>
+        <item>com.android.launcher</item>
+        <item>com.oplus.camera</item>
+        <item>com.oplus.safecenter</item>
+        <item>com.coloros.alarmclock</item>
+        <item>com.heytap.themestore</item>
+        <item>com.oplus.games</item>
+        <item>com.heytap.cloud</item>
+        <item>com.east2d.everyimage</item>
+        <item>com.chan.cwallpaper</item>
     </string-array>
 
-    <string-array name="reply_values">
-        <item>reply</item>
-        <item>reply_all</item>
+    <string-array name="theme_color_option" >
+        <item>@string/follow_system</item>
+        <item>@string/light_color</item>
+        <item>@string/dark_color</item>
     </string-array>
+    <string-array name="theme_color_value" >
+        <item>system</item>
+        <item>light</item>
+        <item>dark</item>
+    </string-array>
+
 </resources>

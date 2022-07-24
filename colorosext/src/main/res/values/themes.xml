@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <style name="Theme.ColorOSExt" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="android:forceDarkAllowed">true</item>
         <!-- Primary brand color. -->
@@ -9,10 +9,12 @@
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l" tools:ignore="ObsoleteSdkInt">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+        <!-- Status bar color -->
+        <item name="android:statusBarColor">?attr/colorOnPrimary</item>
+        <!-- Status bar text color,true : black,false : white -->
+        <item name="android:windowLightStatusBar">true</item>
     </style>
+
     <style name="Theme.ColorOSExt.MD3" parent="Theme.Material3.Light.NoActionBar">
         <item name="android:forceDarkAllowed">true</item>
         <!-- Primary brand color. -->
@@ -23,8 +25,9 @@
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l" tools:ignore="ObsoleteSdkInt">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+        <!-- Status bar color -->
+        <item name="android:statusBarColor">?attr/colorOnPrimary</item>
+        <!-- Status bar text color,true : black,false : white -->
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 </resources>

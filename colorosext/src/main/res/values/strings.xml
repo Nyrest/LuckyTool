@@ -1,23 +1,26 @@
 <resources>
     <string name="app_name">ColorOSExt</string>
-    <string name="fragment_home">Hello Home fragment</string>
-    <string name="fragment_xposed">Hello Xposed fragment</string>
-    <string name="fragment_magisk">Hello Magisk fragment</string>
+    <string name="xposeddescription">The purpose is to optimize various extensions of ColorOS</string>
+    <string name="fragment_home">This is Home Page</string>
+    <string name="fragment_xposed">This is Xposed Page</string>
+    <string name="fragment_magisk">This is Magisk Page</string>
     <string name="nav_item_xposed">Xposed</string>
     <string name="nav_item_home">Home</string>
     <string name="nav_item_magisk">Magisk</string>
-    <!-- Preference Titles -->
-    <string name="messages_header">Messages</string>
-    <string name="sync_header">Sync</string>
 
-    <!-- Messages Preferences -->
-    <string name="signature_title">Your signature</string>
-    <string name="reply_title">Default reply action</string>
-
-    <!-- Sync Preferences -->
-    <string name="sync_title">Sync email periodically</string>
-    <string name="attachment_title">Download incoming attachments</string>
-    <string name="attachment_summary_on">Automatically download attachments for incoming emails
-    </string>
-    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="theme_title">Theme</string>
+    <string name="theme_title_summer">will automatically refresh the page</string>
+    <string name="use_material3">Use Material3</string>
+    <string name="use_material3_summer">Use Material3 theme styles</string>
+    <string name="theme_color">Theme Color</string>
+    <string name="follow_system">Follow System</string>
+    <string name="light_color">Light Color</string>
+    <string name="dark_color">Dark Color</string>
+    <string name="about_title">About</string>
+    <string name="open_source">Open Source</string>
+    <string name="open_source_summer">Click to see the list of open source code</string>
+    <string name="author">Author</string>
+    <string name="author_summer">luckyzyx</string>
+    <string name="update_url">Update address</string>
+    <string name="update_url_summer" >Coolmarket,Lsposed</string>
 </resources>

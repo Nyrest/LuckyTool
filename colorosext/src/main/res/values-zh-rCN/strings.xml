@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ColorOSExt</string>
+    <string name="nav_item_xposed">Xposed</string>
+    <string name="nav_item_home">主页</string>
+    <string name="nav_item_magisk">Magisk</string>
+    <string name="theme_title">主题</string>
+    <string name="use_material3">Material3</string>
+    <string name="theme_color">主题颜色</string>
+    <string name="follow_system">跟随系统</string>
+    <string name="light_color">浅色</string>
+    <string name="dark_color">深色</string>
+    <string name="use_material3_summer">使用Material3主题样式</string>
+    <string name="theme_title_summer">将自动刷新页面</string>
+    <string name="about_title">关于</string>
+    <string name="open_source">开放源代码</string>
+    <string name="open_source_summer">点击查看开放源代码列表</string>
+    <string name="author">忆清鸣、luckyzyx</string>
+    <string name="author_summer">酷安给个关注吧亲</string>
+    <string name="xposeddescription">旨在对 ColorOS 的各种扩展优化</string>
+    <string name="update_url">更新地址</string>
+    <string name="update_url_summer">酷安,Lsposed</string>
+</resources>
