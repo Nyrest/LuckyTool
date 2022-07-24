@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ColorOSExt">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
