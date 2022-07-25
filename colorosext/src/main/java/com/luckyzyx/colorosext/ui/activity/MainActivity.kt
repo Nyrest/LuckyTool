@@ -4,25 +4,26 @@ import android.annotation.SuppressLint
 import android.app.UiModeManager
 import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.luckyzyx.colorosext.R
+import com.luckyzyx.colorosext.ui.adapter.textbook.TextBookListActivity
 import com.luckyzyx.colorosext.ui.fragment.HomeFragment
 import com.luckyzyx.colorosext.ui.fragment.HomeFragment.SettingsFragment
 import com.luckyzyx.colorosext.ui.fragment.MagiskFragment
 import com.luckyzyx.colorosext.ui.fragment.XposedFragment
-import com.luckyzyx.colorosext.utils.*
+import com.luckyzyx.colorosext.utils.SPUtils
+import com.luckyzyx.colorosext.utils.SettingsPreference
+import com.luckyzyx.colorosext.utils.ShellUtils
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,15 +41,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkTheme(context: Context) {
-        val themecolor =
-            SPUtils.getString(context, SettingsPreference, "theme_color", "system")
-        val usemd3 = SPUtils.getBoolean(context, SettingsPreference, "use_md3", false)
-        when (themecolor) {
-            "light" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            "dark" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            "system" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-        }
-        if (usemd3) {
+        if (SPUtils.getBoolean(context, SettingsPreference, "use_md3", false)) {
             context.setTheme(R.style.Theme_ColorOSExt_MD3)
         } else {
             context.setTheme(R.style.Theme_ColorOSExt)
@@ -78,7 +71,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == 1) refreshmode(this)
+        if (item.itemId == 1) startActivity(Intent(this,TextBookListActivity::class.java))//refreshmode(this)
         if (item.itemId == 2) switchFragment(SettingsFragment(), true)
         return super.onOptionsItemSelected(item)
     }
@@ -108,7 +101,6 @@ class MainActivity : AppCompatActivity() {
         //fragmentTransaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
         fragmentTransaction.replace(R.id.fragment_container, fragment)
         if (backStack) {
-            fragmentTransaction.setReorderingAllowed(true)
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
         } else {

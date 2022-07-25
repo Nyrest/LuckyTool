@@ -4,6 +4,8 @@ plugins {
     id 'com.google.devtools.ksp' version '1.7.10-1.0.6'
     id 'com.joom.paranoid'
 }
+/*序列化插件*/
+apply plugin: 'kotlin-parcelize'
 
 android {
     signingConfigs {
@@ -82,10 +84,16 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.7'
     //一个强大并且灵活的RecyclerViewAdapter
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.7'
+    //ExpandableRecyclerView 使用RecyclerView 实现的折叠列表
+    implementation("com.github.pokercc:ExpandableRecyclerView:0.9.3")
     //崩溃日志显示
     implementation "com.github.simplepeng.SpiderMan:spiderman:v1.1.9"
     //权限请求框架
     implementation 'com.github.getActivity:XXPermissions:15.0'
+    // Kotlin 和 Java 的现代 JSON 库
+    implementation('com.squareup.moshi:moshi-kotlin:1.13.0')
+    // moshi注释处理
+    ksp("com.squareup.moshi:moshi-kotlin-codegen:1.13.0")
 }
 
 def getVersionCode() {

@@ -6,16 +6,6 @@
         app:summary="@string/theme_title_summer"
         app:iconSpaceReserved="false">
 
-        <ListPreference
-            app:defaultValue="system"
-            app:entries="@array/theme_color_option"
-            app:entryValues="@array/theme_color_value"
-            app:key="theme_color"
-            app:title="@string/theme_color"
-            app:useSimpleSummaryProvider="true"
-            app:iconSpaceReserved="false" />
-
-
         <SwitchPreference
             app:key="use_md3"
             app:defaultValue="false"

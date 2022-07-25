@@ -14,15 +14,4 @@
         <item>com.chan.cwallpaper</item>
     </string-array>
 
-    <string-array name="theme_color_option" >
-        <item>@string/follow_system</item>
-        <item>@string/light_color</item>
-        <item>@string/dark_color</item>
-    </string-array>
-    <string-array name="theme_color_value" >
-        <item>system</item>
-        <item>light</item>
-        <item>dark</item>
-    </string-array>
-
 </resources>

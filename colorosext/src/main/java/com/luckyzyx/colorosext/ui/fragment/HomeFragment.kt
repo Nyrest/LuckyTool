@@ -24,8 +24,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        requireActivity().findViewById<TextView>(R.id.xposed_info).text = colorOSVersion
-
+        requireActivity().findViewById<TextView>(R.id.xposed_info).text = getColorOSVersion
     }
 
     class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeListener {
