@@ -1,19 +1,7 @@
-package com.luckyzyx.colorosext.utils;
+@file:Suppress("unused")
 
-public class Prefs {
+package com.luckyzyx.colorosext.utils
 
-    public static String SettingsPreference;
-    public static String XposedPreference;
-    public static String MagiskPreference;
-
-    public static String SettingsPreference(){
-        return "SettingsPrefs";
-    }
-
-    public static String XposedPreference(){
-        return "XposedPrefs";
-    }
-    public static String MagiskPreference(){
-        return "MagiskPrefs";
-    }
-}
+const val SettingsPreference: String = "SettingsPrefs"
+const val XposedPreference: String = "XposedPrefs"
+const val MagiskPreference: String = "MagiskPrefs"

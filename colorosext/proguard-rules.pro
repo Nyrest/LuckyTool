@@ -70,9 +70,6 @@
 #noinspection ShrinkerUnresolvedReference
     public static final Android.os.Parcelable$Creator *;
 }
-# support
--keep public class * extends android.support.annotation.** { *; }
--keep public class * extends android.support.v4.content.FileProvider
 # androidx
 -keep public class * extends androidx.annotation.** { *; }
 -keep public class * extends androidx.core.content.FileProvider

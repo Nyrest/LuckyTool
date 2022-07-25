@@ -9,7 +9,7 @@
     <string name="nav_item_magisk">Magisk</string>
 
     <string name="theme_title">Theme</string>
-    <string name="theme_title_summer">will automatically refresh the page</string>
+    <string name="theme_title_summer">Will automatically refresh the page</string>
     <string name="use_material3">Use Material3</string>
     <string name="use_material3_summer">Use Material3 theme styles</string>
     <string name="theme_color">Theme Color</string>
