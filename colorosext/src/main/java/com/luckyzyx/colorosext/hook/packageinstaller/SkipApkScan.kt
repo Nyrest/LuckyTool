@@ -1,13 +1,13 @@
-package com.luckyzyx.tools.hook.packageinstaller
+package com.luckyzyx.colorosext.hook.packageinstaller
 
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 import com.highcapable.yukihookapi.hook.type.java.BooleanType
 
 class SkipApkScan : YukiBaseHooker() {
-    private val PrefsFile = "XposedSettings"
+    private val prefsFile = "XposedSettings"
     override fun onHook() {
         val Member: Array<String> =
-            when (prefs(PrefsFile).getString("PackageInstallCommit", "null")) {
+            when (prefs(prefsFile).getString("PackageInstallCommit", "null")) {
                 "7bc7db7", "e1a2c58" -> {
                     arrayOf("L", "C", "K")
                 }

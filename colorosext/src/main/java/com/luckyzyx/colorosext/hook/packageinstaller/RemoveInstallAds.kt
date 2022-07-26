@@ -1,4 +1,4 @@
-package com.luckyzyx.tools.hook.packageinstaller
+package com.luckyzyx.colorosext.hook.packageinstaller
 
 import android.view.View
 import android.widget.LinearLayout

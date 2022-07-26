@@ -1,26 +1,26 @@
-package com.luckyzyx.tools.hook
+package com.luckyzyx.colorosext.hook
 
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
-import com.luckyzyx.tools.hook.packageinstaller.AllowReplaceInstall
-import com.luckyzyx.tools.hook.packageinstaller.RemoveInstallAds
-import com.luckyzyx.tools.hook.packageinstaller.ReplaseAospInstaller
-import com.luckyzyx.tools.hook.packageinstaller.SkipApkScan
+import com.luckyzyx.colorosext.hook.packageinstaller.AllowReplaceInstall
+import com.luckyzyx.colorosext.hook.packageinstaller.RemoveInstallAds
+import com.luckyzyx.colorosext.hook.packageinstaller.ReplaseAospInstaller
+import com.luckyzyx.colorosext.hook.packageinstaller.SkipApkScan
 
 
 class HookPackageInstaller : YukiBaseHooker() {
-    private val PrefsFile = "XposedSettings"
+    private val prefsFile = "XposedSettings"
     override fun onHook() {
         //跳过安装扫描
-        if (prefs(PrefsFile).getBoolean("skip_apk_scan", false)) loadHooker(SkipApkScan())
+        if (prefs(prefsFile).getBoolean("skip_apk_scan", false)) loadHooker(SkipApkScan())
 
         //低/相同版本警告
-        if (prefs(PrefsFile).getBoolean("allow_replace_install",false)) loadHooker(AllowReplaceInstall())
+        if (prefs(prefsFile).getBoolean("allow_replace_install",false)) loadHooker(AllowReplaceInstall())
 
         //移除安装完成广告
-        if (prefs(PrefsFile).getBoolean("remove_install_ads",false)) loadHooker(RemoveInstallAds())
+        if (prefs(prefsFile).getBoolean("remove_install_ads",false)) loadHooker(RemoveInstallAds())
 
         //ColorOS安装器替换为原生安装器
-        if (prefs(PrefsFile).getBoolean("replase_aosp_installer",false)) loadHooker(ReplaseAospInstaller())
+        if (prefs(prefsFile).getBoolean("replase_aosp_installer",false)) loadHooker(ReplaseAospInstaller())
 
     }
 }

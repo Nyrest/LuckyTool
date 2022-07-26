@@ -1,4 +1,4 @@
-package com.luckyzyx.tools.hook.oplusgames
+package com.luckyzyx.colorosext.hook.oplusgames
 
 import android.os.Bundle
 import com.highcapable.yukihookapi.hook.bean.VariousClass

@@ -1,4 +1,4 @@
-package com.luckyzyx.tools.hook.packageinstaller
+package com.luckyzyx.colorosext.hook.packageinstaller
 
 import com.highcapable.yukihookapi.hook.bean.VariousClass
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker

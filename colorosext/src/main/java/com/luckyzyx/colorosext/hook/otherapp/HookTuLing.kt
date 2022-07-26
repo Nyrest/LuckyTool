@@ -1,10 +1,9 @@
-package com.luckyzyx.tools.hook.otherapp
+package com.luckyzyx.colorosext.hook.otherapp
 
 import android.content.Context
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 import com.highcapable.yukihookapi.hook.factory.classOf
 import com.highcapable.yukihookapi.hook.type.android.ContextClass
-import com.highcapable.yukihookapi.hook.type.java.BooleanType
 
 class HookTuLing : YukiBaseHooker() {
     override fun onHook() {

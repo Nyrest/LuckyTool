@@ -1,13 +1,12 @@
-package com.luckyzyx.tools.hook.packageinstaller
+package com.luckyzyx.colorosext.hook.packageinstaller
 
-import com.highcapable.yukihookapi.hook.bean.VariousClass
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 import com.highcapable.yukihookapi.hook.type.java.BooleanType
 
 class AllowReplaceInstall : YukiBaseHooker() {
-    private val PrefsFile = "XposedSettings"
+    private val prefsFile = "XposedSettings"
     override fun onHook() {
-        val Member: String = when(prefs(PrefsFile).getString("PackageInstallCommit","null")){
+        val member: String = when(prefs(prefsFile).getString("PackageInstallCommit","null")){
             "7bc7db7","e1a2c58","a222497" -> "Q"
             "75fe984","532ffef" -> "P"
             "38477f0" -> "R"
@@ -20,7 +19,7 @@ class AllowReplaceInstall : YukiBaseHooker() {
         findClass("com.android.packageinstaller.oplus.OPlusPackageInstallerActivity").hook {
             injectMember {
                 method {
-                    name = Member
+                    name = member
                     returnType = BooleanType
                 }
                 replaceToFalse()

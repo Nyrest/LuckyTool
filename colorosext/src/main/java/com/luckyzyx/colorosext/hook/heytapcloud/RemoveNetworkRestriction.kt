@@ -1,4 +1,4 @@
-package com.luckyzyx.tools.hook.heytapcloud
+package com.luckyzyx.colorosext.hook.heytapcloud
 
 import com.highcapable.yukihookapi.hook.bean.VariousClass
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker

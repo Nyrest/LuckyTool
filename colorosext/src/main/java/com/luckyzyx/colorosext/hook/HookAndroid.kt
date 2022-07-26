@@ -1,12 +1,12 @@
-package com.luckyzyx.tools.hook
+package com.luckyzyx.colorosext.hook
 
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
-import com.luckyzyx.tools.hook.android.DisableFlagSecure
-import com.luckyzyx.tools.hook.android.RemoveStatusBarTopNotification
+import com.luckyzyx.colorosext.hook.android.DisableFlagSecure
+import com.luckyzyx.colorosext.hook.android.RemoveStatusBarTopNotification
 
 class HookAndroid : YukiBaseHooker(){
     @Suppress("unused")
-    private val PrefsFile = "XposedSettings"
+    private val prefsFile = "XposedSettings"
     override fun onHook() {
         //禁用FLAG_SECURE
         loadHooker(DisableFlagSecure())

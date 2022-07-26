@@ -1,4 +1,4 @@
-package com.luckyzyx.tools.hook.safecenter
+package com.luckyzyx.colorosext.hook.safecenter
 
 import com.highcapable.yukihookapi.hook.bean.VariousClass
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker

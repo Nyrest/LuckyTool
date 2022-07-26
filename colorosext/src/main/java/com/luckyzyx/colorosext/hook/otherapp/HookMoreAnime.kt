@@ -1,13 +1,13 @@
-package com.luckyzyx.tools.hook.otherapp
+package com.luckyzyx.colorosext.hook.otherapp
 
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 import com.highcapable.yukihookapi.hook.type.java.BooleanType
 
 class HookMoreAnime : YukiBaseHooker() {
-    private val PrefsFile = "XposedSettings"
+    private val prefsFile = "XposedSettings"
     override fun onHook() {
         //跳过启动广告页
-        if (prefs(PrefsFile).getBoolean("skip_startup_page", false)) {
+        if (prefs(prefsFile).getBoolean("skip_startup_page", false)) {
             findClass(name = "com.east2d.haoduo.ui.activity.SplashActivity").hook {
                 injectMember {
                     method {
@@ -19,7 +19,7 @@ class HookMoreAnime : YukiBaseHooker() {
             }
         }
         //VIP 下载原图
-        if(prefs(PrefsFile).getBoolean("vip_download", false)) {
+        if(prefs(prefsFile).getBoolean("vip_download", false)) {
             findClass(name = "com.east2d.haoduo.mvp.browerimages.FunctionImageMainActivity").hook {
                 injectMember {
                     method {

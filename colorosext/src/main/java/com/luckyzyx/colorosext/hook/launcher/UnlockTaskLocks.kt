@@ -1,4 +1,4 @@
-package com.luckyzyx.tools.hook.launcher
+package com.luckyzyx.colorosext.hook.launcher
 
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 

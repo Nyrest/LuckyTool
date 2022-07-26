@@ -62,6 +62,7 @@ public class XposedHelper {
         }
     }
 
+    @SuppressWarnings("UnusedReturnValue")
     private static Set<XC_MethodHook.Unhook> hookAllConstructors(Class<?> hookClass, XC_MethodHook callback) {
         try {
             return XposedBridge.hookAllConstructors(hookClass, callback);

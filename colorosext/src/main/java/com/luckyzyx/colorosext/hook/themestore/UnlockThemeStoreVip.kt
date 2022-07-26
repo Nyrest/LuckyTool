@@ -1,4 +1,4 @@
-package com.luckyzyx.tools.hook.themestore
+package com.luckyzyx.colorosext.hook.themestore
 
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 

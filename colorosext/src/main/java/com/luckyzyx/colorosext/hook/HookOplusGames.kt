@@ -1,12 +1,12 @@
-package com.luckyzyx.tools.hook
+package com.luckyzyx.colorosext.hook
 
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
-import com.luckyzyx.tools.hook.oplusgames.RemoveRootCheck
+import com.luckyzyx.colorosext.hook.oplusgames.RemoveRootCheck
 
 class HookOplusGames : YukiBaseHooker() {
-    private val PrefsFile = "XposedSettings"
+    private val prefsFile = "XposedSettings"
     override fun onHook() {
         //游戏滤镜-->Root检测
-        if (prefs(PrefsFile).getBoolean("remove_root_check", false)) loadHooker(RemoveRootCheck())
+        if (prefs(prefsFile).getBoolean("remove_root_check", false)) loadHooker(RemoveRootCheck())
     }
 }

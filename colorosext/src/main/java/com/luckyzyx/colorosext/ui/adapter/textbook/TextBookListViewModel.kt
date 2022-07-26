@@ -11,7 +11,6 @@ import com.squareup.moshi.Types
 import com.luckyzyx.colorosext.R
 import kotlinx.coroutines.*
 
-
 class TextBookListViewModel(
     application: Application,
     private val stateHandle: SavedStateHandle
@@ -31,25 +30,20 @@ class TextBookListViewModel(
         }
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     fun loadData() {
         GlobalScope.launch(Dispatchers.Main) {
             val textBookList = withContext(Dispatchers.IO) {
-                val json = getApplication<Application>().resources.openRawResource(
-                    R.raw.text_book_list
-                ).bufferedReader().readText()
-                val type = Types.newParameterizedType(
-                    List::class.java,
-                    TextBookList::class.java
-                )
+                val json = getApplication<Application>().resources.openRawResource(R.raw.text_book_list).bufferedReader().readText()
+                val type = Types.newParameterizedType(List::class.java, TextBookList::class.java)
                 val moshi = Moshi.Builder().build()
                 val adapter: JsonAdapter<List<TextBookList>> = moshi.adapter(type)
                 adapter.fromJson(json)
             }
             textBookLists.value = textBookList
             stateHandle.set(TEXT_BOOK_LIST, ArrayList(textBookList!!))
+
             Log.d(LOG_TAG, "save textBookList:${textBookList}")
         }
     }
-
-
 }

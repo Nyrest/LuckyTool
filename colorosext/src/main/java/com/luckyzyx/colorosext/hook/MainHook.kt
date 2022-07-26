@@ -1,14 +1,12 @@
 package com.luckyzyx.colorosext.hook
 
 import android.os.Build.VERSION.SDK_INT
-import com.highcapable.yukihookapi.annotation.xposed.InjectYukiHookWithXposed
 import com.highcapable.yukihookapi.hook.factory.configs
 import com.highcapable.yukihookapi.hook.factory.encase
 import com.highcapable.yukihookapi.hook.xposed.bridge.event.YukiXposedEvent
 import com.highcapable.yukihookapi.hook.xposed.proxy.IYukiHookXposedInit
 import com.luckyzyx.colorosext.hook.CorePatch.CorePatchForR
 import com.luckyzyx.colorosext.hook.CorePatch.CorePatchForS
-import com.luckyzyx.tools.hook.*
 import de.robv.android.xposed.IXposedHookZygoteInit
 import de.robv.android.xposed.XposedBridge
 import de.robv.android.xposed.callbacks.XC_LoadPackage
@@ -33,23 +31,23 @@ class MainHook : IYukiHookXposedInit {
         loadSystem(HookAndroid())
         //loadZygote(HookZygote())
         //系统界面
-        loadApp("com.android.systemui",HookSystemUI())
+        loadApp("com.android.systemui", HookSystemUI())
         //相机
-        loadApp("com.oplus.camera",HookCamera())
+        loadApp("com.oplus.camera", HookCamera())
         //系统桌面
-        loadApp("com.android.launcher",HookLauncher())
+        loadApp("com.android.launcher", HookLauncher())
         //安全中心
-        loadApp("com.oplus.safecenter",HookSafeCenter())
+        loadApp("com.oplus.safecenter", HookSafeCenter())
         //时钟
-        loadApp("com.coloros.alarmclock",HookAlarmClock())
+        loadApp("com.coloros.alarmclock", HookAlarmClock())
         //主题商店
-        loadApp("com.heytap.themestore",HookThemeStore())
+        loadApp("com.heytap.themestore", HookThemeStore())
         //云服务
-        loadApp("com.heytap.cloud",HookCloud())
+        loadApp("com.heytap.cloud", HookCloud())
         //游戏助手
-        loadApp("com.oplus.games",HookOplusGames())
+        loadApp("com.oplus.games", HookOplusGames())
         //应用包安装程序
-        loadApp("com.android.packageinstaller",HookPackageInstaller())
+        loadApp("com.android.packageinstaller", HookPackageInstaller())
         //其他APP
         loadHooker(HookOtherApp())
 

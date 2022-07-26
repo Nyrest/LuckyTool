@@ -1,13 +1,13 @@
-package com.luckyzyx.tools.hook
+package com.luckyzyx.colorosext.hook
 
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
-import com.luckyzyx.tools.hook.safecenter.UnlockStartupLimit
+import com.luckyzyx.colorosext.hook.safecenter.UnlockStartupLimit
 
 class HookSafeCenter : YukiBaseHooker() {
-    private val PrefsFile = "XposedSettings"
+    private val prefsFile = "XposedSettings"
     override fun onHook() {
         //解锁自启数量限制
-        if (prefs(PrefsFile).getBoolean("unlock_startup_limit",false)) loadHooker(UnlockStartupLimit())
+        if (prefs(prefsFile).getBoolean("unlock_startup_limit",false)) loadHooker(UnlockStartupLimit())
 
     }
 }

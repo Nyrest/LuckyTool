@@ -1,12 +1,12 @@
-package com.luckyzyx.tools.hook
+package com.luckyzyx.colorosext.hook
 
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
-import com.luckyzyx.tools.hook.heytapcloud.RemoveNetworkRestriction
+import com.luckyzyx.colorosext.hook.heytapcloud.RemoveNetworkRestriction
 
 class HookCloud : YukiBaseHooker() {
-    private val PrefsFile = "XposedSettings"
+    private val prefsFile = "XposedSettings"
     override fun onHook() {
         //移除网络限制
-        if (prefs(PrefsFile).getBoolean("remove_network_restriction",false)) loadHooker(RemoveNetworkRestriction())
+        if (prefs(prefsFile).getBoolean("remove_network_restriction",false)) loadHooker(RemoveNetworkRestriction())
     }
 }

@@ -1,4 +1,4 @@
-package com.luckyzyx.tools.hook.alarmclock
+package com.luckyzyx.colorosext.hook.alarmclock
 
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 import com.highcapable.yukihookapi.hook.factory.field

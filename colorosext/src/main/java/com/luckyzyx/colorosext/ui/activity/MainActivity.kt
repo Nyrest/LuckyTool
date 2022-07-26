@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.app.UiModeManager
 import android.content.Context
 import android.content.DialogInterface
-import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.Menu
@@ -16,7 +15,6 @@ import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.luckyzyx.colorosext.R
-import com.luckyzyx.colorosext.ui.adapter.textbook.TextBookListActivity
 import com.luckyzyx.colorosext.ui.fragment.HomeFragment
 import com.luckyzyx.colorosext.ui.fragment.HomeFragment.SettingsFragment
 import com.luckyzyx.colorosext.ui.fragment.MagiskFragment
@@ -71,7 +69,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == 1) startActivity(Intent(this,TextBookListActivity::class.java))//refreshmode(this)
+        if (item.itemId == 1) refreshmode(this)
         if (item.itemId == 2) switchFragment(SettingsFragment(), true)
         return super.onOptionsItemSelected(item)
     }
