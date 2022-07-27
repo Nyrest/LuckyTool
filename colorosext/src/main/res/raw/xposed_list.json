@@ -2,8 +2,7 @@
   {
     "id": 64,
     "name": "系统框架",
-    "courseId": 54,
-    "filters": [
+    "funclist": [
       {
         "id": 467,
         "name": "11"
@@ -17,8 +16,7 @@
   {
     "id": 65,
     "name": "系统界面",
-    "courseId": 54,
-    "filters": [
+    "funclist": [
       {
         "id": 473,
         "name": "11"
@@ -32,8 +30,7 @@
   {
     "id": 66,
     "name": "时钟",
-    "courseId": 54,
-    "filters": [
+    "funclist": [
       {
         "id": 479,
         "name": "11"
@@ -47,8 +44,7 @@
   {
     "id": 67,
     "name": "系统桌面",
-    "courseId": 54,
-    "filters": [
+    "funclist": [
       {
         "id": 485,
         "name": "11"
@@ -62,8 +58,7 @@
   {
     "id": 68,
     "name": "应用包安装程序",
-    "courseId": 54,
-    "filters": [
+    "funclist": [
       {
         "id": 491,
         "name": "11"
@@ -77,8 +72,7 @@
   {
     "id": 69,
     "name": "相机",
-    "courseId": 54,
-    "filters": [
+    "funclist": [
       {
         "id": 497,
         "name": "11"

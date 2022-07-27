@@ -1,5 +1,5 @@
 {
-  "list": [
+  "zone": [
     {
       "id": "bj",
       "name": "北京",
@@ -125,7 +125,7 @@
       "sort": 24
     }
   ],
-  "item": [
+  "university": [
     {
       "id": 1,
       "name": "华中科技大学",

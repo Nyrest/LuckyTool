@@ -9,20 +9,32 @@ tools:context=".ui.fragment.MagiskFragment">
 <androidx.core.widget.NestedScrollView
     android:id="@+id/nestedScrollView"
     android:layout_width="match_parent"
-    android:layout_height="0dp"
+    android:layout_height="match_parent"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    tools:ignore="SpeakableTextPresentCheck">
+    app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:text="@string/fragment_magisk"
-        android:textSize="20sp"
-        android:gravity="center"
-        android:layout_gravity="center"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv"
+            android:text="@string/fragment_magisk"
+            android:textSize="18sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv2"
+            android:text="@string/fragment_magisk"
+            android:textSize="18sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>
 

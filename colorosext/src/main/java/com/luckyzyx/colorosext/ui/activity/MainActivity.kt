@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         checkTheme(this)
         setContentView(R.layout.activity_main)
+        if (savedInstanceState == null) switchFragment(HomeFragment(),false)
 
         initMaterialToolbar()
         initBottomNavigationView()
@@ -107,16 +108,38 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun refreshmode(context: Context) {
-        val list = arrayOf("重启系统", "关闭系统", "Recovery", "BootLoader")
+        val list = arrayOf("重启作用域","重启系统", "关闭系统", "Recovery", "BootLoader")
         MaterialAlertDialogBuilder(context)
             .setCancelable(true)
             .setItems(list){ _: DialogInterface, i: Int ->
                 when (i) {
-                    0 -> ShellUtils.execCommand("reboot", true)
-                    1 -> ShellUtils.execCommand("reboot -p", true)
-                    2 -> ShellUtils.execCommand("reboot recovery", true)
-                    3 -> ShellUtils.execCommand("reboot bootloader", true)
+                    0 -> restartScope()
+                    1 -> ShellUtils.execCommand("reboot", true)
+                    2 -> ShellUtils.execCommand("reboot -p", true)
+                    3 -> ShellUtils.execCommand("reboot recovery", true)
+                    4 -> ShellUtils.execCommand("reboot bootloader", true)
                 }
             }.show()
+    }
+
+    private fun restartScope(){
+        val commands = arrayOf(
+            "kill -9 `pgrep systemui`",
+            "am force-stop com.android.packageinstaller",
+            "am force-stop com.heytap.themestore",
+            "am force-stop com.oplus.safecenter",
+            "am force-stop com.oplus.games",
+            "am force-stop com.oplus.camera",
+            "am force-stop com.android.launcher",
+            "am force-stop com.heytap.cloud",
+            "am force-stop com.coloros.alarmclock",
+            "am force-stop com.east2d.everyimage",
+            "am force-stop com.chan.cwallpaper"
+        )
+        MaterialAlertDialogBuilder(this)
+            .setMessage("重启除系统框架外的全部作用域?")
+            .setPositiveButton("确定") { _: DialogInterface?, _: Int -> ShellUtils.execCommand(commands, true) }
+            .setNeutralButton("取消", null)
+            .show()
     }
 }

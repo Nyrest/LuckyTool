@@ -37,9 +37,11 @@ class HomeFragment : Fragment() {
         override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String) {
             when (key) {
                 "theme_color", "use_md3" -> {
-                    startActivity(Intent(requireActivity(), MainActivity::class.java))
-                    requireActivity().overridePendingTransition(R.anim.start_anim, R.anim.out_anim)
-                    requireActivity().finish()
+                    if (requireActivity().application != null){
+                        startActivity(Intent(requireActivity(), MainActivity::class.java))
+                        requireActivity().overridePendingTransition(R.anim.start_anim, R.anim.out_anim)
+                        requireActivity().finish()
+                    }
                 }
             }
         }
