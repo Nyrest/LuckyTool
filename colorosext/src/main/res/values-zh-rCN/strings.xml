@@ -19,5 +19,22 @@
     <string name="author_summer">酷安给个关注吧亲</string>
     <string name="xposeddescription">旨在对 ColorOS 的各种扩展优化</string>
     <string name="update_url">更新地址</string>
-    <string name="update_url_summer">酷安,Lsposed</string>
+    <string name="update_url_summer">酷安 Lsposed</string>
+
+    <string name="corepatch">核心破解</string>
+    <string name="corepatch_summer">解除安装限制,支持 Android 10–12</string>
+    <string name="downgr">允许降级安装应用</string>
+    <string name="downgr_summary">允许应用在安装新版本的情况下直接覆盖安装旧版本</string>
+    <string name="authcreak">禁用软件包管理器签名验证</string>
+    <string name="authcreak_summary">关闭安装应用时的签名验证,可以安装被篡改的应用</string>
+    <string name="digestCreak">禁用APK签名验证</string>
+    <string name="digestCreak_summary">允许直接覆盖安装同包名不同签名的应用</string>
+    <string name="UsePreSig">安装时始终使用已装APP的签名</string>
+    <string name="UsePreSig_summary">不是一般的<b>危险</b> 仅在绝对需要时启用</string>
+    <string name="enhancedMode">增强模式</string>
+    <string name="enhancedMode_summary">可以解决一些App内部的完整性校验,一般不需要开启</string>
+    <string name="usepresig_warn">!!所有安装包可以覆盖已安装的App!!\n安装未知的安装包时请务必小心</string>
+    <string name="version_summer_first">"版本: "</string>
+
+
 </resources>

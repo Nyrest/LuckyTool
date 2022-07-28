@@ -7,10 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.luckyzyx.colorosext.databinding.FragmentMagiskBinding
-import com.luckyzyx.colorosext.ui.adapter.scope.Func
-import com.luckyzyx.colorosext.ui.adapter.scope.Scope
-import com.luckyzyx.colorosext.ui.adapter.scope.ScopeWrapper
-import com.luckyzyx.colorosext.utils.MoshiUtil
 
 class MagiskFragment : Fragment() {
 

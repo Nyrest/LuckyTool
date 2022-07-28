@@ -95,7 +95,7 @@ dependencies {
     ksp("com.squareup.moshi:moshi-kotlin-codegen:1.13.0")
     //用于 Android 主线程调度程序
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
-
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
 }
 
 def getVersionCode() {

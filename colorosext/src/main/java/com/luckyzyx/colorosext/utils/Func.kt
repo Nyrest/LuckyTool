@@ -1,11 +1,11 @@
 package com.luckyzyx.colorosext.utils
 
 import android.content.Context
-import android.content.res.Resources
-import android.util.TypedValue
+import android.content.pm.PackageManager
 import com.highcapable.yukihookapi.hook.factory.classOf
 import com.highcapable.yukihookapi.hook.factory.field
 import com.highcapable.yukihookapi.hook.factory.method
+
 
 /**
  * try/catch函数
@@ -30,10 +30,20 @@ val getColorOSVersion get() = safeOf(default = "无法获取") {
         }
     }
 
+/**
+ * 获取APP版本/版本号/Commit
+ * @return [String]
+ */
+fun getAppVersion(context: Context, packName:String): String = safeOf(default = "无法获取") {
+    val packageManager = context.packageManager
+    val packageInfo = packageManager.getPackageInfo(packName, 0)
+    val versionName = safeOf(default = "无法获取") { packageInfo.versionName }
+    val versionCode = safeOf(default = "无法获取") { packageInfo.longVersionCode }
+    val versionCommit = if (packName != "android"){
+        safeOf(default = "无法获取") { packageManager.getApplicationInfo(packName, PackageManager.GET_META_DATA).metaData.getString("versionCommit") }
+    } else { "无" }
+    return "$versionName($versionCode)[$versionCommit]"
+}
 
-fun Number.dpToPx(context: Context? = null): Float =
-    TypedValue.applyDimension(
-        TypedValue.COMPLEX_UNIT_DIP,
-        this.toFloat(),
-        Resources.getSystem().displayMetrics
-    )
+
+

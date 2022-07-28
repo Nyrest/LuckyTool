@@ -16,12 +16,13 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.luckyzyx.colorosext.R
 import com.luckyzyx.colorosext.ui.fragment.HomeFragment
-import com.luckyzyx.colorosext.ui.fragment.HomeFragment.SettingsFragment
 import com.luckyzyx.colorosext.ui.fragment.MagiskFragment
+import com.luckyzyx.colorosext.ui.fragment.SettingsFragment
 import com.luckyzyx.colorosext.ui.fragment.XposedFragment
 import com.luckyzyx.colorosext.utils.SPUtils
 import com.luckyzyx.colorosext.utils.SettingsPreference
 import com.luckyzyx.colorosext.utils.ShellUtils
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +33,7 @@ class MainActivity : AppCompatActivity() {
 
         initMaterialToolbar()
         initBottomNavigationView()
+
     }
 
     private fun initMaterialToolbar() {

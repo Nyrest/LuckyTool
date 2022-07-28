@@ -2,6 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.luckyzyx.colorosext">
 
+    <queries>
+        <package android:name="com.oplus.games" />
+        <package android:name="com.coloros.alarmclock" />
+        <package android:name="com.heytap.themestore" />
+        <package android:name="com.heytap.cloud" />
+    </queries>
+
     <application
         android:name=".ui.application.MyApplication"
         android:allowBackup="true"
@@ -19,7 +26,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.adapter.markets.MarketsActivity" />
 
         <meta-data
             android:name="xposedmodule"

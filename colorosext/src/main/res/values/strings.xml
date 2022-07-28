@@ -1,8 +1,6 @@
 <resources>
     <string name="app_name">ColorOSExt</string>
     <string name="xposeddescription">The purpose is to optimize various extensions of ColorOS</string>
-    <string name="fragment_home">This is Home Page</string>
-    <string name="fragment_xposed">This is Xposed Page</string>
     <string name="fragment_magisk">This is Magisk Page</string>
     <string name="nav_item_xposed">Xposed</string>
     <string name="nav_item_home">Home</string>
@@ -23,4 +21,7 @@
     <string name="author_summer">luckyzyx</string>
     <string name="update_url">Update address</string>
     <string name="update_url_summer">Coolmarket,Lsposed</string>
+
+    <string name="version_summer_first">"Version: "</string>
+
 </resources>
