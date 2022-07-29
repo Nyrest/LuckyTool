@@ -19,9 +19,8 @@ import com.luckyzyx.colorosext.ui.fragment.HomeFragment
 import com.luckyzyx.colorosext.ui.fragment.MagiskFragment
 import com.luckyzyx.colorosext.ui.fragment.SettingsFragment
 import com.luckyzyx.colorosext.ui.fragment.XposedFragment
-import com.luckyzyx.colorosext.utils.SPUtils
-import com.luckyzyx.colorosext.utils.SettingsPreference
-import com.luckyzyx.colorosext.utils.ShellUtils
+import com.luckyzyx.colorosext.utils.*
+import kotlin.system.exitProcess
 
 
 class MainActivity : AppCompatActivity() {
@@ -29,11 +28,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         checkTheme(this)
         setContentView(R.layout.activity_main)
-        if (savedInstanceState == null) switchFragment(HomeFragment(),false)
+        if (savedInstanceState == null) switchFragment(HomeFragment(), false)
 
+        checkPrefsRW()
         initMaterialToolbar()
         initBottomNavigationView()
-
     }
 
     private fun initMaterialToolbar() {
@@ -42,7 +41,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkTheme(context: Context) {
-        if (SPUtils.getBoolean(context, SettingsPreference, "use_md3", false)) {
+        if (SPUtils.getBoolean(context, SettingsPrefs, "use_md3", false)) {
             context.setTheme(R.style.Theme_ColorOSExt_MD3)
         } else {
             context.setTheme(R.style.Theme_ColorOSExt)
@@ -109,11 +108,27 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    @Suppress("DEPRECATION")
+    @SuppressLint("WorldReadableFiles")
+    private fun checkPrefsRW() {
+        try {
+            getSharedPreferences(SettingsPrefs, MODE_WORLD_READABLE)
+            getSharedPreferences(XposedPrefs, MODE_WORLD_READABLE)
+            getSharedPreferences(MagiskPrefs, MODE_WORLD_READABLE)
+        } catch (ignored: SecurityException) {
+            MaterialAlertDialogBuilder(this)
+                .setCancelable(false)
+                .setMessage(getString(R.string.unsupported_xposed))
+                .setPositiveButton(android.R.string.ok) { _: DialogInterface?, _: Int -> exitProcess(0) } //.setNegativeButton(R.string.ignore, null)
+                .show()
+        }
+    }
+
     private fun refreshmode(context: Context) {
-        val list = arrayOf("重启作用域","重启系统", "关闭系统", "Recovery", "BootLoader")
+        val list = arrayOf("重启作用域", "重启系统", "关闭系统", "Recovery", "BootLoader")
         MaterialAlertDialogBuilder(context)
             .setCancelable(true)
-            .setItems(list){ _: DialogInterface, i: Int ->
+            .setItems(list) { _: DialogInterface, i: Int ->
                 when (i) {
                     0 -> restartScope()
                     1 -> ShellUtils.execCommand("reboot", true)
@@ -124,23 +139,25 @@ class MainActivity : AppCompatActivity() {
             }.show()
     }
 
-    private fun restartScope(){
-        val commands = arrayOf(
-            "kill -9 `pgrep systemui`",
-            "am force-stop com.android.packageinstaller",
-            "am force-stop com.heytap.themestore",
-            "am force-stop com.oplus.safecenter",
-            "am force-stop com.oplus.games",
-            "am force-stop com.oplus.camera",
-            "am force-stop com.android.launcher",
-            "am force-stop com.heytap.cloud",
-            "am force-stop com.coloros.alarmclock",
-            "am force-stop com.east2d.everyimage",
-            "am force-stop com.chan.cwallpaper"
-        )
+    private fun restartScope() {
+        val xposedScope = resources.getStringArray(R.array.xposed_scope)
+        val commands = ArrayList<String>()
+        for (scope in xposedScope) {
+            if (scope == "android") continue
+            if (scope == "com.android.systemui") {
+                commands.add("kill -9 `pgrep systemui`")
+                continue
+            }
+            commands.add("am force-stop $scope")
+        }
         MaterialAlertDialogBuilder(this)
             .setMessage("重启除系统框架外的全部作用域?")
-            .setPositiveButton("确定") { _: DialogInterface?, _: Int -> ShellUtils.execCommand(commands, true) }
+            .setPositiveButton("确定") { _: DialogInterface?, _: Int ->
+                ShellUtils.execCommand(
+                    commands,
+                    true
+                )
+            }
             .setNeutralButton("取消", null)
             .show()
     }

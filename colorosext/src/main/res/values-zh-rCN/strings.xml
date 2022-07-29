@@ -30,11 +30,12 @@
     <string name="digestCreak">禁用APK签名验证</string>
     <string name="digestCreak_summary">允许直接覆盖安装同包名不同签名的应用</string>
     <string name="UsePreSig">安装时始终使用已装APP的签名</string>
-    <string name="UsePreSig_summary">不是一般的<b>危险</b> 仅在绝对需要时启用</string>
+    <string name="UsePreSig_summary">不是一般的!危险! 仅在绝对需要时启用</string>
     <string name="enhancedMode">增强模式</string>
     <string name="enhancedMode_summary">可以解决一些App内部的完整性校验,一般不需要开启</string>
     <string name="usepresig_warn">!!所有安装包可以覆盖已安装的App!!\n安装未知的安装包时请务必小心</string>
     <string name="version_summer_first">"版本: "</string>
+    <string name="unsupported_xposed">请确保Xposed API >= 93,并且模块已勾选相应作用域\\n若上述已经完成,可尝试点击确定退出APP,然后重试</string>
 
 
 </resources>

@@ -23,25 +23,34 @@ inline fun <T> safeOf(default: T, result: () -> T) = try {
  * 获取ColorOS版本
  * @return [String]
  */
-val getColorOSVersion get() = safeOf(default = "无法获取") {
+val getColorOSVersion
+    get() = safeOf(default = "无法获取") {
         classOf(name = "com.oplus.os.OplusBuild").let {
-            it.field { name = "VERSIONS" }.ignoredError().get().array<String>().takeIf { e -> e.isNotEmpty() }
+            it.field { name = "VERSIONS" }.ignoredError().get().array<String>()
+                .takeIf { e -> e.isNotEmpty() }
                 ?.get(it.method { name = "getOplusOSVERSION" }.ignoredError().get().int() - 1)
         }
     }
 
 /**
  * 获取APP版本/版本号/Commit
+ * 写入SP xml文件内
  * @return [String]
  */
-fun getAppVersion(context: Context, packName:String): String = safeOf(default = "无法获取") {
+fun getAppVersion(context: Context, packName: String): String = safeOf(default = "无法获取") {
     val packageManager = context.packageManager
     val packageInfo = packageManager.getPackageInfo(packName, 0)
     val versionName = safeOf(default = "无法获取") { packageInfo.versionName }
     val versionCode = safeOf(default = "无法获取") { packageInfo.longVersionCode }
-    val versionCommit = if (packName != "android"){
-        safeOf(default = "无法获取") { packageManager.getApplicationInfo(packName, PackageManager.GET_META_DATA).metaData.getString("versionCommit") }
-    } else { "无" }
+    val versionCommit = if (packName != "android") {
+        safeOf(default = "无法获取") {
+            packageManager.getApplicationInfo(
+                packName,
+                PackageManager.GET_META_DATA
+            ).metaData.getString("versionCommit")
+        }
+    } else "null"
+    SPUtils.putString(context, XposedPrefs, packName, versionCommit)
     return "$versionName($versionCode)[$versionCommit]"
 }
 

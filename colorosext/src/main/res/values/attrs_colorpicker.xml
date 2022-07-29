@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ColorPickerPreference">
+        <attr name="defaultColor" format="color" />
+        <attr name="preference_colorBox" format="reference" />
+        <attr name="preference_colorBox_radius" format="dimension" />
+        <attr name="preference_palette" format="reference" />
+        <attr name="preference_selector" format="reference" />
+        <attr name="preference_dialog_title" format="string" />
+        <attr name="preference_dialog_positive" format="string" />
+        <attr name="preference_dialog_neutral" format="string" />
+        <attr name="preference_attachAlphaSlideBar" format="boolean" />
+        <attr name="preference_attachBrightnessSlideBar" format="boolean" />
+    </declare-styleable>
+</resources>

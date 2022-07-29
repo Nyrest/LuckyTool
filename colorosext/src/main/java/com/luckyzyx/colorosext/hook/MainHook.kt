@@ -1,6 +1,7 @@
 package com.luckyzyx.colorosext.hook
 
 import android.os.Build.VERSION.SDK_INT
+import com.highcapable.yukihookapi.annotation.xposed.InjectYukiHookWithXposed
 import com.highcapable.yukihookapi.hook.factory.configs
 import com.highcapable.yukihookapi.hook.factory.encase
 import com.highcapable.yukihookapi.hook.xposed.bridge.event.YukiXposedEvent
@@ -11,11 +12,8 @@ import de.robv.android.xposed.IXposedHookZygoteInit
 import de.robv.android.xposed.XposedBridge
 import de.robv.android.xposed.callbacks.XC_LoadPackage
 
-//@InjectYukiHookWithXposed
+@InjectYukiHookWithXposed
 class MainHook : IYukiHookXposedInit {
-
-    @Suppress("unused")
-    private val prefsFile = "XposedSettings"
 
     override fun onInit() {
         configs {
@@ -23,6 +21,7 @@ class MainHook : IYukiHookXposedInit {
             debugTag = "ColorOSExt"
             // 是否开启调试模式,请注意 - 若作为发布版本请务必关闭调试功能防止对用户设备造成大量日志填充
             isDebug = false
+            isEnableModulePrefsCache = false
         }
     }
 
@@ -43,7 +42,7 @@ class MainHook : IYukiHookXposedInit {
         //主题商店
         loadApp("com.heytap.themestore", HookThemeStore())
         //云服务
-        loadApp("com.heytap.cloud", HookCloud())
+        loadApp("com.heytap.cloud", HookCloudService())
         //游戏助手
         loadApp("com.oplus.games", HookOplusGames())
         //应用包安装程序
@@ -56,7 +55,7 @@ class MainHook : IYukiHookXposedInit {
     override fun onXposedEvent() {
         YukiXposedEvent.onInitZygote { startupParam: IXposedHookZygoteInit.StartupParam ->
             run {
-                when(SDK_INT){
+                when (SDK_INT) {
                     30 -> CorePatchForR().initZygote(startupParam)
                     31 -> CorePatchForS().initZygote(startupParam)
                     else -> XposedBridge.log("[CorePatch] 不支持的Android版本: $SDK_INT")
@@ -66,7 +65,7 @@ class MainHook : IYukiHookXposedInit {
         YukiXposedEvent.onHandleLoadPackage { lpparam: XC_LoadPackage.LoadPackageParam ->
             run {
                 if (lpparam.packageName == "android" && lpparam.processName == "android") {
-                    when(SDK_INT) {
+                    when (SDK_INT) {
                         30 -> CorePatchForR().handleLoadPackage(lpparam)
                         31 -> CorePatchForS().handleLoadPackage(lpparam)
                         else -> XposedBridge.log("[CorePatch] 不支持的Android版本: $SDK_INT")

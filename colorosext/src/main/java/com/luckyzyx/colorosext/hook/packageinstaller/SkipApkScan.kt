@@ -2,12 +2,12 @@ package com.luckyzyx.colorosext.hook.packageinstaller
 
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 import com.highcapable.yukihookapi.hook.type.java.BooleanType
+import com.luckyzyx.colorosext.utils.XposedPrefs
 
 class SkipApkScan : YukiBaseHooker() {
-    private val prefsFile = "XposedSettings"
     override fun onHook() {
-        val Member: Array<String> =
-            when (prefs(prefsFile).getString("PackageInstallCommit", "null")) {
+        val member: Array<String> =
+            when (prefs(XposedPrefs).getString(packageName)) {
                 "7bc7db7", "e1a2c58" -> {
                     arrayOf("L", "C", "K")
                 }
@@ -32,7 +32,7 @@ class SkipApkScan : YukiBaseHooker() {
             //search -> count_canceled_by_app_detail -4 -> Method
             injectMember {
                 method {
-                    name = Member[0]
+                    name = member[0]
                     returnType = BooleanType
                 }
                 replaceToFalse()
@@ -43,11 +43,11 @@ class SkipApkScan : YukiBaseHooker() {
             //search -> "button_type", "install_old_version_button" -11 -> Method
             injectMember {
                 method {
-                    name = Member[1]
+                    name = member[1]
                 }
                 replaceUnit {
                     method {
-                        name = Member[2]
+                        name = member[2]
                     }.get(instance).call()
                 }
             }

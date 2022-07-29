@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">ColorOSExt</string>
     <string name="xposeddescription">The purpose is to optimize various extensions of ColorOS</string>
-    <string name="fragment_magisk">This is Magisk Page</string>
+    <string name="fragment_magisk" translatable="false">This is Magisk Page</string>
     <string name="nav_item_xposed">Xposed</string>
     <string name="nav_item_home">Home</string>
     <string name="nav_item_magisk">Magisk</string>
@@ -23,5 +23,19 @@
     <string name="update_url_summer">Coolmarket,Lsposed</string>
 
     <string name="version_summer_first">"Version: "</string>
+    <string name="corepatch">CorePatch</string>
+    <string name="corepatch_summer">Remove installation restrictions, support Android 10–12</string>
+    <string name="downgr">Allow downgraded installation of applications</string>
+    <string name="downgr_summary">Allow the application to overwrite the installation of the old version directly in the case of installing a new version</string>
+    <string name="authcreak">Disable package manager signature verification</string>
+    <string name="authcreak_summary">Turn off signature verification when installing applications, you can install tampered applications</string>
+    <string name="digestCreak">Disable APK signature verification</string>
+    <string name="digestCreak_summary">Allow direct override to install applications with different signatures for the same package name</string>
+    <string name="UsePreSig">Always use the signature of the installed app when installing</string>
+    <string name="UsePreSig_summary">Not a general !hazard! Enable only when absolutely necessary</string>
+    <string name="enhancedMode">Enhanced Mode</string>
+    <string name="enhancedMode_summary">It can solve some internal integrity check of the app, generally do not need to open</string>
+    <string name="usepresig_warn">!! All installers can overwrite installed apps!!! Please be careful when installing unknown installers</string>
+    <string name="unsupported_xposed">Please make sure Xposed API >= 93 and the module has the appropriate scope checked \\n If the above has been done, try to click OK to exit the app, and then try again</string>
 
 </resources>

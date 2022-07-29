@@ -12,27 +12,31 @@ class MagiskFragment : Fragment() {
 
     private lateinit var binding: FragmentMagiskBinding
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         binding = FragmentMagiskBinding.inflate(inflater)
         return binding.root
     }
 
-    data class User(val id:Int,val name:String,val info:UserInfo)
-    data class UserInfo(val age:Int, val sex:String)
+    data class User(val id: Int, val name: String, val info: UserInfo)
+    data class UserInfo(val age: Int, val sex: String)
 
-    data class School(val id: Int,val name: String,val classlist:List<Class>)
-    data class Class(val id:Int,val name:String,val studentlist:List<Student>)
-    data class Student(val id:Int,val name: String)
+    data class School(val id: Int, val name: String, val classlist: List<Class>)
+    data class Class(val id: Int, val name: String, val studentlist: List<Student>)
+    data class Student(val id: Int, val name: String)
 
-    fun createUser():User{
-        return User(1,"Jack",UserInfo(25,"Sales"))
+    fun createUser(): User {
+        return User(1, "Jack", UserInfo(25, "Sales"))
     }
 
     fun createMultiUser(): List<User> {
         return listOf(
-            User(1,"Jack",UserInfo(25,"Sales")),
-            User(2,"Pony",UserInfo(30,"Marketing")),
-            User(3,"Robin",UserInfo(31,"Engineer"))
+            User(1, "Jack", UserInfo(25, "Sales")),
+            User(2, "Pony", UserInfo(30, "Marketing")),
+            User(3, "Robin", UserInfo(31, "Engineer"))
         )
     }
 
@@ -63,5 +67,19 @@ class MagiskFragment : Fragment() {
 //        binding.tv.text = toJson
 //        binding.tv2.text = fromJson.toString()
 
+
+        binding.tv.setOnClickListener {
+//            ColorPickerDialog(requireActivity()).apply {
+//                setTitle("ColorPicker Dialog")
+//                setPositiveButton(getString(android.R.string.ok), ColorEnvelopeListener {
+//                        colorEnvelope: ColorEnvelope, b: Boolean ->
+//                    binding.tv2.text = "$colorEnvelope.hexCode : $b"
+//                })
+//                setNeutralButton(getString(android.R.string.cancel),null)
+//                attachAlphaSlideBar(true)
+//                attachBrightnessSlideBar(true)
+//                setBottomSpace(10)
+//            }.show()
+        }
     }
 }

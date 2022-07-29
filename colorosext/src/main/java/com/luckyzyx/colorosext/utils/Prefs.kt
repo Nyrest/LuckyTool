@@ -2,6 +2,6 @@
 
 package com.luckyzyx.colorosext.utils
 
-const val SettingsPreference: String = "SettingsPrefs"
-const val XposedPreference: String = "XposedPrefs"
-const val MagiskPreference: String = "MagiskPrefs"
+const val SettingsPrefs: String = "SettingsPrefs"
+const val XposedPrefs: String = "XposedPrefs"
+const val MagiskPrefs: String = "MagiskPrefs"

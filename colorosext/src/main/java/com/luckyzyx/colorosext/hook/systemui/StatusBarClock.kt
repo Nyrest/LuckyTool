@@ -7,11 +7,11 @@ import android.util.TypedValue
 import android.view.Gravity
 import android.widget.TextView
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
+import com.luckyzyx.colorosext.utils.XposedPrefs
 import java.text.SimpleDateFormat
 import java.util.*
 
-class StatusBarClockShowAMPM : YukiBaseHooker() {
-    private val prefsFile = "XposedSettings"
+class StatusBarClock : YukiBaseHooker() {
 
     //显示年份
     private val isYear = false
@@ -26,11 +26,11 @@ class StatusBarClockShowAMPM : YukiBaseHooker() {
     //双排显示
     private val isDoubleLine = false
     //显秒
-    private val isSecond = true
+    private val isSecond = prefs(XposedPrefs).getBoolean("statusbar_clock_show_second",false)
     //时辰
     private val isDoubleHour = false
     //时段  上下午
-    private val isPeriod = true
+    private val isPeriod = prefs(XposedPrefs).getBoolean("statusbar_clock_show_period",false)
     //时钟大小
     private val getClockSize = 0
     //双排居中对齐

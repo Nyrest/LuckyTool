@@ -4,7 +4,6 @@ plugins {
     id 'com.google.devtools.ksp' version '1.7.10-1.0.6'
     id 'com.joom.paranoid'
 }
-/*序列化插件*/
 apply plugin: 'kotlin-parcelize'
 
 android {
@@ -96,6 +95,8 @@ dependencies {
     //用于 Android 主线程调度程序
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
+    //ColorPickerView
+    implementation "com.github.skydoves:colorpickerview:2.2.4"
 }
 
 def getVersionCode() {

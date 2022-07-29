@@ -1,16 +1,19 @@
 package com.luckyzyx.colorosext.ui.fragment
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.preference.Preference
 import androidx.preference.PreferenceCategory
-import androidx.preference.PreferenceFragmentCompat
+import androidx.preference.SwitchPreference
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.highcapable.yukihookapi.hook.xposed.prefs.ui.ModulePreferenceFragment
 import com.luckyzyx.colorosext.R
-import com.luckyzyx.colorosext.utils.XposedPreference
+import com.luckyzyx.colorosext.ui.refactor.ColorPickerPreference
+import com.luckyzyx.colorosext.utils.XposedPrefs
 import com.luckyzyx.colorosext.utils.getAppVersion
 
-class XposedFragment : PreferenceFragmentCompat() {
-
-    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+class XposedFragment : ModulePreferenceFragment() {
+    override fun onCreatePreferencesInModuleApp(savedInstanceState: Bundle?, rootKey: String?) {
         preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
             addPreference(
                 Preference(requireActivity()).apply {
@@ -99,7 +102,7 @@ class XposedFragment : PreferenceFragmentCompat() {
                     setSummary(R.string.version_summer_first)
                     summary = summary as String + getAppVersion(requireActivity(), key)
                     setIcon(R.mipmap.securecenter_icon)
-                    fragment = "com.luckyzyx.colorosext.ui.fragment.ScopeAndroid"
+                    fragment = "com.luckyzyx.colorosext.ui.fragment.ScopeSafeCenter"
                 }
             )
             addPreference(
@@ -109,21 +112,269 @@ class XposedFragment : PreferenceFragmentCompat() {
                     setSummary(R.string.version_summer_first)
                     summary = summary as String + getAppVersion(requireActivity(), key)
                     setIcon(R.mipmap.cloudservice_icon)
-                    fragment = "com.luckyzyx.colorosext.ui.fragment.ScopeAndroid"
+                    fragment = "com.luckyzyx.colorosext.ui.fragment.ScopeCloudService"
                 }
             )
         }
     }
 }
 
-class ScopeAndroid : PreferenceFragmentCompat() {
-    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-        preferenceManager.sharedPreferencesName = XposedPreference
+class ScopeAndroid : ModulePreferenceFragment(),
+    SharedPreferences.OnSharedPreferenceChangeListener {
+    override fun onCreatePreferencesInModuleApp(savedInstanceState: Bundle?, rootKey: String?) {
+        preferenceManager.sharedPreferencesName = XposedPrefs
         preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
             addPreference(
                 PreferenceCategory(requireActivity()).apply {
                     title = "系统框架"
                     summary = "不生效可尝试重启"
+                    key = "Android"
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    title = "移除状态栏应用上层通知"
+                    summary = "移除状态栏“此应用在其他应用上层显示”"
+                    key = "remove_statusbar_top_notification"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                PreferenceCategory(requireActivity()).apply {
+                    setTitle(R.string.corepatch)
+                    setSummary(R.string.corepatch_summer)
+                    key = "CorePatch"
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    setTitle(R.string.downgr)
+                    setSummary(R.string.downgr_summary)
+                    key = "downgrade"
+                    setDefaultValue(true)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    setTitle(R.string.authcreak)
+                    setSummary(R.string.authcreak_summary)
+                    key = "authcreak"
+                    setDefaultValue(true)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    setTitle(R.string.digestCreak)
+                    setSummary(R.string.digestCreak_summary)
+                    key = "digestCreak"
+                    setDefaultValue(true)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    setTitle(R.string.UsePreSig)
+                    setSummary(R.string.UsePreSig_summary)
+                    key = "UsePreSig"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    setTitle(R.string.enhancedMode)
+                    setSummary(R.string.enhancedMode_summary)
+                    key = "enhancedMode"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+        }
+    }
+
+    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
+        super.onSharedPreferenceChanged(sharedPreferences, key)
+        if (key == "UsePreSig" && sharedPreferences!!.getBoolean(key, false)) {
+            MaterialAlertDialogBuilder(requireActivity())
+                .setMessage(R.string.usepresig_warn)
+                .setPositiveButton("OK", null)
+                .show()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        preferenceScreen.sharedPreferences?.registerOnSharedPreferenceChangeListener(this)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        preferenceScreen.sharedPreferences?.unregisterOnSharedPreferenceChangeListener(this)
+    }
+}
+
+class ScopeSystemUI : ModulePreferenceFragment() {
+    override fun onCreatePreferencesInModuleApp(savedInstanceState: Bundle?, rootKey: String?) {
+        preferenceManager.sharedPreferencesName = XposedPrefs
+        preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
+            addPreference(
+                PreferenceCategory(requireActivity()).apply {
+                    title = "系统界面"
+                    summary = "右上角菜单重启作用域"
+                    key = "SystemUI"
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                PreferenceCategory(requireActivity()).apply {
+                    title = "状态栏"
+                    summary = "顶部状态栏以及下拉状态栏"
+                    key = "StatusBar"
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    setTitle("移除下拉状态栏时钟红1")
+                    key = "remove_statusbar_clock_redone"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    setTitle("状态栏时钟显秒")
+                    key = "statusbar_clock_show_second"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    setTitle("状态栏时钟显示时段")
+                    key = "statusbar_clock_show_period"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    setTitle("下拉状态栏时钟显秒")
+                    key = "statusbar_clock_show_second"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    setTitle("移除状态栏开发者选项通知")
+                    key = "remove_statusbar_devmode"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    setTitle("移除充电完成通知")
+                    key = "remove_charging_completed"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    setTitle("设置状态栏网速刷新率1s")
+                    key = "set_network_speed"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    setTitle("移除下拉状态栏底部网络警告")
+                    key = "remove_statusbar_bottom_networkwarn"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    setTitle("移除状态栏支付保护图标")
+                    key = "remove_statusbar_securepayment_icon"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                PreferenceCategory(requireActivity()).apply {
+                    setTitle("锁屏")
+                    setSummary("锁屏相关")
+                    key = "LockScreen"
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    setTitle("移除锁屏时钟红1")
+                    key = "remove_lock_screen_redone"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    setTitle("移除锁屏右下角相机")
+                    key = "remove_lock_screen_camera"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                ColorPickerPreference(requireActivity(), XposedPrefs).apply {
+                    title = "设置锁屏组件字体颜色"
+                    summary = "无需重启作用域设置字体颜色"
+                    key = "set_lock_screen_textview_color"
+                    isIconSpaceReserved = false
+                    dialogTitle = title as String
+                    cornerRadius = 30
+                    neutral = resources.getString(android.R.string.cancel)
+                    positive = resources.getString(android.R.string.ok)
+                }
+            )
+        }
+    }
+}
+
+class ScopeLauncher : ModulePreferenceFragment() {
+    override fun onCreatePreferencesInModuleApp(savedInstanceState: Bundle?, rootKey: String?) {
+        preferenceManager.sharedPreferencesName = XposedPrefs
+        preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
+            addPreference(
+                PreferenceCategory(requireActivity()).apply {
+                    setTitle("系统桌面")
+                    setSummary("右上角菜单重启作用域")
+                    key = "Launcher"
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    setTitle("解锁后台任务锁定数量")
+                    key = "unlock_task_locks"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    setTitle("移除APP图标蓝点")
+                    key = "remove_appicon_dot"
+                    setDefaultValue(false)
                     isIconSpaceReserved = false
                 }
             )
@@ -131,56 +382,202 @@ class ScopeAndroid : PreferenceFragmentCompat() {
     }
 }
 
-class ScopeSystemUI : PreferenceFragmentCompat() {
-    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-        preferenceManager.sharedPreferencesName = XposedPreference
+class ScopeClock : ModulePreferenceFragment() {
+    override fun onCreatePreferencesInModuleApp(savedInstanceState: Bundle?, rootKey: String?) {
+        preferenceManager.sharedPreferencesName = XposedPrefs
+        preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
+            addPreference(
+                PreferenceCategory(requireActivity()).apply {
+                    setTitle("时钟")
+                    setSummary("右上角菜单重启作用域")
+                    key = "AlarmClock"
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    setTitle("移除桌面时钟组件红一")
+                    key = "remove_alarmclock_widget_redone"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+        }
     }
 }
 
-class ScopeLauncher : PreferenceFragmentCompat() {
-    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-        preferenceManager.sharedPreferencesName = XposedPreference
+class ScopeCamera : ModulePreferenceFragment() {
+    override fun onCreatePreferencesInModuleApp(savedInstanceState: Bundle?, rootKey: String?) {
+        preferenceManager.sharedPreferencesName = XposedPrefs
+        preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
+            addPreference(
+                PreferenceCategory(requireActivity()).apply {
+                    setTitle("相机")
+                    setSummary("右上角菜单重启作用域")
+                    key = "Camera"
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    setTitle("移除水印字数限制")
+                    key = "remove_watermark_word_limit"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+        }
     }
 }
 
-class ScopeClock : PreferenceFragmentCompat() {
-    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-        preferenceManager.sharedPreferencesName = XposedPreference
+class ScopePackageInstall : ModulePreferenceFragment() {
+    override fun onCreatePreferencesInModuleApp(savedInstanceState: Bundle?, rootKey: String?) {
+        preferenceManager.sharedPreferencesName = XposedPrefs
+        preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
+            addPreference(
+                PreferenceCategory(requireActivity()).apply {
+                    setTitle("应用包安装程序")
+                    setSummary("右上角菜单重启作用域")
+                    key = "PackageInstaller"
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    setTitle("跳过Apk扫描")
+                    setSummary("Apk病毒扫描相关")
+                    key = "skip_apk_scan"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    setTitle("允许降级安装")
+                    setSummary("移除低/相同版本警告等,必须搭配核心破解使用")
+                    key = "allow_downgrade_install"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    setTitle("移除安装完成广告")
+                    setSummary("安全应用推荐/软件商店广告")
+                    key = "remove_install_ads"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    setTitle("替换AOSP安装器")
+                    setSummary("替换为原生安装器")
+                    key = "replase_aosp_installer"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+        }
     }
 }
 
-class ScopeCamera : PreferenceFragmentCompat() {
-    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-        preferenceManager.sharedPreferencesName = XposedPreference
+class ScopeOplusGames : ModulePreferenceFragment() {
+    override fun onCreatePreferencesInModuleApp(savedInstanceState: Bundle?, rootKey: String?) {
+        preferenceManager.sharedPreferencesName = XposedPrefs
+        preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
+            addPreference(
+                PreferenceCategory(requireActivity()).apply {
+                    setTitle("游戏助手")
+                    setSummary("右上角菜单重启作用域")
+                    key = "OplusGames"
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    setTitle("移除游戏滤镜检测")
+                    setSummary("移除游戏滤镜的Root检测")
+                    key = "remove_root_check"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+        }
     }
 }
 
-class ScopePackageInstall : PreferenceFragmentCompat() {
-    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-        preferenceManager.sharedPreferencesName = XposedPreference
+class ScopeCloudService : ModulePreferenceFragment() {
+    override fun onCreatePreferencesInModuleApp(savedInstanceState: Bundle?, rootKey: String?) {
+        preferenceManager.sharedPreferencesName = XposedPrefs
+        preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
+            addPreference(
+                PreferenceCategory(requireActivity()).apply {
+                    setTitle("云服务")
+                    setSummary("右上角菜单重启作用域")
+                    key = "CloudService"
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    setTitle("移除数据网络限制")
+                    setSummary("移除备份/恢复无法使用移动数据的限制")
+                    key = "remove_network_limit"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+        }
     }
 }
 
-class ScopeOplusGames : PreferenceFragmentCompat() {
-    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-        preferenceManager.sharedPreferencesName = XposedPreference
+class ScopeThemeStore : ModulePreferenceFragment() {
+    override fun onCreatePreferencesInModuleApp(savedInstanceState: Bundle?, rootKey: String?) {
+        preferenceManager.sharedPreferencesName = XposedPrefs
+        preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
+            addPreference(
+                PreferenceCategory(requireActivity()).apply {
+                    setTitle("主题商店")
+                    setSummary("右上角菜单重启作用域")
+                    key = "ThemeStore"
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    setTitle("解锁部分功能VIP")
+                    setSummary("解锁部分功能,详情页面点击应用")
+                    key = "unlock_themestore_vip"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+        }
     }
 }
 
-class ScopeCloudService : PreferenceFragmentCompat() {
-    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-        preferenceManager.sharedPreferencesName = XposedPreference
-    }
-}
-
-class ScopeThemeStore : PreferenceFragmentCompat() {
-    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-        preferenceManager.sharedPreferencesName = XposedPreference
-    }
-}
-
-class ScopeSafeCenter : PreferenceFragmentCompat() {
-    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-        preferenceManager.sharedPreferencesName = XposedPreference
+class ScopeSafeCenter : ModulePreferenceFragment() {
+    override fun onCreatePreferencesInModuleApp(savedInstanceState: Bundle?, rootKey: String?) {
+        preferenceManager.sharedPreferencesName = XposedPrefs
+        preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
+            addPreference(
+                PreferenceCategory(requireActivity()).apply {
+                    setTitle("安全中心")
+                    setSummary("右上角菜单重启作用域")
+                    key = "SafeCenter"
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    setTitle("解锁自启数量限制")
+                    setSummary("解锁应用自启动数量限制")
+                    key = "unlock_startup_limit"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+        }
     }
 }

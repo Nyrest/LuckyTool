@@ -11,9 +11,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.preference.*
+import com.highcapable.yukihookapi.hook.xposed.prefs.ui.ModulePreferenceFragment
 import com.luckyzyx.colorosext.R
 import com.luckyzyx.colorosext.ui.activity.MainActivity
-import com.luckyzyx.colorosext.utils.SettingsPreference
+import com.luckyzyx.colorosext.utils.SettingsPrefs
 import com.luckyzyx.colorosext.utils.getColorOSVersion
 
 class HomeFragment : Fragment() {
@@ -30,12 +31,11 @@ class HomeFragment : Fragment() {
         requireActivity().findViewById<TextView>(R.id.xposed_info).text = getColorOSVersion
     }
 }
-class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeListener {
 
-    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-        preferenceManager.sharedPreferencesName = SettingsPreference
+class SettingsFragment : ModulePreferenceFragment(), OnSharedPreferenceChangeListener {
+    override fun onCreatePreferencesInModuleApp(savedInstanceState: Bundle?, rootKey: String?) {
+        preferenceManager.sharedPreferencesName = SettingsPrefs
         preferenceScreen = initScreen()
-        preferenceScreen.sharedPreferences?.registerOnSharedPreferenceChangeListener(this)
     }
 
     private fun initScreen(): PreferenceScreen {
@@ -67,7 +67,7 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
                     setTitle(R.string.author)
                     setSummary(R.string.author_summer)
                     isIconSpaceReserved = false
-                    intent = Intent(Intent.ACTION_VIEW,Uri.parse("coolmarket://u/1930284"))
+                    intent = Intent(Intent.ACTION_VIEW, Uri.parse("coolmarket://u/1930284"))
                 }
             )
             addPreference(
@@ -75,7 +75,10 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
                     setTitle(R.string.update_url)
                     setSummary(R.string.update_url_summer)
                     isIconSpaceReserved = false
-                    intent = Intent(Intent.ACTION_VIEW,Uri.parse("coolmarket://apk/com.luckyzyx.colorosext"))
+                    intent = Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("coolmarket://apk/com.luckyzyx.colorosext")
+                    )
                 }
             )
             addPreference(
@@ -89,7 +92,8 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
         }
     }
 
-    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String) {
+    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
+        super.onSharedPreferenceChanged(sharedPreferences, key)
         when (key) {
             "theme_color", "use_md3" -> {
                 if (requireActivity().application != null) {
@@ -109,14 +113,14 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
         preferenceScreen.sharedPreferences?.registerOnSharedPreferenceChangeListener(this)
     }
 
-    override fun onPause() {
-        super.onPause()
+    override fun onDestroy() {
+        super.onDestroy()
         preferenceScreen.sharedPreferences?.unregisterOnSharedPreferenceChangeListener(this)
     }
 }
 
-class AboutFragment : PreferenceFragmentCompat() {
-    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+class AboutFragment : ModulePreferenceFragment() {
+    override fun onCreatePreferencesInModuleApp(savedInstanceState: Bundle?, rootKey: String?) {
         preferenceScreen = initScreen()
     }
 
@@ -133,7 +137,8 @@ class AboutFragment : PreferenceFragmentCompat() {
                     title = "Xposed"
                     summary = "rovo89 , Apache License 2.0"
                     isIconSpaceReserved = false
-                    intent = Intent(Intent.ACTION_VIEW,Uri.parse("https://github.com/rovo89/Xposed"))
+                    intent =
+                        Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/rovo89/Xposed"))
                 }
             )
             addPreference(
@@ -141,7 +146,8 @@ class AboutFragment : PreferenceFragmentCompat() {
                     title = "LSPosed"
                     summary = "LSPosed , GPL-3.0 License"
                     isIconSpaceReserved = false
-                    intent = Intent(Intent.ACTION_VIEW,Uri.parse("https://github.com/LSPosed/LSPosed"))
+                    intent =
+                        Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/LSPosed/LSPosed"))
                 }
             )
             addPreference(
@@ -149,7 +155,10 @@ class AboutFragment : PreferenceFragmentCompat() {
                     title = "YukiHookAPI"
                     summary = "fankes , MIT License"
                     isIconSpaceReserved = false
-                    intent = Intent(Intent.ACTION_VIEW,Uri.parse("https://github.com/fankes/YukiHookAPI"))
+                    intent = Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("https://github.com/fankes/YukiHookAPI")
+                    )
                 }
             )
             addPreference(
@@ -157,7 +166,10 @@ class AboutFragment : PreferenceFragmentCompat() {
                     title = "ColorOSNotifyIcon"
                     summary = "fankes , AGPL-3.0 License"
                     isIconSpaceReserved = false
-                    intent = Intent(Intent.ACTION_VIEW,Uri.parse("https://github.com/fankes/ColorOSNotifyIcon"))
+                    intent = Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("https://github.com/fankes/ColorOSNotifyIcon")
+                    )
                 }
             )
             addPreference(
@@ -165,7 +177,8 @@ class AboutFragment : PreferenceFragmentCompat() {
                     title = "ColorOSTool"
                     summary = "Oosl , GPL-3.0 License"
                     isIconSpaceReserved = false
-                    intent = Intent(Intent.ACTION_VIEW,Uri.parse("https://github.com/Oosl/ColorOSTool"))
+                    intent =
+                        Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/Oosl/ColorOSTool"))
                 }
             )
             addPreference(
@@ -173,7 +186,10 @@ class AboutFragment : PreferenceFragmentCompat() {
                     title = "WooBoxForColorOS"
                     summary = "Simplicity-Team , GPL-3.0 License"
                     isIconSpaceReserved = false
-                    intent = Intent(Intent.ACTION_VIEW,Uri.parse("https://github.com/Simplicity-Team/WooBoxForColorOS"))
+                    intent = Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("https://github.com/Simplicity-Team/WooBoxForColorOS")
+                    )
                 }
             )
             addPreference(
@@ -181,7 +197,10 @@ class AboutFragment : PreferenceFragmentCompat() {
                     title = "CorePatch"
                     summary = "LSPosed , GPL-2.0 license"
                     isIconSpaceReserved = false
-                    intent = Intent(Intent.ACTION_VIEW,Uri.parse("https://github.com/LSPosed/CorePatch"))
+                    intent = Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("https://github.com/LSPosed/CorePatch")
+                    )
                 }
             )
         }
