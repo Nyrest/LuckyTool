@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.luckyzyx.colorosext">
 
-    <queries>
-        <package android:name="com.oplus.games" />
-        <package android:name="com.coloros.alarmclock" />
-        <package android:name="com.heytap.themestore" />
-        <package android:name="com.heytap.cloud" />
-    </queries>
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"
+        tools:ignore="QueryAllPackagesPermission" />
 
     <application
         android:name=".ui.application.MyApplication"

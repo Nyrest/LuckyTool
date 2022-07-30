@@ -4,6 +4,7 @@ import android.os.Build.VERSION.SDK_INT
 import com.highcapable.yukihookapi.annotation.xposed.InjectYukiHookWithXposed
 import com.highcapable.yukihookapi.hook.factory.configs
 import com.highcapable.yukihookapi.hook.factory.encase
+import com.highcapable.yukihookapi.hook.log.loggerD
 import com.highcapable.yukihookapi.hook.xposed.bridge.event.YukiXposedEvent
 import com.highcapable.yukihookapi.hook.xposed.proxy.IYukiHookXposedInit
 import com.luckyzyx.colorosext.hook.CorePatch.CorePatchForR
@@ -21,7 +22,6 @@ class MainHook : IYukiHookXposedInit {
             debugTag = "ColorOSExt"
             // 是否开启调试模式,请注意 - 若作为发布版本请务必关闭调试功能防止对用户设备造成大量日志填充
             isDebug = false
-            isEnableModulePrefsCache = false
         }
     }
 

@@ -1,18 +1,92 @@
 package com.luckyzyx.colorosext.ui.fragment
 
 import android.content.SharedPreferences
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.preference.Preference
 import androidx.preference.PreferenceCategory
 import androidx.preference.SwitchPreference
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.tabs.TabLayout
 import com.highcapable.yukihookapi.hook.xposed.prefs.ui.ModulePreferenceFragment
 import com.luckyzyx.colorosext.R
+import com.luckyzyx.colorosext.databinding.FragmentXposedBinding
 import com.luckyzyx.colorosext.ui.refactor.ColorPickerPreference
+import com.luckyzyx.colorosext.ui.refactor.setOnHandleBackPressed
 import com.luckyzyx.colorosext.utils.XposedPrefs
 import com.luckyzyx.colorosext.utils.getAppVersion
+import com.luckyzyx.colorosext.utils.toast
 
-class XposedFragment : ModulePreferenceFragment() {
+class XposedFragment : Fragment() {
+    private lateinit var binding: FragmentXposedBinding
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        handlerBackPressedDispatcher()
+    }
+    private fun handlerBackPressedDispatcher(){
+        setOnHandleBackPressed(false) {
+            val fragmentManager = childFragmentManager
+            val current = fragmentManager.findFragmentById(R.id.fragment_container)
+            if (current !is SystemScope && current !is OtherScope) {
+                fragmentManager.popBackStack()
+            }else{
+                requireActivity().finish()
+            }
+        }
+    }
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        binding = FragmentXposedBinding.inflate(inflater)
+        initTabs()
+        return binding.root
+    }
+
+    private fun initTabs() {
+        val tabs = binding.tablayout
+        tabs.apply {
+            addTab(tabs.newTab().setText("系统APP"),0,true)
+            addTab(tabs.newTab().setText("其他APP"),1,false)
+            addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
+                override fun onTabSelected(tab: TabLayout.Tab?) {
+                    when(tab?.position){
+                        0 -> switchFragment(SystemScope(),true)
+                        1 -> switchFragment(OtherScope(),true)
+                    }
+                }
+
+                override fun onTabUnselected(tab: TabLayout.Tab?) {
+                    //取消选中
+                }
+
+                override fun onTabReselected(tab: TabLayout.Tab?) {
+                    //再次选中
+                }
+            })
+        }
+        switchFragment(SystemScope(),true)
+    }
+
+    private fun switchFragment(fragment: Fragment, returnable: Boolean) {
+        val fragmentManager = childFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+        //fragmentTransaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
+        fragmentTransaction.replace(R.id.fragment_container, fragment)
+        if (returnable) {
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
+        } else {
+            fragmentTransaction.commitNow()
+        }
+    }
+
+}
+
+class SystemScope : ModulePreferenceFragment() {
     override fun onCreatePreferencesInModuleApp(savedInstanceState: Bundle?, rootKey: String?) {
         preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
             addPreference(
@@ -20,7 +94,7 @@ class XposedFragment : ModulePreferenceFragment() {
                     title = "系统框架"
                     key = "android"
                     setSummary(R.string.version_summer_first)
-                    summary = summary as String + getAppVersion(requireActivity(), key)
+                    summary = summary as String + getAppVersion(requireActivity(), key, false)
                     setIcon(R.mipmap.android_icon)
                     fragment = "com.luckyzyx.colorosext.ui.fragment.ScopeAndroid"
                 }
@@ -30,7 +104,7 @@ class XposedFragment : ModulePreferenceFragment() {
                     title = "系统界面"
                     key = "com.android.systemui"
                     setSummary(R.string.version_summer_first)
-                    summary = summary as String + getAppVersion(requireActivity(), key)
+                    summary = summary as String + getAppVersion(requireActivity(), key, true)
                     setIcon(R.mipmap.systemui_icon)
                     fragment = "com.luckyzyx.colorosext.ui.fragment.ScopeSystemUI"
                 }
@@ -40,7 +114,7 @@ class XposedFragment : ModulePreferenceFragment() {
                     title = "系统桌面"
                     key = "com.android.launcher"
                     setSummary(R.string.version_summer_first)
-                    summary = summary as String + getAppVersion(requireActivity(), key)
+                    summary = summary as String + getAppVersion(requireActivity(), key, true)
                     setIcon(R.mipmap.launcher_icon)
                     fragment = "com.luckyzyx.colorosext.ui.fragment.ScopeLauncher"
                 }
@@ -50,7 +124,7 @@ class XposedFragment : ModulePreferenceFragment() {
                     title = "时钟"
                     key = "com.coloros.alarmclock"
                     setSummary(R.string.version_summer_first)
-                    summary = summary as String + getAppVersion(requireActivity(), key)
+                    summary = summary as String + getAppVersion(requireActivity(), key, true)
                     setIcon(R.mipmap.alarmclock_icon)
                     fragment = "com.luckyzyx.colorosext.ui.fragment.ScopeClock"
                 }
@@ -60,7 +134,7 @@ class XposedFragment : ModulePreferenceFragment() {
                     title = "相机"
                     key = "com.oplus.camera"
                     setSummary(R.string.version_summer_first)
-                    summary = summary as String + getAppVersion(requireActivity(), key)
+                    summary = summary as String + getAppVersion(requireActivity(), key, true)
                     setIcon(R.mipmap.camera_icon)
                     fragment = "com.luckyzyx.colorosext.ui.fragment.ScopeCamera"
                 }
@@ -70,7 +144,7 @@ class XposedFragment : ModulePreferenceFragment() {
                     title = "主题商店"
                     key = "com.heytap.themestore"
                     setSummary(R.string.version_summer_first)
-                    summary = summary as String + getAppVersion(requireActivity(), key)
+                    summary = summary as String + getAppVersion(requireActivity(), key, true)
                     setIcon(R.mipmap.themestore_icon)
                     fragment = "com.luckyzyx.colorosext.ui.fragment.ScopeThemeStore"
                 }
@@ -80,7 +154,7 @@ class XposedFragment : ModulePreferenceFragment() {
                     title = "应用包安装程序"
                     key = "com.android.packageinstaller"
                     setSummary(R.string.version_summer_first)
-                    summary = summary as String + getAppVersion(requireActivity(), key)
+                    summary = summary as String + getAppVersion(requireActivity(), key, true)
                     setIcon(R.mipmap.packageinstaller_icon)
                     fragment = "com.luckyzyx.colorosext.ui.fragment.ScopePackageInstall"
                 }
@@ -90,7 +164,7 @@ class XposedFragment : ModulePreferenceFragment() {
                     title = "游戏助手"
                     key = "com.oplus.games"
                     setSummary(R.string.version_summer_first)
-                    summary = summary as String + getAppVersion(requireActivity(), key)
+                    summary = summary as String + getAppVersion(requireActivity(), key, true)
                     setIcon(R.mipmap.oplusgames_icon)
                     fragment = "com.luckyzyx.colorosext.ui.fragment.ScopeOplusGames"
                 }
@@ -100,7 +174,7 @@ class XposedFragment : ModulePreferenceFragment() {
                     title = "安全中心"
                     key = "com.oplus.safecenter"
                     setSummary(R.string.version_summer_first)
-                    summary = summary as String + getAppVersion(requireActivity(), key)
+                    summary = summary as String + getAppVersion(requireActivity(), key, true)
                     setIcon(R.mipmap.securecenter_icon)
                     fragment = "com.luckyzyx.colorosext.ui.fragment.ScopeSafeCenter"
                 }
@@ -110,7 +184,7 @@ class XposedFragment : ModulePreferenceFragment() {
                     title = "云服务"
                     key = "com.heytap.cloud"
                     setSummary(R.string.version_summer_first)
-                    summary = summary as String + getAppVersion(requireActivity(), key)
+                    summary = summary as String + getAppVersion(requireActivity(), key, true)
                     setIcon(R.mipmap.cloudservice_icon)
                     fragment = "com.luckyzyx.colorosext.ui.fragment.ScopeCloudService"
                 }
@@ -119,8 +193,25 @@ class XposedFragment : ModulePreferenceFragment() {
     }
 }
 
+class OtherScope : ModulePreferenceFragment() {
+    override fun onCreatePreferencesInModuleApp(savedInstanceState: Bundle?, rootKey: String?) {
+        preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
+            addPreference(
+                Preference(requireActivity()).apply {
+                    title = "好多动漫"
+                    key = "com.east2d.everyimage"
+                    setSummary(R.string.version_summer_first)
+                    summary = summary as String + getAppVersion(requireActivity(), key, false)
+                    setIcon(R.mipmap.everyimage_icon)
+                    fragment = "com.luckyzyx.colorosext.ui.fragment.ScopeEveryimage"
+                }
+            )
+        }
+    }
+}
+
 class ScopeAndroid : ModulePreferenceFragment(),
-    SharedPreferences.OnSharedPreferenceChangeListener {
+    OnSharedPreferenceChangeListener {
     override fun onCreatePreferencesInModuleApp(savedInstanceState: Bundle?, rootKey: String?) {
         preferenceManager.sharedPreferencesName = XposedPrefs
         preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
@@ -574,6 +665,38 @@ class ScopeSafeCenter : ModulePreferenceFragment() {
                     setTitle("解锁自启数量限制")
                     setSummary("解锁应用自启动数量限制")
                     key = "unlock_startup_limit"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+        }
+    }
+}
+
+class ScopeEveryimage : ModulePreferenceFragment() {
+    override fun onCreatePreferencesInModuleApp(savedInstanceState: Bundle?, rootKey: String?) {
+        preferenceManager.sharedPreferencesName = XposedPrefs
+        preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
+            addPreference(
+                PreferenceCategory(requireActivity()).apply {
+                    setTitle("好多动漫")
+                    setSummary("右上角菜单重启作用域")
+                    key = "Everyimage"
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    setTitle("跳过启动页")
+                    key = "skip_startup_page"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    setTitle("下载原图")
+                    key = "vip_download"
                     setDefaultValue(false)
                     isIconSpaceReserved = false
                 }

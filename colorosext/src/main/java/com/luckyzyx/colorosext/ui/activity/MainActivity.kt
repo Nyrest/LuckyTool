@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.highcapable.yukihookapi.hook.factory.modulePrefs
 import com.luckyzyx.colorosext.R
 import com.luckyzyx.colorosext.ui.fragment.HomeFragment
 import com.luckyzyx.colorosext.ui.fragment.MagiskFragment
@@ -24,13 +25,14 @@ import kotlin.system.exitProcess
 
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         checkTheme(this)
         setContentView(R.layout.activity_main)
         if (savedInstanceState == null) switchFragment(HomeFragment(), false)
 
-        checkPrefsRW()
+//        checkPrefsRW()
         initMaterialToolbar()
         initBottomNavigationView()
     }
@@ -92,7 +94,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun switchFragment(fragment: Fragment, backStack: Boolean) {
+    private fun switchFragment(fragment: Fragment, returnable: Boolean) {
         val fragmentManager = supportFragmentManager
         val current = fragmentManager.findFragmentById(R.id.fragment_container)
         if (current != null && current.javaClass == fragment.javaClass) return
@@ -100,7 +102,7 @@ class MainActivity : AppCompatActivity() {
         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
         //fragmentTransaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
         fragmentTransaction.replace(R.id.fragment_container, fragment)
-        if (backStack) {
+        if (returnable) {
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
         } else {
@@ -151,12 +153,10 @@ class MainActivity : AppCompatActivity() {
             commands.add("am force-stop $scope")
         }
         MaterialAlertDialogBuilder(this)
-            .setMessage("重启除系统框架外的全部作用域?")
+            .setMessage("确定要重启除系统框架外的全部作用域?模块不生效时可用!")
             .setPositiveButton("确定") { _: DialogInterface?, _: Int ->
-                ShellUtils.execCommand(
-                    commands,
-                    true
-                )
+                modulePrefs.clearCache()
+                ShellUtils.execCommand(commands, true)
             }
             .setNeutralButton("取消", null)
             .show()

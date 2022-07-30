@@ -13,22 +13,23 @@ import androidx.fragment.app.Fragment
 import androidx.preference.*
 import com.highcapable.yukihookapi.hook.xposed.prefs.ui.ModulePreferenceFragment
 import com.luckyzyx.colorosext.R
+import com.luckyzyx.colorosext.databinding.FragmentHomeBinding
 import com.luckyzyx.colorosext.ui.activity.MainActivity
 import com.luckyzyx.colorosext.utils.SettingsPrefs
 import com.luckyzyx.colorosext.utils.getColorOSVersion
 
 class HomeFragment : Fragment() {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_home, container, false)
+    private lateinit var binding: FragmentHomeBinding
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        binding = FragmentHomeBinding.inflate(inflater)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        requireActivity().findViewById<TextView>(R.id.xposed_info).text = getColorOSVersion
+        binding.xposedInfo.text = getColorOSVersion
     }
 }
 
