@@ -12,6 +12,7 @@ import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.preference.Preference
 import androidx.preference.PreferenceViewHolder
+import com.joom.paranoid.Obfuscate
 import com.luckyzyx.colorosext.R
 import com.luckyzyx.colorosext.utils.SPUtils
 import com.skydoves.colorpickerview.ColorEnvelope
@@ -21,6 +22,7 @@ import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener
 import com.skydoves.colorpickerview.listeners.ColorListener
 import com.skydoves.colorpickerview.listeners.ColorPickerViewListener
 
+@Obfuscate
 class ColorPickerPreference : Preference {
 
     private lateinit var colorBox: View

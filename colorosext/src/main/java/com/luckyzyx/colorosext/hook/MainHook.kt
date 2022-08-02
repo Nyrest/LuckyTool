@@ -2,13 +2,11 @@ package com.luckyzyx.colorosext.hook
 
 import android.os.Build.VERSION.SDK_INT
 import com.highcapable.yukihookapi.annotation.xposed.InjectYukiHookWithXposed
-import com.highcapable.yukihookapi.hook.factory.configs
-import com.highcapable.yukihookapi.hook.factory.encase
-import com.highcapable.yukihookapi.hook.log.loggerD
+import com.highcapable.yukihookapi.hook.factory.*
 import com.highcapable.yukihookapi.hook.xposed.bridge.event.YukiXposedEvent
 import com.highcapable.yukihookapi.hook.xposed.proxy.IYukiHookXposedInit
-import com.luckyzyx.colorosext.hook.CorePatch.CorePatchForR
-import com.luckyzyx.colorosext.hook.CorePatch.CorePatchForS
+import com.luckyzyx.colorosext.hook.apps.CorePatch.CorePatchForR
+import com.luckyzyx.colorosext.hook.apps.CorePatch.CorePatchForS
 import de.robv.android.xposed.IXposedHookZygoteInit
 import de.robv.android.xposed.XposedBridge
 import de.robv.android.xposed.callbacks.XC_LoadPackage
@@ -45,6 +43,8 @@ class MainHook : IYukiHookXposedInit {
         loadApp("com.heytap.cloud", HookCloudService())
         //游戏助手
         loadApp("com.oplus.games", HookOplusGames())
+        //截屏
+        loadApp("com.oplus.screenshot",HookScreenshot())
         //应用包安装程序
         loadApp("com.android.packageinstaller", HookPackageInstaller())
         //其他APP

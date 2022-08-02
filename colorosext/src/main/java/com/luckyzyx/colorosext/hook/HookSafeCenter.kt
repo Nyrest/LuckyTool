@@ -1,7 +1,7 @@
 package com.luckyzyx.colorosext.hook
 
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
-import com.luckyzyx.colorosext.hook.safecenter.UnlockStartupLimit
+import com.luckyzyx.colorosext.hook.apps.safecenter.UnlockStartupLimit
 import com.luckyzyx.colorosext.utils.XposedPrefs
 
 class HookSafeCenter : YukiBaseHooker() {

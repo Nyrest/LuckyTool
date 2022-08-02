@@ -1,8 +1,8 @@
 package com.luckyzyx.colorosext.hook
 
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
-import com.luckyzyx.colorosext.hook.launcher.RemoveAppUpdateDot
-import com.luckyzyx.colorosext.hook.launcher.UnlockTaskLocks
+import com.luckyzyx.colorosext.hook.apps.launcher.RemoveAppUpdateDot
+import com.luckyzyx.colorosext.hook.apps.launcher.UnlockTaskLocks
 import com.luckyzyx.colorosext.utils.XposedPrefs
 
 class HookLauncher : YukiBaseHooker(){

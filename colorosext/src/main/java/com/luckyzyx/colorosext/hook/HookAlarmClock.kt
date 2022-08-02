@@ -1,7 +1,7 @@
 package com.luckyzyx.colorosext.hook
 
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
-import com.luckyzyx.colorosext.hook.alarmclock.RemoveAlarmClockWidgetRedOne
+import com.luckyzyx.colorosext.hook.apps.alarmclock.RemoveAlarmClockWidgetRedOne
 import com.luckyzyx.colorosext.utils.XposedPrefs
 
 class HookAlarmClock : YukiBaseHooker() {

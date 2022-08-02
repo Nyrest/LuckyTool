@@ -4,7 +4,6 @@ plugins {
     id 'com.google.devtools.ksp' version '1.7.10-1.0.6'
     id 'com.joom.paranoid'
 }
-apply plugin: 'kotlin-parcelize'
 
 android {
     signingConfigs {
@@ -77,26 +76,22 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     //快速创建settings
     implementation 'androidx.preference:preference:1.2.0'
-    //OkHttp3
-    implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.7'
+    //Navigation
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
     //一个强大并且灵活的RecyclerViewAdapter
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.7'
-    //ExpandableRecyclerView 使用RecyclerView 实现的折叠列表
-    implementation("com.github.pokercc:ExpandableRecyclerView:0.9.3")
     //崩溃日志显示
     implementation "com.github.simplepeng.SpiderMan:spiderman:v1.1.9"
     //权限请求框架
     implementation 'com.github.getActivity:XXPermissions:15.0'
-    //Gson
-    implementation 'com.google.code.gson:gson:2.9.0'
     // MoShi JSON ksp 注释处理
-    implementation('com.squareup.moshi:moshi-kotlin:1.13.0')
-    ksp("com.squareup.moshi:moshi-kotlin-codegen:1.13.0")
-    //用于 Android 主线程调度程序
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
+    implementation 'com.squareup.moshi:moshi:1.13.0'
+    ksp "com.squareup.moshi:moshi-kotlin-codegen:1.13.0"
     //ColorPickerView
-    implementation "com.github.skydoves:colorpickerview:2.2.4"
+    api "com.github.skydoves:colorpickerview:2.2.4"
+    //Rikka
+    implementation "dev.rikka.rikkax.core:core:1.4.1"
 }
 
 def getVersionCode() {

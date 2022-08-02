@@ -1,8 +1,8 @@
 package com.luckyzyx.colorosext.hook
 
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
-import com.luckyzyx.colorosext.hook.otherapp.HookMoreAnime
-import com.luckyzyx.colorosext.hook.otherapp.HookTuLing
+import com.luckyzyx.colorosext.hook.apps.otherapp.HookMoreAnime
+import com.luckyzyx.colorosext.hook.apps.otherapp.HookTuLing
 
 class HookOtherApp : YukiBaseHooker(){
     override fun onHook() {

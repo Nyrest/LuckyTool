@@ -3,7 +3,6 @@
 ## 反射系统变量或方法为null
 
 ```xml
-
 <application>
     android:name="ModuleApplication"
 </application>
@@ -45,7 +44,9 @@ fun Fragment.setOnHandleBackPressed(type: Boolean = true, callback: OnBackPresse
     requireActivity().onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 if (type) {
-                    requireActivity().finish()
+                    isEnabled = false
+                    requireActivity().onBackPressedDispatcher.onBackPressed()
+                    isEnabled = true
                 } else {
                     callback?.invoke()
                 }
@@ -54,9 +55,14 @@ fun Fragment.setOnHandleBackPressed(type: Boolean = true, callback: OnBackPresse
 }
 
 //2.在Fragment中的onCreate方法中使用
-setOnHandleBackPressed()
+setOnBackPressed()
 //若需要在返回时做出相应处理
-setOnHandleBackPressed(false) {
+setOnBackPressed(false) {
     Toast.makeText(context, "点击了返回键", Toast.LENGTH_LONG).show()
+    // 在Fragment中点击物理返回按钮，回退到手机桌面
+    startActivity(Intent(Intent.ACTION_MAIN).apply {
+        flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+        addCategory(Intent.CATEGORY_HOME)
+    })
 }
 ```

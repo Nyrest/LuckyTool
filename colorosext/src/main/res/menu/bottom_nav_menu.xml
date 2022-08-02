@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/nav_item_xposed"
+        android:id="@+id/nav_xposed"
         android:icon="@drawable/ic_baseline_extension_24"
-        android:title="@string/nav_item_xposed"
+        android:title="@string/nav_xposed"
         android:enabled="true"/>
     <item
-        android:id="@+id/nav_item_home"
+        android:id="@+id/nav_home"
         android:icon="@drawable/ic_baseline_home_24"
-        android:title="@string/nav_item_home"
+        android:title="@string/nav_home"
         android:enabled="true"/>
     <item
-        android:id="@+id/nav_item_magisk"
+        android:id="@+id/nav_magisk"
         android:icon="@drawable/ic_baseline_dashboard_24"
-        android:title="@string/nav_item_magisk"
+        android:title="@string/nav_magisk"
         android:enabled="true"/>
 </menu>

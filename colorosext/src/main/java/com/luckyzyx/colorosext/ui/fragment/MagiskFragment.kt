@@ -5,28 +5,38 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.Keep
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.graphics.drawable.toDrawable
 import androidx.fragment.app.Fragment
+import com.luckyzyx.colorosext.R
 import com.luckyzyx.colorosext.databinding.FragmentMagiskBinding
+import com.luckyzyx.colorosext.utils.MoshiUtil
+import com.squareup.moshi.JsonClass
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.adapter
 
 class MagiskFragment : Fragment() {
 
     private lateinit var binding: FragmentMagiskBinding
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentMagiskBinding.inflate(inflater)
+        initToolbar()
         return binding.root
     }
 
-    data class User(val id: Int, val name: String, val info: UserInfo)
-    data class UserInfo(val age: Int, val sex: String)
+    fun initToolbar(){
+        val toolbar = binding.toolbar
+        (activity as AppCompatActivity).setSupportActionBar(toolbar)
+        toolbar.title = getString(R.string.nav_magisk)
+        setHasOptionsMenu(true)
+    }
 
-    data class School(val id: Int, val name: String, val classlist: List<Class>)
-    data class Class(val id: Int, val name: String, val studentlist: List<Student>)
-    data class Student(val id: Int, val name: String)
+    @JsonClass(generateAdapter = true)
+    data class User(val id: Int, val name: String, val info: UserInfo)
+    @JsonClass(generateAdapter = true)
+    data class UserInfo(val age: Int, val sex: String)
 
     fun createUser(): User {
         return User(1, "Jack", UserInfo(25, "Sales"))
@@ -34,52 +44,26 @@ class MagiskFragment : Fragment() {
 
     fun createMultiUser(): List<User> {
         return listOf(
-            User(1, "Jack", UserInfo(25, "Sales")),
-            User(2, "Pony", UserInfo(30, "Marketing")),
-            User(3, "Robin", UserInfo(31, "Engineer"))
+            User(1, "Jack", UserInfo(10, "男")),
+            User(2, "Pony", UserInfo(20, "男")),
+            User(3, "Robin", UserInfo(30, "男"))
         )
     }
-
-//    private fun createData(): ScopeWrapper {
-//        return ScopeWrapper(
-//            listOf(
-//                Scope(1, "作用域1", ""),
-//                Scope(2, "作用域2", ""),
-//                Scope(3, "作用域3", ""),
-//            ),
-//            listOf(
-//                Func(1,1, "方法1", null, "key1", null),
-//                Func(2,1, "方法2", null, "key2", null),
-//                Func(3,1, "方法3", null, "key3", null),
-//            )
-//        )
-//    }
 
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        val funs = createData()
-//
-//        val toJson = MoshiUtil.toJson(funs,"  ")
-//        val fromJson = MoshiUtil.fromJson<ScopeWrapper>(toJson)
-//
-//        binding.tv.text = toJson
-//        binding.tv2.text = fromJson.toString()
+        val funs = createUser()
 
+//        val moshi = Moshi.Builder().build()
+//        val adapter = moshi.adapter(User::class.java).indent("  ")
+//        val toJson = adapter.toJson(funs)
 
-        binding.tv.setOnClickListener {
-//            ColorPickerDialog(requireActivity()).apply {
-//                setTitle("ColorPicker Dialog")
-//                setPositiveButton(getString(android.R.string.ok), ColorEnvelopeListener {
-//                        colorEnvelope: ColorEnvelope, b: Boolean ->
-//                    binding.tv2.text = "$colorEnvelope.hexCode : $b"
-//                })
-//                setNeutralButton(getString(android.R.string.cancel),null)
-//                attachAlphaSlideBar(true)
-//                attachBrightnessSlideBar(true)
-//                setBottomSpace(10)
-//            }.show()
-        }
+        val toJson = MoshiUtil.toJson(funs,"  ")
+        val fromJson = MoshiUtil.fromJson<User>(toJson)
+
+        binding.tv.text = toJson
+        binding.tv2.text = fromJson.toString()
     }
 }

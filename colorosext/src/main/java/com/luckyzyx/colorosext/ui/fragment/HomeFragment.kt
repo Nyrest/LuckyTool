@@ -1,22 +1,27 @@
 package com.luckyzyx.colorosext.ui.fragment
 
+import android.annotation.SuppressLint
+import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener
 import android.net.Uri
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
+import android.view.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.preference.*
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.highcapable.yukihookapi.YukiHookAPI
 import com.highcapable.yukihookapi.hook.xposed.prefs.ui.ModulePreferenceFragment
 import com.luckyzyx.colorosext.R
 import com.luckyzyx.colorosext.databinding.FragmentHomeBinding
 import com.luckyzyx.colorosext.ui.activity.MainActivity
 import com.luckyzyx.colorosext.utils.SettingsPrefs
-import com.luckyzyx.colorosext.utils.getColorOSVersion
+import com.luckyzyx.colorosext.utils.ShellUtils
+import com.luckyzyx.colorosext.utils.getBuildVersion
 
 class HomeFragment : Fragment() {
 
@@ -24,23 +29,71 @@ class HomeFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentHomeBinding.inflate(inflater)
+        val toolbar = binding.toolbar
+        (activity as AppCompatActivity).setSupportActionBar(toolbar)
+        setHasOptionsMenu(true)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.xposedInfo.text = getColorOSVersion
+        refreshStatus()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        menu.add(0, 1, 0, getString(R.string.menu_reboot)).setIcon(R.drawable.ic_baseline_refresh_24).setShowAsActionFlags(
+            MenuItem.SHOW_AS_ACTION_IF_ROOM
+        )
+        menu.add(0, 2, 0, getString(R.string.menu_settings)).setIcon(R.drawable.ic_baseline_settings_24).setShowAsActionFlags(
+            MenuItem.SHOW_AS_ACTION_IF_ROOM
+        )
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == 1) refreshmode(requireActivity())
+        if (item.itemId == 2) requireActivity().findNavController(R.id.nav_host_fragment_container).navigate(R.id.action_homeFragment_to_settingsFragment)
+        return super.onOptionsItemSelected(item)
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun refreshStatus(){
+        binding.statusIcon.setImageResource(
+            when {
+                YukiHookAPI.Status.isXposedModuleActive -> R.drawable.ic_round_check_24
+                else -> R.drawable.ic_round_warning_24
+            }
+        )
+        binding.statusTitle.text = when {
+            YukiHookAPI.Status.isXposedModuleActive -> "模块已激活"
+            else -> "模块未激活"
+        }
+        binding.statusSummary.apply {
+            text = "模块版本:"
+            text = "$text$getBuildVersion"
+        }
+    }
+
+    private fun refreshmode(context: Context) {
+        val list = arrayOf(getString(R.string.reboot), getString(R.string.reboot_shutdown), getString(R.string.reboot_recovery), getString(
+                    R.string.reboot_bootloader))
+        MaterialAlertDialogBuilder(context)
+            .setCancelable(true)
+            .setItems(list) { _: DialogInterface?, i: Int ->
+                when (i) {
+                    0 -> ShellUtils.execCommand("reboot", true)
+                    1 -> ShellUtils.execCommand("reboot -p", true)
+                    2 -> ShellUtils.execCommand("reboot recovery", true)
+                    3 -> ShellUtils.execCommand("reboot bootloader", true)
+                }
+            }
+            .show()
     }
 }
 
-class SettingsFragment : ModulePreferenceFragment(), OnSharedPreferenceChangeListener {
-    override fun onCreatePreferencesInModuleApp(savedInstanceState: Bundle?, rootKey: String?) {
+class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeListener {
+    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         preferenceManager.sharedPreferencesName = SettingsPrefs
-        preferenceScreen = initScreen()
-    }
-
-    private fun initScreen(): PreferenceScreen {
-        return preferenceManager.createPreferenceScreen(requireActivity()).apply {
+        preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
             addPreference(
                 PreferenceCategory(requireActivity()).apply {
                     setTitle(R.string.theme_title)
@@ -50,10 +103,21 @@ class SettingsFragment : ModulePreferenceFragment(), OnSharedPreferenceChangeLis
             )
             addPreference(
                 SwitchPreference(requireActivity()).apply {
-                    key = "use_md3"
+                    key = "use_dynamic_color"
                     setDefaultValue(false)
-                    setTitle(R.string.use_material3)
-                    setSummary(R.string.use_material3_summer)
+                    setTitle(R.string.use_dynamic_color)
+                    setSummary(R.string.use_dynamic_color_summer)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                DropDownPreference(requireActivity()).apply {
+                    key = "dark_theme"
+                    title = getString(R.string.dark_theme)
+                    summary = "%s"
+                    entries = resources.getStringArray(R.array.dark_theme)
+                    entryValues = resources.getStringArray(R.array.dark_theme_value)
+                    setDefaultValue("MODE_NIGHT_FOLLOW_SYSTEM")
                     isIconSpaceReserved = false
                 }
             )
@@ -87,26 +151,18 @@ class SettingsFragment : ModulePreferenceFragment(), OnSharedPreferenceChangeLis
                     setTitle(R.string.open_source)
                     setSummary(R.string.open_source_summer)
                     isIconSpaceReserved = false
-                    fragment = "com.luckyzyx.colorosext.ui.fragment.AboutFragment"
+                    onPreferenceClickListener = Preference.OnPreferenceClickListener {
+                        requireActivity().findNavController(R.id.nav_host_fragment_container).navigate(R.id.action_settingsFragment_to_aboutFragment)
+                        true
+                    }
                 }
             )
         }
     }
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
-        super.onSharedPreferenceChanged(sharedPreferences, key)
-        when (key) {
-            "theme_color", "use_md3" -> {
-                if (requireActivity().application != null) {
-                    startActivity(Intent(requireActivity(), MainActivity::class.java))
-                    requireActivity().overridePendingTransition(
-                        R.anim.start_anim,
-                        R.anim.out_anim
-                    )
-                    requireActivity().finish()
-                }
-            }
-        }
+        if (key == "use_dynamic_color") (activity as MainActivity?)?.restart()
+        if (key == "dark_theme") (activity as MainActivity?)?.restart()
     }
 
     override fun onResume() {
@@ -122,11 +178,7 @@ class SettingsFragment : ModulePreferenceFragment(), OnSharedPreferenceChangeLis
 
 class AboutFragment : ModulePreferenceFragment() {
     override fun onCreatePreferencesInModuleApp(savedInstanceState: Bundle?, rootKey: String?) {
-        preferenceScreen = initScreen()
-    }
-
-    private fun initScreen(): PreferenceScreen {
-        return preferenceManager.createPreferenceScreen(requireActivity()).apply {
+        preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
             addPreference(
                 PreferenceCategory(requireActivity()).apply {
                     setTitle(R.string.open_source)

@@ -1,10 +1,10 @@
 package com.luckyzyx.colorosext.hook
 
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
-import com.luckyzyx.colorosext.hook.packageinstaller.AllowReplaceInstall
-import com.luckyzyx.colorosext.hook.packageinstaller.RemoveInstallAds
-import com.luckyzyx.colorosext.hook.packageinstaller.ReplaseAospInstaller
-import com.luckyzyx.colorosext.hook.packageinstaller.SkipApkScan
+import com.luckyzyx.colorosext.hook.apps.packageinstaller.AllowReplaceInstall
+import com.luckyzyx.colorosext.hook.apps.packageinstaller.RemoveInstallAds
+import com.luckyzyx.colorosext.hook.apps.packageinstaller.ReplaseAospInstaller
+import com.luckyzyx.colorosext.hook.apps.packageinstaller.SkipApkScan
 import com.luckyzyx.colorosext.utils.XposedPrefs
 
 

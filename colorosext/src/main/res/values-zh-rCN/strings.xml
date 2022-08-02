@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">ColorOSExt</string>
-    <string name="nav_item_xposed">Xposed</string>
-    <string name="nav_item_home">主页</string>
-    <string name="nav_item_magisk">Magisk</string>
+    <string name="nav_xposed">Xposed</string>
+    <string name="nav_home">主页</string>
+    <string name="nav_magisk">Magisk</string>
     <string name="theme_title">主题</string>
-    <string name="use_material3">Material3</string>
     <string name="theme_color">主题颜色</string>
     <string name="follow_system">跟随系统</string>
     <string name="light_color">浅色</string>
     <string name="dark_color">深色</string>
-    <string name="use_material3_summer">使用Material3主题样式</string>
     <string name="theme_title_summer">将自动刷新页面</string>
     <string name="about_title">关于</string>
     <string name="open_source">开放源代码</string>
@@ -37,5 +35,100 @@
     <string name="version_summer_first">"版本: "</string>
     <string name="unsupported_xposed">请确保Xposed API >= 93,并且模块已勾选相应作用域\\n若上述已经完成,可尝试点击确定退出APP,然后重试</string>
 
+    <string name="use_dynamic_color_summer">使用动态取色</string>
+    <string name="use_dynamic_color">动态取色</string>
+
+    <!-- Colors -->
+    <string name="color_sakura">樱花</string>
+    <string name="color_red">红色</string>
+    <string name="color_pink">粉色</string>
+    <string name="color_purple">紫色</string>
+    <string name="color_deep_purple">深紫</string>
+    <string name="color_indigo">靛青</string>
+    <string name="color_blue">蓝色</string>
+    <string name="color_light_blue">浅蓝</string>
+    <string name="color_cyan">青色</string>
+    <string name="color_teal">青绿</string>
+    <string name="color_green">绿色</string>
+    <string name="color_light_green">浅绿</string>
+    <string name="color_lime">石灰</string>
+    <string name="color_yellow">黄色</string>
+    <string name="color_amber">琥珀</string>
+    <string name="color_orange">橙色</string>
+    <string name="color_deep_orange">深橙</string>
+    <string name="color_brown">棕色</string>
+    <string name="color_blue_grey">灰蓝</string>
+
+    <string name="menu_reboot">重启菜单</string>
+    <string name="menu_settings">设置</string>
+    <string name="restart_scope">重启作用域</string>
+    <string name="restart_scope_message">确定要重启除系统框架外的全部作用域?模块不生效时可用!</string>
+    <string name="reboot">重启系统</string>
+    <string name="reboot_recovery">Recovery</string>
+    <string name="reboot_bootloader">BootLoader</string>
+    <string name="reboot_shutdown">关闭系统</string>
+
+    <string name="SystemUI">系统界面</string>
+    <string name="restart_scope_summer">右上角菜单重启作用域</string>
+    <string name="statusbar_title">状态栏</string>
+    <string name="statusbar_summer">顶部状态栏以及下拉状态栏</string>
+    <string name="remove_statusbar_clock_redone">移除下拉状态栏时钟红1</string>
+    <string name="statusbar_clock_show_second">状态栏时钟显示秒</string>
+    <string name="statusbar_clock_show_period">状态栏时钟显示时段</string>
+    <string name="statusbar_dropdown_clock_show_second">下拉状态栏时钟显秒</string>
+    <string name="remove_statusbar_devmode">移除状态栏开发者选项通知</string>
+    <string name="remove_charging_completed">移除充电完成通知</string>
+    <string name="set_network_speed">设置状态栏网速刷新率1s</string>
+    <string name="remove_statusbar_bottom_networkwarn">移除下拉状态栏底部网络警告</string>
+    <string name="remove_statusbar_securepayment_icon">移除状态栏支付保护图标</string>
+    <string name="LockScreen">锁屏</string>
+    <string name="LockScreen_summer">锁屏相关</string>
+    <string name="remove_lock_screen_redone">移除锁屏时钟红1</string>
+    <string name="remove_lock_screen_camera">移除锁屏右下角相机</string>
+    <string name="set_lock_screen_textview_color">设置锁屏组件字体颜色</string>
+    <string name="set_lock_screen_textview_color_summer">时间日期星期等字体颜色</string>
+    <string name="Launcher">系统桌面</string>
+    <string name="unlock_task_locks">解锁后台任务锁定数量</string>
+    <string name="remove_appicon_dot">移除APP图标蓝点</string>
+    <string name="AlarmClock">时钟</string>
+    <string name="remove_alarmclock_widget_redone">移除桌面时钟组件红一</string>
+    <string name="Camera">相机</string>
+    <string name="remove_watermark_word_limit">移除水印字数限制</string>
+    <string name="PackageInstaller">应用包安装程序</string>
+    <string name="skip_apk_scan">跳过Apk扫描</string>
+    <string name="skip_apk_scan_summer">Apk病毒扫描相关</string>
+    <string name="allow_downgrade_install">允许降级安装</string>
+    <string name="allow_downgrade_install_summer">移除低/相同版本警告等,必须搭配核心破解使用</string>
+    <string name="remove_install_ads">移除安装完成广告</string>
+    <string name="remove_install_ads_summer">安全应用推荐/软件商店广告</string>
+    <string name="replase_aosp_installer">替换AOSP安装器</string>
+    <string name="replase_aosp_installer_summer">替换为原生安装器</string>
+    <string name="OplusGames">游戏助手</string>
+    <string name="remove_root_check">移除游戏滤镜检测</string>
+    <string name="remove_root_check_summer">移除游戏滤镜的Root检测</string>
+    <string name="CloudService">云服务</string>
+    <string name="remove_network_limit">移除数据网络限制</string>
+    <string name="remove_network_limit_summer">移除备份/恢复无法使用移动数据的限制</string>
+    <string name="ThemeStore">主题商店</string>
+    <string name="unlock_themestore_vip">解锁部分功能VIP</string>
+    <string name="unlock_themestore_vip_summer">解锁部分功能,详情页面点击应用</string>
+    <string name="SafeCenter">安全中心</string>
+    <string name="unlock_startup_limit">解锁自启数量限制</string>
+    <string name="unlock_startup_limit_summer">解锁应用自启动数量限制</string>
+    <string name="Everyimage">好多动漫</string>
+    <string name="skip_startup_page">跳过启动页</string>
+    <string name="vip_download">下载原图</string>
+    <string name="Android">系统框架</string>
+    <string name="system_app">系统APP</string>
+    <string name="other_app">其他APP</string>
+    <string name="dark_theme">深色主题</string>
+    <string name="android_summer">不生效可尝试重启</string>
+    <string name="remove_statusbar_top_notification">移除状态栏应用上层通知</string>
+    <string name="remove_statusbar_top_notification_summer">移除状态栏“此应用在其他应用上层显示”</string>
+    <string name="disable_flag_secure">禁用FLAG_SECURE</string>
+    <string name="disable_flag_secure_summer">在通常不允许的应用程序中启用屏幕截图、屏幕共享和录制\n作用域:系统框架和对应的APP</string>
+    <string name="Screenshot">截屏</string>
+    <string name="remove_screenshot_privacy_limit">移除截图隐私限制</string>
+    <string name="remove_screenshot_privacy_limit_summer">必须搭配”禁用FLAG_SECURE“使用,无需勾选其他APP</string>
 
 </resources>

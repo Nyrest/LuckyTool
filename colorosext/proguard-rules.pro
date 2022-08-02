@@ -67,7 +67,7 @@
 -keep public class * extends android.app.Activity
 #noinspection ShrinkerUnresolvedReference
 -keep class * implements Android.os.Parcelable {
-#noinspection ShrinkerUnresolvedReference
+    #noinspection ShrinkerUnresolvedReference
     public static final Android.os.Parcelable$Creator *;
 }
 # androidx

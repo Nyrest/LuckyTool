@@ -7,127 +7,90 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragment.HomeFragment">
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/nestedScrollView"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="SpeakableTextPresentCheck">
+        android:layout_height="match_parent">
 
-        <LinearLayout
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            app:layout_constraintBottom_toTopOf="@id/nestedScrollView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <com.google.android.material.card.MaterialCardView
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            tools:ignore="SpeakableTextPresentCheck">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clickable="true"
-                android:layout_margin="8dp">
+                android:animateLayoutChanges="true"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="?dialogPreferredPadding"
+                android:orientation="vertical">
 
-                <LinearLayout
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/status_card"
+                    style="@style/Widget.Material3.CardView.Elevated"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:outlineAmbientShadowColor="?colorPrimary"
+                    android:outlineSpotShadowColor="?colorPrimary"
+                    android:stateListAnimator="@null"
+                    app:cardBackgroundColor="?colorPrimary"
+                    app:cardElevation="12dp"
+                    app:cardPreventCornerOverlap="false" >
 
-                    <LinearLayout
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:baselineAligned="false">
+                        android:padding="?dialogPreferredPadding">
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_weight="1"
-                            android:padding="12dp">
+                        <ImageView
+                            android:id="@+id/status_icon"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_centerVertical="true"
+                            app:tint="?colorOnPrimary"
+                            app:srcCompat="@drawable/ic_round_check_24"
+                            tools:ignore="ContentDescription" />
 
-                            <TextView
-                                android:id="@+id/xposed_title"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="18sp"
-                                android:text="@string/app_name"
-                                android:textAppearance="?attr/textAppearanceTitleMedium" />
-
-                            <TextView
-                                android:id="@+id/xposed_info"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                android:textSize="15sp"
-                                android:text="xposed info"
-                                android:textAppearance="?attr/textAppearanceBodyMedium"
-                                android:textColor="?android:attr/textColorSecondary" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_weight="1"
-                            android:padding="12dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textAppearance="?attr/textAppearanceTitleMedium" />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                android:textAppearance="?attr/textAppearanceBodyMedium"
-                                android:textColor="?android:attr/textColorSecondary" />
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
-                        android:orientation="horizontal">
-
-                        <com.google.android.material.button.MaterialButton
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/status_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Xposed"
-                            android:gravity="center"
-                            android:layout_weight="1"
-                            android:id="@+id/xposed_btn"
-                            style="?attr/borderlessButtonStyle" />
-                        <com.google.android.material.button.MaterialButton
+                            android:layout_marginStart="24dp"
+                            android:layout_toEndOf="@id/status_icon"
+                            android:textAppearance="?textAppearanceTitleMedium"
+                            android:textColor="?colorOnPrimary"
+                            android:textSize="16sp" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/status_summary"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Magisk"
-                            android:gravity="center"
-                            android:layout_weight="1"
-                            android:id="@+id/magisk_btn"
-                            style="?attr/borderlessButtonStyle" />
-                        <com.google.android.material.button.MaterialButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="FPS"
-                            android:gravity="center"
-                            android:layout_weight="1"
-                            android:id="@+id/fps"
-                            style="?attr/borderlessButtonStyle" />
+                            android:layout_below="@id/status_title"
+                            android:layout_alignStart="@id/status_title"
+                            android:textAppearance="?textAppearanceBodyMedium"
+                            android:textColor="?colorOnPrimary" />
 
-                    </LinearLayout>
+                    </RelativeLayout>
 
-                </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
 
-            </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
 
+        </androidx.core.widget.NestedScrollView>
 
-        </LinearLayout>
-
-    </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

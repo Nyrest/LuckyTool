@@ -2,9 +2,9 @@ package com.luckyzyx.colorosext.hook
 
 import android.graphics.Color
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
-import com.luckyzyx.colorosext.hook.systemui.LockScreenTextViewColor
-import com.luckyzyx.colorosext.hook.systemui.NetworkSpeed
-import com.luckyzyx.colorosext.hook.systemui.*
+import com.luckyzyx.colorosext.hook.apps.systemui.LockScreenTextViewColor
+import com.luckyzyx.colorosext.hook.apps.systemui.NetworkSpeed
+import com.luckyzyx.colorosext.hook.apps.systemui.*
 import com.luckyzyx.colorosext.utils.XposedPrefs
 
 class HookSystemUI : YukiBaseHooker(){
@@ -30,7 +30,7 @@ class HookSystemUI : YukiBaseHooker(){
         if (prefs(XposedPrefs).getBoolean("remove_statusbar_clock_redone",false)) loadHooker(RemoveStatusBarClockRedOne())
 
         //设置下拉状态栏时钟显秒
-        if (prefs(XposedPrefs).getBoolean("statusbar_clock_show_second",false)) loadHooker(StatusBarClockShowSecond())
+        if (prefs(XposedPrefs).getBoolean("statusbar_dropdown_clock_show_second",false)) loadHooker(StatusBarClockShowSecond())
 
         //设置状态栏时钟显秒和上下午
         loadHooker(StatusBarClock())
