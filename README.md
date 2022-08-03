@@ -1,7 +1,7 @@
-# ColorOSExt
+# LuckyTool
 
-- 旨在对 ColorOS 系统的各种扩展优化  
-- The purpose is to optimize various extensions of ColorOS system
+- 旨在对 ColorOS 系统的扩展优化  
+- The purpose is to extend and optimize the ColorOS system.
 
 ---
 
@@ -20,7 +20,7 @@
 
 ## Xposed API
 
-- [YukiHookAPI](https://github.com/fankes/YukiHookAPI) -> https://github.com/fankes/YukiHookAPI
+- [YukiHookAPI](https://github.com/fankes/YukiHookAPI)
 
 ---
 
