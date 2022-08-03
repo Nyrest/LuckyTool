@@ -3,7 +3,7 @@
     <string name="app_name">ColorOSExt</string>
     <string name="nav_xposed">Xposed</string>
     <string name="nav_home">主页</string>
-    <string name="nav_magisk">Magisk</string>
+    <string name="nav_other">其他</string>
     <string name="theme_title">主题</string>
     <string name="theme_color">主题颜色</string>
     <string name="follow_system">跟随系统</string>
@@ -62,7 +62,7 @@
     <string name="menu_reboot">重启菜单</string>
     <string name="menu_settings">设置</string>
     <string name="restart_scope">重启作用域</string>
-    <string name="restart_scope_message">确定要重启除系统框架外的全部作用域?模块不生效时可用!</string>
+    <string name="restart_scope_message">确定要重启除系统框架外的全部作用域?\n模块不生效时可用!</string>
     <string name="reboot">重启系统</string>
     <string name="reboot_recovery">Recovery</string>
     <string name="reboot_bootloader">BootLoader</string>
@@ -126,7 +126,7 @@
     <string name="remove_statusbar_top_notification">移除状态栏应用上层通知</string>
     <string name="remove_statusbar_top_notification_summer">移除状态栏“此应用在其他应用上层显示”</string>
     <string name="disable_flag_secure">禁用FLAG_SECURE</string>
-    <string name="disable_flag_secure_summer">在通常不允许的应用程序中启用屏幕截图、屏幕共享和录制\n作用域:系统框架和对应的APP</string>
+    <string name="disable_flag_secure_summer">在通常不允许的应用程序中启用屏幕截图、屏幕共享和录制</string>
     <string name="Screenshot">截屏</string>
     <string name="remove_screenshot_privacy_limit">移除截图隐私限制</string>
     <string name="remove_screenshot_privacy_limit_summer">必须搭配”禁用FLAG_SECURE“使用,无需勾选其他APP</string>

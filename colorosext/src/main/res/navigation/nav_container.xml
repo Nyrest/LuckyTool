@@ -19,10 +19,10 @@
             app:popExitAnim="@anim/fragment_exit_pop" />
     </fragment>
     <fragment
-        android:id="@+id/nav_magisk"
-        android:name="com.luckyzyx.colorosext.ui.fragment.MagiskFragment"
-        android:label="fragment_magisk"
-        tools:layout="@layout/fragment_magisk" />
+        android:id="@+id/nav_other"
+        android:name="com.luckyzyx.colorosext.ui.fragment.OtherFragment"
+        android:label="fragment_other"
+        tools:layout="@layout/fragment_other" />
     <fragment
         android:id="@+id/nav_xposed"
         android:name="com.luckyzyx.colorosext.ui.fragment.XposedFragment"

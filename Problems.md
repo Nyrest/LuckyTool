@@ -1,6 +1,6 @@
 # 整理一下开发过程中遇到的问题
 
-## 反射系统变量或方法为null
+## 反射系统隐藏方法为null
 
 ```xml
 <application>
@@ -13,9 +13,14 @@
 ## 深色模式重启activity闪白屏
 
 ```kotlin
+finish()
 startActivity(Intent(Context, MainActivity::class.java))
-Context.overridePendingTransition(R.anim.start_anim, R.anim.out_anim)
-Context.finish()
+overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+```
+## Fragment调用MainActivity里的方法
+
+```kotlin
+(activity as MainActivity?)?.restart()
 ```
 
 ## Key.BACK Fragment后台堆栈问题

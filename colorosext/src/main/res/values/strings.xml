@@ -4,7 +4,7 @@
     <string name="fragment_magisk" translatable="false">This is Magisk Page</string>
     <string name="nav_xposed">Xposed</string>
     <string name="nav_home">Home</string>
-    <string name="nav_magisk">Magisk</string>
+    <string name="nav_other">Other</string>
 
     <string name="theme_title">Theme</string>
     <string name="theme_title_summer">Will automatically refresh the page</string>
@@ -42,7 +42,7 @@
     <string name="menu_reboot">Reboot Menu</string>
     <string name="menu_settings">Settings</string>
     <string name="restart_scope">Restart Scope</string>
-    <string name="restart_scope_message">Sure you want to restart all scopes except the system framework? Available when the module is not in effect!</string>
+    <string name="restart_scope_message">Sure you want to restart all scopes except the system framework?\nAvailable when the module is not in effect!</string>
 
     <!-- Colors -->
     <string name="color_sakura">Sakura</string>
@@ -128,7 +128,7 @@
     <string name="remove_statusbar_top_notification">Remove upper notification from status bar app</string>
     <string name="remove_statusbar_top_notification_summer">Remove status bar \"This app is displayed on top of other apps\"</string>
     <string name="disable_flag_secure">Disable FLAG_SECURE</string>
-    <string name="disable_flag_secure_summer">Enabling screenshots, screen sharing and recording in apps that normally wouldn\'t allow it\nScope: Android and Corresponding App</string>
+    <string name="disable_flag_secure_summer">Enabling screenshots, screen sharing and recording in apps that normally wouldn\'t allow it</string>
     <string name="Screenshot">Screenshot</string>
     <string name="remove_screenshot_privacy_limit">Remove screenshot privacy restrictions</string>
     <string name="remove_screenshot_privacy_limit_summer">Must be used with \"Disable FLAG_SECURE\", no need to check other app</string>

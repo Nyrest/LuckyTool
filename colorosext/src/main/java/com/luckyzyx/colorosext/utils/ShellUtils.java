@@ -25,6 +25,7 @@ import java.util.List;
  *
  * @author <a href="http://www.trinea.cn" target="_blank">Trinea</a> 2013-5-16
  */
+@SuppressWarnings("unused")
 public class ShellUtils {
 
     public static final String COMMAND_SU       = "su";

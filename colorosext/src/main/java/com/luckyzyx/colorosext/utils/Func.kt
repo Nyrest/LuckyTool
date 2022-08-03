@@ -10,7 +10,6 @@ import com.highcapable.yukihookapi.hook.factory.field
 import com.highcapable.yukihookapi.hook.factory.method
 import com.luckyzyx.colorosext.BuildConfig.VERSION_CODE
 import com.luckyzyx.colorosext.BuildConfig.VERSION_NAME
-import com.luckyzyx.colorosext.R
 
 /**
  * try/catch函数

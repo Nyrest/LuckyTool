@@ -1,25 +1,24 @@
 package com.luckyzyx.colorosext.ui.fragment
 
-import android.content.Context
-import android.content.DialogInterface
 import android.content.SharedPreferences
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.preference.Preference
 import androidx.preference.PreferenceCategory
 import androidx.preference.SwitchPreference
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.tabs.TabLayout
-import com.highcapable.yukihookapi.hook.factory.modulePrefs
 import com.highcapable.yukihookapi.hook.xposed.prefs.ui.ModulePreferenceFragment
 import com.luckyzyx.colorosext.R
 import com.luckyzyx.colorosext.databinding.FragmentXposedBinding
+import com.luckyzyx.colorosext.ui.activity.MainActivity
 import com.luckyzyx.colorosext.ui.refactor.ColorPickerPreference
-import com.luckyzyx.colorosext.utils.ShellUtils
 import com.luckyzyx.colorosext.utils.XposedPrefs
 import com.luckyzyx.colorosext.utils.getAppVersion
 
@@ -36,6 +35,10 @@ class XposedFragment : Fragment() {
         (activity as AppCompatActivity).setSupportActionBar(toolbar)
         toolbar.title = getString(R.string.nav_xposed)
         setHasOptionsMenu(true)
+
+        val navHostFragment = childFragmentManager.findFragmentById(R.id.xposed_fragment_container) as NavHostFragment
+        val navController: NavController = navHostFragment.navController
+
         val tabs = binding.tablayout
         tabs.apply {
             addTab(tabs.newTab().setText(requireActivity().getString(R.string.system_app)),0,true)
@@ -43,8 +46,14 @@ class XposedFragment : Fragment() {
             addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
                 override fun onTabSelected(tab: TabLayout.Tab?) {
                     when(tab?.position){
-                        0 -> requireActivity().findNavController(R.id.xposed_fragment_container).navigate(R.id.systemScope)
-                        1 -> requireActivity().findNavController(R.id.xposed_fragment_container).navigate(R.id.otherScope)
+                        0 -> {
+                            navController.popBackStack()
+                            navController.navigate(R.id.systemScope)
+                        }
+                        1 -> {
+                            navController.popBackStack()
+                            navController.navigate(R.id.otherScope)
+                        }
                     }
                 }
                 //取消选中
@@ -62,29 +71,8 @@ class XposedFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == 1) restartScope(requireActivity())
+        if (item.itemId == 1) (activity as MainActivity).restartScope(requireActivity())
         return super.onOptionsItemSelected(item)
-    }
-
-    private fun restartScope(context: Context) {
-        val xposedScope = resources.getStringArray(R.array.xposed_scope)
-        val commands = ArrayList<String>()
-        for (scope in xposedScope) {
-            if (scope == "android") continue
-            if (scope == "com.android.systemui") {
-                commands.add("kill -9 `pgrep systemui`")
-                continue
-            }
-            commands.add("am force-stop $scope")
-        }
-        MaterialAlertDialogBuilder(context)
-            .setMessage(getString(R.string.restart_scope_message))
-            .setPositiveButton(getString(android.R.string.ok)) { _: DialogInterface?, _: Int ->
-                requireActivity().modulePrefs.clearCache()
-                ShellUtils.execCommand(commands, true)
-            }
-            .setNeutralButton(getString(android.R.string.cancel), null)
-            .show()
     }
 }
 

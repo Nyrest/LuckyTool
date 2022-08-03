@@ -7,6 +7,7 @@ import com.highcapable.yukihookapi.hook.xposed.bridge.event.YukiXposedEvent
 import com.highcapable.yukihookapi.hook.xposed.proxy.IYukiHookXposedInit
 import com.luckyzyx.colorosext.hook.apps.CorePatch.CorePatchForR
 import com.luckyzyx.colorosext.hook.apps.CorePatch.CorePatchForS
+import com.luckyzyx.colorosext.utils.XposedPrefs
 import de.robv.android.xposed.IXposedHookZygoteInit
 import de.robv.android.xposed.XposedBridge
 import de.robv.android.xposed.callbacks.XC_LoadPackage
@@ -24,6 +25,7 @@ class MainHook : IYukiHookXposedInit {
     }
 
     override fun onHook() = encase {
+        if (prefs(XposedPrefs).getBoolean("enable_module").not()) return@encase
         //系统框架
         loadSystem(HookAndroid())
         //loadZygote(HookZygote())

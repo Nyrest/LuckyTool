@@ -86,6 +86,7 @@
             app:popEnterAnim="@anim/fragment_enter_pop"
             app:popExitAnim="@anim/fragment_exit_pop"/>
     </fragment>
+
     <fragment
         android:id="@+id/otherScope"
         android:name="com.luckyzyx.colorosext.ui.fragment.OtherScope"
@@ -137,10 +138,6 @@
         android:label="ScopeSystemUI" />
 
     <fragment
-        android:id="@+id/scopeEveryimage"
-        android:name="com.luckyzyx.colorosext.ui.fragment.ScopeEveryimage"
-        android:label="ScopeEveryimage" />
-    <fragment
         android:id="@+id/scopeCloudService"
         android:name="com.luckyzyx.colorosext.ui.fragment.ScopeCloudService"
         android:label="ScopeCloudService" />
@@ -148,4 +145,10 @@
         android:id="@+id/scopeScreenshot"
         android:name="com.luckyzyx.colorosext.ui.fragment.ScopeScreenshot"
         android:label="ScopeScreenshot" />
+
+    <fragment
+        android:id="@+id/scopeEveryimage"
+        android:name="com.luckyzyx.colorosext.ui.fragment.ScopeEveryimage"
+        android:label="ScopeEveryimage" />
+
 </navigation>

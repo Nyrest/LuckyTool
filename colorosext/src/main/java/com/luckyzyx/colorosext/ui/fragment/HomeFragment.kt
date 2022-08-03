@@ -6,7 +6,9 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener
+import android.graphics.Color
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
@@ -16,16 +18,18 @@ import androidx.preference.*
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.highcapable.yukihookapi.YukiHookAPI
 import com.highcapable.yukihookapi.hook.xposed.prefs.ui.ModulePreferenceFragment
+import com.joom.paranoid.Obfuscate
 import com.luckyzyx.colorosext.R
 import com.luckyzyx.colorosext.databinding.FragmentHomeBinding
 import com.luckyzyx.colorosext.ui.activity.MainActivity
-import com.luckyzyx.colorosext.utils.SettingsPrefs
-import com.luckyzyx.colorosext.utils.ShellUtils
-import com.luckyzyx.colorosext.utils.getBuildVersion
+import com.luckyzyx.colorosext.utils.*
 
+@Obfuscate
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
+
+    private var enableModule: Boolean = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentHomeBinding.inflate(inflater)
@@ -35,9 +39,45 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        refreshStatus()
+
+        enableModule = SPUtils.getBoolean(requireActivity(), XposedPrefs,"enable_module",false)
+
+        if (YukiHookAPI.Status.isXposedModuleActive && enableModule){
+            binding.statusIcon.setImageResource(R.drawable.ic_round_check_24)
+            binding.statusTitle.text = "模块已激活"
+        }else{
+            binding.statusCard.setCardBackgroundColor(Color.GRAY)
+            binding.statusIcon.setImageResource(R.drawable.ic_round_warning_24)
+            binding.statusTitle.text = "模块未激活"
+        }
+
+        binding.statusSummary.apply {
+            text = "模块版本:"
+            text = "$text$getBuildVersion"
+        }
+        binding.enableModule.apply {
+            text = "启用模块"
+            isChecked = enableModule
+        }.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (buttonView.isPressed) {
+                SPUtils.putBoolean(requireActivity(), XposedPrefs,"enable_module",isChecked)
+                (activity as MainActivity).restart()
+            }
+        }
+        binding.systemInfo.text =
+            """
+                厂商: ${Build.BRAND}
+                型号: ${Build.MODEL}
+                Android: ${Build.VERSION.RELEASE}
+                SDK版本: ${Build.VERSION.SDK_INT}
+                设备参数: ${Build.DEVICE}
+                版本号: ${Build.DISPLAY}
+                闪存厂商: ${ShellUtils.execCommand("cat /sys/class/block/sda/device/inquiry", true, true).successMsg}
+            """.trimIndent()
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -55,35 +95,18 @@ class HomeFragment : Fragment() {
         return super.onOptionsItemSelected(item)
     }
 
-    @SuppressLint("SetTextI18n")
-    private fun refreshStatus(){
-        binding.statusIcon.setImageResource(
-            when {
-                YukiHookAPI.Status.isXposedModuleActive -> R.drawable.ic_round_check_24
-                else -> R.drawable.ic_round_warning_24
-            }
-        )
-        binding.statusTitle.text = when {
-            YukiHookAPI.Status.isXposedModuleActive -> "模块已激活"
-            else -> "模块未激活"
-        }
-        binding.statusSummary.apply {
-            text = "模块版本:"
-            text = "$text$getBuildVersion"
-        }
-    }
-
     private fun refreshmode(context: Context) {
-        val list = arrayOf(getString(R.string.reboot), getString(R.string.reboot_shutdown), getString(R.string.reboot_recovery), getString(
+        val list = arrayOf(getString(R.string.restart_scope),getString(R.string.reboot), getString(R.string.reboot_shutdown), getString(R.string.reboot_recovery), getString(
                     R.string.reboot_bootloader))
         MaterialAlertDialogBuilder(context)
             .setCancelable(true)
             .setItems(list) { _: DialogInterface?, i: Int ->
                 when (i) {
-                    0 -> ShellUtils.execCommand("reboot", true)
-                    1 -> ShellUtils.execCommand("reboot -p", true)
-                    2 -> ShellUtils.execCommand("reboot recovery", true)
-                    3 -> ShellUtils.execCommand("reboot bootloader", true)
+                    0 -> (activity as MainActivity).restartScope(requireActivity())
+                    1 -> ShellUtils.execCommand("reboot", true)
+                    2 -> ShellUtils.execCommand("reboot -p", true)
+                    3 -> ShellUtils.execCommand("reboot recovery", true)
+                    4 -> ShellUtils.execCommand("reboot bootloader", true)
                 }
             }
             .show()
@@ -161,8 +184,8 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
     }
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
-        if (key == "use_dynamic_color") (activity as MainActivity?)?.restart()
-        if (key == "dark_theme") (activity as MainActivity?)?.restart()
+        if (key == "use_dynamic_color") (activity as MainActivity).restart()
+        if (key == "dark_theme") (activity as MainActivity).restart()
     }
 
     override fun onResume() {

@@ -11,8 +11,8 @@
         android:title="@string/nav_home"
         android:enabled="true"/>
     <item
-        android:id="@+id/nav_magisk"
+        android:id="@+id/nav_other"
         android:icon="@drawable/ic_baseline_dashboard_24"
-        android:title="@string/nav_magisk"
+        android:title="@string/nav_other"
         android:enabled="true"/>
 </menu>

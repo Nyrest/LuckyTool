@@ -28,6 +28,7 @@ import android.content.SharedPreferences;
  * 
  * @author <a href="http://www.trinea.cn" target="_blank">Trinea</a> 2013-3-6
  */
+@SuppressWarnings("unused")
 public class SPUtils {
 
     private SPUtils() {

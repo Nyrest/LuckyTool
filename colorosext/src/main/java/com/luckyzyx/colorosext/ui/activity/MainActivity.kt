@@ -15,6 +15,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.color.DynamicColors
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.highcapable.yukihookapi.hook.factory.modulePrefs
 import com.joom.paranoid.Obfuscate
 import com.luckyzyx.colorosext.R
 import com.luckyzyx.colorosext.databinding.ActivityMainBinding
@@ -39,8 +40,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (ThemeUtil(this).isDynamicColor()){
+            DynamicColors.applyToActivityIfAvailable(this)
+        }
         binding = ActivityMainBinding.inflate(layoutInflater)
-        checkTheme(this)
+
+        checkTheme()
         setContentView(binding.root)
 
         checkPrefsRW()
@@ -51,15 +56,11 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
         val navController: NavController = navHostFragment.navController
         val bottomNavigationView = binding.navView
-        bottomNavigationView.setupWithNavController(navController)
         bottomNavigationView.labelVisibilityMode = BottomNavigationView.LABEL_VISIBILITY_SELECTED
-
+        bottomNavigationView.setupWithNavController(navController)
     }
 
-    private fun checkTheme(context: Context) {
-        if (ThemeUtil(context).isDynamicColor()){
-            DynamicColors.applyToActivityIfAvailable(this)
-        }
+    private fun checkTheme() {
         when(SPUtils.getString(this, SettingsPrefs,"dark_theme","MODE_NIGHT_FOLLOW_SYSTEM")){
             "MODE_NIGHT_FOLLOW_SYSTEM" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
             "MODE_NIGHT_NO" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
@@ -101,5 +102,26 @@ class MainActivity : AppCompatActivity() {
                 recreate()
             }
         }
+    }
+
+    fun restartScope(context: Context) {
+        val xposedScope = resources.getStringArray(R.array.xposed_scope)
+        val commands = ArrayList<String>()
+        for (scope in xposedScope) {
+            if (scope == "android") continue
+            if (scope == "com.android.systemui") {
+                commands.add("kill -9 `pgrep systemui`")
+                continue
+            }
+            commands.add("am force-stop $scope")
+        }
+        MaterialAlertDialogBuilder(context)
+            .setMessage(getString(R.string.restart_scope_message))
+            .setPositiveButton(getString(android.R.string.ok)) { _: DialogInterface?, _: Int ->
+                modulePrefs.clearCache()
+                ShellUtils.execCommand(commands, true)
+            }
+            .setNeutralButton(getString(android.R.string.cancel), null)
+            .show()
     }
 }
