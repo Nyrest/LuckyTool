@@ -5,11 +5,15 @@
 
 ---
 
-## 系统版本：推荐ColorOS12+
+## 系统版本
+
+- 推荐ColorOS12+
 
 ---
 
-## 测试机型：OnePlus 9RT 12.1
+## 测试机型
+
+- OnePlus 9RT 12.1
 
 ---
 
@@ -20,8 +24,12 @@
 
 ---
 
-## Xposed API：[YukiHookAPI](https://github.com/fankes/YukiHookAPI)
+## Xposed API
+
+- [YukiHookAPI](https://github.com/fankes/YukiHookAPI)
 
 ---
 
-## License：[GPL-3.0](https://www.gnu.org/licenses/gpl-3.0.html)  
+## License
+
+- [GPL-3.0](https://www.gnu.org/licenses/gpl-3.0.html)  
