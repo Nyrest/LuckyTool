@@ -1,0 +1,20 @@
+{
+  "version": 3,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.luckyzyx.luckytool",
+  "variantName": "release",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "attributes": [],
+      "versionCode": 1091,
+      "versionName": "1.0",
+      "outputFile": "LuckyTool_v1.0.1091.apk"
+    }
+  ],
+  "elementType": "File"
+}
