@@ -67,8 +67,8 @@ class HomeFragment : Fragment() {
                 (activity as MainActivity).restart()
             }
         }
-        binding.fpsTitle.text = "强制刷新率"
-        binding.fpsSummary.text = "与其他动态刷新率进程冲突,例如dfps"
+        binding.fpsTitle.text = getString(R.string.fps_title)
+        binding.fpsSummary.text = getString(R.string.fps_summer)
 
         binding.fps.setOnClickListener {
             MaterialAlertDialogBuilder(requireActivity())
@@ -80,13 +80,12 @@ class HomeFragment : Fragment() {
         }
         binding.systemInfo.text =
             """
-                厂商: ${Build.BRAND}
-                型号: ${Build.MODEL}
-                Android: ${Build.VERSION.RELEASE}
-                SDK版本: ${Build.VERSION.SDK_INT}
-                设备参数: ${Build.DEVICE}
-                版本号: ${Build.DISPLAY}
-                闪存厂商: ${ShellUtils.execCommand("cat /sys/class/block/sda/device/inquiry", true, true).successMsg}
+                ${getString(R.string.brand)}: ${Build.BRAND}
+                ${getString(R.string.model)}: ${Build.MODEL}
+                ${getString(R.string.system)}: ${Build.VERSION.RELEASE}(${Build.VERSION.SDK_INT})
+                ${getString(R.string.device)}: ${Build.DEVICE}
+                ${getString(R.string.build_version)}: ${Build.DISPLAY}
+                ${getString(R.string.flash)}: ${ShellUtils.execCommand("cat /sys/class/block/sda/device/inquiry", true, true).successMsg}
             """.trimIndent()
     }
 
@@ -162,21 +161,39 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
             )
             addPreference(
                 Preference(requireActivity()).apply {
-                    setTitle(R.string.author)
-                    setSummary(R.string.author_summer)
+                    setTitle(R.string.contact_author)
+                    setSummary(R.string.contact_author_summer)
                     isIconSpaceReserved = false
-                    intent = Intent(Intent.ACTION_VIEW, Uri.parse("coolmarket://u/1930284"))
+                    onPreferenceClickListener = Preference.OnPreferenceClickListener {
+                        val updatelist = arrayOf(getString(R.string.telegram),getString(R.string.telegram_group),getString(R.string.coolmarket))
+                        MaterialAlertDialogBuilder(requireActivity())
+                            .setItems(updatelist) { _, which ->
+                                when (which) {
+                                    0 -> startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/luckyzyx")))
+                                    1 -> startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/+F42pfv-c0h4zNDc9")))
+                                    2 -> startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("coolmarket://u/1930284")))
+                                }
+                            }.show()
+                        true
+                    }
                 }
             )
             addPreference(
                 Preference(requireActivity()).apply {
-                    setTitle(R.string.update_url)
-                    setSummary(R.string.update_url_summer)
+                    setTitle(R.string.download_url)
+                    setSummary(R.string.download_url_summer)
                     isIconSpaceReserved = false
-                    intent = Intent(
-                        Intent.ACTION_VIEW,
-                        Uri.parse("coolmarket://apk/com.luckyzyx.luckytool")
-                    )
+                    onPreferenceClickListener = Preference.OnPreferenceClickListener {
+                        val updatelist = arrayOf(getString(R.string.coolmarket),getString(R.string.github_repo))
+                        MaterialAlertDialogBuilder(requireActivity())
+                            .setItems(updatelist) { _, which ->
+                                when (which) {
+                                    0 -> startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("coolmarket://apk/com.luckyzyx.luckytool")))
+                                    1 -> startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/luckyzyx/LuckyTool/releases")))
+                                }
+                            }.show()
+                        true
+                    }
                 }
             )
             addPreference(

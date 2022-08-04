@@ -83,8 +83,7 @@ class SystemScope : ModulePreferenceFragment() {
                 Preference(requireActivity()).apply {
                     title = getString(R.string.Android)
                     key = "android"
-                    setSummary(R.string.version_summer_first)
-                    summary = summary as String + getAppVersion(requireActivity(), key, false)
+                    summary = getString(R.string.version_summer_first) + getAppVersion(requireActivity(), key, false)
                     setIcon(R.mipmap.android_icon)
                     onPreferenceClickListener = Preference.OnPreferenceClickListener {
                         requireActivity().findNavController(R.id.xposed_fragment_container).navigate(R.id.action_systemScope_to_scopeAndroid)
@@ -96,8 +95,7 @@ class SystemScope : ModulePreferenceFragment() {
                 Preference(requireActivity()).apply {
                     title = getString(R.string.SystemUI)
                     key = "com.android.systemui"
-                    setSummary(R.string.version_summer_first)
-                    summary = summary as String + getAppVersion(requireActivity(), key, true)
+                    summary = getString(R.string.version_summer_first) + getAppVersion(requireActivity(), key, true)
                     setIcon(R.mipmap.systemui_icon)
                     onPreferenceClickListener = Preference.OnPreferenceClickListener {
                         requireActivity().findNavController(R.id.xposed_fragment_container).navigate(R.id.action_systemScope_to_scopeSystemUI)
@@ -109,8 +107,7 @@ class SystemScope : ModulePreferenceFragment() {
                 Preference(requireActivity()).apply {
                     title = getString(R.string.Launcher)
                     key = "com.android.launcher"
-                    setSummary(R.string.version_summer_first)
-                    summary = summary as String + getAppVersion(requireActivity(), key, true)
+                    summary = getString(R.string.version_summer_first) + getAppVersion(requireActivity(), key, true)
                     setIcon(R.mipmap.launcher_icon)
                     onPreferenceClickListener = Preference.OnPreferenceClickListener {
                         requireActivity().findNavController(R.id.xposed_fragment_container).navigate(R.id.action_systemScope_to_scopeLauncher)
@@ -122,8 +119,7 @@ class SystemScope : ModulePreferenceFragment() {
                 Preference(requireActivity()).apply {
                     title = getString(R.string.AlarmClock)
                     key = "com.coloros.alarmclock"
-                    setSummary(R.string.version_summer_first)
-                    summary = summary as String + getAppVersion(requireActivity(), key, true)
+                    summary = getString(R.string.version_summer_first) + getAppVersion(requireActivity(), key, true)
                     setIcon(R.mipmap.alarmclock_icon)
                     onPreferenceClickListener = Preference.OnPreferenceClickListener {
                         requireActivity().findNavController(R.id.xposed_fragment_container).navigate(R.id.action_systemScope_to_scopeClock)
@@ -135,8 +131,7 @@ class SystemScope : ModulePreferenceFragment() {
                 Preference(requireActivity()).apply {
                     title = getString(R.string.Camera)
                     key = "com.oplus.camera"
-                    setSummary(R.string.version_summer_first)
-                    summary = summary as String + getAppVersion(requireActivity(), key, true)
+                    summary = getString(R.string.version_summer_first) + getAppVersion(requireActivity(), key, true)
                     setIcon(R.mipmap.camera_icon)
                     onPreferenceClickListener = Preference.OnPreferenceClickListener {
                         requireActivity().findNavController(R.id.xposed_fragment_container).navigate(R.id.action_systemScope_to_scopeCamera)
@@ -148,8 +143,7 @@ class SystemScope : ModulePreferenceFragment() {
                 Preference(requireActivity()).apply {
                     title = getString(R.string.ThemeStore)
                     key = "com.heytap.themestore"
-                    setSummary(R.string.version_summer_first)
-                    summary = summary as String + getAppVersion(requireActivity(), key, true)
+                    summary = getString(R.string.version_summer_first) + getAppVersion(requireActivity(), key, true)
                     setIcon(R.mipmap.themestore_icon)
                     onPreferenceClickListener = Preference.OnPreferenceClickListener {
                         requireActivity().findNavController(R.id.xposed_fragment_container).navigate(R.id.action_systemScope_to_scopeThemeStore)
@@ -161,8 +155,7 @@ class SystemScope : ModulePreferenceFragment() {
                 Preference(requireActivity()).apply {
                     title = getString(R.string.PackageInstaller)
                     key = "com.android.packageinstaller"
-                    setSummary(R.string.version_summer_first)
-                    summary = summary as String + getAppVersion(requireActivity(), key, true)
+                    summary = getString(R.string.version_summer_first) + getAppVersion(requireActivity(), key, true)
                     setIcon(R.mipmap.packageinstaller_icon)
                     onPreferenceClickListener = Preference.OnPreferenceClickListener {
                         requireActivity().findNavController(R.id.xposed_fragment_container).navigate(R.id.action_systemScope_to_scopePackageInstall)
@@ -174,8 +167,7 @@ class SystemScope : ModulePreferenceFragment() {
                 Preference(requireActivity()).apply {
                     title = getString(R.string.OplusGames)
                     key = "com.oplus.games"
-                    setSummary(R.string.version_summer_first)
-                    summary = summary as String + getAppVersion(requireActivity(), key, true)
+                    summary = getString(R.string.version_summer_first) + getAppVersion(requireActivity(), key, true)
                     setIcon(R.mipmap.oplusgames_icon)
                     onPreferenceClickListener = Preference.OnPreferenceClickListener {
                         requireActivity().findNavController(R.id.xposed_fragment_container).navigate(R.id.action_systemScope_to_scopeOplusGames)
@@ -187,8 +179,7 @@ class SystemScope : ModulePreferenceFragment() {
                 Preference(requireActivity()).apply {
                     title = getString(R.string.SafeCenter)
                     key = "com.oplus.safecenter"
-                    setSummary(R.string.version_summer_first)
-                    summary = summary as String + getAppVersion(requireActivity(), key, true)
+                    summary = getString(R.string.version_summer_first) + getAppVersion(requireActivity(), key, true)
                     setIcon(R.mipmap.securecenter_icon)
                     onPreferenceClickListener = Preference.OnPreferenceClickListener {
                         requireActivity().findNavController(R.id.xposed_fragment_container).navigate(R.id.action_systemScope_to_scopeSafeCenter)
@@ -200,8 +191,7 @@ class SystemScope : ModulePreferenceFragment() {
                 Preference(requireActivity()).apply {
                     title = "截屏"
                     key = "com.oplus.screenshot"
-                    setSummary(R.string.version_summer_first)
-                    summary = summary as String + getAppVersion(requireActivity(), key, true)
+                    summary = getString(R.string.version_summer_first) + getAppVersion(requireActivity(), key, true)
                     setIcon(R.mipmap.screenshot_icon)
                     onPreferenceClickListener = Preference.OnPreferenceClickListener {
                         requireActivity().findNavController(R.id.xposed_fragment_container).navigate(R.id.action_systemScope_to_scopeScreenshot)
@@ -213,8 +203,7 @@ class SystemScope : ModulePreferenceFragment() {
                 Preference(requireActivity()).apply {
                     title = getString(R.string.CloudService)
                     key = "com.heytap.cloud"
-                    setSummary(R.string.version_summer_first)
-                    summary = summary as String + getAppVersion(requireActivity(), key, true)
+                    summary = getString(R.string.version_summer_first) + getAppVersion(requireActivity(), key, true)
                     setIcon(R.mipmap.cloudservice_icon)
                     onPreferenceClickListener = Preference.OnPreferenceClickListener {
                         requireActivity().findNavController(R.id.xposed_fragment_container).navigate(R.id.action_systemScope_to_scopeCloudService)
@@ -233,8 +222,7 @@ class OtherScope : ModulePreferenceFragment() {
                 Preference(requireActivity()).apply {
                     title = getString(R.string.Everyimage)
                     key = "com.east2d.everyimage"
-                    setSummary(R.string.version_summer_first)
-                    summary = summary as String + getAppVersion(requireActivity(), key, false)
+                    summary = getString(R.string.version_summer_first) + getAppVersion(requireActivity(), key, false)
                     setIcon(R.mipmap.everyimage_icon)
                     onPreferenceClickListener = Preference.OnPreferenceClickListener {
                         requireActivity().findNavController(R.id.xposed_fragment_container).navigate(R.id.action_otherScope_to_scopeEveryimage)
@@ -408,9 +396,9 @@ class ScopeSystemUI : ModulePreferenceFragment() {
             )
             addPreference(
                 PreferenceCategory(requireActivity()).apply {
-                    title = getString(R.string.statusbar_title)
-                    summary = getString(R.string.statusbar_summer)
-                    key = "StatusBar"
+                    title = getString(R.string.StatusBarNotice)
+                    summary = getString(R.string.StatusBarNotice_summer)
+                    key = "StatusBarNotice"
                     isIconSpaceReserved = false
                 }
             )

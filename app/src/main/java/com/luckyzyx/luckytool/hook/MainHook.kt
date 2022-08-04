@@ -2,7 +2,8 @@ package com.luckyzyx.luckytool.hook
 
 import android.os.Build.VERSION.SDK_INT
 import com.highcapable.yukihookapi.annotation.xposed.InjectYukiHookWithXposed
-import com.highcapable.yukihookapi.hook.factory.*
+import com.highcapable.yukihookapi.hook.factory.configs
+import com.highcapable.yukihookapi.hook.factory.encase
 import com.highcapable.yukihookapi.hook.xposed.bridge.event.YukiXposedEvent
 import com.highcapable.yukihookapi.hook.xposed.proxy.IYukiHookXposedInit
 import com.luckyzyx.luckytool.hook.apps.CorePatch.CorePatchForR
@@ -18,7 +19,7 @@ class MainHook : IYukiHookXposedInit {
     override fun onInit() {
         configs {
             // 全局调试用的 TAG,在 Logcat 控制台过滤此 TAG 可找到详细日志
-            debugTag = "ColorOSExt"
+            debugTag = "LuckyTool"
             // 是否开启调试模式,请注意 - 若作为发布版本请务必关闭调试功能防止对用户设备造成大量日志填充
             isDebug = false
         }
@@ -28,7 +29,7 @@ class MainHook : IYukiHookXposedInit {
         if (prefs(XposedPrefs).getBoolean("enable_module").not()) return@encase
         //系统框架
         loadSystem(HookAndroid())
-        //loadZygote(HookZygote())
+        loadZygote(HookZygote())
         //系统界面
         loadApp("com.android.systemui", HookSystemUI())
         //相机

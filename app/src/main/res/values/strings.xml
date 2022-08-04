@@ -1,27 +1,40 @@
 <resources>
+    <!-- Application -->
     <string name="app_name">LuckyTool</string>
     <string name="xposeddescription">The purpose is to extend and optimize the ColorOS system</string>
-    <string name="fragment_magisk" translatable="false">This is Magisk Page</string>
+
+    <!-- Nav Menu -->
     <string name="nav_xposed">Xposed</string>
     <string name="nav_home">Home</string>
     <string name="nav_other">Other</string>
 
+    <!-- Settings -->
     <string name="theme_title">Theme</string>
     <string name="theme_title_summer">Will automatically refresh the page</string>
     <string name="use_dynamic_color">Dynamic Color</string>
     <string name="use_dynamic_color_summer">Use Dynamic Color</string>
-    <string name="theme_color">Theme Color</string>
+    <string name="dark_theme">Dark Theme</string>
     <string name="follow_system">Follow System</string>
     <string name="light_color">Light Color</string>
     <string name="dark_color">Dark Color</string>
+
     <string name="about_title">About</string>
+    <string name="contact_author">Contact Author</string>
+    <string name="contact_author_summer">luckyzyx</string>
+    <string name="coolmarket">CoolMarket</string>
+    <string name="lsposed">Lsposed</string>
+    <string name="telegram">Telegram</string>
+    <string name="telegram_group">Telegram Group</string>
+    <string name="github">Github</string>
+
     <string name="open_source">Open Source</string>
     <string name="open_source_summer">Click to see the list of open source code</string>
-    <string name="author">Author</string>
-    <string name="author_summer">luckyzyx</string>
-    <string name="update_url">Update address</string>
-    <string name="update_url_summer">Coolmarket,Lsposed</string>
-    <string name="version_summer_first">"Version: "</string>
+
+    <string name="download_url">Download address</string>
+    <string name="download_url_summer">Coolmarket,Lsposed Repo</string>
+
+    <string name="github_repo">Github Repo</string>
+    <string name="github_repo_summer">Thank you for clicking Star!</string>
 
     <!-- CorePatch -->
     <string name="corepatch">CorePatch</string>
@@ -37,12 +50,19 @@
     <string name="enhancedMode">Enhanced Mode</string>
     <string name="enhancedMode_summary">It can solve some internal integrity check of the app, generally do not need to open</string>
     <string name="usepresig_warn">!! All installers can overwrite installed apps!!! Please be careful when installing unknown installers</string>
-    <string name="unsupported_xposed">Please make sure Xposed API >= 93 and the module has the appropriate scope checked \\n If the above has been done, try to click OK to exit the app, and then try again</string>
 
+    <!-- Check Lsposed -->
+    <string name="unsupported_xposed">Please make sure Xposed API >= 93 and the module has the appropriate scope checked \n If the above has been done, try to click OK to exit the app, and then try again</string>
+
+    <!-- Menu -->
     <string name="menu_reboot">Reboot Menu</string>
     <string name="menu_settings">Settings</string>
     <string name="restart_scope">Restart Scope</string>
     <string name="restart_scope_message">Sure you want to restart all scopes except the system framework?\nAvailable when the module is not in effect!</string>
+    <string name="reboot">Reboot</string>
+    <string name="reboot_shutdown">Shutdown</string>
+    <string name="reboot_recovery">Recovery</string>
+    <string name="reboot_bootloader">BootLoader</string>
 
     <!-- Colors -->
     <string name="color_sakura">Sakura</string>
@@ -65,36 +85,49 @@
     <string name="color_brown">Brown</string>
     <string name="color_blue_grey">Blue grey</string>
 
-    <string name="reboot">Reboot</string>
-    <string name="reboot_recovery">Recovery</string>
-    <string name="reboot_bootloader">BootLoader</string>
-    <string name="reboot_shutdown">Shutdown</string>
+    <!-- Xposed -->
+    <string name="system_app">System App</string>
+    <string name="other_app">Other App</string>
+    <string name="version_summer_first">"Version: "</string>
+    <string name="restart_scope_summer">Top right menu restart scope</string>
+
+    <string name="Android">SystemFramework</string>
+    <string name="android_summer">Try rebooting if it doesn\'t work</string>
+    <string name="remove_statusbar_top_notification">Remove upper notification from status bar app</string>
+    <string name="remove_statusbar_top_notification_summer">Remove status bar \"This app is displayed on top of other apps\"</string>
+    <string name="disable_flag_secure">Disable FLAG_SECURE</string>
+    <string name="disable_flag_secure_summer">Enabling screenshots, screen sharing and recording in apps that normally wouldn\'t allow it</string>
 
     <string name="SystemUI">SystemUI</string>
-    <string name="restart_scope_summer">Top right menu restart scope</string>
-    <string name="statusbar_title">StatusBar</string>
-    <string name="statusbar_summer">Top status bar and drop-down status bar</string>
-    <string name="remove_statusbar_clock_redone">Remove drop-down status bar clock red 1</string>
+    <string name="StatusBarClock">StatusBarClock</string>
+    <string name="StatusBarClock_summer">Status bar clock related</string>
     <string name="statusbar_clock_show_second">Status bar clock showing seconds</string>
     <string name="statusbar_clock_show_period">Status bar clock shows time period</string>
+    <string name="remove_statusbar_clock_redone">Remove drop-down status bar clock red 1</string>
     <string name="statusbar_dropdown_clock_show_second">Drop-down status bar clock showing seconds</string>
+
+    <string name="StatusBarNotice">StatusBar</string>
+    <string name="StatusBarNotice_summer">Top status bar and drop-down status bar</string>
     <string name="remove_statusbar_devmode">Remove status bar developer option notifications</string>
     <string name="remove_charging_completed">Remove charging completion notification</string>
     <string name="set_network_speed">Set status bar web speed refresh rate 1s</string>
     <string name="remove_statusbar_bottom_networkwarn">Remove network warning at the bottom of the drop-down status bar</string>
     <string name="remove_statusbar_securepayment_icon">Remove status bar payment protection icon</string>
+
     <string name="LockScreen">Lock Screen</string>
     <string name="LockScreen_summer">Lock Screen Related</string>
     <string name="remove_lock_screen_redone">Remove lock screen clock red 1</string>
     <string name="remove_lock_screen_camera">Remove the camera from the bottom right corner of the lock screen</string>
     <string name="set_lock_screen_textview_color">Set the lock screen component font color</string>
     <string name="set_lock_screen_textview_color_summer">Time, date, week, etc. font color</string>
+
     <string name="Launcher">Launcher</string>
     <string name="unlock_task_locks">Unlock the number of background tasks locked</string>
     <string name="remove_appicon_dot">Remove App icon blue dot</string>
+
     <string name="AlarmClock">AlarmClock</string>
     <string name="remove_alarmclock_widget_redone">Remove Desktop Clock Component Red One</string>
-    <string name="remove_watermark_word_limit">Remove watermark word limit</string>
+
     <string name="PackageInstaller">Package Installer</string>
     <string name="skip_apk_scan">Skip Apk scan</string>
     <string name="skip_apk_scan_summer">Apk virus scan related</string>
@@ -103,38 +136,43 @@
     <string name="remove_install_ads">Remove installation completion ads</string>
     <string name="remove_install_ads_summer">Security app recommendations / software store ads</string>
     <string name="replase_aosp_installer">Replace the AOSP installer</string>
-    <string name="replase_aosp_installer_summer">Replace with native installer</string>
+    <string name="replase_aosp_installer_summer">Replace with Google native installer</string>
+
     <string name="OplusGames">Game Assistant</string>
-    <string name="remove_root_check">Remove game filter detection</string>
-    <string name="remove_root_check_summer">Remove Root detection from game filters</string>
+    <string name="remove_root_check">Remove game filter restrictions</string>
+    <string name="remove_root_check_summer">Remove Root detection restrictions for game filters</string>
+
     <string name="CloudService">Cloud Services</string>
     <string name="remove_network_limit">Remove data network restrictions</string>
     <string name="remove_network_limit_summer">Remove the restriction that backup/restore cannot use mobile data</string>
+
     <string name="ThemeStore">Theme Store</string>
     <string name="unlock_themestore_vip">Unlock some features VIP</string>
-    <string name="unlock_themestore_vip_summer">Unlock some of the features, details page click on the application</string>
+    <string name="unlock_themestore_vip_summer">Unlock some functions, you can try it yourself</string>
+
     <string name="SafeCenter">Safe Center</string>
     <string name="unlock_startup_limit">Unlock the number of self-starts</string>
     <string name="unlock_startup_limit_summer">Unlock the limit on the number of application self-starts</string>
+
     <string name="Everyimage">So much anime</string>
     <string name="skip_startup_page">Skip start page</string>
     <string name="vip_download">Download original image</string>
+
     <string name="Camera">Camera</string>
-    <string name="Android">Android</string>
-    <string name="system_app">System App</string>
-    <string name="other_app">Other App</string>
-    <string name="dark_theme">Dark Theme</string>
-    <string name="android_summer">Try rebooting if it doesn\'t work</string>
-    <string name="remove_statusbar_top_notification">Remove upper notification from status bar app</string>
-    <string name="remove_statusbar_top_notification_summer">Remove status bar \"This app is displayed on top of other apps\"</string>
-    <string name="disable_flag_secure">Disable FLAG_SECURE</string>
-    <string name="disable_flag_secure_summer">Enabling screenshots, screen sharing and recording in apps that normally wouldn\'t allow it</string>
+    <string name="remove_watermark_word_limit">Remove watermark word limit</string>
+
     <string name="Screenshot">Screenshot</string>
     <string name="remove_screenshot_privacy_limit">Remove screenshot privacy restrictions</string>
-    <string name="remove_screenshot_privacy_limit_summer">Must be used with \"Disable FLAG_SECURE\", no need to check other app</string>
-    <string name="github_repo">Github Repo</string>
-    <string name="github_repo_summer">GitHub open source address</string>
-    <string name="StatusBarClock">状态栏时钟</string>
-    <string name="StatusBarClock_summer">状态栏时钟相关</string>
+    <string name="remove_screenshot_privacy_limit_summer">Remove the restriction that prevents screenshots from being taken due to privacy issues, must be used with Disable FLAG_SECURE.</string>
+
+    <!-- Home -->
+    <string name="fps_title">Force refresh rate</string>
+    <string name="fps_summer">Conflicts with other dynamic refresh rate processes such as dfps</string>
+    <string name="brand">Brand</string>
+    <string name="model">Model</string>
+    <string name="system">System</string>
+    <string name="device">Device</string>
+    <string name="build_version">Build</string>
+    <string name="flash">Flash</string>
 
 </resources>
