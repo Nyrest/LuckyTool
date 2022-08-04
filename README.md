@@ -1,5 +1,5 @@
 # LuckyTool
-[![Telegram Group](https://img.shields.io/badge/luckyzyx-Telegram-blue.svg?logo=telegram)](https://t.me/+F42pfv-c0h4zNDc9)  
+[![Telegram Group](https://img.shields.io/badge/LuckyTool-Telegram-blue.svg?logo=telegram)](https://t.me/+F42pfv-c0h4zNDc9)  
 - 旨在对 ColorOS 系统的扩展优化  
 - The purpose is to extend and optimize the ColorOS system.
 
