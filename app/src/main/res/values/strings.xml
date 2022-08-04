@@ -96,7 +96,7 @@
     <string name="remove_statusbar_top_notification">Remove upper notification from status bar app</string>
     <string name="remove_statusbar_top_notification_summer">Remove status bar \"This app is displayed on top of other apps\"</string>
     <string name="disable_flag_secure">Disable FLAG_SECURE</string>
-    <string name="disable_flag_secure_summer">Enabling screenshots, screen sharing and recording in apps that normally wouldn\'t allow it</string>
+    <string name="disable_flag_secure_summer">Enabling screenshots, screen sharing and recording in apps that normally wouldn\'t allow it,add the corresponding APP scope</string>
 
     <string name="SystemUI">SystemUI</string>
     <string name="StatusBarClock">StatusBarClock</string>
