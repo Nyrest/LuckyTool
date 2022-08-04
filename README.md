@@ -24,6 +24,9 @@
 
 - [YukiHookAPI](https://github.com/fankes/YukiHookAPI)
 
+## Lsposed Repo
+
+- [LuckyTool](https://github.com/Xposed-Modules-Repo/com.luckyzyx.luckytool)  
 
 ## License
 
