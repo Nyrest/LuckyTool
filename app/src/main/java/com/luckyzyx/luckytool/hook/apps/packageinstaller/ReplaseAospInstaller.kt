@@ -8,7 +8,6 @@ import com.highcapable.yukihookapi.hook.type.java.BooleanType
 
 class ReplaseAospInstaller : YukiBaseHooker() {
     override fun onHook() {
-        //use AOSP installer
         //search class -> DeleteStagedFileOnResult
         //search class.method -> onCreate +4 -> class.method
         findClass("com.android.packageinstaller.DeleteStagedFileOnResult").hook{

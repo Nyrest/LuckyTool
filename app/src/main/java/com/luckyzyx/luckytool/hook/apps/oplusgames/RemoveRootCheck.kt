@@ -7,9 +7,9 @@ import com.highcapable.yukihookapi.hook.type.android.BundleClass
 
 class RemoveRootCheck : YukiBaseHooker() {
     override fun onHook() {
-        //Remove Root Check --> Source COSASDKManager
-        //search -> dynamic_feature_cool_ex --> Method
-        //("isSafe")) : null; --> isSafe:0
+        //Source COSASDKManager
+        //Search -> dynamic_feature_cool_ex -> Method
+        //("isSafe")) : null; -> isSafe:0
         VariousClass(
             "com.oplus.x.c", //f86f767,ce65873
             "com.oplus.f.c", //424d87a

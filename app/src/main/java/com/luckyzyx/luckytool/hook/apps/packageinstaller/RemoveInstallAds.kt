@@ -10,6 +10,7 @@ class RemoveInstallAds : YukiBaseHooker() {
     private val suggestLayout = arrayOfNulls<LinearLayout>(3)
     private val suggestLayoutAScrollView = arrayOfNulls<ScrollView>(1)
     override fun onHook() {
+        //Source InstallAppProgress
         findClass("com.android.packageinstaller.oplus.InstallAppProgress").hook {
             injectMember {
                 method {
@@ -23,6 +24,7 @@ class RemoveInstallAds : YukiBaseHooker() {
                 }
             }
         }
+        //Source InstallAppProgress
         findClass("com.android.packageinstaller.oplus.InstallAppProgress$1").hook {
             injectMember {
                 method {

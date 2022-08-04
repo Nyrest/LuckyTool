@@ -14,6 +14,8 @@ class RemoveStatusBarTopNotification : YukiBaseHooker() {
                 beforeHook {
                     if (prefs(XposedPrefs).getBoolean("remove_statusbar_top_notification", false)) resultNull()
                 }
+            }.onNoSuchMemberFailure {
+                loggerE(msg = "NoSuchMember->onPostNotification")
             }
         }.onHookClassNotFoundFailure {
             loggerE(msg = "ClassNotFound->AlertWindowNotification")

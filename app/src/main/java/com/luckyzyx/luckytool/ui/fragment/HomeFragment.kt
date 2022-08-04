@@ -67,6 +67,17 @@ class HomeFragment : Fragment() {
                 (activity as MainActivity).restart()
             }
         }
+        binding.fpsTitle.text = "强制刷新率"
+        binding.fpsSummary.text = "与其他动态刷新率进程冲突,例如dfps"
+
+        binding.fps.setOnClickListener {
+            MaterialAlertDialogBuilder(requireActivity())
+                .setCancelable(true)
+                .setItems(getFpsMode()) { _, which ->
+                    ShellUtils.execCommand("su -c service call SurfaceFlinger 1035 i32 $which", true)
+                }
+                .show()
+        }
         binding.systemInfo.text =
             """
                 厂商: ${Build.BRAND}
@@ -77,7 +88,6 @@ class HomeFragment : Fragment() {
                 版本号: ${Build.DISPLAY}
                 闪存厂商: ${ShellUtils.execCommand("cat /sys/class/block/sda/device/inquiry", true, true).successMsg}
             """.trimIndent()
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

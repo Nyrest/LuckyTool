@@ -134,5 +134,7 @@
     <string name="remove_screenshot_privacy_limit_summer">Must be used with \"Disable FLAG_SECURE\", no need to check other app</string>
     <string name="github_repo">Github Repo</string>
     <string name="github_repo_summer">GitHub open source address</string>
+    <string name="StatusBarClock">状态栏时钟</string>
+    <string name="StatusBarClock_summer">状态栏时钟相关</string>
 
 </resources>

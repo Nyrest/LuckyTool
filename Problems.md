@@ -23,7 +23,13 @@ overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
 (activity as MainActivity?)?.restart()
 ```
 
-## Key.BACK Fragment后台堆栈问题
+## 动态取色部分不生效
+```kotlin
+//将动态取色语句放置在onCreate最上层
+DynamicColors.applyToActivityIfAvailable(this)
+```
+
+## Key.BACK Fragment后台堆栈问题(更换Navigation后弃用)
 
 Preference#app:fragment 默认入栈
 
@@ -34,7 +40,7 @@ FragmentTransaction.addToBackStack(null).commit()
 FragmentTransaction.commitNow()
 ```
 
-## Fragment OnBackPressed
+## Fragment OnBackPressed(更换Navigation后弃用)
 
 Fragment没有Activity里的OnBackPressed返回事件
 ```kotlin

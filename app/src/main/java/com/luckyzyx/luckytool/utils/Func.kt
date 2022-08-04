@@ -74,3 +74,33 @@ internal fun toast(context: Context, name: String, long: Boolean? = null): Any =
 } else {
     Toast.makeText(context, name, Toast.LENGTH_LONG).show()
 }
+
+/**
+ * 获取支持的刷新率
+ * @return [List]
+ */
+fun getFpsMode(): Array<CharSequence> {
+    val command =
+        "dumpsys display | grep -A 1 'mSupportedModesByDisplay' | tail -1 | tr \"}\" \"\\n\" | cut -f2 -d '{' | while read row; do\n" +
+                "  if [[ -n \$row ]]; then\n" +
+                "    echo \$row | tr \",\" \"\\n\" | while read col; do\n" +
+                "      case \$col in\n" +
+                "      \"width=\"*)\n" +
+                "        echo -n \$(echo \${col:6})\n" +
+                "        ;;\n" +
+                "      \"height=\"*)\n" +
+                "        echo -n x\$(echo \${col:7})\n" +
+                "        ;;\n" +
+                "      \"fps=\"*)\n" +
+                "        echo ' '\$(echo \${col:4} | cut -f1 -d '.')Hz\n" +
+                "        ;;\n" +
+                "      esac\n" +
+                "    done\n" +
+                "    echo -e '@'\n" +
+                "  fi\n" +
+                "done"
+    val result = ShellUtils.execCommand(command, true, true).successMsg
+    return result.substring(0, result.length - 1).split("@").toTypedArray()
+}
+
+

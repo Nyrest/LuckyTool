@@ -27,6 +27,7 @@ class SkipApkScan : YukiBaseHooker() {
                 }
             }
 
+        //Source OPlusPackageInstallerActivity
         findClass("com.android.packageinstaller.oplus.OPlusPackageInstallerActivity").hook {
             //skip appdetail,search isStartAppDetail
             //search -> count_canceled_by_app_detail -4 -> Method

@@ -37,9 +37,9 @@ class StatusBarClock : YukiBaseHooker() {
     private val isCenterAlign = false
     //双排大小
     private val getClockDoubleSize = 0
-    //
+    //现在时间
     private var nowTime: Date? = null
-    //
+    //换行字符串
     private var str = ""
 
     override fun onHook() {
@@ -50,7 +50,7 @@ class StatusBarClock : YukiBaseHooker() {
                     paramCount = 3
                 }
                 afterHook {
-                    //获取Context上下文
+                    //获取Context
                     context = args[0] as Context
                     val textV = instance as TextView
                     if (textV.resources.getResourceEntryName(textV.id) != "clock") return@afterHook
@@ -108,6 +108,7 @@ class StatusBarClock : YukiBaseHooker() {
                     val t = Settings.System.getString(context!!.contentResolver, Settings.System.TIME_12_24)
                     val is24 = t == "24"
                     //获取当前Time
+
                     nowTime = Calendar.getInstance().time
 //                    loggerD(msg = nowTime.toString())
 //                    result = getDate(context!!) + str + getTime(context!!, is24)
@@ -142,6 +143,7 @@ class StatusBarClock : YukiBaseHooker() {
 //            }
 //        }
     }
+
     @SuppressLint("SimpleDateFormat")
     fun getDate(context: Context): String {
         var datePattern = ""
@@ -226,7 +228,7 @@ class StatusBarClock : YukiBaseHooker() {
                     }
                 }
             } else {
-                //Am/pm 标记 English
+                //AM/PM 标记 English
                 period = SimpleDateFormat("a").format(nowTime!!)
                 if (!isHideSpace) {
                     period = " $period"
@@ -291,20 +293,4 @@ class StatusBarClock : YukiBaseHooker() {
         val language = locale.language
         return language.endsWith("zh")
     }
-
-
-
-//        findClass("com.android.systemui.statusbar.policy.Clock").hook {
-//            injectMember {
-//                method {
-//                    name = "getSmallTime"
-//                }
-//                beforeHook {
-//                    field {
-//                        name = "mAmPmStyle"
-//                        type = IntType
-//                    }.get(instance).set(prefs(PrefsFile).getString("statusbar_clock_show_ampm","2").toInt())
-//                }
-//            }
-//        }
 }

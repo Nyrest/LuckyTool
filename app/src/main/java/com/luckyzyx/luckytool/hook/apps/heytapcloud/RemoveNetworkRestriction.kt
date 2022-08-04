@@ -6,6 +6,8 @@ import com.highcapable.yukihookapi.hook.type.java.IntType
 
 class RemoveNetworkRestriction : YukiBaseHooker() {
     override fun onHook() {
+        //Source NetworkUtil
+        //Search -> MOBILE -> method
         VariousClass(
             "com.cloud.base.commonsdk.baseutils.al"
         ).hook {
@@ -18,9 +20,7 @@ class RemoveNetworkRestriction : YukiBaseHooker() {
                     returnType = IntType
                 }
                 afterHook {
-                    if (result<Int>() == 1){
-                        result = 2
-                    }
+                    if (result<Int>() == 1) result = 2
                 }
             }
         }

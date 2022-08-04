@@ -368,17 +368,9 @@ class ScopeSystemUI : ModulePreferenceFragment() {
             )
             addPreference(
                 PreferenceCategory(requireActivity()).apply {
-                    title = getString(R.string.statusbar_title)
-                    summary = getString(R.string.statusbar_summer)
-                    key = "StatusBar"
-                    isIconSpaceReserved = false
-                }
-            )
-            addPreference(
-                SwitchPreference(requireActivity()).apply {
-                    title = getString(R.string.remove_statusbar_clock_redone)
-                    key = "remove_statusbar_clock_redone"
-                    setDefaultValue(false)
+                    title = getString(R.string.StatusBarClock)
+                    summary = getString(R.string.StatusBarClock_summer)
+                    key = "StatusBarClock"
                     isIconSpaceReserved = false
                 }
             )
@@ -400,9 +392,25 @@ class ScopeSystemUI : ModulePreferenceFragment() {
             )
             addPreference(
                 SwitchPreference(requireActivity()).apply {
+                    title = getString(R.string.remove_statusbar_clock_redone)
+                    key = "remove_statusbar_clock_redone"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
                     title = getString(R.string.statusbar_dropdown_clock_show_second)
                     key = "statusbar_dropdown_clock_show_second"
                     setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                PreferenceCategory(requireActivity()).apply {
+                    title = getString(R.string.statusbar_title)
+                    summary = getString(R.string.statusbar_summer)
+                    key = "StatusBar"
                     isIconSpaceReserved = false
                 }
             )

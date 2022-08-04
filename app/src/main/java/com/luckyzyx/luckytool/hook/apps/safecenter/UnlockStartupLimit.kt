@@ -7,8 +7,8 @@ import com.highcapable.yukihookapi.hook.type.java.IntType
 
 class UnlockStartupLimit : YukiBaseHooker() {
     override fun onHook() {
-        //Unlock Startup Limit --> Source StratupManager
-        //search -> "update max allow count ? " -5 --> method,-1 --> field
+        //Source StratupManager
+        //Search -> update max allow count -5 -> method,-1 -> field
         VariousClass(
             "com.oplus.safecenter.startupapp.a", //6f0072e
         ).clazz.hook {
@@ -18,7 +18,6 @@ class UnlockStartupLimit : YukiBaseHooker() {
                         equalsOf(other = "b",isIgnoreCase = false)
                     }
                     param(ContextClass)
-                    returnType = null
                 }
                 afterHook {
                     field {
