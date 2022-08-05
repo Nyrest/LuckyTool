@@ -115,6 +115,12 @@ class MainActivity : AppCompatActivity() {
             }
             commands.add("am force-stop $scope")
         }
+        //Fix status bar display seconds
+        if (SPUtils.getBoolean(context, XposedPrefs,"statusbar_clock_show_second",false)) {
+            if(ShellUtils.execCommand("settings get secure clock_seconds",true,true).successMsg.toInt() != 1){
+                commands.add("settings put secure clock_seconds 1")
+            }
+        }
         MaterialAlertDialogBuilder(context)
             .setMessage(getString(R.string.restart_scope_message))
             .setPositiveButton(getString(android.R.string.ok)) { _: DialogInterface?, _: Int ->

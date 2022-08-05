@@ -51,7 +51,7 @@ class MainHook : IYukiHookXposedInit {
         //应用包安装程序
         loadApp("com.android.packageinstaller", HookPackageInstaller())
         //其他APP
-        loadHooker(HookOtherApp())
+        loadApp { HookOtherApp() }
 
     }
 

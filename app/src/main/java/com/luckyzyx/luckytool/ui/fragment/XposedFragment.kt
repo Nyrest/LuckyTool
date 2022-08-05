@@ -266,6 +266,15 @@ class ScopeAndroid : ModulePreferenceFragment(),
                 }
             )
             addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    title = getString(R.string.global_fillet)
+                    summary = getString(R.string.global_fillet_summer)
+                    key = "global_fillet"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
                 PreferenceCategory(requireActivity()).apply {
                     setTitle(R.string.corepatch)
                     setSummary(R.string.corepatch_summer)

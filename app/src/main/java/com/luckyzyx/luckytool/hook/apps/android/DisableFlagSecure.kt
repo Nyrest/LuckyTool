@@ -2,6 +2,7 @@ package com.luckyzyx.luckytool.hook.apps.android
 
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 import com.highcapable.yukihookapi.hook.log.loggerD
+import com.highcapable.yukihookapi.hook.log.loggerE
 import com.luckyzyx.luckytool.utils.XposedPrefs
 
 class DisableFlagSecure : YukiBaseHooker() {
@@ -13,10 +14,10 @@ class DisableFlagSecure : YukiBaseHooker() {
                 }
                 if (prefs(XposedPrefs).getBoolean("disable_flag_secure",false)) replaceToFalse()
             }.onNoSuchMemberFailure {
-                loggerD(msg = "NoSuchMember->isSecureLocked")
+                loggerE(msg = "NoSuchMember->isSecureLocked")
             }
         }.onHookClassNotFoundFailure {
-            loggerD(msg = "ClassNotFound->WindowState")
+            loggerE(msg = "ClassNotFound->WindowState")
         }
     }
 }

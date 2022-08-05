@@ -21,12 +21,12 @@
 
     <string name="about_title">关于</string>
 
-    <string name="contact_author">联系作者</string>
-    <string name="contact_author_summer">忆清鸣、luckyzyx</string>
+    <string name="contact_details">联系方式</string>
+    <string name="contact_details_summer">忆清鸣、luckyzyx</string>
     <string name="coolmarket">酷安</string>
     <string name="github">Github</string>
     <string name="lsposed">Lsposed</string>
-    <string name="telegram">Telegram</string>
+    <string name="telegram_channel">Telegram频道</string>
     <string name="telegram_group">Telegram群组</string>
 
     <string name="open_source">开放源代码</string>
@@ -99,6 +99,8 @@
     <string name="disable_flag_secure_summer">在通常不允许的应用程序中启用屏幕截图、屏幕共享和录制,添加对应APP作用域</string>
     <string name="remove_statusbar_top_notification">移除状态栏应用上层通知</string>
     <string name="remove_statusbar_top_notification_summer">移除状态栏“此应用在其他应用上层显示”</string>
+    <string name="global_fillet">全局圆角</string>
+    <string name="global_fillet_summer">部分UI支持圆角</string>
 
     <string name="SystemUI">系统界面</string>
     <string name="StatusBarClock">状态栏时钟</string>
@@ -176,5 +178,6 @@
     <string name="build_version">构建</string>
     <string name="device">设备</string>
     <string name="system">系统</string>
+
 
 </resources>

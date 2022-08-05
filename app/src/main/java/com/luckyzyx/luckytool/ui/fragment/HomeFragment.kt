@@ -161,15 +161,15 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
             )
             addPreference(
                 Preference(requireActivity()).apply {
-                    setTitle(R.string.contact_author)
-                    setSummary(R.string.contact_author_summer)
+                    setTitle(R.string.contact_details)
+                    setSummary(R.string.contact_details_summer)
                     isIconSpaceReserved = false
                     onPreferenceClickListener = Preference.OnPreferenceClickListener {
-                        val updatelist = arrayOf(getString(R.string.telegram),getString(R.string.telegram_group),getString(R.string.coolmarket))
+                        val updatelist = arrayOf(getString(R.string.telegram_channel),getString(R.string.telegram_group),getString(R.string.coolmarket))
                         MaterialAlertDialogBuilder(requireActivity())
                             .setItems(updatelist) { _, which ->
                                 when (which) {
-                                    0 -> startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/luckyzyx")))
+                                    0 -> startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/LuckyTool")))
                                     1 -> startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/+F42pfv-c0h4zNDc9")))
                                     2 -> startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("coolmarket://u/1930284")))
                                 }

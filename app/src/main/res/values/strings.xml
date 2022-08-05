@@ -19,11 +19,11 @@
     <string name="dark_color">Dark Color</string>
 
     <string name="about_title">About</string>
-    <string name="contact_author">Contact Author</string>
-    <string name="contact_author_summer">luckyzyx</string>
+    <string name="contact_details">Contact Details</string>
+    <string name="contact_details_summer">luckyzyx</string>
     <string name="coolmarket">CoolMarket</string>
     <string name="lsposed">Lsposed</string>
-    <string name="telegram">Telegram</string>
+    <string name="telegram_channel">Telegram Channel</string>
     <string name="telegram_group">Telegram Group</string>
     <string name="github">Github</string>
 
@@ -97,6 +97,8 @@
     <string name="remove_statusbar_top_notification_summer">Remove status bar \"This app is displayed on top of other apps\"</string>
     <string name="disable_flag_secure">Disable FLAG_SECURE</string>
     <string name="disable_flag_secure_summer">Enabling screenshots, screen sharing and recording in apps that normally wouldn\'t allow it,add the corresponding APP scope</string>
+    <string name="global_fillet">全局圆角</string>
+    <string name="global_fillet_summer">部分UI支持圆角</string>
 
     <string name="SystemUI">SystemUI</string>
     <string name="StatusBarClock">StatusBarClock</string>
@@ -174,5 +176,6 @@
     <string name="device">Device</string>
     <string name="build_version">Build</string>
     <string name="flash">Flash</string>
+
 
 </resources>
