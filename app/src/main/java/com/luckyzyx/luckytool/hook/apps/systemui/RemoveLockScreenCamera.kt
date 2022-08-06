@@ -11,10 +11,10 @@ class RemoveLockScreenCamera : YukiBaseHooker() {
                     name = "updateCameraVisibility"
                 }
                 afterHook {
-                    (field {
+                    field {
                         name = "mRightAffordanceView"
                         superClass(isOnlySuperClass = true)
-                    }.get(instance).self as View).visibility = View.GONE
+                    }.get(instance).cast<View>()?.visibility = View.GONE
                 }
             }
         }

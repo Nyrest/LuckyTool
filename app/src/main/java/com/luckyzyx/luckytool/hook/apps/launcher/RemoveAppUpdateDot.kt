@@ -16,7 +16,7 @@ class RemoveAppUpdateDot : YukiBaseHooker() {
                     //Source ItemInfo
                     val field = "com.android.launcher3.model.data.ItemInfo".clazz.getDeclaredField("title")
                     field.isAccessible = true
-                    (instance as TextView).text = field[args[0]] as CharSequence
+                    instance<TextView>().text = field[args[0]] as CharSequence
                     resultNull()
                 }
             }

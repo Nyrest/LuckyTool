@@ -2,6 +2,8 @@ package com.luckyzyx.luckytool.ui.fragment
 
 import android.content.SharedPreferences
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
@@ -21,6 +23,7 @@ import com.luckyzyx.luckytool.ui.activity.MainActivity
 import com.luckyzyx.luckytool.ui.refactor.ColorPickerPreference
 import com.luckyzyx.luckytool.utils.XposedPrefs
 import com.luckyzyx.luckytool.utils.getAppVersion
+import rikka.core.util.ResourceUtils
 
 class XposedFragment : Fragment() {
     private lateinit var binding: FragmentXposedBinding
@@ -67,7 +70,11 @@ class XposedFragment : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         menu.add(0, 1, 0, getString(R.string.menu_reboot)).setIcon(R.drawable.ic_baseline_refresh_24).setShowAsActionFlags(
             MenuItem.SHOW_AS_ACTION_IF_ROOM
-        )
+        ).apply {
+            if (ResourceUtils.isNightMode(resources.configuration)){
+                this.iconTintList = ColorStateList.valueOf(Color.WHITE)
+            }
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -429,6 +436,14 @@ class ScopeSystemUI : ModulePreferenceFragment() {
             )
             addPreference(
                 SwitchPreference(requireActivity()).apply {
+                    title = getString(R.string.remove_statusbar_battery_percent)
+                    key = "remove_statusbar_battery_percent"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
                     title = getString(R.string.set_network_speed)
                     key = "set_network_speed"
                     setDefaultValue(false)
@@ -447,6 +462,14 @@ class ScopeSystemUI : ModulePreferenceFragment() {
                 SwitchPreference(requireActivity()).apply {
                     title = getString(R.string.remove_statusbar_securepayment_icon)
                     key = "remove_statusbar_securepayment_icon"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    title = getString(R.string.remove_statusbar_user_switcher)
+                    key = "remove_statusbar_user_switcher"
                     setDefaultValue(false)
                     isIconSpaceReserved = false
                 }

@@ -25,7 +25,7 @@ class RemoveRootCheck : YukiBaseHooker() {
                     returnType = BundleClass
                 }
                 afterHook {
-                    (result as Bundle).putInt("isSafe", 0)
+                    result<Bundle>()?.putInt("isSafe", 0)
                 }
             }
         }

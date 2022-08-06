@@ -25,19 +25,21 @@ class HookSystemUI : YukiBaseHooker(){
         //移除锁屏右下角相机
         if (prefs(XposedPrefs).getBoolean("remove_lock_screen_camera",false)) loadHooker(RemoveLockScreenCamera())
 
-        //状态栏相关
+        //状态栏通知/图标
         //设置状态栏网速刷新率
         if (prefs(XposedPrefs).getBoolean("set_network_speed",false)) loadHooker(NetworkSpeed())
-
+        //移除状态栏电量百分号
+        if (prefs(XposedPrefs).getBoolean("remove_statusbar_battery_percent",false)) loadHooker(RemoveStatusBarBatteryPercent())
         //移除充电完成通知
         if (prefs(XposedPrefs).getBoolean("remove_charging_completed",false)) loadHooker(RemoveChargingCompleted())
         //移除状态栏开发者选项警告
         if (prefs(XposedPrefs).getBoolean("remove_statusbar_devmode",false)) loadHooker(RemoveStatusBarDevMode())
-
         //移除下拉状态栏底部网络警告
         if (prefs(XposedPrefs).getBoolean("remove_statusbar_bottom_networkwarn",false)) loadHooker(RemoveStatusBarBottomNetworkWarn())
         //移除状态栏支付保护图标
         if (prefs(XposedPrefs).getBoolean("remove_statusbar_securepayment_icon",false)) loadHooker(RemoveStatusBarSecurePayment())
+        //移除下拉状态栏多用户图标
+        if (prefs(XposedPrefs).getBoolean("remove_statusbar_user_switcher",false)) loadHooker(RemoveStatusBarUserSwitcher())
 
     }
 }

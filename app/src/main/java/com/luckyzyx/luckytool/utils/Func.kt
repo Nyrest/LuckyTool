@@ -10,6 +10,7 @@ import com.highcapable.yukihookapi.hook.factory.field
 import com.highcapable.yukihookapi.hook.factory.method
 import com.luckyzyx.luckytool.BuildConfig.VERSION_CODE
 import com.luckyzyx.luckytool.BuildConfig.VERSION_NAME
+import com.luckyzyx.luckytool.R
 
 /**
  * try/catch函数
@@ -79,7 +80,7 @@ internal fun toast(context: Context, name: String, long: Boolean? = null): Any =
  * 获取支持的刷新率
  * @return [List]
  */
-fun getFpsMode(): Array<CharSequence> {
+fun getFpsMode(context: Context): Array<String> {
     val command =
         "dumpsys display | grep -A 1 'mSupportedModesByDisplay' | tail -1 | tr \"}\" \"\\n\" | cut -f2 -d '{' | while read row; do\n" +
                 "  if [[ -n \$row ]]; then\n" +
@@ -100,7 +101,9 @@ fun getFpsMode(): Array<CharSequence> {
                 "  fi\n" +
                 "done"
     val result = ShellUtils.execCommand(command, true, true).successMsg
-    return result.substring(0, result.length - 1).split("@").toTypedArray()
+    return result.split("@").toTypedArray().apply {
+        this[this.lastIndex] = context.getString(R.string.Restore_default_refresh_rate)
+    }
 }
 
 

@@ -6,6 +6,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.net.Uri
 import android.os.Build
@@ -19,10 +20,11 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.highcapable.yukihookapi.YukiHookAPI
 import com.highcapable.yukihookapi.hook.xposed.prefs.ui.ModulePreferenceFragment
 import com.joom.paranoid.Obfuscate
+import com.luckyzyx.luckytool.R
 import com.luckyzyx.luckytool.databinding.FragmentHomeBinding
 import com.luckyzyx.luckytool.ui.activity.MainActivity
 import com.luckyzyx.luckytool.utils.*
-import com.luckyzyx.luckytool.R
+import rikka.core.util.ResourceUtils
 
 @Obfuscate
 class HomeFragment : Fragment() {
@@ -73,7 +75,7 @@ class HomeFragment : Fragment() {
         binding.fps.setOnClickListener {
             MaterialAlertDialogBuilder(requireActivity())
                 .setCancelable(true)
-                .setItems(getFpsMode()) { _, which ->
+                .setItems(getFpsMode(requireActivity())) { _, which ->
                     ShellUtils.execCommand("su -c service call SurfaceFlinger 1035 i32 $which", true)
                 }
                 .show()
@@ -92,10 +94,18 @@ class HomeFragment : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         menu.add(0, 1, 0, getString(R.string.menu_reboot)).setIcon(R.drawable.ic_baseline_refresh_24).setShowAsActionFlags(
             MenuItem.SHOW_AS_ACTION_IF_ROOM
-        )
+        ).apply {
+            if (ResourceUtils.isNightMode(resources.configuration)){
+                this.iconTintList = ColorStateList.valueOf(Color.WHITE)
+            }
+        }
         menu.add(0, 2, 0, getString(R.string.menu_settings)).setIcon(R.drawable.ic_baseline_settings_24).setShowAsActionFlags(
             MenuItem.SHOW_AS_ACTION_IF_ROOM
-        )
+        ).apply {
+            if (ResourceUtils.isNightMode(resources.configuration)){
+                this.iconTintList = ColorStateList.valueOf(Color.WHITE)
+            }
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

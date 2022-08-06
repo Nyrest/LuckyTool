@@ -107,6 +107,7 @@
     <string name="statusbar_clock_show_period">Status bar clock shows time period</string>
     <string name="remove_statusbar_clock_redone">Remove drop-down status bar clock red 1</string>
     <string name="statusbar_dropdown_clock_show_second">Drop-down status bar clock showing seconds</string>
+    <string name="remove_statusbar_battery_percent">Remove the battery percentage sign from the statusbar</string>
 
     <string name="StatusBarNotice">StatusBar</string>
     <string name="StatusBarNotice_summer">Top status bar and drop-down status bar</string>
@@ -176,6 +177,8 @@
     <string name="device">Device</string>
     <string name="build_version">Build</string>
     <string name="flash">Flash</string>
+    <string name="Restore_default_refresh_rate">恢复默认刷新率</string>
+    <string name="remove_statusbar_user_switcher">移除下拉状态栏多用户图标</string>
 
 
 </resources>

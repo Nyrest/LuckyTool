@@ -109,6 +109,7 @@
     <string name="statusbar_clock_show_period">状态栏时钟显示时段</string>
     <string name="remove_statusbar_clock_redone">移除下拉状态栏时钟红1</string>
     <string name="statusbar_dropdown_clock_show_second">下拉状态栏时钟显秒</string>
+    <string name="remove_statusbar_battery_percent">移除状态栏电量百分号</string>
 
     <string name="StatusBarNotice">状态栏通知/图标</string>
     <string name="StatusBarNotice_summer">顶部状态栏以及下拉状态栏的通知或者图标</string>
@@ -178,6 +179,8 @@
     <string name="build_version">构建</string>
     <string name="device">设备</string>
     <string name="system">系统</string>
+    <string name="Restore_default_refresh_rate">恢复默认刷新率</string>
+    <string name="remove_statusbar_user_switcher">移除下拉状态栏多用户图标</string>
 
 
 </resources>
