@@ -32,16 +32,47 @@ tools:context=".ui.fragment.OtherFragment">
             android:paddingHorizontal="16dp"
             android:paddingVertical="?dialogPreferredPadding">
 
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/quick_entry"
+                android:clickable="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/quick_entry_title"
+                        android:paddingHorizontal="10dp"
+                        android:paddingTop="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/quick_entry_summary"
+                        android:textSize="11sp"
+                        android:paddingHorizontal="10dp"
+                        android:paddingBottom="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp">
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/magisk_info"
-                    android:padding="10dp"
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/display_fps"
+                    android:paddingHorizontal="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content" />
 
             </com.google.android.material.card.MaterialCardView>
 

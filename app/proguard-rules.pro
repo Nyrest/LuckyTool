@@ -65,10 +65,8 @@
 -keep class com.simple.spiderman.** { *; }
 -keepnames class com.simple.spiderman.** { *; }
 -keep public class * extends android.app.Activity
-#noinspection ShrinkerUnresolvedReference
--keep class * implements Android.os.Parcelable {
-    #noinspection ShrinkerUnresolvedReference
-    public static final Android.os.Parcelable$Creator *;
+-keep class * implements android.os.Parcelable {
+    public static final android.os.Parcelable$Creator *;
 }
 # androidx
 -keep public class * extends androidx.annotation.** { *; }

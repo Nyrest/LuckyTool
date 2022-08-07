@@ -1,7 +1,7 @@
 <resources>
     <!-- Application -->
     <string name="app_name">LuckyTool</string>
-    <string name="xposeddescription">The purpose is to extend and optimize the ColorOS system</string>
+    <string name="xposeddescription">Extended and optimized Xposed module for ColorOS</string>
 
     <!-- Nav Menu -->
     <string name="nav_xposed">Xposed</string>
@@ -15,24 +15,22 @@
     <string name="use_dynamic_color_summer">Use Dynamic Color</string>
     <string name="dark_theme">Dark Theme</string>
     <string name="follow_system">Follow System</string>
-    <string name="light_color">Light Color</string>
-    <string name="dark_color">Dark Color</string>
+    <!-- Other Settings -->
+    <string name="hide_desktop_appicon">Hide desktop app icon</string>
+    <string name="hide_desktop_appicon_summer">LSPosed must be turned off to force the desktop icon to appear</string>
+    <string name="other_settings">Other Settings</string>
 
     <string name="about_title">About</string>
     <string name="contact_details">Contact Details</string>
     <string name="contact_details_summer">luckyzyx</string>
     <string name="coolmarket">CoolMarket</string>
-    <string name="lsposed">Lsposed</string>
     <string name="telegram_channel">Telegram Channel</string>
     <string name="telegram_group">Telegram Group</string>
-    <string name="github">Github</string>
 
     <string name="open_source">Open Source</string>
     <string name="open_source_summer">Click to see the list of open source code</string>
-
     <string name="download_url">Download address</string>
     <string name="download_url_summer">Coolmarket,Lsposed Repo</string>
-
     <string name="github_repo">Github Repo</string>
     <string name="github_repo_summer">Thank you for clicking Star!</string>
 
@@ -65,25 +63,6 @@
     <string name="reboot_bootloader">BootLoader</string>
 
     <!-- Colors -->
-    <string name="color_sakura">Sakura</string>
-    <string name="color_red">Red</string>
-    <string name="color_pink">Pink</string>
-    <string name="color_purple">Purple</string>
-    <string name="color_deep_purple">Deep purple</string>
-    <string name="color_indigo">Indigo</string>
-    <string name="color_blue">Blue</string>
-    <string name="color_light_blue">Light blue</string>
-    <string name="color_cyan">Cyan</string>
-    <string name="color_teal">Teal</string>
-    <string name="color_green">Green</string>
-    <string name="color_light_green">Light green</string>
-    <string name="color_lime">Lime</string>
-    <string name="color_yellow">Yellow</string>
-    <string name="color_amber">Amber</string>
-    <string name="color_orange">Orange</string>
-    <string name="color_deep_orange">Deep orange</string>
-    <string name="color_brown">Brown</string>
-    <string name="color_blue_grey">Blue grey</string>
 
     <!-- Xposed -->
     <string name="system_app">System App</string>
@@ -97,8 +76,8 @@
     <string name="remove_statusbar_top_notification_summer">Remove status bar \"This app is displayed on top of other apps\"</string>
     <string name="disable_flag_secure">Disable FLAG_SECURE</string>
     <string name="disable_flag_secure_summer">Enabling screenshots, screen sharing and recording in apps that normally wouldn\'t allow it,add the corresponding APP scope</string>
-    <string name="global_fillet">全局圆角</string>
-    <string name="global_fillet_summer">部分UI支持圆角</string>
+    <string name="remove_system_screenshot_delay">Remove system screenshot delay</string>
+    <string name="remove_system_screenshot_delay_summer">The first screenshot may not work</string>
 
     <string name="SystemUI">SystemUI</string>
     <string name="StatusBarClock">StatusBarClock</string>
@@ -108,6 +87,7 @@
     <string name="remove_statusbar_clock_redone">Remove drop-down status bar clock red 1</string>
     <string name="statusbar_dropdown_clock_show_second">Drop-down status bar clock showing seconds</string>
     <string name="remove_statusbar_battery_percent">Remove the battery percentage sign from the statusbar</string>
+    <string name="remove_statusbar_user_switcher">Removed drop-down status bar multi-user icon</string>
 
     <string name="StatusBarNotice">StatusBar</string>
     <string name="StatusBarNotice_summer">Top status bar and drop-down status bar</string>
@@ -127,6 +107,9 @@
     <string name="Launcher">Launcher</string>
     <string name="unlock_task_locks">Unlock the number of background tasks locked</string>
     <string name="remove_appicon_dot">Remove App icon blue dot</string>
+    <string name="launcher_layout_row_colume">Set the number of desktop layout rows</string>
+    <string name="launcher_layout_row_colume_summer">Use with caution, too much value will lead to confusion in the layout</string>
+    <string name="launcher_layout_row_colume_message">\n\nEnter the values you need for the layout\nMust enter the values and symbols in the box in the English state\nIf you don\'t listen to the advice, then you will be responsible for the consequences\nFor example:\n3,4@5,6\nMinimum number of columns, maximum number of columns@Minimum number of rows, maximum number of rows\nThen your layout should be 3x5,3x6,4x5,4x6\nDisable this function if there are no characters in the input box</string>
 
     <string name="AlarmClock">AlarmClock</string>
     <string name="remove_alarmclock_widget_redone">Remove Desktop Clock Component Red One</string>
@@ -177,8 +160,23 @@
     <string name="device">Device</string>
     <string name="build_version">Build</string>
     <string name="flash">Flash</string>
-    <string name="Restore_default_refresh_rate">恢复默认刷新率</string>
-    <string name="remove_statusbar_user_switcher">移除下拉状态栏多用户图标</string>
+    <string name="Restore_default_refresh_rate">Restore default refresh rate</string>
+    <string name="module_isactivated">Module is activated</string>
+    <string name="module_notactive">Module not active</string>
+    <string name="module_version">Module Version:</string>
+    <string name="enable_module">Enable Module</string>
+
+    <!-- Other -->
+    <string name="quick_entry">System shortcut entrance</string>
+    <string name="quick_entry_summer">For example, system interface adjustment tools, process management, project mode, etc.</string>
+    <string name="engineering_mode">Engineering Mode</string>
+    <string name="charging_test">Charging test</string>
+    <string name="process_management">ColorOS Process Management</string>
+    <string name="system_interface_adjustment">System interface adjustment tool</string>
+    <string name="feedback_toolbox">Feedback Toolbox</string>
+    <string name="game_assistant_page">Game Assistant Page</string>
+    <string name="developer_option">Developer Options</string>
+    <string name="display_refresh_rate_cap">Display refresh rate cap</string>
 
 
 </resources>

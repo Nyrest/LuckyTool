@@ -49,19 +49,19 @@ class HomeFragment : Fragment() {
 
         if (YukiHookAPI.Status.isXposedModuleActive && enableModule){
             binding.statusIcon.setImageResource(R.drawable.ic_round_check_24)
-            binding.statusTitle.text = "模块已激活"
+            binding.statusTitle.text = getString(R.string.module_isactivated)
         }else{
             binding.statusCard.setCardBackgroundColor(Color.GRAY)
             binding.statusIcon.setImageResource(R.drawable.ic_round_warning_24)
-            binding.statusTitle.text = "模块未激活"
+            binding.statusTitle.text = getString(R.string.module_notactive)
         }
 
         binding.statusSummary.apply {
-            text = "模块版本:"
+            text = getString(R.string.module_version)
             text = "$text$getBuildVersion"
         }
         binding.enableModule.apply {
-            text = "启用模块"
+            text = context.getString(R.string.enable_module)
             isChecked = enableModule
         }.setOnCheckedChangeListener { buttonView, isChecked ->
             if (buttonView.isPressed) {
@@ -165,6 +165,21 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
             )
             addPreference(
                 PreferenceCategory(requireActivity()).apply {
+                    title = getString(R.string.other_settings)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    key = "hide_desktop_appicon"
+                    setDefaultValue(false)
+                    title = getString(R.string.hide_desktop_appicon)
+                    summary = getString(R.string.hide_desktop_appicon_summer)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                PreferenceCategory(requireActivity()).apply {
                     setTitle(R.string.about_title)
                     isIconSpaceReserved = false
                 }
@@ -234,6 +249,8 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
         if (key == "use_dynamic_color") (activity as MainActivity).restart()
         if (key == "dark_theme") (activity as MainActivity).restart()
+        if (key == "hide_desktop_appicon") sharedPreferences?.let { setDesktopIcon(requireActivity(), it.getBoolean("hide_desktop_appicon",false)) }
+
     }
 
     override fun onResume() {
@@ -324,6 +341,17 @@ class AboutFragment : ModulePreferenceFragment() {
                     intent = Intent(
                         Intent.ACTION_VIEW,
                         Uri.parse("https://github.com/LSPosed/CorePatch")
+                    )
+                }
+            )
+            addPreference(
+                Preference(requireActivity()).apply {
+                    title = "Disable-FLAG_SECURE"
+                    summary = "VarunS2002 , GPL-3.0 license"
+                    isIconSpaceReserved = false
+                    intent = Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("https://github.com/VarunS2002/Xposed-Disable-FLAG_SECURE")
                     )
                 }
             )

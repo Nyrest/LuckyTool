@@ -48,7 +48,7 @@
                     android:stateListAnimator="@null"
                     app:cardBackgroundColor="?colorPrimary"
                     app:cardElevation="12dp"
-                    app:cardPreventCornerOverlap="false" >
+                    app:cardPreventCornerOverlap="true" >
 
                     <RelativeLayout
                         android:layout_width="match_parent"

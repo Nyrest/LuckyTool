@@ -1,7 +1,6 @@
 package com.luckyzyx.luckytool.hook.apps.systemui
 
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
-import com.highcapable.yukihookapi.hook.type.java.BooleanType
 
 class RemoveStatusBarUserSwitcher : YukiBaseHooker() {
     override fun onHook() {
@@ -9,7 +8,6 @@ class RemoveStatusBarUserSwitcher : YukiBaseHooker() {
             injectMember {
                 method {
                     name = "showUserSwitcher"
-                    returnType = BooleanType
                 }
                 replaceToFalse()
             }

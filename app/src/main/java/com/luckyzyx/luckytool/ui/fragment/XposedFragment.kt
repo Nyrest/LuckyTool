@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.preference.EditTextPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceCategory
 import androidx.preference.SwitchPreference
@@ -196,7 +197,7 @@ class SystemScope : ModulePreferenceFragment() {
             )
             addPreference(
                 Preference(requireActivity()).apply {
-                    title = "截屏"
+                    title = getString(R.string.Screenshot)
                     key = "com.oplus.screenshot"
                     summary = getString(R.string.version_summer_first) + getAppVersion(requireActivity(), key, true)
                     setIcon(R.mipmap.screenshot_icon)
@@ -274,9 +275,9 @@ class ScopeAndroid : ModulePreferenceFragment(),
             )
             addPreference(
                 SwitchPreference(requireActivity()).apply {
-                    title = getString(R.string.global_fillet)
-                    summary = getString(R.string.global_fillet_summer)
-                    key = "global_fillet"
+                    title = getString(R.string.remove_system_screenshot_delay)
+                    summary = getString(R.string.remove_system_screenshot_delay_summer)
+                    key = "remove_system_screenshot_delay"
                     setDefaultValue(false)
                     isIconSpaceReserved = false
                 }
@@ -418,6 +419,14 @@ class ScopeSystemUI : ModulePreferenceFragment() {
                     isIconSpaceReserved = false
                 }
             )
+//            addPreference(
+//                SwitchPreference(requireActivity()).apply {
+//                    title = getString(R.string.doubletap_statusbar_lockscreen)
+//                    key = "doubletap_statusbar_lockscreen"
+//                    setDefaultValue(false)
+//                    isIconSpaceReserved = false
+//                }
+//            )
             addPreference(
                 SwitchPreference(requireActivity()).apply {
                     title = getString(R.string.remove_statusbar_devmode)
@@ -539,6 +548,17 @@ class ScopeLauncher : ModulePreferenceFragment() {
                     title = getString(R.string.remove_appicon_dot)
                     key = "remove_appicon_dot"
                     setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                EditTextPreference(requireActivity()).apply {
+                    title = getString(R.string.launcher_layout_row_colume)
+                    summary = getString(R.string.launcher_layout_row_colume_summer)
+                    dialogTitle = title
+                    dialogMessage = getString(R.string.launcher_layout_row_colume_message)
+                    key = "launcher_layout_row_colume"
+                    setDefaultValue("")
                     isIconSpaceReserved = false
                 }
             )

@@ -2,7 +2,7 @@
 <resources>
     <!-- Application -->
     <string name="app_name">LuckyTool</string>
-    <string name="xposeddescription">旨在对 ColorOS 的扩展优化</string>
+    <string name="xposeddescription">对ColorOS系统进行的扩展优化的Xposed模块</string>
 
     <!-- Nav Menu -->
     <string name="nav_xposed">Xposed</string>
@@ -16,25 +16,23 @@
     <string name="use_dynamic_color_summer">使用动态取色</string>
     <string name="dark_theme">深色主题</string>
     <string name="follow_system">跟随系统</string>
-    <string name="light_color">浅色</string>
-    <string name="dark_color">深色</string>
+    <!-- Other Settings -->
+
+    <string name="hide_desktop_appicon">隐藏桌面APP图标</string>
+    <string name="hide_desktop_appicon_summer">必须关闭LSPosed强制显示桌面图标</string>
+    <string name="other_settings">其他设置</string>
 
     <string name="about_title">关于</string>
-
     <string name="contact_details">联系方式</string>
     <string name="contact_details_summer">忆清鸣、luckyzyx</string>
     <string name="coolmarket">酷安</string>
-    <string name="github">Github</string>
-    <string name="lsposed">Lsposed</string>
     <string name="telegram_channel">Telegram频道</string>
     <string name="telegram_group">Telegram群组</string>
 
     <string name="open_source">开放源代码</string>
     <string name="open_source_summer">点击查看开放源代码列表</string>
-
     <string name="download_url">下载地址</string>
     <string name="download_url_summer">酷安,Lsposed仓库</string>
-
     <string name="github_repo">Github Repo</string>
     <string name="github_repo_summer">顺手点个Star吧!</string>
 
@@ -57,25 +55,6 @@
     <string name="unsupported_xposed">请确保Xposed API >= 93,并且模块已勾选相应作用域\n若上述已经完成,可尝试点击确定退出APP,然后重试</string>
 
     <!-- Colors -->
-    <string name="color_sakura">樱花</string>
-    <string name="color_red">红色</string>
-    <string name="color_pink">粉色</string>
-    <string name="color_purple">紫色</string>
-    <string name="color_deep_purple">深紫</string>
-    <string name="color_indigo">靛青</string>
-    <string name="color_blue">蓝色</string>
-    <string name="color_light_blue">浅蓝</string>
-    <string name="color_cyan">青色</string>
-    <string name="color_teal">青绿</string>
-    <string name="color_green">绿色</string>
-    <string name="color_light_green">浅绿</string>
-    <string name="color_lime">石灰</string>
-    <string name="color_yellow">黄色</string>
-    <string name="color_amber">琥珀</string>
-    <string name="color_orange">橙色</string>
-    <string name="color_deep_orange">深橙</string>
-    <string name="color_brown">棕色</string>
-    <string name="color_blue_grey">灰蓝</string>
 
     <!--菜单-->
     <string name="menu_reboot">重启菜单</string>
@@ -99,8 +78,8 @@
     <string name="disable_flag_secure_summer">在通常不允许的应用程序中启用屏幕截图、屏幕共享和录制,添加对应APP作用域</string>
     <string name="remove_statusbar_top_notification">移除状态栏应用上层通知</string>
     <string name="remove_statusbar_top_notification_summer">移除状态栏“此应用在其他应用上层显示”</string>
-    <string name="global_fillet">全局圆角</string>
-    <string name="global_fillet_summer">部分UI支持圆角</string>
+    <string name="remove_system_screenshot_delay">移除系统截屏延迟</string>
+    <string name="remove_system_screenshot_delay_summer">首次截屏可能不会生效</string>
 
     <string name="SystemUI">系统界面</string>
     <string name="StatusBarClock">状态栏时钟</string>
@@ -110,6 +89,7 @@
     <string name="remove_statusbar_clock_redone">移除下拉状态栏时钟红1</string>
     <string name="statusbar_dropdown_clock_show_second">下拉状态栏时钟显秒</string>
     <string name="remove_statusbar_battery_percent">移除状态栏电量百分号</string>
+    <string name="remove_statusbar_user_switcher">移除下拉状态栏多用户图标</string>
 
     <string name="StatusBarNotice">状态栏通知/图标</string>
     <string name="StatusBarNotice_summer">顶部状态栏以及下拉状态栏的通知或者图标</string>
@@ -129,6 +109,9 @@
     <string name="Launcher">系统桌面</string>
     <string name="unlock_task_locks">解锁后台任务锁定数量</string>
     <string name="remove_appicon_dot">移除APP图标蓝点</string>
+    <string name="launcher_layout_row_colume">设置桌面布局行列数</string>
+    <string name="launcher_layout_row_colume_summer">慎重使用,数值过大会导致布局混乱</string>
+    <string name="launcher_layout_row_colume_message">\n\n输入你需要的布局数值\n必须在英文状态下输入框内的数值和符号\n如果你不听劝告,那后果将由你自己负责\n例如:\n3,4@5,6\n最小列数,最大列数@最小行数,最大行数\n那你的布局应该为3x5,3x6,4x5,4x6\n如果输入框里没有任何字符则关闭此功能</string>
 
     <string name="AlarmClock">时钟</string>
     <string name="remove_alarmclock_widget_redone">移除桌面时钟组件红一</string>
@@ -180,7 +163,22 @@
     <string name="device">设备</string>
     <string name="system">系统</string>
     <string name="Restore_default_refresh_rate">恢复默认刷新率</string>
-    <string name="remove_statusbar_user_switcher">移除下拉状态栏多用户图标</string>
+    <string name="module_isactivated">模块已激活</string>
+    <string name="module_notactive">模块未激活</string>
+    <string name="module_version">模块版本:</string>
+    <string name="enable_module">启用模块</string>
+
+    <!-- 其他 -->
+    <string name="quick_entry">系统快捷入口</string>
+    <string name="quick_entry_summer">例如系统界面调节工具,进程管理,工程模式等</string>
+    <string name="engineering_mode">工程模式</string>
+    <string name="charging_test">充电测试</string>
+    <string name="process_management">ColorOS进程管理</string>
+    <string name="system_interface_adjustment">系统界面调节工具</string>
+    <string name="feedback_toolbox">反馈工具箱</string>
+    <string name="game_assistant_page">游戏助手页面</string>
+    <string name="developer_option">开发者选项</string>
+    <string name="display_refresh_rate_cap">显示刷新率上限</string>
 
 
 </resources>

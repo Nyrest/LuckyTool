@@ -1,27 +1,27 @@
 <div align="center">
    <h1>LuckyTool</h1>
    <p>
-       <b><a href="https://github.com/luckyzyx/LuckyTool/blob/main/README.md">English</a>  丨 简体中文</b>
+       English 丨 <b><a href="https://github.com/luckyzyx/LuckyTool/blob/main/README.md">简体中文</a></b>
    </p>
    <a href="https://github.com/Xposed-Modules-Repo/com.luckyzyx.luckytool/releases"><img alt="GitHub all releases" src="https://img.shields.io/github/downloads/Xposed-Modules-Repo/com.luckyzyx.luckytool/total?label=Downloads"></a>
    <a href="https://github.com/luckyzyx/LuckyTool/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/luckyzyx/LuckyTool"></a>
    <a href="https://github.com/luckyzyx/LuckyTool/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/luckyzyx/LuckyTool"></a>
    <a href="https://github.com/luckyzyx/LuckyTool/blob/main/LICENSE"><img alt="GitHub license" src="https://img.shields.io/github/license/luckyzyx/LuckyTool"></a>
    <a href="https://t.me/luckyzyx"><img alt="Telegram Channel" src="https://img.shields.io/badge/Telegram-Channel-blue.svg?logo=telegram"></a>   
-<p>对ColorOS系统进行的扩展优化的Xposed模块</p>
+<p>Extended and optimized Xposed module for ColorOS</p>
 </div>
 
 ---
 
-## 系统版本
-推荐ColorOS12+
+## System Version
+Recommend ColorOS 12+
 
-## 测试机型
+## Test Models
 OnePlus 9RT 12.1
 
-## 作用域
-系统框架,安全中心,时钟,系统界面,系统桌面,相机,应用包安装程序,游戏助手,云服务,主题商店,截屏  
-好多动漫
+## Scopes
+system framework,security center,clock,system interface,system desktop,camera,application package installer,game assistant,cloud services,theme store,screenshot  
+So many anime
 
 ## Xposed API
 [YukiHookAPI](https://github.com/fankes/YukiHookAPI)

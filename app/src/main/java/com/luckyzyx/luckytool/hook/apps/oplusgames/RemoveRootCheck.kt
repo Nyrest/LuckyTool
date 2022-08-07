@@ -20,6 +20,7 @@ class RemoveRootCheck : YukiBaseHooker() {
                     name {
                         equalsOf(other = "b",isIgnoreCase = false)
                         equalsOf(other = "c",isIgnoreCase = false)
+                        equalsOf(other = "e",isIgnoreCase = false)
                     }
                     emptyParam()
                     returnType = BundleClass
