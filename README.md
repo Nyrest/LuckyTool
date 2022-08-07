@@ -1,5 +1,20 @@
+<div align="center">
+   <h1>LuckyTool</h1>
+   <p>
+       <b><a href="https://github.com/luckyzyx/LuckyTool/blob/main/README.md">English</a>  丨 简体中文</b>
+   </p>
+   <a href="https://github.com/Xposed-Modules-Repo/com.luckyzyx.luckytool/releases"><img alt="GitHub all releases" src="https://img.shields.io/github/downloads/Xposed-Modules-Repo/com.luckyzyx.luckytool/total?label=Downloads"></a>
+   <a href="https://github.com/luckyzyx/LuckyTool/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/luckyzyx/LuckyTool"></a>
+   <a href="https://github.com/luckyzyx/LuckyTool/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/luckyzyx/LuckyTool"></a>
+   <a href="https://github.com/luckyzyx/LuckyTool/blob/main/LICENSE"><img alt="GitHub license" src="https://img.shields.io/github/license/luckyzyx/LuckyTool"></a>
+   [Telegram Channel](https://img.shields.io/badge/LuckyTool-Telegram-blue.svg?logo=telegram)](https://t.me/LuckyTool)
+   <p>对ColorOS系统进行的扩展优化的Xposed模块</p>
+</div>
+
+---
+
 # LuckyTool
-[![Telegram Group](https://img.shields.io/badge/LuckyTool-Telegram-blue.svg?logo=telegram)](https://t.me/+F42pfv-c0h4zNDc9)  
+
 - 旨在对 ColorOS 系统的扩展优化  
 - The purpose is to extend and optimize the ColorOS system.
 
