@@ -1,5 +1,8 @@
 # 更新日志
 
+If it doesn't work or there are problems, please submit issues with the scope apk and log or contact the author
+若不生效或出现问题请带上作用域apk和log提交issues或联系作者
+
 ### 1.3
 Remove global rounded corners, adapt game assistant v7.8.0, add shortcut entrance to other pages, add display refresh rate cap, add remove system screenshot delay, add hide module desktop icon, add set desktop layout row number, fix probable crash (probably)
 移除全局圆角功能,适配游戏助手v7.8.0,其他页面添加快捷入口,添加显示刷新率上限,添加移除系统截屏延迟,添加隐藏模块桌面图标,添加设置桌面布局行列数,修复概率性崩溃(大概)
