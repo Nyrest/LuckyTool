@@ -80,6 +80,8 @@
     <string name="remove_statusbar_top_notification_summer">移除状态栏“此应用在其他应用上层显示”</string>
     <string name="remove_system_screenshot_delay">移除系统截屏延迟</string>
     <string name="remove_system_screenshot_delay_summer">首次截屏可能不会生效</string>
+    <string name="remove_vpn_active_notification">移除VPN已激活通知</string>
+    <string name="remove_vpn_active_notification_summer">移除状态栏VPN已激活通知</string>
 
     <string name="SystemUI">系统界面</string>
     <string name="StatusBarClock">状态栏时钟</string>
@@ -111,7 +113,7 @@
     <string name="remove_appicon_dot">移除APP图标蓝点</string>
     <string name="launcher_layout_row_colume">设置桌面布局行列数</string>
     <string name="launcher_layout_row_colume_summer">慎重使用,数值过大会导致布局混乱</string>
-    <string name="launcher_layout_row_colume_message">\n\n输入你需要的布局数值\n必须在英文状态下输入框内的数值和符号\n如果你不听劝告,那后果将由你自己负责\n例如:\n3,4@5,6\n最小列数,最大列数@最小行数,最大行数\n那你的布局应该为3x5,3x6,4x5,4x6\n如果输入框里没有任何字符则关闭此功能</string>
+    <string name="launcher_layout_row_colume_message">\n\n输入你需要的布局数值\n必须在英文状态下输入框内的数值和符号\n如果你不听劝告,那后果将由你自己负责\n例如:\n3,4@5,6\n最小列数,最大列数@最小行数,最大行数\n那你的布局应该为3x5,3x6,4x5,4x6\n如果输入框里没有任何字符则恢复系统默认设置</string>
 
     <string name="AlarmClock">时钟</string>
     <string name="remove_alarmclock_widget_redone">移除桌面时钟组件红一</string>
@@ -179,6 +181,7 @@
     <string name="game_assistant_page">游戏助手页面</string>
     <string name="developer_option">开发者选项</string>
     <string name="display_refresh_rate_cap">显示刷新率上限</string>
+
 
 
 </resources>

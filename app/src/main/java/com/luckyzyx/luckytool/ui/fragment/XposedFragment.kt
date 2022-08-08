@@ -283,6 +283,15 @@ class ScopeAndroid : ModulePreferenceFragment(),
                 }
             )
             addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    title = getString(R.string.remove_vpn_active_notification)
+                    summary = getString(R.string.remove_vpn_active_notification_summer)
+                    key = "remove_vpn_active_notification"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
                 PreferenceCategory(requireActivity()).apply {
                     setTitle(R.string.corepatch)
                     setSummary(R.string.corepatch_summer)

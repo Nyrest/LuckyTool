@@ -4,6 +4,7 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.ScrollView
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
+import com.highcapable.yukihookapi.hook.log.loggerD
 import com.highcapable.yukihookapi.hook.type.android.MessageClass
 
 class RemoveInstallAds : YukiBaseHooker() {
@@ -22,7 +23,11 @@ class RemoveInstallAds : YukiBaseHooker() {
                     suggestLayout[2] = field { name = "mSuggestLayoutC" }.get(instance).self as LinearLayout
                     suggestLayoutAScrollView[0] = field { name = "mSuggestLayoutAScrollView" }.get(instance).self as ScrollView
                 }
+            }.onNoSuchMemberFailure {
+                loggerD(msg = "NoSuchMember->InstallAppProgress->initView")
             }
+        }.onHookClassNotFoundFailure {
+            loggerD(msg = "ClassNotFound->InstallAppProgress")
         }
         //Source InstallAppProgress
         findClass("com.android.packageinstaller.oplus.InstallAppProgress$1").hook {
@@ -37,7 +42,11 @@ class RemoveInstallAds : YukiBaseHooker() {
                     suggestLayout[2]?.visibility = View.GONE
                     suggestLayoutAScrollView[0]?.visibility = View.GONE
                 }
+            }.onNoSuchMemberFailure {
+                loggerD(msg = "NoSuchMember->InstallAppProgress$1->handleMessage")
             }
+        }.onHookClassNotFoundFailure {
+            loggerD(msg = "ClassNotFound->InstallAppProgress\$1")
         }
     }
 }

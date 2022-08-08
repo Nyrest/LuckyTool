@@ -6,6 +6,7 @@ import com.highcapable.yukihookapi.hook.type.java.StringType
 
 class RemoveLockScreenRedOne : YukiBaseHooker() {
     override fun onHook() {
+        //Source RedTextClock
         "com.oplusos.systemui.keyguard.clock.RedTextClock".clazz.field {
             name = "NUMBER_ONE"
             type = StringType

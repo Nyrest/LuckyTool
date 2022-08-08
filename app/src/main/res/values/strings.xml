@@ -78,6 +78,8 @@
     <string name="disable_flag_secure_summer">Enabling screenshots, screen sharing and recording in apps that normally wouldn\'t allow it,add the corresponding APP scope</string>
     <string name="remove_system_screenshot_delay">Remove system screenshot delay</string>
     <string name="remove_system_screenshot_delay_summer">The first screenshot may not work</string>
+    <string name="remove_vpn_active_notification">Remove VPN Activated Notification</string>
+    <string name="remove_vpn_active_notification_summer">Remove statusbar VPN activated notification</string>
 
     <string name="SystemUI">SystemUI</string>
     <string name="StatusBarClock">StatusBarClock</string>
@@ -109,7 +111,7 @@
     <string name="remove_appicon_dot">Remove App icon blue dot</string>
     <string name="launcher_layout_row_colume">Set the number of desktop layout rows</string>
     <string name="launcher_layout_row_colume_summer">Use with caution, too much value will lead to confusion in the layout</string>
-    <string name="launcher_layout_row_colume_message">\n\nEnter the values you need for the layout\nMust enter the values and symbols in the box in the English state\nIf you don\'t listen to the advice, then you will be responsible for the consequences\nFor example:\n3,4@5,6\nMinimum number of columns, maximum number of columns@Minimum number of rows, maximum number of rows\nThen your layout should be 3x5,3x6,4x5,4x6\nDisable this function if there are no characters in the input box</string>
+    <string name="launcher_layout_row_colume_message">\n\nEnter the values you need for the layout\nMust enter the values and symbols in the box in the English state\nIf you don\'t listen to the advice, then you will be responsible for the consequences\nFor example:\n3,4@5,6\nMinimum number of columns, maximum number of columns@Minimum number of rows, maximum number of rows\nThen your layout should be 3x5,3x6,4x5,4x6\nRestore system defaults if there are no characters in the input box</string>
 
     <string name="AlarmClock">AlarmClock</string>
     <string name="remove_alarmclock_widget_redone">Remove Desktop Clock Component Red One</string>
@@ -177,6 +179,8 @@
     <string name="game_assistant_page">Game Assistant Page</string>
     <string name="developer_option">Developer Options</string>
     <string name="display_refresh_rate_cap">Display refresh rate cap</string>
+
+
 
 
 </resources>

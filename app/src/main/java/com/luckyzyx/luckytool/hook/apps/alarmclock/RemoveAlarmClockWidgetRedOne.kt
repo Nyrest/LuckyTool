@@ -9,10 +9,11 @@ class RemoveAlarmClockWidgetRedOne : YukiBaseHooker() {
         //Search -> OnePlusWidget -> CharSequence field
         "com.coloros.widget.smallweather.OnePlusWidget".clazz.field {
             name {
-                equalsOf(other = "Sb",isIgnoreCase = false)//9RT->C12
-                equalsOf(other = "Sc",isIgnoreCase = false)//9RT->C12.1 C02
-                equalsOf(other = "TR",isIgnoreCase = false)//9RT->C12.1 C03
-                equalsOf(other = "TT",isIgnoreCase = false)//9RT->C12.1 C04
+                equalsOf(other = "Sb",isIgnoreCase = false)
+                equalsOf(other = "Sc",isIgnoreCase = false)
+                equalsOf(other = "TR",isIgnoreCase = false)
+                equalsOf(other = "TT",isIgnoreCase = false)
+                equalsOf(other = "Tj",isIgnoreCase = false)
             }
             type = CharSequenceType
         }.get().set("")
