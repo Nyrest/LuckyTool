@@ -1,11 +1,12 @@
-# 适配列表(待补充)
+# 适配列表(待补充) Adaptation list (to be added)
 - 版本名 -> 版本号 -> 提交版本
+- Version Name -> Version Number -> Submitted Version
 
-## Android 系统框架
+## 系统框架 Android
 - Android11 SDK30 ColorOS12
 - Android12 SDK31 ColorOS12.1
 
-## SystemUI 系统界面
+## 系统界面 SystemUI
 - v12.10.06 -> 121006 -> e9590d6
 - v12.10.05 -> 121005 -> 67a0ec6
 
