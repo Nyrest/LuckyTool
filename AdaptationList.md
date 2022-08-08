@@ -1,6 +1,6 @@
 # 适配列表(待补充) Adaptation list (to be added)
-- 版本名 -> 版本号 -> 提交版本
 - Version Name -> Version Number -> Submitted Version
+- 版本名 -> 版本号 -> 提交版本
 
 ## 系统框架 Android
 - Android11 SDK30 ColorOS12
