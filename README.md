@@ -1,7 +1,7 @@
 <div align="center">
    <h1>LuckyTool</h1>
    <p>
-       <b><a href="https://github.com/luckyzyx/LuckyTool/blob/main/README.md">English</a>  丨 简体中文</b>
+       <b><a href="https://github.com/luckyzyx/LuckyTool/blob/main/README_EN.md">English</a>  丨 简体中文</b>
    </p>
    <a href="https://github.com/Xposed-Modules-Repo/com.luckyzyx.luckytool/releases"><img alt="GitHub all releases" src="https://img.shields.io/github/downloads/Xposed-Modules-Repo/com.luckyzyx.luckytool/total?label=Downloads"></a>
    <a href="https://github.com/luckyzyx/LuckyTool/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/luckyzyx/LuckyTool"></a>
