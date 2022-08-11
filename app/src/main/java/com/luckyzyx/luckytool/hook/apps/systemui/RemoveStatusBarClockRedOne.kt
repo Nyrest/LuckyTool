@@ -23,14 +23,11 @@ class RemoveStatusBarClockRedOne : YukiBaseHooker() {
         findClass("com.oplusos.systemui.ext.BaseClockExt").hook {
             injectMember {
                 method {
-                    name {
-                        //C12.1
-                        equalsOf(other = "setTextWithRedOneStyle",isIgnoreCase = false)
-                    }
+                    name = "setTextWithRedOneStyle"
                     paramCount = 2
                 }
                 beforeHook {
-                    args(0).cast<TextView>()?.text = args(1).cast<CharSequence>().toString()
+                    args(0).cast<TextView>()?.text = args(1).cast<String>().toString()
                     resultFalse()
                 }
             }.onNoSuchMemberFailure {

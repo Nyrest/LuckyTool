@@ -101,6 +101,12 @@
     <string name="remove_statusbar_bottom_networkwarn">移除下拉状态栏底部网络警告</string>
     <string name="remove_statusbar_securepayment_icon">移除状态栏支付保护图标</string>
 
+    <string name="StatusBarTiles">状态栏磁贴</string>
+    <string name="StatusBarTiles_summer">下拉状态栏磁贴相关</string>
+    <string name="set_statusbar_tiles_column">设置状态栏磁贴列数</string>
+    <string name="set_statusbar_tiles_column_summer">点击设置状态栏磁贴列数</string>
+    <string name="set_statusbar_tiles_column_dialogmessage">\n\n输入框为空时恢复系统默认设置\n必须在英文状态下输入\n例如:\n竖屏列数@横屏列数\n4@6\n它表示竖屏状态4列横屏6列\n并且数字最大不可超过9</string>
+
     <string name="LockScreen">锁屏</string>
     <string name="LockScreen_summer">锁屏相关</string>
     <string name="remove_lock_screen_redone">移除锁屏时钟红1</string>

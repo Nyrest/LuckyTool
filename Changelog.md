@@ -1,10 +1,11 @@
-# 更新日志
+# 更新日志 Changelog
 
 If it doesn't work or there are problems, please submit issues with the scope apk and log or contact the author
 若不生效或出现问题请带上作用域apk和log提交issues或联系作者
 
 ### 1.4
-添加移除VPN通知
+Added and removed VPN notifications, added the setting of the number of tiles in the status bar, and fixed the problem of some functions taking effect
+添加移除VPN通知,添加设置状态栏磁贴列数,修复部分功能生效问题
 
 ### 1.3
 Remove global rounded corners, adapt game assistant v7.8.0, add shortcut entrance to other pages, add display refresh rate cap, add remove system screenshot delay, add hide module desktop icon, add set desktop layout row number, fix probable crash (probably)

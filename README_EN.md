@@ -23,6 +23,10 @@ OnePlus 9RT 12.1
 system framework,security center,clock,system interface,system desktop,camera,application package installer,game assistant,cloud services,theme store,screenshot  
 So many anime
 
+### [AdaptationList](https://github.com/luckyzyx/LuckyTool/blob/main/AdaptationList.md)
+
+### [Changelog](https://github.com/luckyzyx/LuckyTool/blob/main/Changelog.md)
+
 ## Xposed API
 [YukiHookAPI](https://github.com/fankes/YukiHookAPI)
 

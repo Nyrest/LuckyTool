@@ -1,5 +1,6 @@
-# 适配列表(待补充) Adaptation list (to be added)
-- Version Name -> Version Number -> Submitted Version
+# 适配列表(待补充)
+## AdaptationList (to be added)
+- VersionName -> VersionCode -> SubmittedVersion
 - 版本名 -> 版本号 -> 提交版本
 
 ## 系统框架 Android
@@ -28,6 +29,7 @@
 - v8.7.0 -> 80702 -> 76260b0
 
 ## 应用包安装程序 PackageInstaller
+- v12.100.446 -> 12100446 -> 860700c
 - v12.100.444 -> 12100444 -> d132ce2
 - v12.100.443 -> 12100443 -> faec6b1
 - v3.5.2453 -> 163 -> a222497

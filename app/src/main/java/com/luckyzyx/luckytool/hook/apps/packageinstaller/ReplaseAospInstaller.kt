@@ -21,13 +21,13 @@ class ReplaseAospInstaller : YukiBaseHooker() {
                         "com.android.packageinstaller.oplus.common.j",
                         "com.android.packageinstaller.oplus.common.FeatureOption"
                     ).clazz.field {
-                        name {
+//                        name {
                             //7bc7db7,e1a2c58,75fe984,532ffef,38477f0,a222497
-                            equalsOf(other = "f",isIgnoreCase = false)
+//                            equalsOf(other = "f",isIgnoreCase = false)
                             //d132ce2,faec6ba
-                            equalsOf(other = "sIsClosedSuperFirewall",isIgnoreCase = false)
-                        }
-                        type = BooleanType
+//                            equalsOf(other = "sIsClosedSuperFirewall",isIgnoreCase = false)
+//                        }
+                        type(BooleanType).index(1)
                     }.get().setTrue()
                 }
             }

@@ -76,6 +76,10 @@ class HomeFragment : Fragment() {
             MaterialAlertDialogBuilder(requireActivity())
                 .setCancelable(true)
                 .setItems(getFpsMode(requireActivity())) { _, which ->
+                    if (getFpsMode(requireActivity()).lastIndex != which) {
+                        ShellUtils.execCommand("su -c service call SurfaceFlinger 1035 i32 -1", true)
+                        return@setItems
+                    }
                     ShellUtils.execCommand("su -c service call SurfaceFlinger 1035 i32 $which", true)
                 }
                 .show()

@@ -494,6 +494,24 @@ class ScopeSystemUI : ModulePreferenceFragment() {
             )
             addPreference(
                 PreferenceCategory(requireActivity()).apply {
+                    title = getString(R.string.StatusBarTiles)
+                    summary = getString(R.string.StatusBarTiles_summer)
+                    key = "StatusBarTiles"
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                EditTextPreference(requireActivity()).apply {
+                    title = getString(R.string.set_statusbar_tiles_column)
+                    summary = getString(R.string.set_statusbar_tiles_column_summer)
+                    key = "set_statusbar_tiles_column"
+                    dialogMessage = getString(R.string.set_statusbar_tiles_column_dialogmessage)
+                    setDefaultValue("")
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                PreferenceCategory(requireActivity()).apply {
                     title = getString(R.string.LockScreen)
                     summary = getString(R.string.LockScreen_summer)
                     key = "LockScreen"

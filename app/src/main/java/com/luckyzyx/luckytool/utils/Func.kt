@@ -102,17 +102,17 @@ internal fun toast(context: Context, name: String, long: Boolean? = null): Any =
  */
 fun getFpsMode(context: Context): Array<String> {
     val command =
-        "dumpsys display | grep -A 1 'mSupportedModesByDisplay' | tail -1 | tr \"}\" \"\\n\" | cut -f2 -d '{' | while read row; do\n" +
+        "dumpsys display | grep -A 1 'mSupportedModesByDisplay' | tail -1 | tr '}' '\\n' | cut -f2 -d '{' | while read row; do\n" +
         "  if [[ -n \$row ]]; then\n" +
-        "    echo \$row | tr \",\" \"\\n\" | while read col; do\n" +
+        "    echo \$row | tr ',' '\\n' | while read col; do\n" +
         "      case \$col in\n" +
-        "      \"width=\"*)\n" +
+        "      'width='*)\n" +
         "        echo -n \$(echo \${col:6})\n" +
         "        ;;\n" +
-        "      \"height=\"*)\n" +
+        "      'height='*)\n" +
         "        echo -n x\$(echo \${col:7})\n" +
         "        ;;\n" +
-        "      \"fps=\"*)\n" +
+        "      'fps='*)\n" +
         "        echo ' '\$(echo \${col:4} | cut -f1 -d '.')Hz\n" +
         "        ;;\n" +
         "      esac\n" +
@@ -121,9 +121,9 @@ fun getFpsMode(context: Context): Array<String> {
         "  fi\n" +
         "done"
     val result = ShellUtils.execCommand(command, true, true).successMsg
-    return result.split("@").toTypedArray().apply {
-        this[this.lastIndex] = context.getString(R.string.Restore_default_refresh_rate)
-    }
+    return result.substring(0,result.length - 1).split("@").toMutableList().apply {
+        add(context.getString(R.string.Restore_default_refresh_rate))
+    }.toTypedArray()
 }
 
 /**

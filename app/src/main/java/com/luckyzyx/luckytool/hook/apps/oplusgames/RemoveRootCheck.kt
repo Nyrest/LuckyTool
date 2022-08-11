@@ -17,16 +17,24 @@ class RemoveRootCheck : YukiBaseHooker() {
         ).hook {
             injectMember {
                 method {
-                    name {
-                        equalsOf(other = "b",isIgnoreCase = false)
-                        equalsOf(other = "c",isIgnoreCase = false)
-                        equalsOf(other = "e",isIgnoreCase = false)
-                    }
+                    name = "b"
                     emptyParam()
-                    returnType = BundleClass
-                }
-                afterHook {
-                    result<Bundle>()?.putInt("isSafe", 0)
+                    returnType(BundleClass)
+                }.remedys {
+                    method {
+                        name = "c"
+                        emptyParam()
+                        returnType(BundleClass)
+                    }
+                    method {
+                        name = "e"
+                        emptyParam()
+                        returnType(BundleClass)
+                    }
+                }.wait {
+                    afterHook {
+                        result<Bundle>()?.putInt("isSafe", 0)
+                    }
                 }
             }
         }

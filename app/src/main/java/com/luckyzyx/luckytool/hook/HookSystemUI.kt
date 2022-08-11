@@ -2,8 +2,7 @@ package com.luckyzyx.luckytool.hook
 
 import android.graphics.Color
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
-import com.luckyzyx.luckytool.hook.apps.systemui.LockScreenTextViewColor
-import com.luckyzyx.luckytool.hook.apps.systemui.NetworkSpeed
+import com.highcapable.yukihookapi.hook.type.java.IntType
 import com.luckyzyx.luckytool.hook.apps.systemui.*
 import com.luckyzyx.luckytool.utils.XposedPrefs
 
@@ -40,6 +39,9 @@ class HookSystemUI : YukiBaseHooker(){
         if (prefs(XposedPrefs).getBoolean("remove_statusbar_securepayment_icon",false)) loadHooker(RemoveStatusBarSecurePayment())
         //移除下拉状态栏多用户图标
         if (prefs(XposedPrefs).getBoolean("remove_statusbar_user_switcher",false)) loadHooker(RemoveStatusBarUserSwitcher())
+
+        //状态栏磁贴
+        if (prefs(XposedPrefs).getString("set_statusbar_tiles_column","") != "") loadHooker(StatusBarTilesColumn())
 
     }
 }

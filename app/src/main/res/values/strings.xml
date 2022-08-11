@@ -99,6 +99,12 @@
     <string name="remove_statusbar_bottom_networkwarn">Remove network warning at the bottom of the drop-down status bar</string>
     <string name="remove_statusbar_securepayment_icon">Remove status bar payment protection icon</string>
 
+    <string name="StatusBarTiles">Statusbar tiles</string>
+    <string name="StatusBarTiles_summer">Drop-down status bar tiles related</string>
+    <string name="set_statusbar_tiles_column">Set the number of tile columns in the status bar</string>
+    <string name="set_statusbar_tiles_column_summer">Click to set the number of tile columns in the status bar</string>
+    <string name="set_statusbar_tiles_column_dialogmessage">\n\nRestore system default when input box is empty\nMust be entered in English\nExample:\nNumber of vertical columns @ Number of horizontal columns\n4@6\nIt means the vertical screen state 4 columns horizontal screen 6 columns\nand the maximum number must not exceed 9</string>
+
     <string name="LockScreen">Lock Screen</string>
     <string name="LockScreen_summer">Lock Screen Related</string>
     <string name="remove_lock_screen_redone">Remove lock screen clock red 1</string>

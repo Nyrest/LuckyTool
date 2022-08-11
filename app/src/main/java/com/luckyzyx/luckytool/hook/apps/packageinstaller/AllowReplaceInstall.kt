@@ -10,8 +10,7 @@ class AllowReplaceInstall : YukiBaseHooker() {
             "7bc7db7","e1a2c58","a222497" -> "Q"
             "75fe984","532ffef" -> "P"
             "38477f0" -> "R"
-            //d132ce2
-            //faec6ba
+            //d132ce2,faec6ba,860700c
             else -> "isReplaceInstall"
         }
         //Allow replace install,Low/same version warning

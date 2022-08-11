@@ -11,9 +11,7 @@ class RemoveScreenshotPrivacyLimit : YukiBaseHooker() {
                     name = "setScreenshotReject"
                 }
                 beforeHook {
-                    if (args[0].toString() == "SECURE_WINDOW"){
-                        args(0).set("ACCEPTED")
-                    }
+                    if (args(0).cast<String>() == "SECURE_WINDOW") args(0).set("ACCEPTED")
                 }
             }
         }

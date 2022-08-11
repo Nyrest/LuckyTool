@@ -14,16 +14,13 @@ class UnlockStartupLimit : YukiBaseHooker() {
         ).clazz.hook {
             injectMember {
                 method {
-                    name {
-                        equalsOf(other = "b",isIgnoreCase = false)
-                    }
+                    name = "b"
                     param(ContextClass)
+                    paramCount = 1
                 }
                 afterHook {
                     field {
-                        name {
-                            equalsOf(other = "d",isIgnoreCase = false)
-                        }
+                        name = "d"
                         type = IntType
                     }.get().set(10000)
                 }

@@ -13,9 +13,8 @@ class RemoveNetworkRestriction : YukiBaseHooker() {
         ).hook {
             injectMember {
                 method {
-                    name {
-                        equalsOf(other = "a",isIgnoreCase = false) //2cd987d
-                    }
+                    //2cd987d
+                    name = "a"
                     emptyParam()
                     returnType = IntType
                 }
