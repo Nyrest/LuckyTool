@@ -7,7 +7,7 @@
    <a href="https://github.com/luckyzyx/LuckyTool/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/luckyzyx/LuckyTool"></a>
    <a href="https://github.com/luckyzyx/LuckyTool/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/luckyzyx/LuckyTool"></a>
    <a href="https://github.com/luckyzyx/LuckyTool/blob/main/LICENSE"><img alt="GitHub license" src="https://img.shields.io/github/license/luckyzyx/LuckyTool"></a>
-   <a href="https://t.me/luckyzyx"><img alt="Telegram Channel" src="https://img.shields.io/badge/Telegram-Channel-blue.svg?logo=telegram"></a>   
+   <a href="https://t.me/LuckyTool"><img alt="Telegram Channel" src="https://img.shields.io/badge/Telegram-Channel-blue.svg?logo=telegram"></a>   
 <p>对ColorOS系统进行的扩展优化的Xposed模块</p>
 </div>
 
