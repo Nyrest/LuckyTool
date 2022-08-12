@@ -88,7 +88,7 @@ class HomeFragment : Fragment() {
             """
                 ${getString(R.string.brand)}: ${Build.BRAND}
                 ${getString(R.string.model)}: ${Build.MODEL}
-                ${getString(R.string.system)}: ${Build.VERSION.RELEASE}(${Build.VERSION.SDK_INT})
+                ${getString(R.string.system)}: ${Build.VERSION.RELEASE}(${Build.VERSION.SDK_INT})[${getColorOSVersion}]
                 ${getString(R.string.device)}: ${Build.DEVICE}
                 ${getString(R.string.build_version)}: ${Build.DISPLAY}
                 ${getString(R.string.flash)}: ${ShellUtils.execCommand("cat /sys/class/block/sda/device/inquiry", true, true).successMsg}

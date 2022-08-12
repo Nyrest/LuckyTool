@@ -2,14 +2,14 @@ package com.luckyzyx.luckytool.hook.apps.packageinstaller
 
 import android.view.View
 import android.widget.LinearLayout
-import android.widget.ScrollView
+import android.widget.RelativeLayout
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 import com.highcapable.yukihookapi.hook.log.loggerD
 import com.highcapable.yukihookapi.hook.type.android.MessageClass
 
 class RemoveInstallAds : YukiBaseHooker() {
     private val suggestLayout = arrayOfNulls<LinearLayout>(3)
-    private val suggestLayoutAScrollView = arrayOfNulls<ScrollView>(1)
+    private val suggestLayoutARelativeLayout = arrayOfNulls<RelativeLayout>(1)
     override fun onHook() {
         //Source InstallAppProgress
         findClass("com.android.packageinstaller.oplus.InstallAppProgress").hook {
@@ -21,7 +21,7 @@ class RemoveInstallAds : YukiBaseHooker() {
                     suggestLayout[0] = field { name = "mSuggestLayoutA" }.get(instance).self as LinearLayout
                     suggestLayout[1] = field { name = "mSuggestLayoutB" }.get(instance).self as LinearLayout
                     suggestLayout[2] = field { name = "mSuggestLayoutC" }.get(instance).self as LinearLayout
-                    suggestLayoutAScrollView[0] = field { name = "mSuggestLayoutAScrollView" }.get(instance).self as ScrollView
+                    suggestLayoutARelativeLayout[0] = field { name = "mSuggestLayoutATitle" }.get(instance).self as RelativeLayout
                 }
             }.onNoSuchMemberFailure {
                 loggerD(msg = "NoSuchMember->InstallAppProgress->initView")
@@ -40,7 +40,7 @@ class RemoveInstallAds : YukiBaseHooker() {
                     suggestLayout[0]?.visibility = View.GONE
                     suggestLayout[1]?.visibility = View.GONE
                     suggestLayout[2]?.visibility = View.GONE
-                    suggestLayoutAScrollView[0]?.visibility = View.GONE
+                    suggestLayoutARelativeLayout[0]?.visibility = View.GONE
                 }
             }.onNoSuchMemberFailure {
                 loggerD(msg = "NoSuchMember->InstallAppProgress$1->handleMessage")

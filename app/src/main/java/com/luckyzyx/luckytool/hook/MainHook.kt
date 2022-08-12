@@ -4,13 +4,13 @@ import android.os.Build.VERSION.SDK_INT
 import com.highcapable.yukihookapi.annotation.xposed.InjectYukiHookWithXposed
 import com.highcapable.yukihookapi.hook.factory.configs
 import com.highcapable.yukihookapi.hook.factory.encase
+import com.highcapable.yukihookapi.hook.log.loggerD
 import com.highcapable.yukihookapi.hook.xposed.bridge.event.YukiXposedEvent
 import com.highcapable.yukihookapi.hook.xposed.proxy.IYukiHookXposedInit
 import com.luckyzyx.luckytool.hook.apps.CorePatch.CorePatchForR
 import com.luckyzyx.luckytool.hook.apps.CorePatch.CorePatchForS
 import com.luckyzyx.luckytool.utils.XposedPrefs
 import de.robv.android.xposed.IXposedHookZygoteInit
-import de.robv.android.xposed.XposedBridge
 import de.robv.android.xposed.callbacks.XC_LoadPackage
 
 @InjectYukiHookWithXposed
@@ -30,26 +30,29 @@ class MainHook : IYukiHookXposedInit {
         //系统框架
         loadSystem(HookAndroid())
         loadZygote(HookZygote())
-        //系统界面
-        loadApp("com.android.systemui", HookSystemUI())
+
+        //状态栏
+        loadApp(hooker = StatusBar())
+        //状态栏时钟
+        loadApp(hooker = StatusBarClock())
+        //桌面
+        loadApp(hooker = Desktop())
+        //锁屏
+        loadApp(hooker = LockScreen())
+        //截屏
+        loadApp(hooker = Screenshot())
+        //应用
+        loadApp(hooker = Application())
+
         //相机
         loadApp("com.oplus.camera", HookCamera())
-        //系统桌面
-        loadApp("com.android.launcher", HookLauncher())
-        //安全中心
-        loadApp("com.oplus.safecenter", HookSafeCenter())
-        //时钟
-        loadApp("com.coloros.alarmclock", HookAlarmClock())
         //主题商店
         loadApp("com.heytap.themestore", HookThemeStore())
         //云服务
         loadApp("com.heytap.cloud", HookCloudService())
         //游戏助手
         loadApp("com.oplus.games", HookOplusGames())
-        //截屏
-        loadApp("com.oplus.screenshot",HookScreenshot())
-        //应用包安装程序
-        loadApp("com.android.packageinstaller", HookPackageInstaller())
+
         //其他APP
         loadApp(hooker = HookOtherApp())
 
@@ -61,7 +64,7 @@ class MainHook : IYukiHookXposedInit {
                 when (SDK_INT) {
                     30 -> CorePatchForR().initZygote(startupParam)
                     31 -> CorePatchForS().initZygote(startupParam)
-                    else -> XposedBridge.log("[CorePatch] 不支持的Android版本: $SDK_INT")
+                    else -> loggerD(msg = "[CorePatch] 不支持的Android版本: $SDK_INT")
                 }
             }
         }
@@ -71,7 +74,7 @@ class MainHook : IYukiHookXposedInit {
                     when (SDK_INT) {
                         30 -> CorePatchForR().handleLoadPackage(lpparam)
                         31 -> CorePatchForS().handleLoadPackage(lpparam)
-                        else -> XposedBridge.log("[CorePatch] 不支持的Android版本: $SDK_INT")
+                        else -> loggerD(msg = "[CorePatch] 不支持的Android版本: $SDK_INT")
                     }
                 }
             }

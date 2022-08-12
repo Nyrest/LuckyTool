@@ -6,12 +6,14 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.util.TypedValue
 import android.widget.Toast
 import com.highcapable.yukihookapi.hook.factory.classOf
 import com.highcapable.yukihookapi.hook.factory.field
 import com.highcapable.yukihookapi.hook.factory.method
 import com.luckyzyx.luckytool.BuildConfig.*
 import com.luckyzyx.luckytool.R
+
 
 /**
  * try/catch函数
@@ -30,7 +32,7 @@ inline fun <T> safeOf(default: T, result: () -> T) = try {
  * @return [String]
  */
 val getColorOSVersion
-    get() = safeOf(default = "无法获取") {
+    get() = safeOf(default = "null") {
         classOf(name = "com.oplus.os.OplusBuild").let {
             it.field { name = "VERSIONS" }.ignoredError().get().array<String>()
                 .takeIf { e -> e.isNotEmpty() }
@@ -43,13 +45,13 @@ val getColorOSVersion
  * 写入SP xml文件内
  * @return [String]
  */
-fun getAppVersion(context: Context, packName: String, isCommit: Boolean): String = safeOf(default = "无法获取") {
+fun getAppVersion(context: Context, packName: String, isCommit: Boolean = false): String = safeOf(default = "null") {
     val packageManager = context.packageManager
     val packageInfo = packageManager.getPackageInfo(packName, 0)
-    val versionName = safeOf(default = "无法获取") { packageInfo.versionName }
-    val versionCode = safeOf(default = "无法获取") { packageInfo.longVersionCode }
+    val versionName = safeOf(default = "null") { packageInfo.versionName }
+    val versionCode = safeOf(default = "null") { packageInfo.longVersionCode }
     if (isCommit) {
-        val versionCommit = safeOf(default = "无法获取") {
+        val versionCommit = safeOf(default = "null") {
             packageManager.getApplicationInfo(packName, PackageManager.GET_META_DATA).metaData.getString("versionCommit")
         }
         SPUtils.putString(context, XposedPrefs, packName, versionCommit)
@@ -120,7 +122,7 @@ fun getFpsMode(context: Context): Array<String> {
         "    echo -e '@'\n" +
         "  fi\n" +
         "done"
-    val result = ShellUtils.execCommand(command, true, true).successMsg
+    val result = ShellUtils.execCommand(command, true, true).successMsg ?: return arrayOf("获取错误,请勿点击")
     return result.substring(0,result.length - 1).split("@").toMutableList().apply {
         add(context.getString(R.string.Restore_default_refresh_rate))
     }.toTypedArray()
@@ -174,3 +176,7 @@ fun setDesktopIcon(context: Context,value : Boolean){
         PackageManager.DONT_KILL_APP
     )
 }
+
+fun dp2px(context: Context,dp: Float) = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, context.resources.displayMetrics)
+
+fun sp2px(context: Context,sp: Int) = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp.toFloat(), context.resources.displayMetrics)

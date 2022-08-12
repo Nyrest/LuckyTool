@@ -39,8 +39,8 @@
 # 有了verbose这句话，混淆后就会生成映射文件
 # 包含有类名->混淆后类名的映射关系
 # 然后使用printmapping指定映射文件的名称
-#-verbose
-#-printmapping proguardMapping.txt
+-verbose
+-printmapping proguardMapping.txt
 
 # 指定混淆时采用的算法，后面的参数是一个过滤器
 # 这个过滤器是谷歌推荐的算法，一般不改变

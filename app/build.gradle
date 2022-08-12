@@ -16,15 +16,15 @@ android {
             keyPassword 'luckyzyx'
         }
     }
-    compileSdk 32
+    compileSdk 33
     def currentVersionCode = getVersionCode()
 
     defaultConfig {
         applicationId "com.luckyzyx.luckytool"
         minSdk 30
-        targetSdk 32
+        targetSdk 33
         versionCode currentVersionCode
-        versionName "1.4"
+        versionName "1.5beta3"
     }
 
     buildTypes {

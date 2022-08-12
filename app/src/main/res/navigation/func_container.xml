@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/func_container"
+    app:startDestination="@id/systemApp">
+
+    <fragment
+        android:id="@+id/systemApp"
+        android:name="com.luckyzyx.luckytool.ui.fragment.SystemApp"
+        android:label="SystemApp" >
+        <action
+            android:id="@+id/action_systemApp_to_screenshot"
+            app:destination="@id/screenshot"
+            app:enterAnim="@anim/fragment_enter"
+            app:exitAnim="@anim/fragment_exit"
+            app:popEnterAnim="@anim/fragment_enter_pop"
+            app:popExitAnim="@anim/fragment_exit_pop" />
+        <action
+            android:id="@+id/action_systemApp_to_cloudService"
+            app:destination="@id/cloudService"
+            app:enterAnim="@anim/fragment_enter"
+            app:exitAnim="@anim/fragment_exit"
+            app:popEnterAnim="@anim/fragment_enter_pop"
+            app:popExitAnim="@anim/fragment_exit_pop" />
+        <action
+            android:id="@+id/action_systemApp_to_lockScreen"
+            app:destination="@id/lockScreen"
+            app:enterAnim="@anim/fragment_enter"
+            app:exitAnim="@anim/fragment_exit"
+            app:popEnterAnim="@anim/fragment_enter_pop"
+            app:popExitAnim="@anim/fragment_exit_pop" />
+        <action
+            android:id="@+id/action_systemApp_to_statusBarClock"
+            app:destination="@id/statusBarClock"
+            app:enterAnim="@anim/fragment_enter"
+            app:exitAnim="@anim/fragment_exit"
+            app:popEnterAnim="@anim/fragment_enter_pop"
+            app:popExitAnim="@anim/fragment_exit_pop" />
+        <action
+            android:id="@+id/action_systemApp_to_system"
+            app:destination="@id/system"
+            app:enterAnim="@anim/fragment_enter"
+            app:exitAnim="@anim/fragment_exit"
+            app:popEnterAnim="@anim/fragment_enter_pop"
+            app:popExitAnim="@anim/fragment_exit_pop" />
+        <action
+            android:id="@+id/action_systemApp_to_camera"
+            app:destination="@id/camera"
+            app:enterAnim="@anim/fragment_enter"
+            app:exitAnim="@anim/fragment_exit"
+            app:popEnterAnim="@anim/fragment_enter_pop"
+            app:popExitAnim="@anim/fragment_exit_pop" />
+        <action
+            android:id="@+id/action_systemApp_to_themeStore"
+            app:destination="@id/themeStore"
+            app:enterAnim="@anim/fragment_enter"
+            app:exitAnim="@anim/fragment_exit"
+            app:popEnterAnim="@anim/fragment_enter_pop"
+            app:popExitAnim="@anim/fragment_exit_pop" />
+        <action
+            android:id="@+id/action_systemApp_to_oplusGames"
+            app:destination="@id/oplusGames"
+            app:enterAnim="@anim/fragment_enter"
+            app:exitAnim="@anim/fragment_exit"
+            app:popEnterAnim="@anim/fragment_enter_pop"
+            app:popExitAnim="@anim/fragment_exit_pop" />
+        <action
+            android:id="@+id/action_systemApp_to_statusBar"
+            app:destination="@id/statusBar"
+            app:enterAnim="@anim/fragment_enter"
+            app:exitAnim="@anim/fragment_exit"
+            app:popEnterAnim="@anim/fragment_enter_pop"
+            app:popExitAnim="@anim/fragment_exit_pop" />
+        <action
+            android:id="@+id/action_systemApp_to_application"
+            app:destination="@id/application"
+            app:enterAnim="@anim/fragment_enter"
+            app:exitAnim="@anim/fragment_exit"
+            app:popEnterAnim="@anim/fragment_enter_pop"
+            app:popExitAnim="@anim/fragment_exit_pop" />
+        <action
+            android:id="@+id/action_systemApp_to_desktop"
+            app:destination="@id/desktop"
+            app:enterAnim="@anim/fragment_enter"
+            app:exitAnim="@anim/fragment_exit"
+            app:popEnterAnim="@anim/fragment_enter_pop"
+            app:popExitAnim="@anim/fragment_exit_pop" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/otherApp"
+        android:name="com.luckyzyx.luckytool.ui.fragment.OtherApp"
+        android:label="OtherApp" >
+        <action
+            android:id="@+id/action_otherApp_to_everyimage"
+            app:destination="@id/everyimage"
+            app:enterAnim="@anim/fragment_enter"
+            app:exitAnim="@anim/fragment_exit"
+            app:popEnterAnim="@anim/fragment_enter_pop"
+            app:popExitAnim="@anim/fragment_exit_pop"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/system"
+        android:name="com.luckyzyx.luckytool.ui.fragment.System"
+        android:label="System" />
+    <fragment
+        android:id="@+id/statusBarClock"
+        android:name="com.luckyzyx.luckytool.ui.fragment.StatusBarClock"
+        android:label="StatusBarClock" />
+    <fragment
+        android:id="@+id/statusBar"
+        android:name="com.luckyzyx.luckytool.ui.fragment.StatusBar"
+        android:label="StatusBar" />
+    <fragment
+        android:id="@+id/desktop"
+        android:name="com.luckyzyx.luckytool.ui.fragment.Desktop"
+        android:label="Desktop" />
+    <fragment
+        android:id="@+id/lockScreen"
+        android:name="com.luckyzyx.luckytool.ui.fragment.LockScreen"
+        android:label="LockScreen" />
+    <fragment
+        android:id="@+id/screenshot"
+        android:name="com.luckyzyx.luckytool.ui.fragment.Screenshot"
+        android:label="Screenshot" />
+    <fragment
+        android:id="@+id/application"
+        android:name="com.luckyzyx.luckytool.ui.fragment.Application"
+        android:label="Application" />
+    <fragment
+        android:id="@+id/camera"
+        android:name="com.luckyzyx.luckytool.ui.fragment.Camera"
+        android:label="Camera" />
+    <fragment
+        android:id="@+id/oplusGames"
+        android:name="com.luckyzyx.luckytool.ui.fragment.OplusGames"
+        android:label="OplusGames" />
+
+    <fragment
+        android:id="@+id/cloudService"
+        android:name="com.luckyzyx.luckytool.ui.fragment.CloudService"
+        android:label="CloudService" />
+    <fragment
+        android:id="@+id/themeStore"
+        android:name="com.luckyzyx.luckytool.ui.fragment.ThemeStore"
+        android:label="ThemeStore" />
+
+    <fragment
+        android:id="@+id/everyimage"
+        android:name="com.luckyzyx.luckytool.ui.fragment.Everyimage"
+        android:label="Everyimage" />
+
+</navigation>

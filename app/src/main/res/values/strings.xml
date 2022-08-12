@@ -34,6 +34,29 @@
     <string name="github_repo">Github Repo</string>
     <string name="github_repo_summer">Thank you for clicking Star!</string>
 
+
+    <!-- Check Lsposed -->
+    <string name="unsupported_xposed">Please make sure Xposed API >= 93 and the module has the appropriate scope checked \n If the above has been done, try to click OK to exit the app, and then try again</string>
+
+    <!-- Menu -->
+    <string name="menu_reboot">Reboot Menu</string>
+    <string name="menu_settings">Settings</string>
+    <string name="restart_scope">Restart Scope</string>
+    <string name="restart_scope_message">Sure you want to restart all scopes except the system framework?\nAvailable when the module is not in effect!</string>
+    <string name="reboot">Reboot</string>
+    <string name="reboot_shutdown">Shutdown</string>
+    <string name="reboot_recovery">Recovery</string>
+    <string name="reboot_bootloader">BootLoader</string>
+    <string name="menu_versioninfo">Version Info</string>
+    <string name="scope_version_info">Scope version information</string>
+
+    <!-- Xposed -->
+    <string name="system_app">System App</string>
+    <string name="other_app">Other App</string>
+    <string name="restart_scope_summer">Top right menu restart scope</string>
+    <string name="version_first">Version:</string>
+
+    <string name="Android">System related</string>
     <!-- CorePatch -->
     <string name="corepatch">CorePatch</string>
     <string name="corepatch_summer">Remove installation restrictions, support Android 10–12</string>
@@ -49,86 +72,71 @@
     <string name="enhancedMode_summary">It can solve some internal integrity check of the app, generally do not need to open</string>
     <string name="usepresig_warn">!! All installers can overwrite installed apps!!! Please be careful when installing unknown installers</string>
 
-    <!-- Check Lsposed -->
-    <string name="unsupported_xposed">Please make sure Xposed API >= 93 and the module has the appropriate scope checked \n If the above has been done, try to click OK to exit the app, and then try again</string>
 
-    <!-- Menu -->
-    <string name="menu_reboot">Reboot Menu</string>
-    <string name="menu_settings">Settings</string>
-    <string name="restart_scope">Restart Scope</string>
-    <string name="restart_scope_message">Sure you want to restart all scopes except the system framework?\nAvailable when the module is not in effect!</string>
-    <string name="reboot">Reboot</string>
-    <string name="reboot_shutdown">Shutdown</string>
-    <string name="reboot_recovery">Recovery</string>
-    <string name="reboot_bootloader">BootLoader</string>
+    <string name="StatusBar">StatusBar related</string>
 
-    <!-- Colors -->
+    <string name="StatusBarNotice">Statusbar Notifications</string>
+    <string name="StatusBarNotice_summer">Status bar notification related</string>
 
-    <!-- Xposed -->
-    <string name="system_app">System App</string>
-    <string name="other_app">Other App</string>
-    <string name="version_summer_first">"Version: "</string>
-    <string name="restart_scope_summer">Top right menu restart scope</string>
-
-    <string name="Android">SystemFramework</string>
-    <string name="android_summer">Try rebooting if it doesn\'t work</string>
+    <string name="remove_statusbar_devmode">Remove status bar developer option notifications</string>
+    <string name="remove_charging_completed">Remove charging completion notification</string>
     <string name="remove_statusbar_top_notification">Remove upper notification from status bar app</string>
     <string name="remove_statusbar_top_notification_summer">Remove status bar \"This app is displayed on top of other apps\"</string>
-    <string name="disable_flag_secure">Disable FLAG_SECURE</string>
-    <string name="disable_flag_secure_summer">Enabling screenshots, screen sharing and recording in apps that normally wouldn\'t allow it,add the corresponding APP scope</string>
-    <string name="remove_system_screenshot_delay">Remove system screenshot delay</string>
-    <string name="remove_system_screenshot_delay_summer">The first screenshot may not work</string>
     <string name="remove_vpn_active_notification">Remove VPN Activated Notification</string>
     <string name="remove_vpn_active_notification_summer">Remove statusbar VPN activated notification</string>
 
-    <string name="SystemUI">SystemUI</string>
-    <string name="StatusBarClock">StatusBarClock</string>
-    <string name="StatusBarClock_summer">Status bar clock related</string>
+    <string name="StatusBarClock">StatusBar Clock</string>
+    <string name="TopStatusBarClock">Top StatusBar Clock</string>
+    <string name="TopStatusBarClock_summer">Top status bar clock related</string>
+    <string name="statusbar_clock_enable">Status bar clock master switch</string>
     <string name="statusbar_clock_show_second">Status bar clock showing seconds</string>
     <string name="statusbar_clock_show_period">Status bar clock shows time period</string>
+
+    <string name="DropDownStatusBarClock">Drop-down StatusBar Clock</string>
+    <string name="DropDownStatusBarClock_summer">Drop-down status bar clock related</string>
     <string name="remove_statusbar_clock_redone">Remove drop-down status bar clock red 1</string>
     <string name="statusbar_dropdown_clock_show_second">Drop-down status bar clock showing seconds</string>
+
+    <string name="StatusBarIcon">StatusBarIcon</string>
+    <string name="StatusBarIcon_summer">Status bar icon related</string>
+    <string name="set_network_speed">Set status bar web speed refresh rate 1s</string>
+    <string name="remove_statusbar_securepayment_icon">Remove status bar payment protection icon</string>
     <string name="remove_statusbar_battery_percent">Remove the battery percentage sign from the statusbar</string>
     <string name="remove_statusbar_user_switcher">Removed drop-down status bar multi-user icon</string>
-
-    <string name="StatusBarNotice">StatusBar</string>
-    <string name="StatusBarNotice_summer">Top status bar and drop-down status bar</string>
-    <string name="remove_statusbar_devmode">Remove status bar developer option notifications</string>
-    <string name="remove_charging_completed">Remove charging completion notification</string>
-    <string name="set_network_speed">Set status bar web speed refresh rate 1s</string>
-    <string name="remove_statusbar_bottom_networkwarn">Remove network warning at the bottom of the drop-down status bar</string>
-    <string name="remove_statusbar_securepayment_icon">Remove status bar payment protection icon</string>
 
     <string name="StatusBarTiles">Statusbar tiles</string>
     <string name="StatusBarTiles_summer">Drop-down status bar tiles related</string>
     <string name="set_statusbar_tiles_column">Set the number of tile columns in the status bar</string>
     <string name="set_statusbar_tiles_column_summer">Click to set the number of tile columns in the status bar</string>
     <string name="set_statusbar_tiles_column_dialogmessage">\n\nRestore system default when input box is empty\nMust be entered in English\nExample:\nNumber of vertical columns @ Number of horizontal columns\n4@6\nIt means the vertical screen state 4 columns horizontal screen 6 columns\nand the maximum number must not exceed 9</string>
+    <string name="remove_statusbar_bottom_networkwarn">Remove network warning at bottom of tile</string>
 
-    <string name="LockScreen">Lock Screen</string>
-    <string name="LockScreen_summer">Lock Screen Related</string>
+    <string name="LockScreen">Lock Screen related</string>
     <string name="remove_lock_screen_redone">Remove lock screen clock red 1</string>
     <string name="remove_lock_screen_camera">Remove the camera from the bottom right corner of the lock screen</string>
     <string name="set_lock_screen_textview_color">Set the lock screen component font color</string>
     <string name="set_lock_screen_textview_color_summer">Time, date, week, etc. font color</string>
 
-    <string name="Launcher">Launcher</string>
-    <string name="unlock_task_locks">Unlock the number of background tasks locked</string>
-    <string name="remove_appicon_dot">Remove App icon blue dot</string>
+    <string name="Desktop">Desktop related</string>
+    <string name="remove_alarmclock_widget_redone">Remove Desktop Clock Component Red One</string>
+    <string name="remove_appicon_dot">Remove the dot from the app icon</string>
     <string name="launcher_layout_row_colume">Set the number of desktop layout rows</string>
     <string name="launcher_layout_row_colume_summer">Use with caution, too much value will lead to confusion in the layout</string>
     <string name="launcher_layout_row_colume_message">\n\nEnter the values you need for the layout\nMust enter the values and symbols in the box in the English state\nIf you don\'t listen to the advice, then you will be responsible for the consequences\nFor example:\n3,4@5,6\nMinimum number of columns, maximum number of columns@Minimum number of rows, maximum number of rows\nThen your layout should be 3x5,3x6,4x5,4x6\nRestore system defaults if there are no characters in the input box</string>
 
-    <string name="AlarmClock">AlarmClock</string>
-    <string name="remove_alarmclock_widget_redone">Remove Desktop Clock Component Red One</string>
+    <string name="Application">Application related</string>
+    <string name="ApplyOtherRestrictions">Apply other restrictions</string>
+    <string name="unlock_task_locks">Unlock the number of background tasks locked</string>
+    <string name="unlock_startup_limit">Unlock the number of self-starts</string>
+    <string name="unlock_startup_limit_summer">Unlock the limit on the number of application self-starts</string>
 
-    <string name="PackageInstaller">Package Installer</string>
+    <string name="AppInstallationRelated">App installation related</string>
     <string name="skip_apk_scan">Skip Apk scan</string>
     <string name="skip_apk_scan_summer">Apk virus scan related</string>
     <string name="allow_downgrade_install">Allow downgrade installation</string>
     <string name="allow_downgrade_install_summer">Remove low/identical version warnings, etc., must be used with core crack</string>
     <string name="remove_install_ads">Remove installation completion ads</string>
-    <string name="remove_install_ads_summer">Security app recommendations / software store ads</string>
+    <string name="remove_install_ads_summer">Remember to turn off Settings -> Safe App Recommendations</string>
     <string name="replase_aosp_installer">Replace the AOSP installer</string>
     <string name="replase_aosp_installer_summer">Replace with Google native installer</string>
 
@@ -144,20 +152,20 @@
     <string name="unlock_themestore_vip">Unlock some features VIP</string>
     <string name="unlock_themestore_vip_summer">Unlock some functions, you can try it yourself</string>
 
-    <string name="SafeCenter">Safe Center</string>
-    <string name="unlock_startup_limit">Unlock the number of self-starts</string>
-    <string name="unlock_startup_limit_summer">Unlock the limit on the number of application self-starts</string>
+    <string name="Camera">Camera</string>
+    <string name="remove_watermark_word_limit">Remove watermark word limit</string>
+
+    <string name="Screenshot">Screenshot related</string>
+    <string name="remove_screenshot_privacy_limit">Remove screenshot privacy restrictions</string>
+    <string name="remove_screenshot_privacy_limit_summer">Remove the restriction that prevents screenshots from being taken due to privacy issues, must be used with Disable FLAG_SECURE.</string>
+    <string name="disable_flag_secure">Disable FLAG_SECURE</string>
+    <string name="disable_flag_secure_summer">Enabling screenshots, screen sharing and recording in apps that normally wouldn\'t allow it,add the corresponding APP scope</string>
+    <string name="remove_system_screenshot_delay">Remove system screenshot delay</string>
+    <string name="remove_system_screenshot_delay_summer">The first screenshot may not work</string>
 
     <string name="Everyimage">So much anime</string>
     <string name="skip_startup_page">Skip start page</string>
     <string name="vip_download">Download original image</string>
-
-    <string name="Camera">Camera</string>
-    <string name="remove_watermark_word_limit">Remove watermark word limit</string>
-
-    <string name="Screenshot">Screenshot</string>
-    <string name="remove_screenshot_privacy_limit">Remove screenshot privacy restrictions</string>
-    <string name="remove_screenshot_privacy_limit_summer">Remove the restriction that prevents screenshots from being taken due to privacy issues, must be used with Disable FLAG_SECURE.</string>
 
     <!-- Home -->
     <string name="fps_title">Force refresh rate</string>
@@ -185,8 +193,5 @@
     <string name="game_assistant_page">Game Assistant Page</string>
     <string name="developer_option">Developer Options</string>
     <string name="display_refresh_rate_cap">Display refresh rate cap</string>
-
-
-
 
 </resources>
