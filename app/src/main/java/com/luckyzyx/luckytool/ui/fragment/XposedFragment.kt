@@ -15,10 +15,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.preference.EditTextPreference
-import androidx.preference.Preference
-import androidx.preference.PreferenceCategory
-import androidx.preference.SwitchPreference
+import androidx.preference.*
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.tabs.TabLayout
@@ -139,12 +136,36 @@ class SystemApp : ModulePreferenceFragment() {
             )
             addPreference(
                 Preference(requireActivity()).apply {
-                    title = getString(R.string.StatusBar)
-                    summary = getString(R.string.StatusBarNotice)+","+getString(R.string.StatusBarIcon)+","+getString(R.string.StatusBarTiles)
-                    key = "StatusBar"
+                    title = getString(R.string.StatusBarNotice)
+                    summary = getString(R.string.remove_statusbar_top_notification)+","+getString(R.string.remove_charging_completed)
+                    key = "StatusBarNotice"
                     setIcon(R.mipmap.systemui_icon)
                     onPreferenceClickListener = Preference.OnPreferenceClickListener {
-                        requireActivity().findNavController(R.id.xposed_fragment_container).navigate(R.id.action_systemApp_to_statusBar)
+                        requireActivity().findNavController(R.id.xposed_fragment_container).navigate(R.id.action_systemApp_to_statusBarNotice)
+                        true
+                    }
+                }
+            )
+            addPreference(
+                Preference(requireActivity()).apply {
+                    title = getString(R.string.StatusBarIcon)
+                    summary = getString(R.string.remove_statusbar_battery_percent)+","+getString(R.string.remove_statusbar_user_switcher)
+                    key = "StatusBarIcon"
+                    setIcon(R.mipmap.systemui_icon)
+                    onPreferenceClickListener = Preference.OnPreferenceClickListener {
+                        requireActivity().findNavController(R.id.xposed_fragment_container).navigate(R.id.action_systemApp_to_statusBarIcon)
+                        true
+                    }
+                }
+            )
+            addPreference(
+                Preference(requireActivity()).apply {
+                    title = getString(R.string.StatusBarTiles)
+                    summary = getString(R.string.tile_unexpanded_columns)+","+getString(R.string.tile_expanded_columns_vertical)
+                    key = "StatusBarTiles"
+                    setIcon(R.mipmap.systemui_icon)
+                    onPreferenceClickListener = Preference.OnPreferenceClickListener {
+                        requireActivity().findNavController(R.id.xposed_fragment_container).navigate(R.id.action_systemApp_to_statusBarTile)
                         true
                     }
                 }
@@ -361,18 +382,10 @@ class System : ModulePreferenceFragment(), OnSharedPreferenceChangeListener {
     }
 }
 
-class StatusBar : ModulePreferenceFragment() {
+class StatusBarNotice : ModulePreferenceFragment() {
     override fun onCreatePreferencesInModuleApp(savedInstanceState: Bundle?, rootKey: String?) {
         preferenceManager.sharedPreferencesName = XposedPrefs
         preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
-            addPreference(
-                PreferenceCategory(requireActivity()).apply {
-                    title = getString(R.string.StatusBarNotice)
-                    summary = getString(R.string.StatusBarNotice_summer)
-                    key = "StatusBarNotice"
-                    isIconSpaceReserved = false
-                }
-            )
             addPreference(
                 SwitchPreference(requireActivity()).apply {
                     title = getString(R.string.remove_statusbar_top_notification)
@@ -408,13 +421,22 @@ class StatusBar : ModulePreferenceFragment() {
                 }
             )
             addPreference(
-                PreferenceCategory(requireActivity()).apply {
-                    title = getString(R.string.StatusBarIcon)
-                    summary = getString(R.string.StatusBarIcon_summer)
-                    key = "StatusBarIcon"
+                SwitchPreference(requireActivity()).apply {
+                    title = getString(R.string.remove_statusbar_bottom_networkwarn)
+                    summary = getString(R.string.remove_statusbar_bottom_networkwarn_summer)
+                    key = "remove_statusbar_bottom_networkwarn"
+                    setDefaultValue(false)
                     isIconSpaceReserved = false
                 }
             )
+        }
+    }
+}
+
+class StatusBarIcon : ModulePreferenceFragment(){
+    override fun onCreatePreferencesInModuleApp(savedInstanceState: Bundle?, rootKey: String?) {
+        preferenceManager.sharedPreferencesName = XposedPrefs
+        preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
             addPreference(
                 SwitchPreference(requireActivity()).apply {
                     title = getString(R.string.remove_statusbar_battery_percent)
@@ -447,29 +469,58 @@ class StatusBar : ModulePreferenceFragment() {
                     isIconSpaceReserved = false
                 }
             )
-            addPreference(
-                PreferenceCategory(requireActivity()).apply {
-                    title = getString(R.string.StatusBarTiles)
-                    summary = getString(R.string.StatusBarTiles_summer)
-                    key = "StatusBarTiles"
-                    isIconSpaceReserved = false
-                }
-            )
+        }
+    }
+}
+
+class StatusBarTile : ModulePreferenceFragment(){
+    override fun onCreatePreferencesInModuleApp(savedInstanceState: Bundle?, rootKey: String?) {
+        preferenceManager.sharedPreferencesName = XposedPrefs
+        preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
             addPreference(
                 SwitchPreference(requireActivity()).apply {
-                    title = getString(R.string.remove_statusbar_bottom_networkwarn)
-                    key = "remove_statusbar_bottom_networkwarn"
+                    title = getString(R.string.statusbar_tile_enable)
+                    key = "statusbar_tile_enable"
                     setDefaultValue(false)
                     isIconSpaceReserved = false
                 }
             )
             addPreference(
-                EditTextPreference(requireActivity()).apply {
-                    title = getString(R.string.set_statusbar_tiles_column)
-                    summary = getString(R.string.set_statusbar_tiles_column_summer)
-                    key = "set_statusbar_tiles_column"
-                    dialogMessage = getString(R.string.set_statusbar_tiles_column_dialogmessage)
-                    setDefaultValue("")
+                SeekBarPreference(requireActivity()).apply {
+                    title = getString(R.string.tile_unexpanded_columns)
+                    key = "tile_unexpanded_columns"
+                    setDefaultValue(6)
+                    max = 6
+                    min = 1
+                    seekBarIncrement = 1
+                    showSeekBarValue = true
+                    updatesContinuously = false
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SeekBarPreference(requireActivity()).apply {
+                    title = getString(R.string.tile_expanded_columns_vertical)
+                    key = "tile_expanded_columns_vertical"
+                    setDefaultValue(4)
+                    max = 6
+                    min = 1
+                    seekBarIncrement = 1
+                    showSeekBarValue = true
+                    updatesContinuously = false
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SeekBarPreference(requireActivity()).apply {
+                    title = getString(R.string.tile_expanded_columns_horizontal)
+                    key = "tile_expanded_columns_horizontal"
+                    setDefaultValue(6)
+                    max = 9
+                    min = 1
+                    seekBarIncrement = 1
+                    showSeekBarValue = true
+                    updatesContinuously = false
                     isIconSpaceReserved = false
                 }
             )
@@ -564,13 +615,43 @@ class Desktop : ModulePreferenceFragment() {
                 }
             )
             addPreference(
-                EditTextPreference(requireActivity()).apply {
-                    title = getString(R.string.launcher_layout_row_colume)
-                    summary = getString(R.string.launcher_layout_row_colume_summer)
-                    dialogTitle = title
-                    dialogMessage = getString(R.string.launcher_layout_row_colume_message)
-                    key = "launcher_layout_row_colume"
-                    setDefaultValue("")
+                PreferenceCategory(requireActivity()).apply {
+                    title = getString(R.string.launcher_layout_related)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    title = getString(R.string.launcher_layout_enable)
+                    summary = getString(R.string.launcher_layout_row_colume)
+                    key = "launcher_layout_enable"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SeekBarPreference(requireActivity()).apply {
+                    title = getString(R.string.launcher_layout_max_rows)
+                    key = "launcher_layout_max_rows"
+                    setDefaultValue(6)
+                    max = 7
+                    min = 1
+                    seekBarIncrement = 1
+                    showSeekBarValue = true
+                    updatesContinuously = false
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SeekBarPreference(requireActivity()).apply {
+                    title = getString(R.string.launcher_layout_max_columns)
+                    key = "launcher_layout_max_columns"
+                    setDefaultValue(4)
+                    max = 6
+                    min = 1
+                    seekBarIncrement = 1
+                    showSeekBarValue = true
+                    updatesContinuously = false
                     isIconSpaceReserved = false
                 }
             )

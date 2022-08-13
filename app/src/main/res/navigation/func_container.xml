@@ -65,13 +65,6 @@
             app:popEnterAnim="@anim/fragment_enter_pop"
             app:popExitAnim="@anim/fragment_exit_pop" />
         <action
-            android:id="@+id/action_systemApp_to_statusBar"
-            app:destination="@id/statusBar"
-            app:enterAnim="@anim/fragment_enter"
-            app:exitAnim="@anim/fragment_exit"
-            app:popEnterAnim="@anim/fragment_enter_pop"
-            app:popExitAnim="@anim/fragment_exit_pop" />
-        <action
             android:id="@+id/action_systemApp_to_application"
             app:destination="@id/application"
             app:enterAnim="@anim/fragment_enter"
@@ -81,6 +74,27 @@
         <action
             android:id="@+id/action_systemApp_to_desktop"
             app:destination="@id/desktop"
+            app:enterAnim="@anim/fragment_enter"
+            app:exitAnim="@anim/fragment_exit"
+            app:popEnterAnim="@anim/fragment_enter_pop"
+            app:popExitAnim="@anim/fragment_exit_pop" />
+        <action
+            android:id="@+id/action_systemApp_to_statusBarIcon"
+            app:destination="@id/statusBarIcon"
+            app:enterAnim="@anim/fragment_enter"
+            app:exitAnim="@anim/fragment_exit"
+            app:popEnterAnim="@anim/fragment_enter_pop"
+            app:popExitAnim="@anim/fragment_exit_pop" />
+        <action
+            android:id="@+id/action_systemApp_to_statusBarTile"
+            app:destination="@id/statusBarTile"
+            app:enterAnim="@anim/fragment_enter"
+            app:exitAnim="@anim/fragment_exit"
+            app:popEnterAnim="@anim/fragment_enter_pop"
+            app:popExitAnim="@anim/fragment_exit_pop" />
+        <action
+            android:id="@+id/action_systemApp_to_statusBarNotice"
+            app:destination="@id/statusBarNotice"
             app:enterAnim="@anim/fragment_enter"
             app:exitAnim="@anim/fragment_exit"
             app:popEnterAnim="@anim/fragment_enter_pop"
@@ -105,13 +119,21 @@
         android:name="com.luckyzyx.luckytool.ui.fragment.System"
         android:label="System" />
     <fragment
+        android:id="@+id/statusBarNotice"
+        android:name="com.luckyzyx.luckytool.ui.fragment.StatusBarNotice"
+        android:label="StatusBarNotice" />
+    <fragment
+        android:id="@+id/statusBarIcon"
+        android:name="com.luckyzyx.luckytool.ui.fragment.StatusBarIcon"
+        android:label="StatusBarIcon" />
+    <fragment
+        android:id="@+id/statusBarTile"
+        android:name="com.luckyzyx.luckytool.ui.fragment.StatusBarTile"
+        android:label="StatusBarTile" />
+    <fragment
         android:id="@+id/statusBarClock"
         android:name="com.luckyzyx.luckytool.ui.fragment.StatusBarClock"
         android:label="StatusBarClock" />
-    <fragment
-        android:id="@+id/statusBar"
-        android:name="com.luckyzyx.luckytool.ui.fragment.StatusBar"
-        android:label="StatusBar" />
     <fragment
         android:id="@+id/desktop"
         android:name="com.luckyzyx.luckytool.ui.fragment.Desktop"

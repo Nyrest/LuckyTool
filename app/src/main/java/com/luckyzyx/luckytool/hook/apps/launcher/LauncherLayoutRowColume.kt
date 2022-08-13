@@ -3,7 +3,6 @@ package com.luckyzyx.luckytool.hook.apps.launcher
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 import com.highcapable.yukihookapi.hook.type.java.IntArrayClass
 import com.luckyzyx.luckytool.utils.XposedPrefs
-import java.util.stream.Collectors
 
 class LauncherLayoutRowColume : YukiBaseHooker() {
     override fun onHook() {
@@ -16,10 +15,8 @@ class LauncherLayoutRowColume : YukiBaseHooker() {
                 replaceToTrue()
             }
         }
-        val getStr = prefs(XposedPrefs).getString("launcher_layout_row_colume","")
-        val splitStr = getStr.split("@", limit = 2)
-        val colume = splitStr[0].split(",").stream().map(Integer::parseInt).collect(Collectors.toList()).toIntArray()
-        val row = splitStr[1].split(",").stream().map(Integer::parseInt).collect(Collectors.toList()).toIntArray()
+        val maxRows = prefs(XposedPrefs).getInt("launcher_layout_max_rows",6)
+        val maxColumns = prefs(XposedPrefs).getInt("launcher_layout_max_columns",4)
         //Source ToggleBarLayoutAdapter
         findClass("com.android.launcher.togglebar.adapter.ToggleBarLayoutAdapter").hook {
             injectMember {
@@ -30,11 +27,11 @@ class LauncherLayoutRowColume : YukiBaseHooker() {
                     field {
                         name = "MIN_MAX_COLUMN"
                         type = IntArrayClass
-                    }.get().set(colume)
+                    }.get().cast<IntArray>()?.set(1,maxColumns)
                     field {
                         name = "MIN_MAX_ROW"
                         type = IntArrayClass
-                    }.get().set(row)
+                    }.get().cast<IntArray>()?.set(1,maxRows)
                 }
             }
         }

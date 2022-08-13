@@ -21,7 +21,7 @@ class Desktop : YukiBaseHooker() {
                 RemoveAppUpdateDot()
             )
             //设置桌面布局行和列
-            if (prefs(XposedPrefs).getString("launcher_layout_row_colume","") != "") loadHooker(
+            if (prefs(XposedPrefs).getBoolean("launcher_layout_enable",false)) loadHooker(
                 LauncherLayoutRowColume()
             )
         }

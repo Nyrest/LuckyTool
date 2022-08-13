@@ -73,15 +73,12 @@
     <string name="enhancedMode_summary">可以解决一些App内部的完整性校验,一般不需要开启</string>
     <string name="usepresig_warn">!!所有安装包可以覆盖已安装的App!!\n安装未知的安装包时请务必小心</string>
 
-    <string name="StatusBar">状态栏相关</string>
-
     <string name="StatusBarClock">状态栏时钟</string>
     <string name="TopStatusBarClock">顶部状态栏时钟</string>
     <string name="TopStatusBarClock_summer">顶部状态栏时钟相关</string>
     <string name="statusbar_clock_enable">状态栏时钟总开关</string>
     <string name="statusbar_clock_show_second">状态栏时钟显示秒</string>
     <string name="statusbar_clock_show_period">状态栏时钟显示时段</string>
-
     <string name="DropDownStatusBarClock">下拉状态栏时钟</string>
     <string name="DropDownStatusBarClock_summer">下拉状态栏时钟相关</string>
     <string name="remove_statusbar_clock_redone">移除下拉状态栏时钟红1</string>
@@ -95,6 +92,8 @@
     <string name="remove_statusbar_top_notification_summer">移除状态栏“此应用在其他应用上层显示”</string>
     <string name="remove_vpn_active_notification">移除VPN已激活通知</string>
     <string name="remove_vpn_active_notification_summer">移除状态栏VPN已激活通知</string>
+    <string name="remove_statusbar_bottom_networkwarn">移除状态栏底部网络警告</string>
+    <string name="remove_statusbar_bottom_networkwarn_summer">移除下拉状态栏展开时最底部的网络信息</string>
 
     <string name="StatusBarIcon">状态栏图标</string>
     <string name="StatusBarIcon_summer">状态栏图标相关</string>
@@ -105,10 +104,10 @@
 
     <string name="StatusBarTiles">状态栏磁贴</string>
     <string name="StatusBarTiles_summer">下拉状态栏磁贴相关</string>
-    <string name="set_statusbar_tiles_column">设置状态栏磁贴列数</string>
-    <string name="set_statusbar_tiles_column_summer">点击设置状态栏磁贴列数</string>
-    <string name="set_statusbar_tiles_column_dialogmessage">\n\n输入框为空时恢复系统默认设置\n必须在英文状态下输入\n例如:\n竖屏列数@横屏列数\n4@6\n它表示竖屏状态4列横屏6列\n并且数字最大不可超过9</string>
-    <string name="remove_statusbar_bottom_networkwarn">移除磁贴底部网络警告</string>
+    <string name="statusbar_tile_enable">状态栏磁贴总开关</string>
+    <string name="tile_unexpanded_columns">未展开磁贴列数</string>
+    <string name="tile_expanded_columns_vertical">展开磁贴列数(竖屏)</string>
+    <string name="tile_expanded_columns_horizontal">展开磁贴列数(横屏)</string>
 
     <string name="LockScreen">锁屏相关</string>
     <string name="remove_lock_screen_redone">移除锁屏时钟红1</string>
@@ -119,9 +118,11 @@
     <string name="Desktop">桌面相关</string>
     <string name="remove_alarmclock_widget_redone">移除桌面时钟组件红一</string>
     <string name="remove_appicon_dot">移除APP图标圆点</string>
+    <string name="launcher_layout_related">桌面布局相关</string>
     <string name="launcher_layout_row_colume">设置桌面布局行列数</string>
-    <string name="launcher_layout_row_colume_summer">慎重使用,数值过大会导致布局混乱</string>
-    <string name="launcher_layout_row_colume_message">\n\n输入你需要的布局数值\n必须在英文状态下输入框内的数值和符号\n如果你不听劝告,那后果将由你自己负责\n例如:\n3,4@5,6\n最小列数,最大列数@最小行数,最大行数\n那你的布局应该为3x5,3x6,4x5,4x6\n如果输入框里没有任何字符则恢复系统默认设置</string>
+    <string name="launcher_layout_enable">桌面图标布局总开关</string>
+    <string name="launcher_layout_max_rows">桌面布局最大行数</string>
+    <string name="launcher_layout_max_columns">桌面布局最大列数</string>
 
     <string name="Application">应用相关</string>
     <string name="ApplyOtherRestrictions">应用其他限制</string>

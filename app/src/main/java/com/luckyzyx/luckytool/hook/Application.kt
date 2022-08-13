@@ -36,19 +36,13 @@ class Application : YukiBaseHooker() {
             if (prefs(XposedPrefs).getBoolean("skip_apk_scan", false)) loadHooker(SkipApkScan())
 
             //低/相同版本警告
-            if (prefs(XposedPrefs).getBoolean("allow_downgrade_install",false)) loadHooker(
-                AllowReplaceInstall()
-            )
+            if (prefs(XposedPrefs).getBoolean("allow_downgrade_install",false)) loadHooker(AllowReplaceInstall())
 
             //移除安装完成广告
-            if (prefs(XposedPrefs).getBoolean("remove_install_ads",false)) loadHooker(
-                RemoveInstallAds()
-            )
+            if (prefs(XposedPrefs).getBoolean("remove_install_ads",false)) loadHooker(RemoveInstallAds())
 
             //ColorOS安装器替换为原生安装器
-            if (prefs(XposedPrefs).getBoolean("replase_aosp_installer",false)) loadHooker(
-                ReplaseAospInstaller()
-            )
+            if (prefs(XposedPrefs).getBoolean("replase_aosp_installer",false)) loadHooker(ReplaseAospInstaller())
         }
     }
 }

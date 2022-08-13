@@ -4,7 +4,8 @@ If it doesn't work or there are problems, please submit issues with the scope ap
 若不生效或出现问题请带上作用域apk和log提交issues或联系作者
 
 ### 1.5
-targetSDK提升到33,整理XP页面与逻辑,适配部分ColorOS13
+targetSDK upgrade to 33, organize XP pages and logic, adapt ColorOS13 self-boot restrictions, rebuild tiles and desktop layout settings
+targetSDK提升到33,整理XP页面与逻辑,适配ColorOS13自启限制,重建磁贴和桌面布局设置项
 
 ### 1.4
 Added and removed VPN notifications, added the setting of the number of tiles in the status bar, and fixed the problem of some functions taking effect

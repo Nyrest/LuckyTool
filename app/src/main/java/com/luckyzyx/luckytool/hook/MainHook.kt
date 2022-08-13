@@ -31,8 +31,12 @@ class MainHook : IYukiHookXposedInit {
         loadSystem(HookAndroid())
         loadZygote(HookZygote())
 
-        //状态栏
-        loadApp(hooker = StatusBar())
+        //状态栏通知
+        loadApp(hooker = StatusBarNotice())
+        //状态栏图标
+        loadApp(hooker = StatusBarIcon())
+        //状态栏磁贴
+        loadApp(hooker = StatusBarTiles())
         //状态栏时钟
         loadApp(hooker = StatusBarClock())
         //桌面
