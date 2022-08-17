@@ -12,7 +12,6 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.*
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.preference.*
@@ -35,8 +34,6 @@ class HomeFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentHomeBinding.inflate(inflater)
-        val toolbar = binding.toolbar
-        (activity as AppCompatActivity).setSupportActionBar(toolbar)
         setHasOptionsMenu(true)
         return binding.root
     }
@@ -45,7 +42,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        enableModule = SPUtils.getBoolean(requireActivity(), XposedPrefs,"enable_module",false)
+        enableModule = requireActivity().getBoolean(XposedPrefs,"enable_module",false)
 
         if (YukiHookAPI.Status.isXposedModuleActive && enableModule){
             binding.statusIcon.setImageResource(R.drawable.ic_round_check_24)
@@ -63,10 +60,11 @@ class HomeFragment : Fragment() {
         binding.enableModule.apply {
             text = context.getString(R.string.enable_module)
             isChecked = enableModule
-        }.setOnCheckedChangeListener { buttonView, isChecked ->
-            if (buttonView.isPressed) {
-                SPUtils.putBoolean(requireActivity(), XposedPrefs,"enable_module",isChecked)
-                (activity as MainActivity).restart()
+            setOnCheckedChangeListener { buttonView, isChecked ->
+                if (buttonView.isPressed) {
+                    requireActivity().putBoolean(XposedPrefs, "enable_module", isChecked)
+                    (activity as MainActivity).restart()
+                }
             }
         }
         binding.fpsTitle.text = getString(R.string.fps_title)
@@ -242,7 +240,7 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
                     setSummary(R.string.open_source_summer)
                     isIconSpaceReserved = false
                     onPreferenceClickListener = Preference.OnPreferenceClickListener {
-                        requireActivity().findNavController(R.id.nav_host_fragment_container).navigate(R.id.action_settingsFragment_to_aboutFragment)
+                        requireActivity().findNavController(R.id.nav_host_fragment_container).navigate(R.id.action_settingsFragment_to_sourceFragment)
                         true
                     }
                 }
@@ -254,7 +252,6 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
         if (key == "use_dynamic_color") (activity as MainActivity).restart()
         if (key == "dark_theme") (activity as MainActivity).restart()
         if (key == "hide_desktop_appicon") sharedPreferences?.let { setDesktopIcon(requireActivity(), it.getBoolean("hide_desktop_appicon",false)) }
-
     }
 
     override fun onResume() {
@@ -268,7 +265,7 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
     }
 }
 
-class AboutFragment : ModulePreferenceFragment() {
+class SourceFragment : ModulePreferenceFragment() {
     override fun onCreatePreferencesInModuleApp(savedInstanceState: Bundle?, rootKey: String?) {
         preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
             addPreference(

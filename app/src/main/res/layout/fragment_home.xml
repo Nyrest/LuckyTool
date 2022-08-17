@@ -7,23 +7,10 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragment.HomeFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@id/nestedScrollView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <androidx.core.widget.NestedScrollView
             android:id="@+id/nestedScrollView"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -94,9 +81,10 @@
 
                     <com.google.android.material.switchmaterial.SwitchMaterial
                         android:id="@+id/enable_module"
-                        android:paddingHorizontal="10dp"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="10dp"
+                        tools:ignore="DuplicateSpeakableTextCheck" />
 
                 </com.google.android.material.card.MaterialCardView>
 
@@ -147,7 +135,5 @@
             </LinearLayout>
 
         </androidx.core.widget.NestedScrollView>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

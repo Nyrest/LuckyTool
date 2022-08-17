@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.BuildCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.color.DynamicColors
@@ -29,6 +31,7 @@ class MainActivity : AppCompatActivity() {
     private val EXTRA_SAVED_INSTANCE_STATE = KEY_PREFIX + "SAVED_INSTANCE_STATE"
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var appBarConfiguration: AppBarConfiguration
 
     private fun newIntent(context: Context): Intent {
         return Intent(context, MainActivity::class.java)
@@ -40,12 +43,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (ThemeUtil(this).isDynamicColor()){
-            DynamicColors.applyToActivityIfAvailable(this)
-        }
-        binding = ActivityMainBinding.inflate(layoutInflater)
-
         checkTheme()
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         checkPrefsRW()
@@ -53,15 +52,28 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initNavigationFragment(){
+        setSupportActionBar(binding.toolbar)
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
         val navController: NavController = navHostFragment.navController
+        appBarConfiguration = AppBarConfiguration.Builder(
+            R.id.nav_home,
+            R.id.nav_xposed,
+            R.id.nav_other,
+        ).build()
+        setupActionBarWithNavController(navController,appBarConfiguration)
+        binding.toolbar.setNavigationOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
         val bottomNavigationView = binding.navView
         bottomNavigationView.labelVisibilityMode = BottomNavigationView.LABEL_VISIBILITY_SELECTED
         bottomNavigationView.setupWithNavController(navController)
     }
 
     private fun checkTheme() {
-        when(SPUtils.getString(this, SettingsPrefs,"dark_theme","MODE_NIGHT_FOLLOW_SYSTEM")){
+        if (ThemeUtil(this).isDynamicColor()){
+            DynamicColors.applyToActivityIfAvailable(this)
+        }
+        when(getString(SettingsPrefs,"dark_theme","MODE_NIGHT_FOLLOW_SYSTEM")){
             "MODE_NIGHT_FOLLOW_SYSTEM" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
             "MODE_NIGHT_NO" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             "MODE_NIGHT_YES" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
@@ -117,13 +129,17 @@ class MainActivity : AppCompatActivity() {
         }
         //Fix status bar display seconds
         val result = safeOf(default = "error"){
-            if (SPUtils.getBoolean(context, XposedPrefs,"statusbar_clock_show_second",false)) {
+            if (getBoolean(XposedPrefs,"statusbar_clock_enable",false) && getBoolean(XposedPrefs,"statusbar_clock_show_second",false)) {
                 if(ShellUtils.execCommand("settings get secure clock_seconds",true,true).successMsg.toInt() != 1){
                     commands.add("settings put secure clock_seconds 1")
                 }
+            }else{
+                if(ShellUtils.execCommand("settings get secure clock_seconds",true,true).successMsg.toInt() == 1){
+                    commands.add("settings put secure clock_seconds 0")
+                }
             }
         }
-        if (result == "error") toast(context,"Error:getShowSecondResult")
+        if (result == "error") toast("Error:ShowSecondResult")
         MaterialAlertDialogBuilder(context)
             .setMessage(getString(R.string.restart_scope_message))
             .setPositiveButton(getString(android.R.string.ok)) { _: DialogInterface?, _: Int ->

@@ -1,11 +1,10 @@
 package com.luckyzyx.luckytool.hook
 
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
-import com.luckyzyx.luckytool.hook.apps.android.DisableFlagSecure
-import com.luckyzyx.luckytool.hook.apps.android.RemoveStatusBarTopNotification
-import com.luckyzyx.luckytool.hook.apps.android.RemoveSystemScreenshotDelay
-import com.luckyzyx.luckytool.hook.apps.android.RemoveVPNActiveNotification
-import com.luckyzyx.luckytool.utils.XposedPrefs
+import com.highcapable.yukihookapi.hook.log.loggerD
+import com.highcapable.yukihookapi.hook.type.java.ListClass
+import com.luckyzyx.luckytool.hook.apps.android.*
+import com.luckyzyx.luckytool.utils.getInstalledApp
 
 class HookAndroid : YukiBaseHooker() {
 
@@ -21,5 +20,8 @@ class HookAndroid : YukiBaseHooker() {
 
         //移除VPN已激活通知
         loadHooker(RemoveVPNActiveNotification())
+
+        //应用多开限制
+        loadHooker(MultiApp())
     }
 }

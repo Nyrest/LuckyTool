@@ -8,6 +8,8 @@
     <string name="nav_xposed">Xposed</string>
     <string name="nav_home">主页</string>
     <string name="nav_other">其他</string>
+    <string name="fragment_settings">设置</string>
+    <string name="fragment_source">源代码</string>
 
     <!--设置-->
     <string name="theme_title">主题</string>
@@ -105,7 +107,8 @@
     <string name="StatusBarTiles">状态栏磁贴</string>
     <string name="StatusBarTiles_summer">下拉状态栏磁贴相关</string>
     <string name="statusbar_tile_enable">状态栏磁贴总开关</string>
-    <string name="tile_unexpanded_columns">未展开磁贴列数</string>
+    <string name="tile_unexpanded_columns_vertical">未展开磁贴列数(竖屏)</string>
+    <string name="tile_unexpanded_columns_horizontal">未展开磁贴列数(横屏)</string>
     <string name="tile_expanded_columns_vertical">展开磁贴列数(竖屏)</string>
     <string name="tile_expanded_columns_horizontal">展开磁贴列数(横屏)</string>
 
@@ -129,6 +132,13 @@
     <string name="unlock_startup_limit">解锁自启数量限制</string>
     <string name="unlock_startup_limit_summer">解锁应用自启动数量限制</string>
     <string name="unlock_task_locks">解锁后台任务锁定数量</string>
+
+    <string name="MultiApp">应用分身相关</string>
+    <string name="multi_app_enable">应用分身总开关</string>
+    <string name="multi_app_enable_summer">重启生效</string>
+    <string name="loading">正在加载</string>
+    <string name="multi_app_list">应用分身支持列表</string>
+    <string name="multi_app_list_summer">建议数量不要过多,按需求增减</string>
 
     <string name="AppInstallationRelated">应用安装相关</string>
     <string name="skip_apk_scan">跳过Apk扫描</string>

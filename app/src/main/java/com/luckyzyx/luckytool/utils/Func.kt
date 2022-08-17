@@ -2,9 +2,11 @@
 
 package com.luckyzyx.luckytool.utils
 
+import android.app.AndroidAppHelper
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.util.TypedValue
 import android.widget.Toast
@@ -13,6 +15,8 @@ import com.highcapable.yukihookapi.hook.factory.field
 import com.highcapable.yukihookapi.hook.factory.method
 import com.luckyzyx.luckytool.BuildConfig.*
 import com.luckyzyx.luckytool.R
+import com.simple.spiderman.SpiderMan
+import java.io.*
 
 
 /**
@@ -54,7 +58,7 @@ fun getAppVersion(context: Context, packName: String, isCommit: Boolean = false)
         val versionCommit = safeOf(default = "null") {
             packageManager.getApplicationInfo(packName, PackageManager.GET_META_DATA).metaData.getString("versionCommit")
         }
-        SPUtils.putString(context, XposedPrefs, packName, versionCommit)
+        context.putString(XposedPrefs, packName, versionCommit)
         return "$versionName($versionCode)[$versionCommit]"
     }
     return "$versionName($versionCode)"
@@ -69,13 +73,35 @@ val getBuildVersion get() = "${VERSION_NAME}(${VERSION_CODE})"
 /**
  * 查询包名是否存在
  */
-fun checkPackName(context: Context, packageName: String): Boolean {
-    val packageManager = context.packageManager
+fun checkPackName(packageName: String): Boolean {
+    val packageManager = AndroidAppHelper.currentApplication().packageManager
     val applist = packageManager.getInstalledPackages(0)
-    for (i in applist.indices) {
-        if (applist[i].packageName.equals(packageName, ignoreCase = true)) return true
+    for (i in applist) {
+        if (i.packageName.equals(packageName, ignoreCase = true)) return true
     }
     return false
+}
+
+/**
+ * 获取已安装APP列表
+ */
+fun getInstalledApp(context: Context? = null, hasSystem: Boolean = false, size: Int? = null): ArrayList<String> {
+    val packageManager = if (context == null) {
+        AndroidAppHelper.currentApplication().packageManager
+    }else{
+        context.packageManager
+    }
+    val packageInfos = packageManager.getInstalledPackages(0)
+    val applist = ArrayList<String>()
+    for (info in packageInfos){
+        if((info.applicationInfo.flags and ApplicationInfo.FLAG_SYSTEM) == 0){
+            applist.add(info.packageName)
+        }else if (hasSystem){
+            applist.add(info.packageName)
+        }
+        if (size != null && applist.size == size) break
+    }
+    return applist
 }
 
 /**
@@ -87,15 +113,14 @@ fun checkResolveActivity(context: Context, intent: Intent): Boolean {
 
 /**
  * Toast快捷方法
- * @param context Context
  * @param name 字符串
  * @param long 显示时长
  * @return [Toast]
  */
-internal fun toast(context: Context, name: String, long: Boolean? = null): Any = if (long == true) {
-    Toast.makeText(context, name, Toast.LENGTH_LONG).show()
+internal fun Context.toast(name: String, long: Boolean? = false): Any = if (long == true) {
+    Toast.makeText(this, name, Toast.LENGTH_LONG).show()
 } else {
-    Toast.makeText(context, name, Toast.LENGTH_LONG).show()
+    Toast.makeText(this, name, Toast.LENGTH_SHORT).show()
 }
 
 /**
@@ -131,20 +156,20 @@ fun getFpsMode(context: Context): Array<String> {
 /**
  * 跳转工程模式
  */
-fun jumpEngineermode(context: Context){
-    if (checkPackName(context, "com.oppo.engineermode")) {
+fun jumpEngineermode() {
+    if (checkPackName("com.oppo.engineermode")) {
         ShellUtils.execCommand("am start -n com.oppo.engineermode/.aftersale.AfterSalePage", true)
-    }else if (checkPackName(context, "com.oplus.engineermode")) {
+    }else if (checkPackName("com.oplus.engineermode")) {
         ShellUtils.execCommand("am start -n com.oplus.engineermode/.aftersale.AfterSalePage", true)
     }
 }
 /**
  * 跳转充电测试
  */
-fun jumpBatteryInfo(context: Context){
-    if (checkPackName(context, "com.oppo.engineermode")) {
+fun jumpBatteryInfo() {
+    if (checkPackName("com.oppo.engineermode")) {
         ShellUtils.execCommand("am start -n com.oppo.engineermode/.charge.modeltest.BatteryInfoShow", true)
-    }else if (checkPackName(context, "com.oplus.engineermode")) {
+    }else if (checkPackName("com.oplus.engineermode")) {
         ShellUtils.execCommand("am start -n com.oplus.engineermode/.charge.modeltest.BatteryInfoShow", true)
     }
 }
@@ -180,3 +205,22 @@ fun setDesktopIcon(context: Context,value : Boolean){
 fun dp2px(context: Context,dp: Float) = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, context.resources.displayMetrics)
 
 fun sp2px(context: Context,sp: Int) = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp.toFloat(), context.resources.displayMetrics)
+
+fun copyFile(source: File, target: File) {
+    var fis: InputStream? = null
+    var fos: OutputStream? = null
+    try {
+        fis = BufferedInputStream(FileInputStream(source))
+        fos = BufferedOutputStream(FileOutputStream(target))
+        val buf = ByteArray(4096)
+        var i: Int
+        while (fis.read(buf).also { i = it } != -1) {
+            fos.write(buf, 0, i)
+        }
+    } catch (e: Exception) {
+        SpiderMan.show(e)
+    } finally {
+        fis?.close()
+        fos?.close()
+    }
+}

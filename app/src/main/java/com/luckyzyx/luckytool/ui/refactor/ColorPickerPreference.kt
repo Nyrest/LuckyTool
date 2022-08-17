@@ -14,7 +14,8 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceViewHolder
 import com.joom.paranoid.Obfuscate
 import com.luckyzyx.luckytool.R
-import com.luckyzyx.luckytool.utils.SPUtils
+import com.luckyzyx.luckytool.utils.getInt
+import com.luckyzyx.luckytool.utils.putInt
 import com.skydoves.colorpickerview.ColorEnvelope
 import com.skydoves.colorpickerview.ColorPickerDialog
 import com.skydoves.colorpickerview.ColorPickerView
@@ -130,7 +131,7 @@ class ColorPickerPreference : Preference {
                     if (colorBox.background is GradientDrawable) {
                         (colorBox.background as GradientDrawable).setColor(envelope.color)
                         notifyColorChanged(envelope)
-                        SPUtils.putInt(context, prefsName, key, envelope.color)
+                        context.putInt(prefsName, key, envelope.color)
                     }
                 }
             )
@@ -152,7 +153,7 @@ class ColorPickerPreference : Preference {
                 if (key == null) {
                     this@ColorPickerPreference.defaultColor
                 } else {
-                    SPUtils.getInt(context, prefsName, key, this@ColorPickerPreference.defaultColor)
+                    context.getInt(prefsName, key, this@ColorPickerPreference.defaultColor)
                 }
             )
         }

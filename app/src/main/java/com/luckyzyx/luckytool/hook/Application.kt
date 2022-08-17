@@ -8,6 +8,7 @@ import com.luckyzyx.luckytool.hook.apps.packageinstaller.RemoveInstallAds
 import com.luckyzyx.luckytool.hook.apps.packageinstaller.ReplaseAospInstaller
 import com.luckyzyx.luckytool.hook.apps.packageinstaller.SkipApkScan
 import com.luckyzyx.luckytool.hook.apps.safecenter.UnlockStartupLimit
+import com.luckyzyx.luckytool.hook.apps.safecenter.UnlockStartupLimitColorOS
 import com.luckyzyx.luckytool.utils.XposedPrefs
 import com.luckyzyx.luckytool.utils.getColorOSVersion
 
@@ -22,6 +23,8 @@ class Application : YukiBaseHooker() {
             }else{
                 //安全中心
                 loadApp("com.oplus.safecenter",UnlockStartupLimit())
+                //Android11
+                loadApp("com.coloros.safecenter",UnlockStartupLimitColorOS())
             }
         }
 

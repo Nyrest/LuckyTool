@@ -16,7 +16,7 @@ android {
             keyPassword 'luckyzyx'
         }
     }
-    compileSdk 33
+    compileSdk 32
     def currentVersionCode = getVersionCode()
 
     defaultConfig {
@@ -24,7 +24,7 @@ android {
         minSdk 30
         targetSdk 33
         versionCode currentVersionCode
-        versionName "1.5"
+        versionName "1.6"
     }
 
     buildTypes {
@@ -77,8 +77,8 @@ dependencies {
     //快速创建settings
     implementation 'androidx.preference:preference:1.2.0'
     //Navigation
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.4.2'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.4.2'
     //一个强大并且灵活的RecyclerViewAdapter
 //    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.7'
     //崩溃日志显示
@@ -92,6 +92,9 @@ dependencies {
     api "com.github.skydoves:colorpickerview:2.2.4"
     //Rikka
     implementation "dev.rikka.rikkax.core:core:1.4.1"
+    //kotlin协程
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
 }
 
 def getVersionCode() {

@@ -19,7 +19,7 @@ Recommend ColorOS 12+
 OnePlus 9RT 12.1
 
 ## Scopes
-system framework,security center,clock,system interface,system desktop,camera,application package installer,game assistant,cloud services,theme store,screenshot  
+system framework,security center,clock,system interface,system desktop,camera,application package installer,game assistant,cloud services,theme store,screenshot,battery  
 So many anime
 
 ### [AdaptationList](https://github.com/luckyzyx/LuckyTool/blob/main/AdaptationList.md)

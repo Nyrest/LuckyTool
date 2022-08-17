@@ -8,14 +8,16 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.*
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.setPadding
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.preference.*
+import androidx.preference.Preference
+import androidx.preference.PreferenceCategory
+import androidx.preference.SeekBarPreference
+import androidx.preference.SwitchPreference
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.tabs.TabLayout
@@ -38,14 +40,9 @@ class XposedFragment : Fragment() {
     }
 
     private fun initToolbarTabs() {
-        val toolbar = binding.toolbar
-        (activity as AppCompatActivity).setSupportActionBar(toolbar)
-        toolbar.title = getString(R.string.nav_xposed)
-        setHasOptionsMenu(true)
-
         val navHostFragment = childFragmentManager.findFragmentById(R.id.xposed_fragment_container) as NavHostFragment
         val navController: NavController = navHostFragment.navController
-
+        setHasOptionsMenu(true)
         val tabs = binding.tablayout
         tabs.apply {
             addTab(tabs.newTab().setText(requireActivity().getString(R.string.system_app)),0,true)
@@ -161,7 +158,7 @@ class SystemApp : ModulePreferenceFragment() {
             addPreference(
                 Preference(requireActivity()).apply {
                     title = getString(R.string.StatusBarTiles)
-                    summary = getString(R.string.tile_unexpanded_columns)+","+getString(R.string.tile_expanded_columns_vertical)
+                    summary = getString(R.string.tile_unexpanded_columns_vertical)+","+getString(R.string.tile_expanded_columns_vertical)
                     key = "StatusBarTiles"
                     setIcon(R.mipmap.systemui_icon)
                     onPreferenceClickListener = Preference.OnPreferenceClickListener {
@@ -487,10 +484,23 @@ class StatusBarTile : ModulePreferenceFragment(){
             )
             addPreference(
                 SeekBarPreference(requireActivity()).apply {
-                    title = getString(R.string.tile_unexpanded_columns)
-                    key = "tile_unexpanded_columns"
+                    title = getString(R.string.tile_unexpanded_columns_vertical)
+                    key = "tile_unexpanded_columns_vertical"
                     setDefaultValue(6)
                     max = 6
+                    min = 1
+                    seekBarIncrement = 1
+                    showSeekBarValue = true
+                    updatesContinuously = false
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SeekBarPreference(requireActivity()).apply {
+                    title = getString(R.string.tile_unexpanded_columns_horizontal)
+                    key = "tile_unexpanded_columns_horizontal"
+                    setDefaultValue(6)
+                    max = 8
                     min = 1
                     seekBarIncrement = 1
                     showSeekBarValue = true
@@ -503,7 +513,7 @@ class StatusBarTile : ModulePreferenceFragment(){
                     title = getString(R.string.tile_expanded_columns_vertical)
                     key = "tile_expanded_columns_vertical"
                     setDefaultValue(4)
-                    max = 6
+                    max = 7
                     min = 1
                     seekBarIncrement = 1
                     showSeekBarValue = true
@@ -525,6 +535,10 @@ class StatusBarTile : ModulePreferenceFragment(){
                 }
             )
         }
+        preferenceScreen.findPreference<SeekBarPreference>("tile_unexpanded_columns_vertical")?.dependency = "statusbar_tile_enable"
+        preferenceScreen.findPreference<SeekBarPreference>("tile_unexpanded_columns_horizontal")?.dependency = "statusbar_tile_enable"
+        preferenceScreen.findPreference<SeekBarPreference>("tile_expanded_columns_vertical")?.dependency = "statusbar_tile_enable"
+        preferenceScreen.findPreference<SeekBarPreference>("tile_expanded_columns_horizontal")?.dependency = "statusbar_tile_enable"
     }
 }
 
@@ -634,7 +648,7 @@ class Desktop : ModulePreferenceFragment() {
                     title = getString(R.string.launcher_layout_max_rows)
                     key = "launcher_layout_max_rows"
                     setDefaultValue(6)
-                    max = 7
+                    max = 8
                     min = 1
                     seekBarIncrement = 1
                     showSeekBarValue = true
@@ -656,6 +670,8 @@ class Desktop : ModulePreferenceFragment() {
                 }
             )
         }
+        preferenceScreen.findPreference<SeekBarPreference>("launcher_layout_max_rows")?.dependency = "launcher_layout_enable"
+        preferenceScreen.findPreference<SeekBarPreference>("launcher_layout_max_columns")?.dependency = "launcher_layout_enable"
     }
 }
 
@@ -756,6 +772,34 @@ class Application : ModulePreferenceFragment(){
                     key = "unlock_task_locks"
                     setDefaultValue(false)
                     isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                PreferenceCategory(requireActivity()).apply {
+                    title = getString(R.string.MultiApp)
+                    key = "MultiApp"
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    title = getString(R.string.multi_app_enable)
+                    summary = getString(R.string.multi_app_enable_summer)
+                    key = "multi_app_enable"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                Preference(requireActivity()).apply {
+                    title = getString(R.string.multi_app_list)
+                    summary = getString(R.string.multi_app_list_summer)
+                    key = "multi_app_list"
+                    isIconSpaceReserved = false
+                    setOnPreferenceClickListener {
+                        requireActivity().findNavController(R.id.xposed_fragment_container).navigate(R.id.action_application_to_multiFragment)
+                        true
+                    }
                 }
             )
             addPreference(

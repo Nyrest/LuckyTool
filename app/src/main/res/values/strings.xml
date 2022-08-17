@@ -7,6 +7,8 @@
     <string name="nav_xposed">Xposed</string>
     <string name="nav_home">Home</string>
     <string name="nav_other">Other</string>
+    <string name="fragment_settings">Settings</string>
+    <string name="fragment_source">SourceCode</string>
 
     <!-- Settings -->
     <string name="theme_title">Theme</string>
@@ -106,7 +108,8 @@
     <string name="StatusBarTiles">Statusbar tiles</string>
     <string name="StatusBarTiles_summer">Drop-down status bar tiles related</string>
     <string name="statusbar_tile_enable">Status bar tile master switch</string>
-    <string name="tile_unexpanded_columns">Number of unexpanded tile columns</string>
+    <string name="tile_unexpanded_columns_vertical">Number of unexpanded tile columns</string>
+    <string name="tile_unexpanded_columns_horizontal">Number of unexpanded tile columns</string>
     <string name="tile_expanded_columns_vertical">Expanded tile columns (vertical screen)</string>
     <string name="tile_expanded_columns_horizontal">Expanded tile columns (horizontal screen)</string>
 
@@ -130,6 +133,13 @@
     <string name="unlock_task_locks">Unlock the number of background tasks locked</string>
     <string name="unlock_startup_limit">Unlock the number of self-starts</string>
     <string name="unlock_startup_limit_summer">Unlock the limit on the number of application self-starts</string>
+
+    <string name="MultiApp">App Cloner</string>
+    <string name="multi_app_enable">App Cloner Main Switch</string>
+    <string name="multi_app_enable_summer">Restart to take effect</string>
+    <string name="loading">Loading</string>
+    <string name="multi_app_list">App Cloner Support List</string>
+    <string name="multi_app_list_summer">It is suggested that the quantity should not be too much, increase or decrease according to the demand</string>
 
     <string name="AppInstallationRelated">App installation related</string>
     <string name="skip_apk_scan">Skip Apk scan</string>

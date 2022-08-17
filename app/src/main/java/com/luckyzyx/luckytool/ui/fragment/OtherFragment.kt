@@ -22,15 +22,8 @@ class OtherFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentOtherBinding.inflate(inflater)
-        initToolbar()
-        return binding.root
-    }
-
-    private fun initToolbar(){
-        val toolbar = binding.toolbar
-        (activity as AppCompatActivity).setSupportActionBar(toolbar)
-        toolbar.title = getString(R.string.nav_other)
         setHasOptionsMenu(true)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -51,8 +44,10 @@ class OtherFragment : Fragment() {
                 .setCancelable(true)
                 .setItems(quicklist.toTypedArray()) { _, which ->
                     when(which){
-                        0 -> { jumpEngineermode(requireActivity()) }
-                        1 -> { jumpBatteryInfo(requireActivity()) }
+                        0 -> { jumpEngineermode()
+                        }
+                        1 -> { jumpBatteryInfo()
+                        }
                         2 -> { jumpRunningApp(requireActivity()) }
                         3 -> { ShellUtils.execCommand("am start -n com.android.systemui/.DemoMode", true) }
                         4 -> { ShellUtils.execCommand("am start -n com.oplus.logkit/.activity.MainActivity", true) }

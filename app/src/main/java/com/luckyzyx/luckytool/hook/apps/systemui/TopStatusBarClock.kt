@@ -190,14 +190,14 @@ class TopStatusBarClock : YukiBaseHooker() {
         var timePattern = ""
         //判断中文
         val isZh = isZh(context)
-
+        //12/24时间样式
         timePattern += if (is24) "HH:mm" else "hh:mm"
         //显秒
         if (isSecond) timePattern += ":ss"
         timePattern = SimpleDateFormat(timePattern).format(nowTime!!)
         //判断中文
         if (isZh) timePattern = getPeriod(isZh) + timePattern else timePattern += getPeriod(isZh)
-        timePattern = getDoubleHour() + timePattern
+//        timePattern = getDoubleHour() + timePattern
         return timePattern
     }
 
@@ -288,6 +288,7 @@ class TopStatusBarClock : YukiBaseHooker() {
         return doubleHour
     }
 
+    //获取系统首选语言
     private fun isZh(context: Context): Boolean {
         val locale = context.resources.configuration.locales.get(0)
         val language = locale.language
