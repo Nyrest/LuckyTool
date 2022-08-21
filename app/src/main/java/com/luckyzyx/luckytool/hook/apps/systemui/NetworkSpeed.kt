@@ -10,6 +10,23 @@ class NetworkSpeed : YukiBaseHooker() {
                 method {
                     name = "postUpdateNetworkSpeedDelay"
                     param(LongType)
+                    paramCount = 1
+                }
+                beforeHook {
+                    args(0).set(1000L)
+                }
+            }
+        }
+    }
+}
+class NetworkSpeedV13 : YukiBaseHooker() {
+    override fun onHook() {
+        findClass("com.oplus.systemui.statusbar.phone.netspeed.OplusNetworkSpeedControllExImpl").hook {
+            injectMember {
+                method {
+                    name = "postUpdateNetworkSpeedDelay"
+                    param(LongType)
+                    paramCount = 1
                 }
                 beforeHook {
                     args(0).set(1000L)

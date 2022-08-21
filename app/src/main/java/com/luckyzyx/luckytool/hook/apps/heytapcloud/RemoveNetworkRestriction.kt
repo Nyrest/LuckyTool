@@ -9,12 +9,11 @@ class RemoveNetworkRestriction : YukiBaseHooker() {
         //Source NetworkUtil
         //Search -> MOBILE -> method
         VariousClass(
-            "com.cloud.base.commonsdk.baseutils.al"
+            "com.cloud.base.commonsdk.baseutils.al",
+            "com.cloud.base.commonsdk.baseutils.o0",
         ).hook {
             injectMember {
                 method {
-                    //2cd987d
-                    name = "a"
                     emptyParam()
                     returnType = IntType
                 }

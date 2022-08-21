@@ -1,23 +1,25 @@
 package com.luckyzyx.luckytool.hook
 
 import android.os.Build.VERSION.SDK_INT
-import androidx.preference.Preference
+import android.os.Build.VERSION_CODES.*
 import com.highcapable.yukihookapi.annotation.xposed.InjectYukiHookWithXposed
 import com.highcapable.yukihookapi.hook.factory.configs
 import com.highcapable.yukihookapi.hook.factory.encase
-import com.highcapable.yukihookapi.hook.log.loggerD
-import com.highcapable.yukihookapi.hook.type.java.BooleanType
-import com.highcapable.yukihookapi.hook.type.java.ListClass
-import com.highcapable.yukihookapi.hook.type.java.MapClass
+import com.highcapable.yukihookapi.hook.log.loggerE
 import com.highcapable.yukihookapi.hook.xposed.bridge.event.YukiXposedEvent
 import com.highcapable.yukihookapi.hook.xposed.proxy.IYukiHookXposedInit
 import com.luckyzyx.luckytool.hook.apps.CorePatch.CorePatchForR
 import com.luckyzyx.luckytool.hook.apps.CorePatch.CorePatchForS
+import com.luckyzyx.luckytool.hook.apps.CorePatch.CorePatchForSv2
+import com.luckyzyx.luckytool.hook.apps.CorePatch.CorePatchForT
+import com.luckyzyx.luckytool.hook.apps.Miscellaneous
+import com.luckyzyx.luckytool.hook.statusbar.StatusBarClock
+import com.luckyzyx.luckytool.hook.statusbar.StatusBarIcon
+import com.luckyzyx.luckytool.hook.statusbar.StatusBarNotice
+import com.luckyzyx.luckytool.hook.statusbar.StatusBarTiles
 import com.luckyzyx.luckytool.utils.XposedPrefs
-import com.luckyzyx.luckytool.utils.getInstalledApp
 import de.robv.android.xposed.IXposedHookZygoteInit
 import de.robv.android.xposed.callbacks.XC_LoadPackage
-
 
 @InjectYukiHookWithXposed
 class MainHook : IYukiHookXposedInit {
@@ -53,6 +55,8 @@ class MainHook : IYukiHookXposedInit {
         loadApp(hooker = Screenshot())
         //应用
         loadApp(hooker = Application())
+        //杂项
+        loadApp(hooker = Miscellaneous())
 
         //相机
         loadApp("com.oplus.camera", HookCamera())
@@ -72,9 +76,11 @@ class MainHook : IYukiHookXposedInit {
         YukiXposedEvent.onInitZygote { startupParam: IXposedHookZygoteInit.StartupParam ->
             run {
                 when (SDK_INT) {
-                    30 -> CorePatchForR().initZygote(startupParam)
-                    31 -> CorePatchForS().initZygote(startupParam)
-                    else -> loggerD(msg = "[CorePatch] 不支持的Android版本: $SDK_INT")
+                    33 -> CorePatchForT().initZygote(startupParam)
+                    S_V2 -> CorePatchForSv2().initZygote(startupParam)
+                    S -> CorePatchForS().initZygote(startupParam)
+                    R -> CorePatchForR().initZygote(startupParam)
+                    else -> loggerE(msg = "Unsupported Version of Android -> $SDK_INT")
                 }
             }
         }
@@ -82,9 +88,11 @@ class MainHook : IYukiHookXposedInit {
             run {
                 if (lpparam.packageName == "android" && lpparam.processName == "android") {
                     when (SDK_INT) {
-                        30 -> CorePatchForR().handleLoadPackage(lpparam)
-                        31 -> CorePatchForS().handleLoadPackage(lpparam)
-                        else -> loggerD(msg = "[CorePatch] 不支持的Android版本: $SDK_INT")
+                        33 -> CorePatchForT().handleLoadPackage(lpparam)
+                        S_V2 -> CorePatchForSv2().handleLoadPackage(lpparam)
+                        S -> CorePatchForS().handleLoadPackage(lpparam)
+                        R -> CorePatchForR().handleLoadPackage(lpparam)
+                        else -> loggerE(msg = "Unsupported Version of Android -> $SDK_INT")
                     }
                 }
             }

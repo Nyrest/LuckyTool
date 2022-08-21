@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.joom.paranoid.Obfuscate
@@ -44,9 +43,9 @@ class OtherFragment : Fragment() {
                 .setCancelable(true)
                 .setItems(quicklist.toTypedArray()) { _, which ->
                     when(which){
-                        0 -> { jumpEngineermode()
+                        0 -> { jumpEngineermode(requireActivity())
                         }
-                        1 -> { jumpBatteryInfo()
+                        1 -> { jumpBatteryInfo(requireActivity())
                         }
                         2 -> { jumpRunningApp(requireActivity()) }
                         3 -> { ShellUtils.execCommand("am start -n com.android.systemui/.DemoMode", true) }

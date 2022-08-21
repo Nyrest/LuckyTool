@@ -31,13 +31,6 @@
             app:popEnterAnim="@anim/fragment_enter_pop"
             app:popExitAnim="@anim/fragment_exit_pop" />
         <action
-            android:id="@+id/action_systemApp_to_statusBarClock"
-            app:destination="@id/statusBarClock"
-            app:enterAnim="@anim/fragment_enter"
-            app:exitAnim="@anim/fragment_exit"
-            app:popEnterAnim="@anim/fragment_enter_pop"
-            app:popExitAnim="@anim/fragment_exit_pop" />
-        <action
             android:id="@+id/action_systemApp_to_system"
             app:destination="@id/system"
             app:enterAnim="@anim/fragment_enter"
@@ -80,22 +73,15 @@
             app:popEnterAnim="@anim/fragment_enter_pop"
             app:popExitAnim="@anim/fragment_exit_pop" />
         <action
-            android:id="@+id/action_systemApp_to_statusBarIcon"
-            app:destination="@id/statusBarIcon"
+            android:id="@+id/action_systemApp_to_statusBar"
+            app:destination="@id/statusBar"
             app:enterAnim="@anim/fragment_enter"
             app:exitAnim="@anim/fragment_exit"
             app:popEnterAnim="@anim/fragment_enter_pop"
             app:popExitAnim="@anim/fragment_exit_pop" />
         <action
-            android:id="@+id/action_systemApp_to_statusBarTile"
-            app:destination="@id/statusBarTile"
-            app:enterAnim="@anim/fragment_enter"
-            app:exitAnim="@anim/fragment_exit"
-            app:popEnterAnim="@anim/fragment_enter_pop"
-            app:popExitAnim="@anim/fragment_exit_pop" />
-        <action
-            android:id="@+id/action_systemApp_to_statusBarNotice"
-            app:destination="@id/statusBarNotice"
+            android:id="@+id/action_systemApp_to_miscellaneous"
+            app:destination="@id/miscellaneous"
             app:enterAnim="@anim/fragment_enter"
             app:exitAnim="@anim/fragment_exit"
             app:popEnterAnim="@anim/fragment_enter_pop"
@@ -186,5 +172,42 @@
         android:name="com.luckyzyx.luckytool.ui.fragment.MultiFragment"
         android:label="fragment_multi"
         tools:layout="@layout/fragment_multi" />
+    <fragment
+        android:id="@+id/statusBar"
+        android:name="com.luckyzyx.luckytool.ui.fragment.StatusBar"
+        android:label="StatusBar" >
+        <action
+            android:id="@+id/action_statusBar_to_statusBarNotice"
+            app:destination="@id/statusBarNotice"
+            app:enterAnim="@anim/fragment_enter"
+            app:exitAnim="@anim/fragment_exit"
+            app:popEnterAnim="@anim/fragment_enter_pop"
+            app:popExitAnim="@anim/fragment_exit_pop" />
+        <action
+            android:id="@+id/action_statusBar_to_statusBarTile"
+            app:destination="@id/statusBarTile"
+            app:enterAnim="@anim/fragment_enter"
+            app:exitAnim="@anim/fragment_exit"
+            app:popEnterAnim="@anim/fragment_enter_pop"
+            app:popExitAnim="@anim/fragment_exit_pop" />
+        <action
+            android:id="@+id/action_statusBar_to_statusBarClock"
+            app:destination="@id/statusBarClock"
+            app:enterAnim="@anim/fragment_enter"
+            app:exitAnim="@anim/fragment_exit"
+            app:popEnterAnim="@anim/fragment_enter_pop"
+            app:popExitAnim="@anim/fragment_exit_pop" />
+        <action
+            android:id="@+id/action_statusBar_to_statusBarIcon"
+            app:destination="@id/statusBarIcon"
+            app:enterAnim="@anim/fragment_enter"
+            app:exitAnim="@anim/fragment_exit"
+            app:popEnterAnim="@anim/fragment_enter_pop"
+            app:popExitAnim="@anim/fragment_exit_pop" />
+    </fragment>
+    <fragment
+        android:id="@+id/miscellaneous"
+        android:name="com.luckyzyx.luckytool.ui.fragment.Miscellaneous"
+        android:label="Miscellaneous" />
 
 </navigation>

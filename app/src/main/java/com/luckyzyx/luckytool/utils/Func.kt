@@ -15,8 +15,6 @@ import com.highcapable.yukihookapi.hook.factory.field
 import com.highcapable.yukihookapi.hook.factory.method
 import com.luckyzyx.luckytool.BuildConfig.*
 import com.luckyzyx.luckytool.R
-import com.simple.spiderman.SpiderMan
-import java.io.*
 
 
 /**
@@ -49,8 +47,8 @@ val getColorOSVersion
  * 写入SP xml文件内
  * @return [String]
  */
-fun getAppVersion(context: Context, packName: String, isCommit: Boolean = false): String = safeOf(default = "null") {
-    val packageManager = context.packageManager
+fun Context.getAppVersion(packName: String, isCommit: Boolean = false): String = safeOf(default = "null") {
+    val packageManager = packageManager
     val packageInfo = packageManager.getPackageInfo(packName, 0)
     val versionName = safeOf(default = "null") { packageInfo.versionName }
     val versionCode = safeOf(default = "null") { packageInfo.longVersionCode }
@@ -58,7 +56,7 @@ fun getAppVersion(context: Context, packName: String, isCommit: Boolean = false)
         val versionCommit = safeOf(default = "null") {
             packageManager.getApplicationInfo(packName, PackageManager.GET_META_DATA).metaData.getString("versionCommit")
         }
-        context.putString(XposedPrefs, packName, versionCommit)
+        putString(XposedPrefs, packName, versionCommit)
         return "$versionName($versionCode)[$versionCommit]"
     }
     return "$versionName($versionCode)"
@@ -73,11 +71,11 @@ val getBuildVersion get() = "${VERSION_NAME}(${VERSION_CODE})"
 /**
  * 查询包名是否存在
  */
-fun checkPackName(packageName: String): Boolean {
-    val packageManager = AndroidAppHelper.currentApplication().packageManager
+fun Context.checkPackName(packageName: String): Boolean {
+    val packageManager = packageManager
     val applist = packageManager.getInstalledPackages(0)
     for (i in applist) {
-        if (i.packageName.equals(packageName, ignoreCase = true)) return true
+        if (i.packageName == packageName) return true
     }
     return false
 }
@@ -85,6 +83,12 @@ fun checkPackName(packageName: String): Boolean {
 /**
  * 获取已安装APP列表
  */
+fun getInstalledApp(hasSystem: Boolean = false): ArrayList<String> {
+    return getInstalledApp(null,hasSystem,null)
+}
+fun getInstalledApp(hasSystem: Boolean = false, size: Int? = null): ArrayList<String> {
+    return getInstalledApp(null,hasSystem,size)
+}
 fun getInstalledApp(context: Context? = null, hasSystem: Boolean = false, size: Int? = null): ArrayList<String> {
     val packageManager = if (context == null) {
         AndroidAppHelper.currentApplication().packageManager
@@ -107,8 +111,8 @@ fun getInstalledApp(context: Context? = null, hasSystem: Boolean = false, size: 
 /**
  * 检查隐藏活动是否存在
  */
-fun checkResolveActivity(context: Context, intent: Intent): Boolean {
-    return context.packageManager.resolveActivity(intent, 0) != null
+fun Context.checkResolveActivity(intent: Intent): Boolean {
+    return packageManager.resolveActivity(intent, 0) != null
 }
 
 /**
@@ -127,7 +131,7 @@ internal fun Context.toast(name: String, long: Boolean? = false): Any = if (long
  * 获取支持的刷新率
  * @return [List]
  */
-fun getFpsMode(context: Context): Array<String> {
+fun Context.getFpsMode(): Array<String> {
     val command =
         "dumpsys display | grep -A 1 'mSupportedModesByDisplay' | tail -1 | tr '}' '\\n' | cut -f2 -d '{' | while read row; do\n" +
         "  if [[ -n \$row ]]; then\n" +
@@ -149,27 +153,27 @@ fun getFpsMode(context: Context): Array<String> {
         "done"
     val result = ShellUtils.execCommand(command, true, true).successMsg ?: return arrayOf("获取错误,请勿点击")
     return result.substring(0,result.length - 1).split("@").toMutableList().apply {
-        add(context.getString(R.string.Restore_default_refresh_rate))
+        add(getString(R.string.Restore_default_refresh_rate))
     }.toTypedArray()
 }
 
 /**
  * 跳转工程模式
  */
-fun jumpEngineermode() {
-    if (checkPackName("com.oppo.engineermode")) {
+fun jumpEngineermode(context: Context) {
+    if (context.checkPackName("com.oppo.engineermode")) {
         ShellUtils.execCommand("am start -n com.oppo.engineermode/.aftersale.AfterSalePage", true)
-    }else if (checkPackName("com.oplus.engineermode")) {
+    }else if (context.checkPackName("com.oplus.engineermode")) {
         ShellUtils.execCommand("am start -n com.oplus.engineermode/.aftersale.AfterSalePage", true)
     }
 }
 /**
  * 跳转充电测试
  */
-fun jumpBatteryInfo() {
-    if (checkPackName("com.oppo.engineermode")) {
+fun jumpBatteryInfo(context: Context) {
+    if (context.checkPackName("com.oppo.engineermode")) {
         ShellUtils.execCommand("am start -n com.oppo.engineermode/.charge.modeltest.BatteryInfoShow", true)
-    }else if (checkPackName("com.oplus.engineermode")) {
+    }else if (context.checkPackName("com.oplus.engineermode")) {
         ShellUtils.execCommand("am start -n com.oplus.engineermode/.charge.modeltest.BatteryInfoShow", true)
     }
 }
@@ -185,9 +189,9 @@ fun jumpRunningApp(context: Context){
         "com.android.settings",
         "com.oplus.settings.feature.process.RunningApplicationActivity"
     )
-    if (checkResolveActivity(context,isoppoRunning)) {
+    if (context.checkResolveActivity(isoppoRunning)) {
         ShellUtils.execCommand("am start -n com.android.settings/com.coloros.settings.feature.process.RunningApplicationActivity", true)
-    } else if (checkResolveActivity(context,isoplusRunning)) {
+    } else if (context.checkResolveActivity(isoplusRunning)) {
         ShellUtils.execCommand("am start -n com.android.settings/com.oplus.settings.feature.process.RunningApplicationActivity", true)
     }
 }
@@ -195,32 +199,12 @@ fun jumpRunningApp(context: Context){
 /**
  * 显示/隐藏APP图标
  */
-fun setDesktopIcon(context: Context,value : Boolean){
-    context.packageManager.setComponentEnabledSetting(ComponentName(APPLICATION_ID, "${APPLICATION_ID}.Hide"),
+fun Context.setDesktopIcon(value : Boolean){
+    packageManager.setComponentEnabledSetting(ComponentName(APPLICATION_ID, "${APPLICATION_ID}.Hide"),
         if (value) PackageManager.COMPONENT_ENABLED_STATE_DISABLED else PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
         PackageManager.DONT_KILL_APP
     )
 }
 
-fun dp2px(context: Context,dp: Float) = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, context.resources.displayMetrics)
-
-fun sp2px(context: Context,sp: Int) = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp.toFloat(), context.resources.displayMetrics)
-
-fun copyFile(source: File, target: File) {
-    var fis: InputStream? = null
-    var fos: OutputStream? = null
-    try {
-        fis = BufferedInputStream(FileInputStream(source))
-        fos = BufferedOutputStream(FileOutputStream(target))
-        val buf = ByteArray(4096)
-        var i: Int
-        while (fis.read(buf).also { i = it } != -1) {
-            fos.write(buf, 0, i)
-        }
-    } catch (e: Exception) {
-        SpiderMan.show(e)
-    } finally {
-        fis?.close()
-        fos?.close()
-    }
-}
+fun Context.dp2px(dp: Float) = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, resources.displayMetrics)
+fun Context.sp2px(sp: Int) = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp.toFloat(), resources.displayMetrics)

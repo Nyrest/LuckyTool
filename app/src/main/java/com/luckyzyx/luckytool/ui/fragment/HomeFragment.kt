@@ -73,12 +73,10 @@ class HomeFragment : Fragment() {
         binding.fps.setOnClickListener {
             MaterialAlertDialogBuilder(requireActivity())
                 .setCancelable(true)
-                .setItems(getFpsMode(requireActivity())) { _, which ->
-                    if (getFpsMode(requireActivity()).lastIndex != which) {
+                .setItems(requireActivity().getFpsMode()) { _, which ->
+                    if (requireActivity().getFpsMode().lastIndex == which) {
                         ShellUtils.execCommand("su -c service call SurfaceFlinger 1035 i32 -1", true)
-                        return@setItems
-                    }
-                    ShellUtils.execCommand("su -c service call SurfaceFlinger 1035 i32 $which", true)
+                    }else ShellUtils.execCommand("su -c service call SurfaceFlinger 1035 i32 $which", true)
                 }
                 .show()
         }
@@ -188,50 +186,23 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
             )
             addPreference(
                 Preference(requireActivity()).apply {
-                    setTitle(R.string.contact_details)
-                    setSummary(R.string.contact_details_summer)
+                    title = getString(R.string.feedback_download)
+                    summary = getString(R.string.feedback_download_summer)
                     isIconSpaceReserved = false
                     onPreferenceClickListener = Preference.OnPreferenceClickListener {
-                        val updatelist = arrayOf(getString(R.string.telegram_channel),getString(R.string.telegram_group),getString(R.string.coolmarket))
+                        val updatelist = arrayOf(getString(R.string.coolmarket),getString(R.string.telegram_channel),getString(R.string.telegram_group),getString(R.string.lsposed_repo),getString(R.string.github_repo))
                         MaterialAlertDialogBuilder(requireActivity())
                             .setItems(updatelist) { _, which ->
                                 when (which) {
-                                    0 -> startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/LuckyTool")))
-                                    1 -> startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/+F42pfv-c0h4zNDc9")))
-                                    2 -> startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("coolmarket://u/1930284")))
+                                    0 -> startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("coolmarket://u/1930284")))
+                                    1 -> startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/LuckyTool")))
+                                    2 -> startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/+F42pfv-c0h4zNDc9")))
+                                    3 -> startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://modules.lsposed.org/module/com.luckyzyx.luckytool")))
+                                    4 -> startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/luckyzyx/LuckyTool")))
                                 }
                             }.show()
                         true
                     }
-                }
-            )
-            addPreference(
-                Preference(requireActivity()).apply {
-                    setTitle(R.string.download_url)
-                    setSummary(R.string.download_url_summer)
-                    isIconSpaceReserved = false
-                    onPreferenceClickListener = Preference.OnPreferenceClickListener {
-                        val updatelist = arrayOf(getString(R.string.coolmarket),getString(R.string.github_repo))
-                        MaterialAlertDialogBuilder(requireActivity())
-                            .setItems(updatelist) { _, which ->
-                                when (which) {
-                                    0 -> startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("coolmarket://apk/com.luckyzyx.luckytool")))
-                                    1 -> startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/luckyzyx/LuckyTool/releases")))
-                                }
-                            }.show()
-                        true
-                    }
-                }
-            )
-            addPreference(
-                Preference(requireActivity()).apply {
-                    title = getString(R.string.github_repo)
-                    summary = getString(R.string.github_repo_summer)
-                    isIconSpaceReserved = false
-                    intent = Intent(
-                        Intent.ACTION_VIEW,
-                        Uri.parse("https://github.com/luckyzyx/LuckyTool")
-                    )
                 }
             )
             addPreference(
@@ -251,7 +222,7 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
         if (key == "use_dynamic_color") (activity as MainActivity).restart()
         if (key == "dark_theme") (activity as MainActivity).restart()
-        if (key == "hide_desktop_appicon") sharedPreferences?.let { setDesktopIcon(requireActivity(), it.getBoolean("hide_desktop_appicon",false)) }
+        if (key == "hide_desktop_appicon") sharedPreferences?.let { requireActivity().setDesktopIcon(it.getBoolean("hide_desktop_appicon",false)) }
     }
 
     override fun onResume() {

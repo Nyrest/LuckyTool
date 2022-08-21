@@ -1,7 +1,7 @@
 package com.luckyzyx.luckytool.hook.apps.android
 
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
-import com.highcapable.yukihookapi.hook.log.loggerD
+import com.highcapable.yukihookapi.hook.log.loggerE
 import com.luckyzyx.luckytool.utils.XposedPrefs
 
 class RemoveVPNActiveNotification : YukiBaseHooker() {
@@ -11,10 +11,13 @@ class RemoveVPNActiveNotification : YukiBaseHooker() {
                 method {
                     name = "showNotification"
                 }
-                if (prefs(XposedPrefs).getBoolean("remove_vpn_active_notification", false)) replaceUnit { }
+                beforeHook {
+                    prefs.clearCache()
+                    if (prefs(XposedPrefs).getBoolean("remove_vpn_active_notification", false)) resultNull()
+                }
             }
         }.onHookClassNotFoundFailure {
-            loggerD(msg = "ClassNotFound->OplusVpnHelper")
+            loggerE(msg = "ClassNotFound -> OplusVpnHelper")
         }
     }
 }

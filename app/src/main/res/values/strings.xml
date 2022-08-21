@@ -23,22 +23,20 @@
     <string name="other_settings">Other Settings</string>
 
     <string name="about_title">About</string>
-    <string name="contact_details">Contact Details</string>
-    <string name="contact_details_summer">luckyzyx</string>
-    <string name="coolmarket">CoolMarket</string>
+
+    <string name="feedback_download">Feedback and Download</string>
+    <string name="feedback_download_summer">TG channels, groups, warehouses, etc.</string>
+    <string name="coolmarket">CoolMarket Homepage</string>
     <string name="telegram_channel">Telegram Channel</string>
     <string name="telegram_group">Telegram Group</string>
+    <string name="lsposed_repo">Github Repo</string>
+    <string name="github_repo">Github Repo</string>
 
     <string name="open_source">Open Source</string>
     <string name="open_source_summer">Click to see the list of open source code</string>
-    <string name="download_url">Download address</string>
-    <string name="download_url_summer">Coolmarket,Lsposed Repo</string>
-    <string name="github_repo">Github Repo</string>
-    <string name="github_repo_summer">Thank you for clicking Star!</string>
-
 
     <!-- Check Lsposed -->
-    <string name="unsupported_xposed">Please make sure Xposed API >= 93 and the module has the appropriate scope checked \n If the above has been done, try to click OK to exit the app, and then try again</string>
+    <string name="unsupported_xposed">Please use the latest version of LS Posed, and check the scope of the module\nIf the above has been completed, click OK to exit the APP, and then open the module</string>
 
     <!-- Menu -->
     <string name="menu_reboot">Reboot Menu</string>
@@ -53,15 +51,15 @@
     <string name="scope_version_info">Scope version information</string>
 
     <!-- Xposed -->
-    <string name="system_app">System App</string>
-    <string name="other_app">Other App</string>
+    <string name="system_app">ColorOS App</string>
+    <string name="other_app">Third-party App</string>
     <string name="restart_scope_summer">Top right menu restart scope</string>
-    <string name="version_first">Version:</string>
+    <string name="version_first">Version: </string>
 
     <string name="Android">System related</string>
     <!-- CorePatch -->
     <string name="corepatch">CorePatch</string>
-    <string name="corepatch_summer">Remove installation restrictions, support Android 10–12</string>
+    <string name="corepatch_summer">Remove installation restrictions, support Android 11–12</string>
     <string name="downgr">Allow downgraded installation of applications</string>
     <string name="downgr_summary">Allow the application to overwrite the installation of the old version directly in the case of installing a new version</string>
     <string name="authcreak">Disable package manager signature verification</string>
@@ -74,6 +72,8 @@
     <string name="enhancedMode_summary">It can solve some internal integrity check of the app, generally do not need to open</string>
     <string name="usepresig_warn">!! All installers can overwrite installed apps!!! Please be careful when installing unknown installers</string>
 
+
+    <string name="StatusBar">Statusbar related</string>
     <string name="StatusBarNotice">Statusbar Notifications</string>
     <string name="StatusBarNotice_summer">Status bar notification related</string>
 
@@ -122,6 +122,8 @@
     <string name="Desktop">Desktop related</string>
     <string name="remove_alarmclock_widget_redone">Remove Desktop Clock Component Red One</string>
     <string name="remove_appicon_dot">Remove the dot from the app icon</string>
+    <string name="show_charging_ripple">Charging shows charging ripple</string>
+    <string name="show_charging_ripple_summer">Only works when connected to a charger</string>
     <string name="launcher_layout_related">Desktop layout related</string>
     <string name="launcher_layout_row_colume">Set the number of rows and columns of the desktop layout</string>
     <string name="launcher_layout_enable">Desktop icon layout master switch</string>
@@ -130,6 +132,8 @@
 
     <string name="Application">Application related</string>
     <string name="ApplyOtherRestrictions">Apply other restrictions</string>
+    <string name="remove_adb_install_confirm">Remove ADB installation confirmation</string>
+    <string name="remove_adb_install_confirm_summer">Install APP directly with ADB without clicking</string>
     <string name="unlock_task_locks">Unlock the number of background tasks locked</string>
     <string name="unlock_startup_limit">Unlock the number of self-starts</string>
     <string name="unlock_startup_limit_summer">Unlock the limit on the number of application self-starts</string>
@@ -145,11 +149,18 @@
     <string name="skip_apk_scan">Skip Apk scan</string>
     <string name="skip_apk_scan_summer">Apk virus scan related</string>
     <string name="allow_downgrade_install">Allow downgrade installation</string>
-    <string name="allow_downgrade_install_summer">Remove low/identical version warnings, etc., must be used with core crack</string>
+    <string name="disable_apk_signature_verification">Disable APK Signature Verification</string>
+    <string name="disable_apk_signature_verification_summer">You can install APPs with different signatures and use them with the CorePatch</string>
+    <string name="allow_downgrade_install_summer">Remove low/identical version warnings</string>
     <string name="remove_install_ads">Remove installation completion ads</string>
     <string name="remove_install_ads_summer">Remember to turn off Settings -> Safe App Recommendations</string>
     <string name="replase_aosp_installer">Replace the AOSP installer</string>
     <string name="replase_aosp_installer_summer">Replace with Google native installer</string>
+
+    <string name="Miscellaneous">Miscellaneous</string>
+    <string name="Miscellaneous_summary">Features that are difficult to categorize will be placed here</string>
+    <string name="disable_duplicate_floating_window">Disable Duplicate Floating Window</string>
+    <string name="disable_duplicate_floating_window_summary">Floating window no longer appears when copying text</string>
 
     <string name="OplusGames">Game Assistant</string>
     <string name="remove_root_check">Remove game filter restrictions</string>
@@ -167,12 +178,12 @@
     <string name="remove_watermark_word_limit">Remove watermark word limit</string>
 
     <string name="Screenshot">Screenshot related</string>
-    <string name="remove_screenshot_privacy_limit">Remove screenshot privacy restrictions</string>
-    <string name="remove_screenshot_privacy_limit_summer">Remove the restriction that prevents screenshots from being taken due to privacy issues, must be used with Disable FLAG_SECURE.</string>
-    <string name="disable_flag_secure">Disable FLAG_SECURE</string>
-    <string name="disable_flag_secure_summer">Enabling screenshots, screen sharing and recording in apps that normally wouldn\'t allow it,add the corresponding APP scope</string>
     <string name="remove_system_screenshot_delay">Remove system screenshot delay</string>
     <string name="remove_system_screenshot_delay_summer">The first screenshot may not work</string>
+    <string name="remove_screenshot_privacy_limit">Remove screenshot privacy restrictions</string>
+    <string name="remove_screenshot_privacy_limit_summer">Remove the restriction that cannot take screenshots related to privacy. If this item does not take effect, you can turn on "Disable FLAG SECURE"</string>
+    <string name="disable_flag_secure">Disable FLAG_SECURE</string>
+    <string name="disable_flag_secure_summer">Solve the limitation that most APPs cannot take screenshots, screen sharing or recording, and add the corresponding APP scope</string>
 
     <string name="Everyimage">So much anime</string>
     <string name="skip_startup_page">Skip start page</string>
@@ -204,5 +215,6 @@
     <string name="game_assistant_page">Game Assistant Page</string>
     <string name="developer_option">Developer Options</string>
     <string name="display_refresh_rate_cap">Display refresh rate cap</string>
+
 
 </resources>

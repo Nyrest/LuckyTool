@@ -1,10 +1,7 @@
 package com.luckyzyx.luckytool.hook
 
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
-import com.highcapable.yukihookapi.hook.log.loggerD
-import com.highcapable.yukihookapi.hook.type.java.ListClass
 import com.luckyzyx.luckytool.hook.apps.android.*
-import com.luckyzyx.luckytool.utils.getInstalledApp
 
 class HookAndroid : YukiBaseHooker() {
 
@@ -23,5 +20,12 @@ class HookAndroid : YukiBaseHooker() {
 
         //应用多开限制
         loadHooker(MultiApp())
+
+        //USB安装确认
+        loadHooker(ADBInstallConfirm())
+
+        //应用安装签名校验
+        loadHooker(AppInstallationSignatureVerification())
+
     }
 }

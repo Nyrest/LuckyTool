@@ -24,7 +24,7 @@ android {
         minSdk 30
         targetSdk 33
         versionCode currentVersionCode
-        versionName "1.6"
+        versionName "1.8"
     }
 
     buildTypes {

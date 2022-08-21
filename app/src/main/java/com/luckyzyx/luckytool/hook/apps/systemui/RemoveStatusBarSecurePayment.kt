@@ -18,3 +18,19 @@ class RemoveStatusBarSecurePayment : YukiBaseHooker() {
         }
     }
 }
+class RemoveStatusBarSecurePaymentV13 : YukiBaseHooker() {
+    override fun onHook() {
+        //安全支付图标
+        findClass("com.oplus.systemui.statusbar.phone.securepay.SecurePaymentControllerExImpl").hook {
+            injectMember {
+                method {
+                    name = "handlePaymentDetectionMessage"
+                    paramCount = 1
+                }
+                beforeHook {
+                    resultNull()
+                }
+            }
+        }
+    }
+}

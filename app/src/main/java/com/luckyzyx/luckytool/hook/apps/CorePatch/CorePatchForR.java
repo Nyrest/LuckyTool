@@ -1,14 +1,10 @@
 package com.luckyzyx.luckytool.hook.apps.CorePatch;
 
-
-import android.annotation.SuppressLint;
 import android.app.AndroidAppHelper;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
-
-import androidx.annotation.NonNull;
 
 import com.luckyzyx.luckytool.BuildConfig;
 
@@ -30,18 +26,17 @@ import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
+@SuppressWarnings("ALL")
 public class CorePatchForR extends XposedHelper implements IXposedHookLoadPackage, IXposedHookZygoteInit {
-    @SuppressWarnings("unused")
-    private static final String TAG = "CorePatch";
-    XSharedPreferences prefs = new XSharedPreferences(BuildConfig.APPLICATION_ID, "XposedSettings");
+    XSharedPreferences prefs = new XSharedPreferences(BuildConfig.APPLICATION_ID, "XposedPrefs");
 
     @Override
-    public void handleLoadPackage(@NonNull XC_LoadPackage.LoadPackageParam loadPackageParam) throws IllegalAccessException, InvocationTargetException, InstantiationException {
+    public void handleLoadPackage(XC_LoadPackage.LoadPackageParam loadPackageParam) throws IllegalAccessException, InvocationTargetException, InstantiationException {
 
-//        Log.d(TAG, "downgrade" + prefs.getBoolean("downgrade->", true));
-//        Log.d(TAG, "authcreak" + prefs.getBoolean("authcreak->", true));
-//        Log.d(TAG, "digestCreak" + prefs.getBoolean("digestCreak->", true));
-//        Log.d(TAG, "UsePreSig" + prefs.getBoolean("UsePreSig->", false));
+//        Log.d(MainHook.TAG, "downgrade" + prefs.getBoolean("downgrade->", true));
+//        Log.d(MainHook.TAG, "authcreak" + prefs.getBoolean("authcreak->", true));
+//        Log.d(MainHook.TAG, "digestCreak" + prefs.getBoolean("digestCreak->", true));
+//        Log.d(MainHook.TAG, "UsePreSig" + prefs.getBoolean("UsePreSig->", false));
 
         // 允许降级
         findAndHookMethod("com.android.server.pm.PackageManagerService", loadPackageParam.classLoader,
@@ -51,7 +46,6 @@ public class CorePatchForR extends XposedHelper implements IXposedHookLoadPackag
                 new ReturnConstant(prefs, "downgrade", null));
 
         // exists on flyme 9(Android 11) only
-        // 仅存在于flyme 9(Android 11)上
 //        findAndHookMethod("com.android.server.pm.PackageManagerService", loadPackageParam.classLoader,
 //                "checkDowngrade",
 //                "android.content.pm.PackageInfoLite",
@@ -64,6 +58,7 @@ public class CorePatchForR extends XposedHelper implements IXposedHookLoadPackag
                 new ReturnConstant(prefs, "authcreak", true));
         hookAllMethods("android.util.jar.StrictJarVerifier", loadPackageParam.classLoader, "verify",
                 new ReturnConstant(prefs, "authcreak", true));
+        //ClassNotFound -> ColorOS
         hookAllMethods("java.security.MessageDigest", loadPackageParam.classLoader, "isEqual",
                 new ReturnConstant(prefs, "authcreak", true));
 
@@ -78,10 +73,9 @@ public class CorePatchForR extends XposedHelper implements IXposedHookLoadPackag
         // + " or newer for package " + apkPath
         findAndHookMethod("android.util.apk.ApkSignatureVerifier", loadPackageParam.classLoader, "getMinimumSignatureSchemeVersionForTargetSdk", int.class,
                 new ReturnConstant(prefs, "authcreak", 0));
-//        findAndHookMethod("com.android.apksig.ApkVerifier", loadPackageParam.classLoader, "getMinimumSignatureSchemeVersionForTargetSdk", int.class,
-//                new ReturnConstant(prefs, "authcreak", 0));
-
-
+        //ClassNotFound -> ColorOS
+        findAndHookMethod("com.android.apksig.ApkVerifier", loadPackageParam.classLoader, "getMinimumSignatureSchemeVersionForTargetSdk", int.class,
+                new ReturnConstant(prefs, "authcreak", 0));
 
         // Package " + packageName + " signatures do not match previously installed version; ignoring!"
         // public boolean checkCapability(String sha256String, @CertCapabilities int flags) {
@@ -105,6 +99,7 @@ public class CorePatchForR extends XposedHelper implements IXposedHookLoadPackag
         Class<?> pkc = XposedHelpers.findClass("sun.security.pkcs.PKCS7", loadPackageParam.classLoader);
         Constructor<?> constructor = XposedHelpers.findConstructorExact(pkc, byte[].class);
         constructor.setAccessible(true);
+
         Class<?> ASV = XposedHelpers.findClass("android.util.apk.ApkSignatureVerifier", loadPackageParam.classLoader);
         Class<?> sJarClass = XposedHelpers.findClass("android.util.jar.StrictJarFile", loadPackageParam.classLoader);
         Constructor<?> constructorExact = XposedHelpers.findConstructorExact(sJarClass, String.class, boolean.class, boolean.class);
@@ -125,7 +120,6 @@ public class CorePatchForR extends XposedHelper implements IXposedHookLoadPackag
                         final Object block = constructor.newInstance(param.args[0]);
                         Object[] infos = (Object[]) XposedHelpers.callMethod(block, "getSignerInfos");
                         Object info = infos[0];
-                        //noinspection unchecked
                         List<X509Certificate> verifiedSignerCertChain = (List<X509Certificate>) XposedHelpers.callMethod(info, "getCertificateChain", block);
                         param.setResult(verifiedSignerCertChain.toArray(
                                 new X509Certificate[0]));
@@ -146,10 +140,7 @@ public class CorePatchForR extends XposedHelper implements IXposedHookLoadPackag
                                 XposedBridge.log("E: " + BuildConfig.APPLICATION_ID + " Cannot get the Package Manager... Are you using MiUI?");
                             }else {
                                 PackageInfo pI = PM.getPackageArchiveInfo((String) methodHookParam.args[0], 0);
-                                //noinspection deprecation
-                                @SuppressLint("PackageManagerGetSignatures")
                                 PackageInfo InstpI = PM.getPackageInfo(pI.packageName, PackageManager.GET_SIGNATURES);
-                                //noinspection deprecation
                                 lastSigs = InstpI.signatures;
                             }
                         }else {
@@ -160,7 +151,6 @@ public class CorePatchForR extends XposedHelper implements IXposedHookLoadPackag
                                 lastSigs = (Signature[]) XposedHelpers.callStaticMethod(ASV, "convertToSignatures", (Object) lastCerts);
                             }
                         }
-                        //noinspection ReplaceNullCheck
                         if (lastSigs != null) {
                             signingDetailsArgs[0] = lastSigs;
                         } else {
@@ -173,7 +163,7 @@ public class CorePatchForR extends XposedHelper implements IXposedHookLoadPackag
                         if (signingDetailsWithDigests != null) {
                             Constructor<?> signingDetailsWithDigestsConstructorExact = XposedHelpers.findConstructorExact(signingDetailsWithDigests, signingDetails, Map.class);
                             signingDetailsWithDigestsConstructorExact.setAccessible(true);
-                            newInstance = signingDetailsWithDigestsConstructorExact.newInstance(newInstance, null);
+                            newInstance = signingDetailsWithDigestsConstructorExact.newInstance(new Object[]{newInstance, null});
                         }
 
                         Throwable cause = throwable.getCause();
@@ -207,7 +197,7 @@ public class CorePatchForR extends XposedHelper implements IXposedHookLoadPackag
             }
         });
         // if app is system app, allow to use hidden api, even if app not using a system signature
-        // 如果应用程序是系统应用程序，允许使用隐藏的api，即使应用程序没有使用系统签名
+        // 如果应用是系统应用，允许使用隐藏的 api，即使应用不使用系统签名
         findAndHookMethod("android.content.pm.ApplicationInfo", loadPackageParam.classLoader, "isPackageWhitelistedForHiddenApis", new XC_MethodHook() {
             @Override
             protected void beforeHookedMethod(MethodHookParam param) throws Throwable {

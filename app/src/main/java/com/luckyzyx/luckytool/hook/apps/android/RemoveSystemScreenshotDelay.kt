@@ -13,12 +13,16 @@ class RemoveSystemScreenshotDelay : YukiBaseHooker() {
                     name = "getScreenshotChordLongPressDelay"
                     returnType = LongType
                 }
-                if (prefs(XposedPrefs).getBoolean("remove_system_screenshot_delay", false)) replaceTo(0L)
+                beforeHook {
+                    prefs.clearCache()
+                    if (prefs(XposedPrefs).getBoolean("remove_system_screenshot_delay", false)) result = 0L
+                }
+
             }.onNoSuchMemberFailure {
-                loggerE(msg = "NoSuchMember->getScreenshotChordLongPressDelay")
+                loggerE(msg = "NoSuchMember -> getScreenshotChordLongPressDelay")
             }
         }.onHookClassNotFoundFailure {
-            loggerE(msg = "ClassNotFound->PhoneWindowManager")
+            loggerE(msg = "ClassNotFound -> PhoneWindowManager")
         }
     }
 }
