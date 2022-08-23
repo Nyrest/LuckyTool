@@ -16,7 +16,6 @@ import com.highcapable.yukihookapi.hook.factory.method
 import com.luckyzyx.luckytool.BuildConfig.*
 import com.luckyzyx.luckytool.R
 
-
 /**
  * try/catch函数
  * @param default 异常返回值
@@ -48,7 +47,6 @@ val getColorOSVersion
  * @return [String]
  */
 fun Context.getAppVersion(packName: String, isCommit: Boolean = false): String = safeOf(default = "null") {
-    val packageManager = packageManager
     val packageInfo = packageManager.getPackageInfo(packName, 0)
     val versionName = safeOf(default = "null") { packageInfo.versionName }
     val versionCode = safeOf(default = "null") { packageInfo.longVersionCode }

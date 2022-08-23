@@ -4,11 +4,13 @@ import android.os.Build.VERSION.SDK_INT
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 import com.luckyzyx.luckytool.hook.apps.battery.UnlockStartupLimitV13
 import com.luckyzyx.luckytool.hook.apps.launcher.UnlockTaskLocks
+import com.luckyzyx.luckytool.hook.apps.launcher.UnlockTaskLocksV11
 import com.luckyzyx.luckytool.hook.apps.packageinstaller.AllowReplaceInstall
 import com.luckyzyx.luckytool.hook.apps.packageinstaller.RemoveInstallAds
 import com.luckyzyx.luckytool.hook.apps.packageinstaller.ReplaseAospInstaller
 import com.luckyzyx.luckytool.hook.apps.packageinstaller.SkipApkScan
 import com.luckyzyx.luckytool.hook.apps.safecenter.UnlockStartupLimit
+import com.luckyzyx.luckytool.hook.apps.safecenter.UnlockStartupLimitV11
 import com.luckyzyx.luckytool.utils.XposedPrefs
 
 class Application : YukiBaseHooker() {
@@ -23,7 +25,7 @@ class Application : YukiBaseHooker() {
                 //安全中心
                 loadApp("com.oplus.safecenter",UnlockStartupLimit())
                 //Android11
-                loadApp("com.coloros.safecenter", UnlockStartupLimit.UnlockStartupLimitColorOS())
+                loadApp("com.coloros.safecenter", UnlockStartupLimitV11())
             }
         }
 
@@ -32,7 +34,7 @@ class Application : YukiBaseHooker() {
             //系统桌面
             loadApp("com.android.launcher",UnlockTaskLocks())
             //Android11
-            loadApp("com.oppo.launcher", UnlockTaskLocks.UnlockTaskLocksOPPO())
+            loadApp("com.oppo.launcher", UnlockTaskLocksV11())
         }
 
         //应用包安装程序

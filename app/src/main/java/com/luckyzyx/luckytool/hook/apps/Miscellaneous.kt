@@ -4,6 +4,7 @@ import android.os.Build.VERSION.SDK_INT
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 import com.luckyzyx.luckytool.hook.apps.systemui.DisableDuplicateFloatingWindow
 import com.luckyzyx.luckytool.hook.apps.systemui.DisableHeadphoneHighVolumeWarning
+import com.luckyzyx.luckytool.hook.apps.systemui.PowerMenu
 import com.luckyzyx.luckytool.hook.apps.systemui.ShowChargingRipple
 import com.luckyzyx.luckytool.utils.XposedPrefs
 
@@ -23,6 +24,11 @@ class Miscellaneous : YukiBaseHooker() {
             //禁用耳机高音量警告
             if (prefs(XposedPrefs).getBoolean("disable_headphone_high_volume_warning",false)){
                 loadHooker(DisableHeadphoneHighVolumeWarning())
+            }
+
+            //电源菜单相关
+            if (prefs(XposedPrefs).getBoolean("power_menu_enable",false)){
+                loadHooker(PowerMenu())
             }
         }
     }

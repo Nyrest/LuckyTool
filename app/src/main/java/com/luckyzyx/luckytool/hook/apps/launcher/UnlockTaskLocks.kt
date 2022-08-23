@@ -18,19 +18,19 @@ class UnlockTaskLocks : YukiBaseHooker() {
             }
         }
     }
-    class UnlockTaskLocksOPPO : YukiBaseHooker() {
-        override fun onHook() {
-            //Source ColorLockManager
-            findClass(name = "com.coloros.quickstep.applock.ColorLockManager").hook {
-                injectMember {
-                    constructor {
-                        paramCount = 1
-                    }
-                    afterHook {
-                        field {
-                            name = "mLockAppLimit"
-                        }.get(instance).set(999)
-                    }
+}
+class UnlockTaskLocksV11 : YukiBaseHooker() {
+    override fun onHook() {
+        //Source ColorLockManager
+        findClass(name = "com.coloros.quickstep.applock.ColorLockManager").hook {
+            injectMember {
+                constructor {
+                    paramCount = 1
+                }
+                afterHook {
+                    field {
+                        name = "mLockAppLimit"
+                    }.get(instance).set(999)
                 }
             }
         }

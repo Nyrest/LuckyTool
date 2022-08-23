@@ -100,6 +100,7 @@ class XposedFragment : Fragment() {
             var iscommit = true
             if (scope == "android") iscommit = false
             if (scope == "com.east2d.everyimage") iscommit = false
+            if (requireActivity().getAppVersion(scope, iscommit) == "null") continue
             str += "\n$scope\n${getString(R.string.version_first) + requireActivity().getAppVersion(scope, iscommit)}\n"
         }
         val nestedScrollView = NestedScrollView(requireActivity()).apply {
@@ -126,7 +127,7 @@ class SystemApp : ModulePreferenceFragment() {
                     summary = getString(R.string.corepatch)
                     key = "Android"
                     setIcon(R.mipmap.android_icon)
-                    onPreferenceClickListener = Preference.OnPreferenceClickListener {
+                    setOnPreferenceClickListener {
                         requireActivity().findNavController(R.id.xposed_fragment_container).navigate(R.id.action_systemApp_to_system)
                         true
                     }
@@ -138,7 +139,7 @@ class SystemApp : ModulePreferenceFragment() {
                     summary = getString(R.string.StatusBarNotice)+","+getString(R.string.StatusBarIcon)+","+getString(R.string.StatusBarClock)
                     key = "StatusBar"
                     setIcon(R.mipmap.systemui_icon)
-                    onPreferenceClickListener = Preference.OnPreferenceClickListener {
+                    setOnPreferenceClickListener {
                         requireActivity().findNavController(R.id.xposed_fragment_container).navigate(R.id.action_systemApp_to_statusBar)
                         true
                     }
@@ -150,7 +151,7 @@ class SystemApp : ModulePreferenceFragment() {
                     summary = getString(R.string.launcher_layout_row_colume)+","+getString(R.string.remove_appicon_dot)
                     key = "Desktop"
                     setIcon(R.mipmap.launcher_icon)
-                    onPreferenceClickListener = Preference.OnPreferenceClickListener {
+                    setOnPreferenceClickListener {
                         requireActivity().findNavController(R.id.xposed_fragment_container).navigate(R.id.action_systemApp_to_desktop)
                         true
                     }
@@ -162,7 +163,7 @@ class SystemApp : ModulePreferenceFragment() {
                     summary = getString(R.string.remove_lock_screen_redone)+","+getString(R.string.remove_lock_screen_camera)
                     key = "LockScreen"
                     setIcon(R.mipmap.systemui_icon)
-                    onPreferenceClickListener = Preference.OnPreferenceClickListener {
+                    setOnPreferenceClickListener {
                         requireActivity().findNavController(R.id.xposed_fragment_container).navigate(R.id.action_systemApp_to_lockScreen)
                         true
                     }
@@ -174,7 +175,7 @@ class SystemApp : ModulePreferenceFragment() {
                     summary = getString(R.string.remove_system_screenshot_delay)+","+getString(R.string.remove_screenshot_privacy_limit)
                     key = "Screenshot"
                     setIcon(R.mipmap.screenshot_icon)
-                    onPreferenceClickListener = Preference.OnPreferenceClickListener {
+                    setOnPreferenceClickListener {
                         requireActivity().findNavController(R.id.xposed_fragment_container).navigate(R.id.action_systemApp_to_screenshot)
                         true
                     }
@@ -186,7 +187,7 @@ class SystemApp : ModulePreferenceFragment() {
                     summary = getString(R.string.skip_apk_scan)+","+getString(R.string.unlock_startup_limit)
                     key = "Application"
                     setIcon(R.mipmap.packageinstaller_icon)
-                    onPreferenceClickListener = Preference.OnPreferenceClickListener {
+                    setOnPreferenceClickListener {
                         requireActivity().findNavController(R.id.xposed_fragment_container).navigate(R.id.action_systemApp_to_application)
                         true
                     }
@@ -198,7 +199,7 @@ class SystemApp : ModulePreferenceFragment() {
                     summary = getString(R.string.Miscellaneous_summary)
                     key = "Miscellaneous"
                     setIcon(R.mipmap.systemui_icon)
-                    onPreferenceClickListener = Preference.OnPreferenceClickListener {
+                    setOnPreferenceClickListener {
                         requireActivity().findNavController(R.id.xposed_fragment_container).navigate(R.id.action_systemApp_to_miscellaneous)
                         true
                     }
@@ -210,7 +211,7 @@ class SystemApp : ModulePreferenceFragment() {
                     summary = getString(R.string.remove_watermark_word_limit)
                     key = "Camera"
                     setIcon(R.mipmap.camera_icon)
-                    onPreferenceClickListener = Preference.OnPreferenceClickListener {
+                    setOnPreferenceClickListener {
                         requireActivity().findNavController(R.id.xposed_fragment_container).navigate(R.id.action_systemApp_to_camera)
                         true
                     }
@@ -222,7 +223,7 @@ class SystemApp : ModulePreferenceFragment() {
                     summary = getString(R.string.remove_root_check)
                     key = "OplusGames"
                     setIcon(R.mipmap.oplusgames_icon)
-                    onPreferenceClickListener = Preference.OnPreferenceClickListener {
+                    setOnPreferenceClickListener {
                         requireActivity().findNavController(R.id.xposed_fragment_container).navigate(R.id.action_systemApp_to_oplusGames)
                         true
                     }
@@ -234,7 +235,7 @@ class SystemApp : ModulePreferenceFragment() {
                     summary = getString(R.string.unlock_themestore_vip)
                     key = "ThemeStore"
                     setIcon(R.mipmap.themestore_icon)
-                    onPreferenceClickListener = Preference.OnPreferenceClickListener {
+                    setOnPreferenceClickListener {
                         requireActivity().findNavController(R.id.xposed_fragment_container).navigate(R.id.action_systemApp_to_themeStore)
                         true
                     }
@@ -246,7 +247,7 @@ class SystemApp : ModulePreferenceFragment() {
                     summary = getString(R.string.remove_network_limit)
                     key = "CloudService"
                     setIcon(R.mipmap.cloudservice_icon)
-                    onPreferenceClickListener = Preference.OnPreferenceClickListener {
+                    setOnPreferenceClickListener {
                         requireActivity().findNavController(R.id.xposed_fragment_container).navigate(R.id.action_systemApp_to_cloudService)
                         true
                     }
@@ -265,7 +266,7 @@ class OtherApp : ModulePreferenceFragment() {
                     key = "com.east2d.everyimage"
                     summary = getString(R.string.version_first)+ requireActivity().getAppVersion(key)
                     setIcon(R.mipmap.everyimage_icon)
-                    onPreferenceClickListener = Preference.OnPreferenceClickListener {
+                    setOnPreferenceClickListener {
                         requireActivity().findNavController(R.id.xposed_fragment_container).navigate(R.id.action_otherApp_to_everyimage)
                         true
                     }
@@ -366,7 +367,7 @@ class StatusBar : ModulePreferenceFragment(){
                     summary = getString(R.string.remove_statusbar_top_notification)+","+getString(R.string.remove_charging_completed)
                     key = "StatusBarNotice"
                     setIcon(R.mipmap.systemui_icon)
-                    onPreferenceClickListener = Preference.OnPreferenceClickListener {
+                    setOnPreferenceClickListener {
                         requireActivity().findNavController(R.id.xposed_fragment_container).navigate(R.id.action_statusBar_to_statusBarNotice)
                         true
                     }
@@ -378,7 +379,7 @@ class StatusBar : ModulePreferenceFragment(){
                     summary = getString(R.string.remove_statusbar_battery_percent)+","+getString(R.string.remove_statusbar_user_switcher)
                     key = "StatusBarIcon"
                     setIcon(R.mipmap.systemui_icon)
-                    onPreferenceClickListener = Preference.OnPreferenceClickListener {
+                    setOnPreferenceClickListener {
                         requireActivity().findNavController(R.id.xposed_fragment_container).navigate(R.id.action_statusBar_to_statusBarIcon)
                         true
                     }
@@ -390,7 +391,7 @@ class StatusBar : ModulePreferenceFragment(){
                     summary = getString(R.string.tile_unexpanded_columns_vertical)+","+getString(R.string.tile_expanded_columns_vertical)
                     key = "StatusBarTiles"
                     setIcon(R.mipmap.systemui_icon)
-                    onPreferenceClickListener = Preference.OnPreferenceClickListener {
+                    setOnPreferenceClickListener {
                         requireActivity().findNavController(R.id.xposed_fragment_container).navigate(R.id.action_statusBar_to_statusBarTile)
                         true
                     }
@@ -402,7 +403,7 @@ class StatusBar : ModulePreferenceFragment(){
                     summary = getString(R.string.TopStatusBarClock)+","+getString(R.string.DropDownStatusBarClock)
                     key = "StatusBarClock"
                     setIcon(R.mipmap.alarmclock_icon)
-                    onPreferenceClickListener = Preference.OnPreferenceClickListener {
+                    setOnPreferenceClickListener {
                         requireActivity().findNavController(R.id.xposed_fragment_container).navigate(R.id.action_statusBar_to_statusBarClock)
                         true
                     }
@@ -864,18 +865,18 @@ class Application : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                PreferenceCategory(requireActivity()).apply {
-                    title = getString(R.string.ApplyOtherRestrictions)
-                    key = "ApplyOtherRestrictions"
-                    isIconSpaceReserved = false
-                }
-            )
-            addPreference(
                 SwitchPreference(requireActivity()).apply {
                     title = getString(R.string.remove_adb_install_confirm)
                     summary = getString(R.string.remove_adb_install_confirm_summer)
                     key = "remove_adb_install_confirm"
                     setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                PreferenceCategory(requireActivity()).apply {
+                    title = getString(R.string.ApplyOtherRestrictions)
+                    key = "ApplyOtherRestrictions"
                     isIconSpaceReserved = false
                 }
             )
@@ -897,6 +898,7 @@ class Application : ModulePreferenceFragment(){
                 }
             )
         }
+        preferenceScreen.findPreference<Preference>("multi_app_list")?.dependency = "multi_app_enable"
     }
 }
 
@@ -904,6 +906,18 @@ class Miscellaneous : ModulePreferenceFragment(){
     override fun onCreatePreferencesInModuleApp(savedInstanceState: Bundle?, rootKey: String?) {
         preferenceManager.sharedPreferencesName = XposedPrefs
         preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
+            addPreference(
+                Preference(requireActivity()).apply {
+                    title = getString(R.string.PowerMenu)
+                    summary = getString(R.string.PowerMenu_summary)
+                    key = "PowerMenu"
+                    isIconSpaceReserved = false
+                    setOnPreferenceClickListener {
+                        requireActivity().findNavController(R.id.xposed_fragment_container).navigate(R.id.action_miscellaneous_to_powerMenu)
+                        true
+                    }
+                }
+            )
             addPreference(
                 SwitchPreference(requireActivity()).apply {
                     title = getString(R.string.show_charging_ripple)
@@ -929,6 +943,58 @@ class Miscellaneous : ModulePreferenceFragment(){
                     title = getString(R.string.disable_headphone_high_volume_warning)
                     summary = getString(R.string.disable_headphone_high_volume_warning_summary)
                     key = "disable_headphone_high_volume_warning"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+        }
+    }
+}
+
+class PowerMenu : ModulePreferenceFragment(){
+    override fun onCreatePreferencesInModuleApp(savedInstanceState: Bundle?, rootKey: String?) {
+        preferenceManager.sharedPreferencesName = XposedPrefs
+        preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    title = getString(R.string.power_menu_enable)
+                    summary = getString(R.string.power_menu_enable_summary)
+                    key = "power_menu_enable"
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    title = getString(R.string.power_menu_sos_button)
+                    summary = getString(R.string.power_menu_button_summary)
+                    key = "power_menu_sos_button"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    title = getString(R.string.power_menu_lock_button)
+                    summary = getString(R.string.power_menu_button_summary)
+                    key = "power_menu_lock_button"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    title = getString(R.string.power_menu_simple_layout)
+                    summary = getString(R.string.power_menu_simple_layout_summary)
+                    key = "power_menu_simple_layout"
+                    setDefaultValue(true)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    title = getString(R.string.power_menu_remove_add_controls)
+                    summary = getString(R.string.power_menu_remove_add_controls_summary)
+                    key = "power_menu_remove_add_controls"
                     setDefaultValue(false)
                     isIconSpaceReserved = false
                 }

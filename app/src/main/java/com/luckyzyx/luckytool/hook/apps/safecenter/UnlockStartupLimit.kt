@@ -27,25 +27,25 @@ class UnlockStartupLimit : YukiBaseHooker() {
             }
         }
     }
-    class UnlockStartupLimitColorOS : YukiBaseHooker() {
-        override fun onHook() {
-            //Source StratupManager
-            //Search -> auto_start_max_allow_count -2 -> method,+2 -> field
-            VariousClass(
-                "com.coloros.safecenter.startupapp.b", //6f0072e
-            ).clazz.hook {
-                injectMember {
-                    method {
-                        name = "c"
-                        param(ContextClass)
-                        paramCount = 1
-                    }
-                    afterHook {
-                        field {
-                            name = "b"
-                            type = IntType
-                        }.get().set(10000)
-                    }
+}
+class UnlockStartupLimitV11 : YukiBaseHooker() {
+    override fun onHook() {
+        //Source StratupManager
+        //Search -> auto_start_max_allow_count -2 -> method,+2 -> field
+        VariousClass(
+            "com.coloros.safecenter.startupapp.b", //6f0072e
+        ).clazz.hook {
+            injectMember {
+                method {
+                    name = "c"
+                    param(ContextClass)
+                    paramCount = 1
+                }
+                afterHook {
+                    field {
+                        name = "b"
+                        type = IntType
+                    }.get().set(10000)
                 }
             }
         }

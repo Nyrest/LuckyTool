@@ -3,9 +3,20 @@
 - 出现问题请带上作用域Apk和LSPosed Log前往TG群组反馈
 - If there is a problem, please bring the scope Apk and LSPosed Log to the TG group for feedback
 
+### v1.10
+
+
 ### v1.9
-- [添加] 添加俄语日语翻译
+- [添加] 添加多语言翻译支持
 - [添加] 禁用耳机高音量警告
+- [添加] 电源菜单添加SOS,手动锁定按钮
+- [添加] 电源菜单排列方式与移除添加控件UI
+- [适配] 相机移除水印字数限制v3.414.112
+- [Add] Add support for multilingual translation
+- [Add] Disable headphone high volume warning
+- [Add] Power menu add SOS, manual lock button
+- [Add] Power menu arrangement and remove add controls UI
+- [Bug fix] Camera remove watermark word limit v3.414.112
 
 ### v1.8
 - [适配] 游戏助手Root检测v7.9.0

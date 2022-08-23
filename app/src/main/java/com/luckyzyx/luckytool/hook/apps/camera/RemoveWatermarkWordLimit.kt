@@ -1,15 +1,19 @@
 package com.luckyzyx.luckytool.hook.apps.camera
 
-import com.highcapable.yukihookapi.hook.bean.VariousClass
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 import com.highcapable.yukihookapi.hook.type.java.CharSequenceType
+import com.luckyzyx.luckytool.utils.XposedPrefs
 
 class RemoveWatermarkWordLimit : YukiBaseHooker() {
     override fun onHook() {
         //Source CameraSubSettingFragment
-        VariousClass(
-            "com.oplus.camera.ui.menu.setting.p$7"
-        ).hook {
+        //Log showWatermarkAuthorDialog
+        val clazz = when(prefs(XposedPrefs).getString(packageName,"null")){
+            "8d5b992" -> "com.oplus.camera.ui.menu.setting.p.7"
+            "c7732c4" -> "com.oplus.camera.ui.menu.setting.p.5"
+            else -> "com.oplus.camera.ui.menu.setting.p.7"
+        }
+        clazz.clazz.hook {
             injectMember {
                 method {
                     name = "filter"
