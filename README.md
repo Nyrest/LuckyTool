@@ -27,6 +27,8 @@ OnePlus 9RT 12.1
 
 ### [更新日志](https://github.com/luckyzyx/LuckyTool/blob/main/Changelog.md)
 
+### [参与翻译](https://crwd.in/luckytool)
+
 ## Xposed API
 [YukiHookAPI](https://github.com/fankes/YukiHookAPI)
 

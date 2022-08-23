@@ -19,7 +19,7 @@ class Desktop : YukiBaseHooker() {
         loadApp("com.android.launcher"){
             //移除APP更新圆点
             if (prefs(XposedPrefs).getBoolean("remove_appicon_dot",false)) {
-                if (SDK_INT == 33){
+                if (SDK_INT >= 33){
                     loadHooker(RemoveAppUpdateDotV13())
                 }else{
                     loadHooker(RemoveAppUpdateDot())

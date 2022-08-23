@@ -69,7 +69,6 @@ class MainHook : IYukiHookXposedInit {
 
         //其他APP
         loadApp(hooker = HookOtherApp())
-
     }
 
     override fun onXposedEvent() {

@@ -26,6 +26,8 @@ So many anime
 
 ### [Changelog](https://github.com/luckyzyx/LuckyTool/blob/main/Changelog.md)
 
+### [Participate translation](https://crwd.in/luckytool)
+
 ## Xposed API
 [YukiHookAPI](https://github.com/fankes/YukiHookAPI)
 

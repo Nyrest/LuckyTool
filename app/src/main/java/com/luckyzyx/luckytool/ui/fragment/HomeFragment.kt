@@ -190,7 +190,7 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
                     summary = getString(R.string.feedback_download_summer)
                     isIconSpaceReserved = false
                     onPreferenceClickListener = Preference.OnPreferenceClickListener {
-                        val updatelist = arrayOf(getString(R.string.coolmarket),getString(R.string.telegram_channel),getString(R.string.telegram_group),getString(R.string.lsposed_repo),getString(R.string.github_repo))
+                        val updatelist = arrayOf(getString(R.string.coolmarket),getString(R.string.telegram_channel),getString(R.string.telegram_group),getString(R.string.lsposed_repo))
                         MaterialAlertDialogBuilder(requireActivity())
                             .setItems(updatelist) { _, which ->
                                 when (which) {
@@ -198,9 +198,19 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
                                     1 -> startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/LuckyTool")))
                                     2 -> startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/+F42pfv-c0h4zNDc9")))
                                     3 -> startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://modules.lsposed.org/module/com.luckyzyx.luckytool")))
-                                    4 -> startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/luckyzyx/LuckyTool")))
                                 }
                             }.show()
+                        true
+                    }
+                }
+            )
+            addPreference(
+                Preference(requireActivity()).apply {
+                    title = getString(R.string.participate_translation)
+                    summary = getString(R.string.participate_translation_summary)
+                    isIconSpaceReserved = false
+                    onPreferenceClickListener = Preference.OnPreferenceClickListener {
+                        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://crwd.in/luckytool")))
                         true
                     }
                 }

@@ -921,7 +921,16 @@ class Miscellaneous : ModulePreferenceFragment(){
                     key = "disable_duplicate_floating_window"
                     setDefaultValue(false)
                     isIconSpaceReserved = false
-                    isVisible = SDK_INT == 33
+                    isVisible = SDK_INT >= 33
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    title = getString(R.string.disable_headphone_high_volume_warning)
+                    summary = getString(R.string.disable_headphone_high_volume_warning_summary)
+                    key = "disable_headphone_high_volume_warning"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
                 }
             )
         }

@@ -16,7 +16,7 @@ class Application : YukiBaseHooker() {
 
         //解锁自启数量限制
         if (prefs(XposedPrefs).getBoolean("unlock_startup_limit",false)) {
-            if (SDK_INT == 33){
+            if (SDK_INT >= 33){
                 //电池
                 loadApp("com.oplus.battery",UnlockStartupLimitV13())
             }else{
