@@ -3,7 +3,7 @@ package com.luckyzyx.luckytool.hook.statusbar
 import android.os.Build.VERSION.SDK_INT
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 import com.luckyzyx.luckytool.hook.apps.systemui.*
-import com.luckyzyx.luckytool.utils.XposedPrefs
+import com.luckyzyx.luckytool.utils.tools.XposedPrefs
 
 class StatusBarIcon : YukiBaseHooker() {
     override fun onHook() {

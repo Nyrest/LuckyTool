@@ -4,7 +4,7 @@ import android.view.View
 import androidx.core.view.isVisible
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 import com.highcapable.yukihookapi.hook.type.java.BooleanType
-import com.luckyzyx.luckytool.utils.XposedPrefs
+import com.luckyzyx.luckytool.utils.tools.XposedPrefs
 
 class PowerMenu : YukiBaseHooker() {
     override fun onHook() {

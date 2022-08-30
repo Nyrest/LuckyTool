@@ -8,10 +8,11 @@ class DisableHeadphoneHighVolumeWarning : YukiBaseHooker() {
     override fun onHook() {
         findClass("com.oplusos.systemui.volume.VolumeDialogImplEx").hook {
             injectMember {
-                constructor {
+                method {
+                    name = "showSafetyWarningH"
                     paramCount = 1
                 }
-                afterHook {
+                beforeHook {
                     field {
                         name = "mAudioManager"
                     }.get(instance).cast<AudioManager>()?.current {
@@ -19,6 +20,7 @@ class DisableHeadphoneHighVolumeWarning : YukiBaseHooker() {
                             name = "disableSafeMediaVolume"
                         }.call()
                     }
+                    resultNull()
                 }
             }
         }

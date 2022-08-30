@@ -31,6 +31,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity-alias>
+        <activity
+            android:name=".ui.activity.ShortcutActivity"
+            android:exported="false" />
         <meta-data
             android:name="xposedmodule"
             android:value="true" />
@@ -43,6 +46,28 @@
         <meta-data
             android:name="xposedscope"
             android:resource="@array/xposed_scope" />
+
+        <service
+            android:name=".utils.tiles.ChargingTest"
+            android:label="@string/charging_test"
+            android:icon="@drawable/ic_baseline_charging_station_24"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".utils.tiles.ProcessManager"
+            android:label="@string/process_manager"
+            android:icon="@drawable/ic_baseline_settings_24"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+
     </application>
 
 </manifest>

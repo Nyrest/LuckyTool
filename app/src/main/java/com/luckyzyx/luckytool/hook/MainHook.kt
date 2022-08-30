@@ -13,11 +13,8 @@ import com.luckyzyx.luckytool.hook.apps.CorePatch.CorePatchForS
 import com.luckyzyx.luckytool.hook.apps.CorePatch.CorePatchForSv2
 import com.luckyzyx.luckytool.hook.apps.CorePatch.CorePatchForT
 import com.luckyzyx.luckytool.hook.apps.Miscellaneous
-import com.luckyzyx.luckytool.hook.statusbar.StatusBarClock
-import com.luckyzyx.luckytool.hook.statusbar.StatusBarIcon
-import com.luckyzyx.luckytool.hook.statusbar.StatusBarNotice
-import com.luckyzyx.luckytool.hook.statusbar.StatusBarTiles
-import com.luckyzyx.luckytool.utils.XposedPrefs
+import com.luckyzyx.luckytool.hook.statusbar.*
+import com.luckyzyx.luckytool.utils.tools.XposedPrefs
 import de.robv.android.xposed.IXposedHookZygoteInit
 import de.robv.android.xposed.callbacks.XC_LoadPackage
 
@@ -47,6 +44,8 @@ class MainHook : IYukiHookXposedInit {
         loadApp(hooker = StatusBarTiles())
         //状态栏时钟
         loadApp(hooker = StatusBarClock())
+        //状态栏日期
+        loadApp(hooker = StatusBarDate())
         //桌面
         loadApp(hooker = Desktop())
         //锁屏

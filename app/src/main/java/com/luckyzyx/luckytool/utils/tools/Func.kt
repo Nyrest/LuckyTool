@@ -1,6 +1,6 @@
 @file:Suppress("unused")
 
-package com.luckyzyx.luckytool.utils
+package com.luckyzyx.luckytool.utils.tools
 
 import android.app.AndroidAppHelper
 import android.content.ComponentName
@@ -8,6 +8,8 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
+import android.os.Build
+import android.util.ArraySet
 import android.util.TypedValue
 import android.widget.Toast
 import com.highcapable.yukihookapi.hook.factory.classOf
@@ -15,18 +17,10 @@ import com.highcapable.yukihookapi.hook.factory.field
 import com.highcapable.yukihookapi.hook.factory.method
 import com.luckyzyx.luckytool.BuildConfig.*
 import com.luckyzyx.luckytool.R
+import java.util.regex.Pattern
 
-/**
- * try/catch函数
- * @param default 异常返回值
- * @param result 正常回调值
- * @return [T] 发生异常时返回设定值否则返回正常值
- */
-inline fun <T> safeOf(default: T, result: () -> T) = try {
-    result()
-} catch (_: Throwable) {
-    default
-}
+
+val SDK get() = Build.VERSION.SDK_INT
 
 /**
  * 获取ColorOS版本
@@ -44,20 +38,20 @@ val getColorOSVersion
 /**
  * 获取APP版本/版本号/Commit
  * 写入SP xml文件内
- * @return [String]
+ * @return [ArraySet]
  */
-fun Context.getAppVersion(packName: String, isCommit: Boolean = false): String = safeOf(default = "null") {
+fun Context.getAppVersion(packName: String) = safeOf(default = ArrayList<String>()) {
+    val arrayList = ArrayList<String>()
     val packageInfo = packageManager.getPackageInfo(packName, 0)
+    val commitInfo = packageManager.getApplicationInfo(packName, PackageManager.GET_META_DATA)
     val versionName = safeOf(default = "null") { packageInfo.versionName }
+    arrayList.add(versionName)
     val versionCode = safeOf(default = "null") { packageInfo.longVersionCode }
-    if (isCommit) {
-        val versionCommit = safeOf(default = "null") {
-            packageManager.getApplicationInfo(packName, PackageManager.GET_META_DATA).metaData.getString("versionCommit")
-        }
-        putString(XposedPrefs, packName, versionCommit)
-        return "$versionName($versionCode)[$versionCommit]"
-    }
-    return "$versionName($versionCode)"
+    arrayList.add(versionCode.toString())
+    val versionCommit = safeOf(default = "null") { commitInfo.metaData.getString("versionCommit") }
+    arrayList.add(versionCommit.toString())
+    putStringSet(XposedPrefs,packName,arrayList.toSet())
+    return arrayList
 }
 
 /**
@@ -170,9 +164,15 @@ fun jumpEngineermode(context: Context) {
  */
 fun jumpBatteryInfo(context: Context) {
     if (context.checkPackName("com.oppo.engineermode")) {
-        ShellUtils.execCommand("am start -n com.oppo.engineermode/.charge.modeltest.BatteryInfoShow", true)
+        ShellUtils.execCommand(
+            "am start -n com.oppo.engineermode/.charge.modeltest.BatteryInfoShow",
+            true
+        )
     }else if (context.checkPackName("com.oplus.engineermode")) {
-        ShellUtils.execCommand("am start -n com.oplus.engineermode/.charge.modeltest.BatteryInfoShow", true)
+        ShellUtils.execCommand(
+            "am start -n com.oplus.engineermode/.charge.modeltest.BatteryInfoShow",
+            true
+        )
     }
 }
 /**
@@ -188,9 +188,15 @@ fun jumpRunningApp(context: Context){
         "com.oplus.settings.feature.process.RunningApplicationActivity"
     )
     if (context.checkResolveActivity(isoppoRunning)) {
-        ShellUtils.execCommand("am start -n com.android.settings/com.coloros.settings.feature.process.RunningApplicationActivity", true)
+        ShellUtils.execCommand(
+            "am start -n com.android.settings/com.coloros.settings.feature.process.RunningApplicationActivity",
+            true
+        )
     } else if (context.checkResolveActivity(isoplusRunning)) {
-        ShellUtils.execCommand("am start -n com.android.settings/com.oplus.settings.feature.process.RunningApplicationActivity", true)
+        ShellUtils.execCommand(
+            "am start -n com.android.settings/com.oplus.settings.feature.process.RunningApplicationActivity",
+            true
+        )
     }
 }
 
@@ -199,9 +205,17 @@ fun jumpRunningApp(context: Context){
  */
 fun Context.setDesktopIcon(value : Boolean){
     packageManager.setComponentEnabledSetting(ComponentName(APPLICATION_ID, "${APPLICATION_ID}.Hide"),
-        if (value) PackageManager.COMPONENT_ENABLED_STATE_DISABLED else PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+        if (value) PackageManager.COMPONENT_ENABLED_STATE_DISABLED else PackageManager.COMPONENT_ENABLED_STATE_DEFAULT,
         PackageManager.DONT_KILL_APP
     )
+}
+
+fun getFlashInfo(): String = safeOf(default = "null"){
+    val info = ShellUtils.execCommand("cat /sys/class/block/sda/device/inquiry", true, true).successMsg
+    val pattern = Pattern.compile("\\p{L}")
+    val matcher = pattern.matcher(info)
+    if (!matcher.find()) return@safeOf "null"
+    return info.substring(matcher.start())
 }
 
 fun Context.dp2px(dp: Float) = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, resources.displayMetrics)

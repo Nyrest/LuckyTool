@@ -18,14 +18,11 @@ class HookAndroid : YukiBaseHooker() {
         //移除VPN已激活通知
         loadHooker(RemoveVPNActiveNotification())
 
-        //应用多开限制
+        //应用分身限制
         loadHooker(MultiApp())
 
         //USB安装确认
         loadHooker(ADBInstallConfirm())
-
-        //应用安装签名校验
-        loadHooker(AppInstallationSignatureVerification())
 
     }
 }

@@ -6,16 +6,14 @@ import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 class RemoveStatusBarDevMode : YukiBaseHooker() {
     override fun onHook() {
         VariousClass(
-            "com.oplusos.systemui.statusbar.policy.SystemPromptController",
-            "com.coloros.systemui.statusbar.policy.ColorSystemPromptController"
+            "com.coloros.systemui.statusbar.policy.ColorSystemPromptController",
+            "com.oplusos.systemui.statusbar.policy.SystemPromptController"
         ).hook {
             injectMember {
                 method {
                     name = "updateDeveloperMode"
                 }
-                beforeHook {
-                    resultNull()
-                }
+                replaceTo(null)
             }
         }
     }

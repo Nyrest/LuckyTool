@@ -1,9 +1,13 @@
 package com.luckyzyx.luckytool.ui.activity
 
 import android.annotation.SuppressLint
+import android.content.ComponentName
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.pm.ShortcutInfo
+import android.content.pm.ShortcutManager
+import android.graphics.drawable.Icon
 import android.os.Bundle
 import android.os.Process
 import androidx.appcompat.app.AppCompatActivity
@@ -21,7 +25,7 @@ import com.highcapable.yukihookapi.hook.factory.modulePrefs
 import com.joom.paranoid.Obfuscate
 import com.luckyzyx.luckytool.R
 import com.luckyzyx.luckytool.databinding.ActivityMainBinding
-import com.luckyzyx.luckytool.utils.*
+import com.luckyzyx.luckytool.utils.tools.*
 import kotlin.system.exitProcess
 
 @Obfuscate
@@ -49,6 +53,30 @@ class MainActivity : AppCompatActivity() {
 
         checkPrefsRW()
         initNavigationFragment()
+        initDynamicShortcuts()
+    }
+
+    private fun initDynamicShortcuts(){
+        val status = packageManager.getComponentEnabledSetting(ComponentName(packageName, "${packageName}.Hide"))
+        if(status == 2) return
+        val shortcutManager = getSystemService(ShortcutManager::class.java)
+        val oplusGames = ShortcutInfo.Builder(this, "oplusGames").apply {
+            setShortLabel(getString(R.string.OplusGames))
+            setIcon(Icon.createWithResource(packageName,R.mipmap.oplusgames_icon))
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.putExtra("Shortcut","oplusGames")
+            intent.setClassName("com.oplus.games","business.compact.activity.GameBoxCoverActivity")
+            setIntent(intent)
+        }.build()
+        val processManager = ShortcutInfo.Builder(this, "processManager").apply {
+            setShortLabel(getString(R.string.process_manager))
+            setIcon(Icon.createWithResource(packageName,R.mipmap.android_icon))
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.putExtra("Shortcut","processManager")
+            intent.setClassName(packageName,"$packageName.ui.activity.ShortcutActivity")
+            setIntent(intent)
+        }.build()
+        shortcutManager.dynamicShortcuts = listOf(oplusGames,processManager)
     }
 
     private fun initNavigationFragment(){
@@ -88,6 +116,7 @@ class MainActivity : AppCompatActivity() {
             getSharedPreferences(SettingsPrefs, MODE_WORLD_READABLE)
             getSharedPreferences(XposedPrefs, MODE_WORLD_READABLE)
             getSharedPreferences(MagiskPrefs, MODE_WORLD_READABLE)
+            getSharedPreferences(OtherPrefs, MODE_WORLD_READABLE)
         } catch (ignored: SecurityException) {
             MaterialAlertDialogBuilder(this)
                 .setCancelable(false)
@@ -126,20 +155,15 @@ class MainActivity : AppCompatActivity() {
                 continue
             }
             commands.add("am force-stop $scope")
+            getAppVersion(scope)
         }
-        //Fix status bar display seconds
-        val result = safeOf(default = "error"){
-            if (getBoolean(XposedPrefs,"statusbar_clock_enable",false) && getBoolean(XposedPrefs,"statusbar_clock_show_second",false)) {
-                if(ShellUtils.execCommand("settings get secure clock_seconds",true,true).successMsg.toInt() != 1){
-                    commands.add("settings put secure clock_seconds 1")
-                }
-            }else{
+        safeOfNull {
+            if (!(getBoolean(XposedPrefs,"statusbar_clock_enable",false) && getBoolean(XposedPrefs,"statusbar_clock_show_second",false))) {
                 if(ShellUtils.execCommand("settings get secure clock_seconds",true,true).successMsg.toInt() == 1){
                     commands.add("settings put secure clock_seconds 0")
                 }
             }
         }
-        if (result == "error") toast("Error:ShowSecondResult")
         MaterialAlertDialogBuilder(context)
             .setMessage(getString(R.string.restart_scope_message))
             .setPositiveButton(getString(android.R.string.ok)) { _: DialogInterface?, _: Int ->

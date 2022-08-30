@@ -3,7 +3,7 @@ package com.luckyzyx.luckytool.hook.apps.android
 import android.os.Build.VERSION.SDK_INT
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 import com.highcapable.yukihookapi.hook.log.loggerE
-import com.luckyzyx.luckytool.utils.XposedPrefs
+import com.luckyzyx.luckytool.utils.tools.XposedPrefs
 
 class AppInstallationSignatureVerification : YukiBaseHooker() {
     override fun onHook() {

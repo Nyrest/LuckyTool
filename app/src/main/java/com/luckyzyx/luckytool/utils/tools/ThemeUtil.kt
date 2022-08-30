@@ -1,6 +1,6 @@
 @file:Suppress("unused")
 
-package com.luckyzyx.luckytool.utils
+package com.luckyzyx.luckytool.utils.tools
 
 import android.content.Context
 import com.google.android.material.color.DynamicColors

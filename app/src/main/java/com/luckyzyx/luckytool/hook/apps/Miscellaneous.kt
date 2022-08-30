@@ -2,11 +2,8 @@ package com.luckyzyx.luckytool.hook.apps
 
 import android.os.Build.VERSION.SDK_INT
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
-import com.luckyzyx.luckytool.hook.apps.systemui.DisableDuplicateFloatingWindow
-import com.luckyzyx.luckytool.hook.apps.systemui.DisableHeadphoneHighVolumeWarning
-import com.luckyzyx.luckytool.hook.apps.systemui.PowerMenu
-import com.luckyzyx.luckytool.hook.apps.systemui.ShowChargingRipple
-import com.luckyzyx.luckytool.utils.XposedPrefs
+import com.luckyzyx.luckytool.hook.apps.systemui.*
+import com.luckyzyx.luckytool.utils.tools.XposedPrefs
 
 class Miscellaneous : YukiBaseHooker() {
     override fun onHook() {
@@ -28,7 +25,7 @@ class Miscellaneous : YukiBaseHooker() {
 
             //电源菜单相关
             if (prefs(XposedPrefs).getBoolean("power_menu_enable",false)){
-                loadHooker(PowerMenu())
+                if(SDK_INT in 31..32) loadHooker(PowerMenu())
             }
         }
     }

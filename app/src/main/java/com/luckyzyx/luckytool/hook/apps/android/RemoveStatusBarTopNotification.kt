@@ -2,7 +2,7 @@ package com.luckyzyx.luckytool.hook.apps.android
 
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 import com.highcapable.yukihookapi.hook.log.loggerE
-import com.luckyzyx.luckytool.utils.XposedPrefs
+import com.luckyzyx.luckytool.utils.tools.XposedPrefs
 
 class RemoveStatusBarTopNotification : YukiBaseHooker() {
     override fun onHook() {
@@ -11,10 +11,7 @@ class RemoveStatusBarTopNotification : YukiBaseHooker() {
                 method {
                     name = "onPostNotification"
                 }
-                beforeHook {
-                    prefs.clearCache()
-                    if (prefs(XposedPrefs).getBoolean("remove_statusbar_top_notification", false)) resultNull()
-                }
+                if (prefs(XposedPrefs).getBoolean("remove_statusbar_top_notification", false)) replaceTo(null)
             }.onNoSuchMemberFailure {
                 loggerE(msg = "NoSuchMember -> onPostNotification")
             }

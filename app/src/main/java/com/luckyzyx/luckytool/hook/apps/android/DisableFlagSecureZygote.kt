@@ -4,7 +4,7 @@ import android.view.SurfaceView
 import android.view.Window
 import android.view.WindowManager
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
-import com.luckyzyx.luckytool.utils.XposedPrefs
+import com.luckyzyx.luckytool.utils.tools.XposedPrefs
 
 class DisableFlagSecureZygote : YukiBaseHooker() {
     override fun onHook() {

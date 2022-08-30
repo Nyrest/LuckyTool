@@ -2,7 +2,7 @@ package com.luckyzyx.luckytool.hook.apps.android
 
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 import com.highcapable.yukihookapi.hook.log.loggerE
-import com.luckyzyx.luckytool.utils.XposedPrefs
+import com.luckyzyx.luckytool.utils.tools.XposedPrefs
 
 class ADBInstallConfirm : YukiBaseHooker() {
     override fun onHook() {
@@ -12,10 +12,7 @@ class ADBInstallConfirm : YukiBaseHooker() {
                     name = "allowInterceptAdbInstallInInstallStage"
                     paramCount = 5
                 }
-                beforeHook {
-                    prefs.clearCache()
-                    if (prefs(XposedPrefs).getBoolean("remove_adb_install_confirm",false)) resultFalse()
-                }
+                if (prefs(XposedPrefs).getBoolean("remove_adb_install_confirm",false)) replaceToFalse()
             }.onNoSuchMemberFailure {
                 loggerE(msg = "NoSuchMember -> allowInterceptAdbInstallInInstallStage")
             }

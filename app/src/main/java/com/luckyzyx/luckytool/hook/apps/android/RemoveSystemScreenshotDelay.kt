@@ -3,7 +3,7 @@ package com.luckyzyx.luckytool.hook.apps.android
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 import com.highcapable.yukihookapi.hook.log.loggerE
 import com.highcapable.yukihookapi.hook.type.java.LongType
-import com.luckyzyx.luckytool.utils.XposedPrefs
+import com.luckyzyx.luckytool.utils.tools.XposedPrefs
 
 class RemoveSystemScreenshotDelay : YukiBaseHooker() {
     override fun onHook() {
@@ -13,11 +13,7 @@ class RemoveSystemScreenshotDelay : YukiBaseHooker() {
                     name = "getScreenshotChordLongPressDelay"
                     returnType = LongType
                 }
-                beforeHook {
-                    prefs.clearCache()
-                    if (prefs(XposedPrefs).getBoolean("remove_system_screenshot_delay", false)) result = 0L
-                }
-
+                if (prefs(XposedPrefs).getBoolean("remove_system_screenshot_delay", false)) replaceTo(0L)
             }.onNoSuchMemberFailure {
                 loggerE(msg = "NoSuchMember -> getScreenshotChordLongPressDelay")
             }

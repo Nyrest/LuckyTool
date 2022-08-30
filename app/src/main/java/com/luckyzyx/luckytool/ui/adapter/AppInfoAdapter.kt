@@ -12,9 +12,9 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.switchmaterial.SwitchMaterial
 import com.luckyzyx.luckytool.databinding.LayoutAppinfoItemBinding
-import com.luckyzyx.luckytool.utils.XposedPrefs
-import com.luckyzyx.luckytool.utils.getStringSet
-import com.luckyzyx.luckytool.utils.putStringSet
+import com.luckyzyx.luckytool.utils.tools.XposedPrefs
+import com.luckyzyx.luckytool.utils.tools.getStringSet
+import com.luckyzyx.luckytool.utils.tools.putStringSet
 import java.io.Serializable
 
 data class AppInfo(

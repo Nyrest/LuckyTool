@@ -1,5 +1,7 @@
 package com.luckyzyx.luckytool.hook.apps.CorePatch;
 
+import static com.luckyzyx.luckytool.utils.tools.PrefsKt.XposedPrefs;
+
 import android.app.AndroidAppHelper;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
@@ -28,10 +30,16 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
 @SuppressWarnings("ALL")
 public class CorePatchForR extends XposedHelper implements IXposedHookLoadPackage, IXposedHookZygoteInit {
-    XSharedPreferences prefs = new XSharedPreferences(BuildConfig.APPLICATION_ID, "XposedPrefs");
+
+    private static final String TAG = "CorePatch";
+    XSharedPreferences prefs;
 
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam loadPackageParam) throws IllegalAccessException, InvocationTargetException, InstantiationException {
+
+        try{
+             prefs = new XSharedPreferences(BuildConfig.APPLICATION_ID, XposedPrefs);
+        }catch (Exception e){}
 
 //        Log.d(MainHook.TAG, "downgrade" + prefs.getBoolean("downgrade->", true));
 //        Log.d(MainHook.TAG, "authcreak" + prefs.getBoolean("authcreak->", true));
@@ -104,14 +112,18 @@ public class CorePatchForR extends XposedHelper implements IXposedHookLoadPackag
         Class<?> sJarClass = XposedHelpers.findClass("android.util.jar.StrictJarFile", loadPackageParam.classLoader);
         Constructor<?> constructorExact = XposedHelpers.findConstructorExact(sJarClass, String.class, boolean.class, boolean.class);
         constructorExact.setAccessible(true);
+
         Class<?> signingDetails = XposedHelpers.findClass("android.content.pm.PackageParser.SigningDetails", loadPackageParam.classLoader);
         Constructor<?> findConstructorExact = XposedHelpers.findConstructorExact(signingDetails, Signature[].class, Integer.TYPE);
         findConstructorExact.setAccessible(true);
+
         Class<?> packageParserException = XposedHelpers.findClass("android.content.pm.PackageParser.PackageParserException", loadPackageParam.classLoader);
         Field error = XposedHelpers.findField(packageParserException, "error");
         error.setAccessible(true);
+
         Object[] signingDetailsArgs = new Object[2];
         signingDetailsArgs[1] = 1;
+
         hookAllMethods("android.util.jar.StrictJarVerifier", loadPackageParam.classLoader, "verifyBytes", new XC_MethodHook() {
             public void afterHookedMethod(MethodHookParam param) throws Throwable {
                 super.afterHookedMethod(param);

@@ -1,6 +1,6 @@
 buildscript {
     dependencies {
-        classpath 'com.joom.paranoid:paranoid-gradle-plugin:0.3.11'
+        classpath 'com.joom.paranoid:paranoid-gradle-plugin:0.3.13'
     }
 }
 // Top-level build file where you can add configuration options common to all sub-projects/modules.

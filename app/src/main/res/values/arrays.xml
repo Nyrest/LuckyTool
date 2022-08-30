@@ -16,6 +16,7 @@
         <item>com.oplus.battery</item>
         <item>com.android.settings</item>
         <item>com.east2d.everyimage</item>
+        <item>com.ruet_cse_1503050.ragib.appbackup.pro</item>
     </string-array>
 
     <string-array name="dark_theme" translatable="false">

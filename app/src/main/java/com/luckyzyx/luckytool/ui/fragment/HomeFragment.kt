@@ -22,7 +22,7 @@ import com.joom.paranoid.Obfuscate
 import com.luckyzyx.luckytool.R
 import com.luckyzyx.luckytool.databinding.FragmentHomeBinding
 import com.luckyzyx.luckytool.ui.activity.MainActivity
-import com.luckyzyx.luckytool.utils.*
+import com.luckyzyx.luckytool.utils.tools.*
 import rikka.core.util.ResourceUtils
 
 @Obfuscate
@@ -68,15 +68,22 @@ class HomeFragment : Fragment() {
             }
         }
         binding.fpsTitle.text = getString(R.string.fps_title)
-        binding.fpsSummary.text = getString(R.string.fps_summer)
+        binding.fpsSummary.text = getString(R.string.fps_summary)
 
         binding.fps.setOnClickListener {
             MaterialAlertDialogBuilder(requireActivity())
                 .setCancelable(true)
                 .setItems(requireActivity().getFpsMode()) { _, which ->
+                    val fpsList = ArrayList<String>()
+                    fpsList.add(requireActivity().getFpsMode().size.toString())
                     if (requireActivity().getFpsMode().lastIndex == which) {
                         ShellUtils.execCommand("su -c service call SurfaceFlinger 1035 i32 -1", true)
-                    }else ShellUtils.execCommand("su -c service call SurfaceFlinger 1035 i32 $which", true)
+                        fpsList.add("-1")
+                    }else {
+                        ShellUtils.execCommand("su -c service call SurfaceFlinger 1035 i32 $which", true)
+                        fpsList.add(which.toString())
+                    }
+                    requireActivity().putStringSet(XposedPrefs,"current_fps",fpsList.toSet())
                 }
                 .show()
         }
@@ -84,10 +91,10 @@ class HomeFragment : Fragment() {
             """
                 ${getString(R.string.brand)}: ${Build.BRAND}
                 ${getString(R.string.model)}: ${Build.MODEL}
-                ${getString(R.string.system)}: ${Build.VERSION.RELEASE}(${Build.VERSION.SDK_INT})[${getColorOSVersion}]
+                ${getString(R.string.system)}: ${Build.VERSION.RELEASE}(${Build.VERSION.SDK_INT})[$getColorOSVersion]
                 ${getString(R.string.device)}: ${Build.DEVICE}
                 ${getString(R.string.build_version)}: ${Build.DISPLAY}
-                ${getString(R.string.flash)}: ${ShellUtils.execCommand("cat /sys/class/block/sda/device/inquiry", true, true).successMsg}
+                ${getString(R.string.flash)}: ${getFlashInfo()}
             """.trimIndent()
     }
 
@@ -115,23 +122,21 @@ class HomeFragment : Fragment() {
     }
 
     private fun refreshmode(context: Context) {
-        val list = arrayOf(getString(R.string.restart_scope),getString(R.string.reboot), getString(R.string.reboot_shutdown), getString(R.string.reboot_recovery), getString(
-                    R.string.reboot_bootloader))
+        val list = arrayOf(getString(R.string.restart_scope),getString(R.string.reboot),getString(R.string.fast_reboot))
         MaterialAlertDialogBuilder(context)
             .setCancelable(true)
             .setItems(list) { _: DialogInterface?, i: Int ->
                 when (i) {
                     0 -> (activity as MainActivity).restartScope(requireActivity())
-                    1 -> ShellUtils.execCommand("reboot", true)
-                    2 -> ShellUtils.execCommand("reboot -p", true)
-                    3 -> ShellUtils.execCommand("reboot recovery", true)
-                    4 -> ShellUtils.execCommand("reboot bootloader", true)
+                    1 -> ShellUtils.execCommand("reboot",true)
+                    2 -> ShellUtils.execCommand("killall zygote",true)
                 }
             }
             .show()
     }
 }
 
+@Obfuscate
 class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeListener {
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         preferenceManager.sharedPreferencesName = SettingsPrefs
@@ -139,7 +144,7 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
             addPreference(
                 PreferenceCategory(requireActivity()).apply {
                     setTitle(R.string.theme_title)
-                    setSummary(R.string.theme_title_summer)
+                    setSummary(R.string.theme_title_summary)
                     isIconSpaceReserved = false
                 }
             )
@@ -148,7 +153,7 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
                     key = "use_dynamic_color"
                     setDefaultValue(false)
                     setTitle(R.string.use_dynamic_color)
-                    setSummary(R.string.use_dynamic_color_summer)
+                    setSummary(R.string.use_dynamic_color_summary)
                     isIconSpaceReserved = false
                 }
             )
@@ -174,7 +179,7 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
                     key = "hide_desktop_appicon"
                     setDefaultValue(false)
                     title = getString(R.string.hide_desktop_appicon)
-                    summary = getString(R.string.hide_desktop_appicon_summer)
+                    summary = getString(R.string.hide_desktop_appicon_summary)
                     isIconSpaceReserved = false
                 }
             )
@@ -187,7 +192,7 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
             addPreference(
                 Preference(requireActivity()).apply {
                     title = getString(R.string.feedback_download)
-                    summary = getString(R.string.feedback_download_summer)
+                    summary = getString(R.string.feedback_download_summary)
                     isIconSpaceReserved = false
                     onPreferenceClickListener = Preference.OnPreferenceClickListener {
                         val updatelist = arrayOf(getString(R.string.coolmarket),getString(R.string.telegram_channel),getString(R.string.telegram_group),getString(R.string.lsposed_repo))
@@ -218,7 +223,7 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
             addPreference(
                 Preference(requireActivity()).apply {
                     setTitle(R.string.open_source)
-                    setSummary(R.string.open_source_summer)
+                    setSummary(R.string.open_source_summary)
                     isIconSpaceReserved = false
                     onPreferenceClickListener = Preference.OnPreferenceClickListener {
                         requireActivity().findNavController(R.id.nav_host_fragment_container).navigate(R.id.action_settingsFragment_to_sourceFragment)
@@ -246,6 +251,7 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
     }
 }
 
+@Obfuscate
 class SourceFragment : ModulePreferenceFragment() {
     override fun onCreatePreferencesInModuleApp(savedInstanceState: Bundle?, rootKey: String?) {
         preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {

@@ -27,8 +27,7 @@ public class XposedHelper {
             Class<?> packageParser = findClass(p1, lpparam);
             XposedBridge.hookAllMethods(packageParser, methodName, parameterTypesAndCallback);
         } catch (Throwable e) {
-            if (DEBUG)
-                XposedBridge.log(e);
+            if (DEBUG) XposedBridge.log(e);
         }
 
     }
@@ -37,8 +36,7 @@ public class XposedHelper {
         try {
             XposedBridge.hookAllMethods(packageManagerServiceUtils, verifySignatures, methodHook);
         } catch (Throwable e) {
-            if (DEBUG)
-                XposedBridge.log(e);
+            if (DEBUG) XposedBridge.log(e);
         }
     }
 
@@ -46,8 +44,7 @@ public class XposedHelper {
         try {
             return Class.forName(className, false, classLoader);
         } catch (Throwable e) {
-            if (DEBUG)
-                XposedBridge.log(e);
+            if (DEBUG) XposedBridge.log(e);
         }
         return null;
     }
@@ -57,8 +54,7 @@ public class XposedHelper {
             Class<?> packageParser = findClass(p1, null);
             hookAllConstructors(packageParser, parameterTypesAndCallback);
         } catch (Throwable e) {
-            if (DEBUG)
-                XposedBridge.log(e);
+            if (DEBUG) XposedBridge.log(e);
         }
     }
 
@@ -66,8 +62,7 @@ public class XposedHelper {
         try {
             return XposedBridge.hookAllConstructors(hookClass, callback);
         } catch (Throwable e) {
-            if (DEBUG)
-                XposedBridge.log(e);
+            if (DEBUG) XposedBridge.log(e);
             return null;
         }
     }

@@ -1,6 +1,6 @@
 @file:Suppress("KDocUnresolvedReference", "unused", "MemberVisibilityCanBePrivate")
 
-package com.luckyzyx.luckytool.utils
+package com.luckyzyx.luckytool.utils.tools
 
 import android.content.Context
 

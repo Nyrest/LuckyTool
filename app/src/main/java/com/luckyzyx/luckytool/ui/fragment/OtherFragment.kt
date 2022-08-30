@@ -9,10 +9,10 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.joom.paranoid.Obfuscate
 import com.luckyzyx.luckytool.R
 import com.luckyzyx.luckytool.databinding.FragmentOtherBinding
-import com.luckyzyx.luckytool.utils.ShellUtils
-import com.luckyzyx.luckytool.utils.jumpBatteryInfo
-import com.luckyzyx.luckytool.utils.jumpEngineermode
-import com.luckyzyx.luckytool.utils.jumpRunningApp
+import com.luckyzyx.luckytool.utils.tools.ShellUtils
+import com.luckyzyx.luckytool.utils.tools.jumpBatteryInfo
+import com.luckyzyx.luckytool.utils.tools.jumpEngineermode
+import com.luckyzyx.luckytool.utils.tools.jumpRunningApp
 
 @Obfuscate
 class OtherFragment : Fragment() {
@@ -29,12 +29,12 @@ class OtherFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.quickEntryTitle.text = getString(R.string.quick_entry)
-        binding.quickEntrySummary.text = getString(R.string.quick_entry_summer)
+        binding.quickEntrySummary.text = getString(R.string.quick_entry_summary)
         binding.quickEntry.setOnClickListener {
             val quicklist = arrayListOf<String>()
             quicklist.add(getString(R.string.engineering_mode))
             quicklist.add(getString(R.string.charging_test))
-            quicklist.add(getString(R.string.process_management))
+            quicklist.add(getString(R.string.process_manager))
             quicklist.add(getString(R.string.system_interface_adjustment))
             quicklist.add(getString(R.string.feedback_toolbox))
             quicklist.add(getString(R.string.developer_option))

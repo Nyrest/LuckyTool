@@ -3,7 +3,7 @@ package com.luckyzyx.luckytool.hook.apps.android
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 import com.highcapable.yukihookapi.hook.log.loggerE
 import com.highcapable.yukihookapi.hook.type.java.ListClass
-import com.luckyzyx.luckytool.utils.XposedPrefs
+import com.luckyzyx.luckytool.utils.tools.XposedPrefs
 
 class MultiApp : YukiBaseHooker() {
     override fun onHook() {
@@ -14,7 +14,6 @@ class MultiApp : YukiBaseHooker() {
                     returnType = ListClass
                 }
                 beforeHook {
-                    prefs.clearCache()
                     if (prefs(XposedPrefs).getBoolean("multi_app_enable",false)){
                         val appList = ArrayList<String>()
                         for (i in prefs(XposedPrefs).getStringSet("enabledMulti",HashSet())){

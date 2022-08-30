@@ -2,7 +2,7 @@ package com.luckyzyx.luckytool.hook
 
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 import com.luckyzyx.luckytool.hook.apps.screenshot.RemoveScreenshotPrivacyLimit
-import com.luckyzyx.luckytool.utils.XposedPrefs
+import com.luckyzyx.luckytool.utils.tools.XposedPrefs
 
 class Screenshot : YukiBaseHooker() {
     override fun onHook() {

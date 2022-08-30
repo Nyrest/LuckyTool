@@ -2,7 +2,7 @@ package com.luckyzyx.luckytool.hook.apps.otherapp
 
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 import com.highcapable.yukihookapi.hook.type.java.BooleanType
-import com.luckyzyx.luckytool.utils.XposedPrefs
+import com.luckyzyx.luckytool.utils.tools.XposedPrefs
 
 class HookMoreAnime : YukiBaseHooker() {
     override fun onHook() {

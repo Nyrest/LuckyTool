@@ -26,10 +26,10 @@ import com.highcapable.yukihookapi.hook.xposed.prefs.ui.ModulePreferenceFragment
 import com.luckyzyx.luckytool.R
 import com.luckyzyx.luckytool.databinding.FragmentXposedBinding
 import com.luckyzyx.luckytool.ui.activity.MainActivity
-import com.luckyzyx.luckytool.ui.refactor.ColorPickerPreference
-import com.luckyzyx.luckytool.utils.XposedPrefs
-import com.luckyzyx.luckytool.utils.dp2px
-import com.luckyzyx.luckytool.utils.getAppVersion
+import com.luckyzyx.luckytool.utils.tools.SDK
+import com.luckyzyx.luckytool.utils.tools.XposedPrefs
+import com.luckyzyx.luckytool.utils.tools.dp2px
+import com.luckyzyx.luckytool.utils.tools.getAppVersion
 import rikka.core.util.ResourceUtils
 
 class XposedFragment : Fragment() {
@@ -97,11 +97,9 @@ class XposedFragment : Fragment() {
         val xposedScope = resources.getStringArray(R.array.xposed_scope)
         var str = getString(R.string.scope_version_info)+"\n"
         for (scope in xposedScope) {
-            var iscommit = true
-            if (scope == "android") iscommit = false
-            if (scope == "com.east2d.everyimage") iscommit = false
-            if (requireActivity().getAppVersion(scope, iscommit) == "null") continue
-            str += "\n$scope\n${getString(R.string.version_first) + requireActivity().getAppVersion(scope, iscommit)}\n"
+            val arrayList = requireActivity().getAppVersion(scope)
+            if (arrayList.isEmpty()) continue
+            str += "\n$scope\n${getString(R.string.version_first)} ${arrayList[0]}(${arrayList[1]})[${arrayList[2]}]\n"
         }
         val nestedScrollView = NestedScrollView(requireActivity()).apply {
             setPadding(requireActivity().dp2px(16F).toInt())
@@ -263,11 +261,23 @@ class OtherApp : ModulePreferenceFragment() {
             addPreference(
                 Preference(requireActivity()).apply {
                     title = getString(R.string.Everyimage)
+                    summary = getString(R.string.skip_startup_page)+","+getString(R.string.vip_download)
                     key = "com.east2d.everyimage"
-                    summary = getString(R.string.version_first)+ requireActivity().getAppVersion(key)
                     setIcon(R.mipmap.everyimage_icon)
                     setOnPreferenceClickListener {
                         requireActivity().findNavController(R.id.xposed_fragment_container).navigate(R.id.action_otherApp_to_everyimage)
+                        true
+                    }
+                }
+            )
+            addPreference(
+                Preference(requireActivity()).apply {
+                    title = getString(R.string.AlphaBackupPro)
+                    summary = getString(R.string.remove_pro_license)
+                    key = "com.ruet_cse_1503050.ragib.appbackup.pro"
+                    setIcon(R.mipmap.alphabackup_icon)
+                    setOnPreferenceClickListener {
+                        requireActivity().findNavController(R.id.xposed_fragment_container).navigate(R.id.action_otherApp_to_alphaBackupPro)
                         true
                     }
                 }
@@ -283,7 +293,7 @@ class System : ModulePreferenceFragment(), OnSharedPreferenceChangeListener {
             addPreference(
                 PreferenceCategory(requireActivity()).apply {
                     setTitle(R.string.corepatch)
-                    setSummary(R.string.corepatch_summer)
+                    setSummary(R.string.corepatch_summary)
                     key = "CorePatch"
                     isIconSpaceReserved = false
                 }
@@ -363,6 +373,30 @@ class StatusBar : ModulePreferenceFragment(){
         preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
             addPreference(
                 Preference(requireActivity()).apply {
+                    title = getString(R.string.StatusBarClock)
+                    summary = getString(R.string.statusbar_clock_show_second)+","+getString(R.string.statusbar_clock_show_doublerow)+","+getString(R.string.statusbar_clock_doublerow_fontsize)
+                    key = "StatusBarClock"
+                    setIcon(R.mipmap.alarmclock_icon)
+                    setOnPreferenceClickListener {
+                        requireActivity().findNavController(R.id.xposed_fragment_container).navigate(R.id.action_statusBar_to_statusBarClock)
+                        true
+                    }
+                }
+            )
+            addPreference(
+                Preference(requireActivity()).apply {
+                    title = getString(R.string.StatusBarDate)
+                    summary = getString(R.string.remove_statusbar_date_comma)
+                    key = "StatusBarDate"
+                    setIcon(R.mipmap.systemui_icon)
+                    setOnPreferenceClickListener {
+                        requireActivity().findNavController(R.id.xposed_fragment_container).navigate(R.id.action_statusBar_to_statusBarDate)
+                        true
+                    }
+                }
+            )
+            addPreference(
+                Preference(requireActivity()).apply {
                     title = getString(R.string.StatusBarNotice)
                     summary = getString(R.string.remove_statusbar_top_notification)+","+getString(R.string.remove_charging_completed)
                     key = "StatusBarNotice"
@@ -397,16 +431,138 @@ class StatusBar : ModulePreferenceFragment(){
                     }
                 }
             )
+        }
+    }
+}
+
+class StatusBarClock : ModulePreferenceFragment(){
+    override fun onCreatePreferencesInModuleApp(savedInstanceState: Bundle?, rootKey: String?) {
+        preferenceManager.sharedPreferencesName = XposedPrefs
+        preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
             addPreference(
-                Preference(requireActivity()).apply {
-                    title = getString(R.string.StatusBarClock)
-                    summary = getString(R.string.TopStatusBarClock)+","+getString(R.string.DropDownStatusBarClock)
-                    key = "StatusBarClock"
-                    setIcon(R.mipmap.alarmclock_icon)
-                    setOnPreferenceClickListener {
-                        requireActivity().findNavController(R.id.xposed_fragment_container).navigate(R.id.action_statusBar_to_statusBarClock)
-                        true
-                    }
+                SwitchPreference(requireActivity()).apply {
+                    title = getString(R.string.statusbar_clock_enable)
+                    key = "statusbar_clock_enable"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    title = getString(R.string.statusbar_clock_show_year)
+                    key = "statusbar_clock_show_year"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    title = getString(R.string.statusbar_clock_show_month)
+                    key = "statusbar_clock_show_month"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    title = getString(R.string.statusbar_clock_show_day)
+                    key = "statusbar_clock_show_day"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    title = getString(R.string.statusbar_clock_show_week)
+                    key = "statusbar_clock_show_week"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    title = getString(R.string.statusbar_clock_show_period)
+                    key = "statusbar_clock_show_period"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    title = getString(R.string.statusbar_clock_show_second)
+                    key = "statusbar_clock_show_second"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    title = getString(R.string.statusbar_clock_show_doublerow)
+                    key = "statusbar_clock_show_doublerow"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SeekBarPreference(requireActivity()).apply {
+                    title = getString(R.string.statusbar_clock_singlerow_fontsize)
+                    summary = getString(R.string.statusbar_clock_fontsize_summary)
+                    key = "statusbar_clock_singlerow_fontsize"
+                    setDefaultValue(0)
+                    max = 18
+                    min = 0
+                    seekBarIncrement = 1
+                    showSeekBarValue = true
+                    updatesContinuously = false
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SeekBarPreference(requireActivity()).apply {
+                    title = getString(R.string.statusbar_clock_doublerow_fontsize)
+                    summary = getString(R.string.statusbar_clock_fontsize_summary)
+                    key = "statusbar_clock_doublerow_fontsize"
+                    setDefaultValue(0)
+                    max = 10
+                    min = 0
+                    seekBarIncrement = 1
+                    showSeekBarValue = true
+                    updatesContinuously = false
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    title = getString(R.string.remove_statusbar_clock_redone)
+                    key = "remove_statusbar_clock_redone"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+        }
+        preferenceScreen.findPreference<SwitchPreference>("statusbar_clock_show_year")?.dependency = "statusbar_clock_enable"
+        preferenceScreen.findPreference<SwitchPreference>("statusbar_clock_show_month")?.dependency = "statusbar_clock_enable"
+        preferenceScreen.findPreference<SwitchPreference>("statusbar_clock_show_day")?.dependency = "statusbar_clock_enable"
+        preferenceScreen.findPreference<SwitchPreference>("statusbar_clock_show_week")?.dependency = "statusbar_clock_enable"
+        preferenceScreen.findPreference<SwitchPreference>("statusbar_clock_show_period")?.dependency = "statusbar_clock_enable"
+        preferenceScreen.findPreference<SwitchPreference>("statusbar_clock_show_second")?.dependency = "statusbar_clock_enable"
+        preferenceScreen.findPreference<SwitchPreference>("statusbar_clock_show_doublerow")?.dependency = "statusbar_clock_enable"
+        preferenceScreen.findPreference<SeekBarPreference>("statusbar_clock_singlerow_fontsize")?.dependency = "statusbar_clock_enable"
+        preferenceScreen.findPreference<SeekBarPreference>("statusbar_clock_doublerow_fontsize")?.dependency = "statusbar_clock_show_doublerow"
+    }
+}
+
+class StatusBarDate : ModulePreferenceFragment(){
+    override fun onCreatePreferencesInModuleApp(savedInstanceState: Bundle?, rootKey: String?) {
+        preferenceManager.sharedPreferencesName = XposedPrefs
+        preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    title = getString(R.string.remove_statusbar_date_comma)
+                    summary = getString(R.string.remove_statusbar_date_comma_summary)
+                    key = "remove_statusbar_date_comma"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
                 }
             )
         }
@@ -420,7 +576,7 @@ class StatusBarNotice : ModulePreferenceFragment() {
             addPreference(
                 SwitchPreference(requireActivity()).apply {
                     title = getString(R.string.remove_statusbar_top_notification)
-                    summary = getString(R.string.remove_statusbar_top_notification_summer)
+                    summary = getString(R.string.remove_statusbar_top_notification_summary)
                     key = "remove_statusbar_top_notification"
                     setDefaultValue(false)
                     isIconSpaceReserved = false
@@ -429,7 +585,7 @@ class StatusBarNotice : ModulePreferenceFragment() {
             addPreference(
                 SwitchPreference(requireActivity()).apply {
                     title = getString(R.string.remove_vpn_active_notification)
-                    summary = getString(R.string.remove_vpn_active_notification_summer)
+                    summary = getString(R.string.remove_vpn_active_notification_summary)
                     key = "remove_vpn_active_notification"
                     setDefaultValue(false)
                     isIconSpaceReserved = false
@@ -454,7 +610,7 @@ class StatusBarNotice : ModulePreferenceFragment() {
             addPreference(
                 SwitchPreference(requireActivity()).apply {
                     title = getString(R.string.remove_statusbar_bottom_networkwarn)
-                    summary = getString(R.string.remove_statusbar_bottom_networkwarn_summer)
+                    summary = getString(R.string.remove_statusbar_bottom_networkwarn_summary)
                     key = "remove_statusbar_bottom_networkwarn"
                     setDefaultValue(false)
                     isIconSpaceReserved = false
@@ -527,6 +683,7 @@ class StatusBarTile : ModulePreferenceFragment(){
                     showSeekBarValue = true
                     updatesContinuously = false
                     isIconSpaceReserved = false
+                    isVisible = SDK < 33
                 }
             )
             addPreference(
@@ -540,6 +697,7 @@ class StatusBarTile : ModulePreferenceFragment(){
                     showSeekBarValue = true
                     updatesContinuously = false
                     isIconSpaceReserved = false
+                    isVisible = SDK < 33
                 }
             )
             addPreference(
@@ -553,6 +711,7 @@ class StatusBarTile : ModulePreferenceFragment(){
                     showSeekBarValue = true
                     updatesContinuously = false
                     isIconSpaceReserved = false
+                    isVisible = SDK < 33
                 }
             )
             addPreference(
@@ -566,6 +725,63 @@ class StatusBarTile : ModulePreferenceFragment(){
                     showSeekBarValue = true
                     updatesContinuously = false
                     isIconSpaceReserved = false
+                    isVisible = SDK < 33
+                }
+            )
+            addPreference(
+                SeekBarPreference(requireActivity()).apply {
+                    title = getString(R.string.tile_unexpanded_columns_vertical)
+                    key = "tile_unexpanded_columns_vertical_c13"
+                    setDefaultValue(5)
+                    max = 6
+                    min = 1
+                    seekBarIncrement = 1
+                    showSeekBarValue = true
+                    updatesContinuously = false
+                    isIconSpaceReserved = false
+                    isVisible = SDK >= 33
+                }
+            )
+            addPreference(
+                SeekBarPreference(requireActivity()).apply {
+                    title = getString(R.string.tile_expanded_rows_vertical)
+                    key = "tile_expanded_rows_vertical_c13"
+                    setDefaultValue(3)
+                    max = 4
+                    min = 1
+                    seekBarIncrement = 1
+                    showSeekBarValue = true
+                    updatesContinuously = false
+                    isIconSpaceReserved = false
+                    isVisible = SDK >= 33
+                }
+            )
+            addPreference(
+                SeekBarPreference(requireActivity()).apply {
+                    title = getString(R.string.tile_expanded_columns_vertical)
+                    key = "tile_expanded_columns_vertical_c13"
+                    setDefaultValue(4)
+                    max = 7
+                    min = 1
+                    seekBarIncrement = 1
+                    showSeekBarValue = true
+                    updatesContinuously = false
+                    isIconSpaceReserved = false
+                    isVisible = SDK >= 33
+                }
+            )
+            addPreference(
+                SeekBarPreference(requireActivity()).apply {
+                    title = getString(R.string.tile_columns_horizontal_c13)
+                    key = "tile_columns_horizontal_c13"
+                    setDefaultValue(5)
+                    max = 6
+                    min = 1
+                    seekBarIncrement = 1
+                    showSeekBarValue = true
+                    updatesContinuously = false
+                    isIconSpaceReserved = false
+                    isVisible = SDK >= 33
                 }
             )
         }
@@ -573,72 +789,10 @@ class StatusBarTile : ModulePreferenceFragment(){
         preferenceScreen.findPreference<SeekBarPreference>("tile_unexpanded_columns_horizontal")?.dependency = "statusbar_tile_enable"
         preferenceScreen.findPreference<SeekBarPreference>("tile_expanded_columns_vertical")?.dependency = "statusbar_tile_enable"
         preferenceScreen.findPreference<SeekBarPreference>("tile_expanded_columns_horizontal")?.dependency = "statusbar_tile_enable"
-    }
-}
-
-class StatusBarClock : ModulePreferenceFragment(){
-    override fun onCreatePreferencesInModuleApp(savedInstanceState: Bundle?, rootKey: String?) {
-        preferenceManager.sharedPreferencesName = XposedPrefs
-        preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
-            addPreference(
-                PreferenceCategory(requireActivity()).apply {
-                    title = getString(R.string.TopStatusBarClock)
-                    summary = getString(R.string.TopStatusBarClock_summer)
-                    key = "TopStatusBarClock"
-                    isIconSpaceReserved = false
-                }
-            )
-            addPreference(
-                SwitchPreference(requireActivity()).apply {
-                    title = getString(R.string.statusbar_clock_enable)
-                    key = "statusbar_clock_enable"
-                    setDefaultValue(false)
-                    isIconSpaceReserved = false
-                }
-            )
-            addPreference(
-                SwitchPreference(requireActivity()).apply {
-                    title = getString(R.string.statusbar_clock_show_second)
-                    key = "statusbar_clock_show_second"
-                    setDefaultValue(false)
-                    isIconSpaceReserved = false
-                }
-            )
-            addPreference(
-                SwitchPreference(requireActivity()).apply {
-                    title = getString(R.string.statusbar_clock_show_period)
-                    key = "statusbar_clock_show_period"
-                    setDefaultValue(false)
-                    isIconSpaceReserved = false
-                }
-            )
-            addPreference(
-                PreferenceCategory(requireActivity()).apply {
-                    title = getString(R.string.DropDownStatusBarClock)
-                    summary = getString(R.string.DropDownStatusBarClock_summer)
-                    key = "DropDownStatusBarClock"
-                    isIconSpaceReserved = false
-                }
-            )
-            addPreference(
-                SwitchPreference(requireActivity()).apply {
-                    title = getString(R.string.remove_statusbar_clock_redone)
-                    key = "remove_statusbar_clock_redone"
-                    setDefaultValue(false)
-                    isIconSpaceReserved = false
-                }
-            )
-            addPreference(
-                SwitchPreference(requireActivity()).apply {
-                    title = getString(R.string.statusbar_dropdown_clock_show_second)
-                    key = "statusbar_dropdown_clock_show_second"
-                    setDefaultValue(false)
-                    isIconSpaceReserved = false
-                }
-            )
-        }
-        preferenceScreen.findPreference<SwitchPreference>("statusbar_clock_show_second")?.dependency = "statusbar_clock_enable"
-        preferenceScreen.findPreference<SwitchPreference>("statusbar_clock_show_period")?.dependency = "statusbar_clock_enable"
+        preferenceScreen.findPreference<SeekBarPreference>("tile_unexpanded_columns_vertical_c13")?.dependency = "statusbar_tile_enable"
+        preferenceScreen.findPreference<SeekBarPreference>("tile_expanded_rows_vertical_c13")?.dependency = "statusbar_tile_enable"
+        preferenceScreen.findPreference<SeekBarPreference>("tile_expanded_columns_vertical_c13")?.dependency = "statusbar_tile_enable"
+        preferenceScreen.findPreference<SeekBarPreference>("tile_columns_horizontal_c13")?.dependency = "statusbar_tile_enable"
     }
 }
 
@@ -730,15 +884,12 @@ class LockScreen : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                ColorPickerPreference(requireActivity(), XposedPrefs).apply {
-                    title = getString(R.string.set_lock_screen_textview_color)
-                    summary = getString(R.string.set_lock_screen_textview_color_summer)
-                    key = "set_lock_screen_textview_color"
+                SwitchPreference(requireActivity()).apply {
+                    title = getString(R.string.set_lock_screen_centered)
+                    summary = getString(R.string.set_lock_screen_centered_summary)
+                    key = "set_lock_screen_centered"
+                    setDefaultValue(false)
                     isIconSpaceReserved = false
-                    dialogTitle = title as String
-                    cornerRadius = 30
-                    neutral = resources.getString(android.R.string.cancel)
-                    positive = resources.getString(android.R.string.ok)
                 }
             )
         }
@@ -752,7 +903,7 @@ class Screenshot : ModulePreferenceFragment() {
             addPreference(
                 SwitchPreference(requireActivity()).apply {
                     title = getString(R.string.remove_system_screenshot_delay)
-                    summary = getString(R.string.remove_system_screenshot_delay_summer)
+                    summary = getString(R.string.remove_system_screenshot_delay_summary)
                     key = "remove_system_screenshot_delay"
                     setDefaultValue(false)
                     isIconSpaceReserved = false
@@ -761,7 +912,7 @@ class Screenshot : ModulePreferenceFragment() {
             addPreference(
                 SwitchPreference(requireActivity()).apply {
                     title = getString(R.string.remove_screenshot_privacy_limit)
-                    summary = getString(R.string.remove_screenshot_privacy_limit_summer)
+                    summary = getString(R.string.remove_screenshot_privacy_limit_summary)
                     key = "remove_screenshot_privacy_limit"
                     setDefaultValue(false)
                     isIconSpaceReserved = false
@@ -770,7 +921,7 @@ class Screenshot : ModulePreferenceFragment() {
             addPreference(
                 SwitchPreference(requireActivity()).apply {
                     title = getString(R.string.disable_flag_secure)
-                    summary = getString(R.string.disable_flag_secure_summer)
+                    summary = getString(R.string.disable_flag_secure_summary)
                     key = "disable_flag_secure"
                     setDefaultValue(false)
                     isIconSpaceReserved = false
@@ -794,7 +945,7 @@ class Application : ModulePreferenceFragment(){
             addPreference(
                 SwitchPreference(requireActivity()).apply {
                     title = getString(R.string.multi_app_enable)
-                    summary = getString(R.string.multi_app_enable_summer)
+                    summary = getString(R.string.multi_app_enable_summary)
                     key = "multi_app_enable"
                     setDefaultValue(false)
                     isIconSpaceReserved = false
@@ -803,7 +954,7 @@ class Application : ModulePreferenceFragment(){
             addPreference(
                 Preference(requireActivity()).apply {
                     title = getString(R.string.multi_app_list)
-                    summary = getString(R.string.multi_app_list_summer)
+                    summary = getString(R.string.multi_app_list_summary)
                     key = "multi_app_list"
                     isIconSpaceReserved = false
                     setOnPreferenceClickListener {
@@ -822,7 +973,7 @@ class Application : ModulePreferenceFragment(){
             addPreference(
                 SwitchPreference(requireActivity()).apply {
                     title = getString(R.string.skip_apk_scan)
-                    summary = getString(R.string.skip_apk_scan_summer)
+                    summary = getString(R.string.skip_apk_scan_summary)
                     key = "skip_apk_scan"
                     setDefaultValue(false)
                     isIconSpaceReserved = false
@@ -831,7 +982,7 @@ class Application : ModulePreferenceFragment(){
             addPreference(
                 SwitchPreference(requireActivity()).apply {
                     title = getString(R.string.allow_downgrade_install)
-                    summary = getString(R.string.allow_downgrade_install_summer)
+                    summary = getString(R.string.allow_downgrade_install_summary)
                     key = "allow_downgrade_install"
                     setDefaultValue(false)
                     isIconSpaceReserved = false
@@ -839,17 +990,8 @@ class Application : ModulePreferenceFragment(){
             )
             addPreference(
                 SwitchPreference(requireActivity()).apply {
-                    title = getString(R.string.disable_apk_signature_verification)
-                    summary = getString(R.string.disable_apk_signature_verification_summer)
-                    key = "disable_apk_signature_verification"
-                    setDefaultValue(false)
-                    isIconSpaceReserved = false
-                }
-            )
-            addPreference(
-                SwitchPreference(requireActivity()).apply {
                     title = getString(R.string.remove_install_ads)
-                    summary = getString(R.string.remove_install_ads_summer)
+                    summary = getString(R.string.remove_install_ads_summary)
                     key = "remove_install_ads"
                     setDefaultValue(false)
                     isIconSpaceReserved = false
@@ -858,7 +1000,7 @@ class Application : ModulePreferenceFragment(){
             addPreference(
                 SwitchPreference(requireActivity()).apply {
                     title = getString(R.string.replase_aosp_installer)
-                    summary = getString(R.string.replase_aosp_installer_summer)
+                    summary = getString(R.string.replase_aosp_installer_summary)
                     key = "replase_aosp_installer"
                     setDefaultValue(false)
                     isIconSpaceReserved = false
@@ -867,7 +1009,7 @@ class Application : ModulePreferenceFragment(){
             addPreference(
                 SwitchPreference(requireActivity()).apply {
                     title = getString(R.string.remove_adb_install_confirm)
-                    summary = getString(R.string.remove_adb_install_confirm_summer)
+                    summary = getString(R.string.remove_adb_install_confirm_summary)
                     key = "remove_adb_install_confirm"
                     setDefaultValue(false)
                     isIconSpaceReserved = false
@@ -883,7 +1025,7 @@ class Application : ModulePreferenceFragment(){
             addPreference(
                 SwitchPreference(requireActivity()).apply {
                     title = getString(R.string.unlock_startup_limit)
-                    summary = getString(R.string.unlock_startup_limit_summer)
+                    summary = getString(R.string.unlock_startup_limit_summary)
                     key = "unlock_startup_limit"
                     setDefaultValue(false)
                     isIconSpaceReserved = false
@@ -899,6 +1041,7 @@ class Application : ModulePreferenceFragment(){
             )
         }
         preferenceScreen.findPreference<Preference>("multi_app_list")?.dependency = "multi_app_enable"
+
     }
 }
 
@@ -916,12 +1059,13 @@ class Miscellaneous : ModulePreferenceFragment(){
                         requireActivity().findNavController(R.id.xposed_fragment_container).navigate(R.id.action_miscellaneous_to_powerMenu)
                         true
                     }
+                    isVisible = SDK_INT in 31..32
                 }
             )
             addPreference(
                 SwitchPreference(requireActivity()).apply {
                     title = getString(R.string.show_charging_ripple)
-                    summary = getString(R.string.show_charging_ripple_summer)
+                    summary = getString(R.string.show_charging_ripple_summary)
                     key = "show_charging_ripple"
                     setDefaultValue(false)
                     isIconSpaceReserved = false
@@ -1000,6 +1144,10 @@ class PowerMenu : ModulePreferenceFragment(){
                 }
             )
         }
+        preferenceScreen.findPreference<SwitchPreference>("power_menu_sos_button")?.dependency = "power_menu_enable"
+        preferenceScreen.findPreference<SwitchPreference>("power_menu_lock_button")?.dependency = "power_menu_enable"
+        preferenceScreen.findPreference<SwitchPreference>("power_menu_simple_layout")?.dependency = "power_menu_enable"
+        preferenceScreen.findPreference<SwitchPreference>("power_menu_remove_add_controls")?.dependency = "power_menu_enable"
     }
 }
 
@@ -1026,7 +1174,7 @@ class OplusGames : ModulePreferenceFragment() {
             addPreference(
                 SwitchPreference(requireActivity()).apply {
                     title = getString(R.string.remove_root_check)
-                    summary = getString(R.string.remove_root_check_summer)
+                    summary = getString(R.string.remove_root_check_summary)
                     key = "remove_root_check"
                     setDefaultValue(false)
                     isIconSpaceReserved = false
@@ -1043,7 +1191,7 @@ class CloudService : ModulePreferenceFragment() {
             addPreference(
                 SwitchPreference(requireActivity()).apply {
                     title = getString(R.string.remove_network_limit)
-                    summary = getString(R.string.remove_network_limit_summer)
+                    summary = getString(R.string.remove_network_limit_summary)
                     key = "remove_network_limit"
                     setDefaultValue(false)
                     isIconSpaceReserved = false
@@ -1060,7 +1208,7 @@ class ThemeStore : ModulePreferenceFragment() {
             addPreference(
                 SwitchPreference(requireActivity()).apply {
                     title = getString(R.string.unlock_themestore_vip)
-                    summary = getString(R.string.unlock_themestore_vip_summer)
+                    summary = getString(R.string.unlock_themestore_vip_summary)
                     key = "unlock_themestore_vip"
                     setDefaultValue(false)
                     isIconSpaceReserved = false
@@ -1086,6 +1234,22 @@ class Everyimage : ModulePreferenceFragment() {
                 SwitchPreference(requireActivity()).apply {
                     title = getString(R.string.vip_download)
                     key = "vip_download"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+        }
+    }
+}
+
+class AlphaBackupPro : ModulePreferenceFragment() {
+    override fun onCreatePreferencesInModuleApp(savedInstanceState: Bundle?, rootKey: String?) {
+        preferenceManager.sharedPreferencesName = XposedPrefs
+        preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    title = getString(R.string.remove_pro_license)
+                    key = "remove_check_license"
                     setDefaultValue(false)
                     isIconSpaceReserved = false
                 }

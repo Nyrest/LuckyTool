@@ -2,7 +2,7 @@ package com.luckyzyx.luckytool.hook.apps.launcher
 
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 import com.highcapable.yukihookapi.hook.type.java.IntArrayClass
-import com.luckyzyx.luckytool.utils.XposedPrefs
+import com.luckyzyx.luckytool.utils.tools.XposedPrefs
 
 class LauncherLayoutRowColume : YukiBaseHooker() {
     override fun onHook() {

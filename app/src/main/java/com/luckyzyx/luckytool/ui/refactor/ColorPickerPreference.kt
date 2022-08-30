@@ -14,14 +14,13 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceViewHolder
 import com.joom.paranoid.Obfuscate
 import com.luckyzyx.luckytool.R
-import com.luckyzyx.luckytool.utils.getInt
-import com.luckyzyx.luckytool.utils.putInt
 import com.skydoves.colorpickerview.ColorEnvelope
 import com.skydoves.colorpickerview.ColorPickerDialog
 import com.skydoves.colorpickerview.ColorPickerView
 import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener
 import com.skydoves.colorpickerview.listeners.ColorListener
 import com.skydoves.colorpickerview.listeners.ColorPickerViewListener
+
 
 @Obfuscate
 class ColorPickerPreference : Preference {
@@ -40,7 +39,7 @@ class ColorPickerPreference : Preference {
     var neutral: String? = "Cancel"
     var attachAlphaSlideBar = true
     var attachBrightnessSlideBar = true
-    var prefsName: String? = null
+    var prefsName: String = ""
 
     constructor(context: Context) : super(context)
     constructor(context: Context, prefsName: String) : super(context) {
@@ -130,8 +129,11 @@ class ColorPickerPreference : Preference {
                 ColorEnvelopeListener { envelope, _ ->
                     if (colorBox.background is GradientDrawable) {
                         (colorBox.background as GradientDrawable).setColor(envelope.color)
+                        val settings = context.getSharedPreferences(prefsName, Context.MODE_PRIVATE)
+                        val editor = settings.edit()
+                        editor.putInt(key, envelope.color)
+                        editor.commit()
                         notifyColorChanged(envelope)
-                        context.putInt(prefsName, key, envelope.color)
                     }
                 }
             )
@@ -153,7 +155,8 @@ class ColorPickerPreference : Preference {
                 if (key == null) {
                     this@ColorPickerPreference.defaultColor
                 } else {
-                    context.getInt(prefsName, key, this@ColorPickerPreference.defaultColor)
+                    val settings = context.getSharedPreferences(prefsName, Context.MODE_PRIVATE)
+                    settings.getInt(key, this@ColorPickerPreference.defaultColor)
                 }
             )
         }

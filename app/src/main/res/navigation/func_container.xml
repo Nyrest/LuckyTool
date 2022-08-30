@@ -99,6 +99,13 @@
             app:exitAnim="@anim/fragment_exit"
             app:popEnterAnim="@anim/fragment_enter_pop"
             app:popExitAnim="@anim/fragment_exit_pop"/>
+        <action
+            android:id="@+id/action_otherApp_to_alphaBackupPro"
+            app:destination="@id/alphaBackupPro"
+            app:enterAnim="@anim/fragment_enter"
+            app:exitAnim="@anim/fragment_exit"
+            app:popEnterAnim="@anim/fragment_enter_pop"
+            app:popExitAnim="@anim/fragment_exit_pop" />
     </fragment>
 
     <fragment
@@ -204,6 +211,13 @@
             app:exitAnim="@anim/fragment_exit"
             app:popEnterAnim="@anim/fragment_enter_pop"
             app:popExitAnim="@anim/fragment_exit_pop" />
+        <action
+            android:id="@+id/action_statusBar_to_statusBarDate"
+            app:destination="@id/statusBarDate"
+            app:enterAnim="@anim/fragment_enter"
+            app:exitAnim="@anim/fragment_exit"
+            app:popEnterAnim="@anim/fragment_enter_pop"
+            app:popExitAnim="@anim/fragment_exit_pop" />
     </fragment>
     <fragment
         android:id="@+id/miscellaneous"
@@ -221,5 +235,13 @@
         android:id="@+id/powerMenu"
         android:name="com.luckyzyx.luckytool.ui.fragment.PowerMenu"
         android:label="PowerMenu" />
+    <fragment
+        android:id="@+id/alphaBackupPro"
+        android:name="com.luckyzyx.luckytool.ui.fragment.AlphaBackupPro"
+        android:label="AlphaBackupPro" />
+    <fragment
+        android:id="@+id/statusBarDate"
+        android:name="com.luckyzyx.luckytool.ui.fragment.StatusBarDate"
+        android:label="StatusBarDate" />
 
 </navigation>
