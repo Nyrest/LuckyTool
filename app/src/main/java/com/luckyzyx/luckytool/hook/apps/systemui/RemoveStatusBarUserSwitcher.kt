@@ -18,18 +18,3 @@ class RemoveStatusBarUserSwitcher : YukiBaseHooker() {
         }
     }
 }
-class RemoveStatusBarUserSwitcherV13 : YukiBaseHooker() {
-    override fun onHook() {
-        //Search Log showUserSwitcher
-        findClass("com.oplusos.systemui.qs.OplusQSFooterViewController").hook {
-            injectMember {
-                method {
-                    name = "showUserSwitcher"
-                    emptyParam()
-                    returnType = BooleanType
-                }
-                replaceToFalse()
-            }
-        }
-    }
-}

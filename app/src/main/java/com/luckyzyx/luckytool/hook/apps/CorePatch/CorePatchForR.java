@@ -32,14 +32,10 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
 public class CorePatchForR extends XposedHelper implements IXposedHookLoadPackage, IXposedHookZygoteInit {
 
     private static final String TAG = "CorePatch";
-    XSharedPreferences prefs;
+    XSharedPreferences prefs = new XSharedPreferences(BuildConfig.APPLICATION_ID, XposedPrefs);
 
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam loadPackageParam) throws IllegalAccessException, InvocationTargetException, InstantiationException {
-
-        try{
-             prefs = new XSharedPreferences(BuildConfig.APPLICATION_ID, XposedPrefs);
-        }catch (Exception e){}
 
 //        Log.d(MainHook.TAG, "downgrade" + prefs.getBoolean("downgrade->", true));
 //        Log.d(MainHook.TAG, "authcreak" + prefs.getBoolean("authcreak->", true));

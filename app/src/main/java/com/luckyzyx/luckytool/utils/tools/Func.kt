@@ -8,9 +8,9 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
+import android.content.res.Resources
 import android.os.Build
 import android.util.ArraySet
-import android.util.TypedValue
 import android.widget.Toast
 import com.highcapable.yukihookapi.hook.factory.classOf
 import com.highcapable.yukihookapi.hook.factory.field
@@ -218,5 +218,32 @@ fun getFlashInfo(): String = safeOf(default = "null"){
     return info.substring(matcher.start())
 }
 
-fun Context.dp2px(dp: Float) = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, resources.displayMetrics)
-fun Context.sp2px(sp: Int) = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp.toFloat(), resources.displayMetrics)
+/**
+ * 正常编码中一般只会用到 [dp]/[sp] ;
+ * 其中[dp]/[sp] 会根据系统分辨率将输入的dp/sp值转换为对应的px
+ */
+val Float.dp: Float // [xxhdpi](360 -> 1080)
+    get() = android.util.TypedValue.applyDimension(
+        android.util.TypedValue.COMPLEX_UNIT_DIP, this, Resources.getSystem().displayMetrics
+    )
+
+val Int.dp: Int
+    get() = android.util.TypedValue.applyDimension(
+        android.util.TypedValue.COMPLEX_UNIT_DIP,
+        this.toFloat(),
+        Resources.getSystem().displayMetrics
+    ).toInt()
+
+
+val Float.sp: Float // [xxhdpi](360 -> 1080)
+    get() = android.util.TypedValue.applyDimension(
+        android.util.TypedValue.COMPLEX_UNIT_SP, this, Resources.getSystem().displayMetrics
+    )
+
+
+val Int.sp: Int
+    get() = android.util.TypedValue.applyDimension(
+        android.util.TypedValue.COMPLEX_UNIT_SP,
+        this.toFloat(),
+        Resources.getSystem().displayMetrics
+    ).toInt()

@@ -1,4 +1,4 @@
-package com.luckyzyx.luckytool.hook.apps
+package com.luckyzyx.luckytool.hook
 
 import android.os.Build.VERSION.SDK_INT
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
@@ -27,6 +27,12 @@ class Miscellaneous : YukiBaseHooker() {
             if (prefs(XposedPrefs).getBoolean("power_menu_enable",false)){
                 if(SDK_INT in 31..32) loadHooker(PowerMenu())
             }
+
+            //禁用OTG自动关闭
+            if (prefs(XposedPrefs).getBoolean("disable_otg_auto_off",false)){
+                loadHooker(DisableOTGAutoOff())
+            }
+
         }
     }
 }

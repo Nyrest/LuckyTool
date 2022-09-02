@@ -18,3 +18,10 @@ class ProcessManager : TileService() {
         jumpRunningApp(applicationContext)
     }
 }
+class Test : TileService() {
+
+    override fun onClick() {
+        super.onClick()
+        jumpRunningApp(applicationContext)
+    }
+}

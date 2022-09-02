@@ -20,6 +20,11 @@ class StatusBarNotice : YukiBaseHooker() {
             if (prefs(XposedPrefs).getBoolean("remove_statusbar_bottom_networkwarn", false)) loadHooker(
                 RemoveStatusBarBottomNetworkWarn()
             )
+            //移除手电筒已开启通知
+            if (prefs(XposedPrefs).getBoolean("remove_flashlight_open_notification",false)) loadHooker(
+                RemoveFlashlightOpenNotification()
+            )
+
         }
     }
 }

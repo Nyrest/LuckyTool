@@ -3,8 +3,15 @@
 - 出现问题请带上作用域Apk和LSPosed Log前往TG群组反馈
 - If there is a problem, please bring the scope Apk and LSPosed Log to the TG group for feedback
 
-### v2.0.2
-- [适配] OOS12移除状态栏支付保护图标
+### v2.1
+- [添加] 禁用OTG自动关闭
+- [适配] 相机移除水印字数限制
+- [添加] 移除手电筒已开启通知
+- [添加] 远程ADB调试
+- [Add] Disable OTG automatic shutdown
+- [Fix] The word limit of camera watermark removal 
+- [Add] Remove the flashlight on notification
+- [Add] Remote ADB Debugging
 
 ### v2.0.1
 - [添加] 重启菜单添加快速重启

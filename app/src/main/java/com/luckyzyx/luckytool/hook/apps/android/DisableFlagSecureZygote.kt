@@ -14,10 +14,8 @@ class DisableFlagSecureZygote : YukiBaseHooker() {
                     name = "addView"
                 }
                 beforeHook {
-                    if (prefs(XposedPrefs).getBoolean("disable_flag_secure",false)){
-                        val params = args[1] as WindowManager.LayoutParams
-                        params.flags = params.flags and WindowManager.LayoutParams.FLAG_SECURE.inv()
-                    }
+                    val params = args[1] as WindowManager.LayoutParams
+                    params.flags = params.flags and WindowManager.LayoutParams.FLAG_SECURE.inv()
                 }
             }
             injectMember {
@@ -25,10 +23,8 @@ class DisableFlagSecureZygote : YukiBaseHooker() {
                     name = "updateViewLayout"
                 }
                 beforeHook {
-                    if (prefs(XposedPrefs).getBoolean("disable_flag_secure",false)){
-                        val params = args[1] as WindowManager.LayoutParams
-                        params.flags = params.flags and WindowManager.LayoutParams.FLAG_SECURE.inv()
-                    }
+                    val params = args[1] as WindowManager.LayoutParams
+                    params.flags = params.flags and WindowManager.LayoutParams.FLAG_SECURE.inv()
                 }
             }
         }
@@ -39,11 +35,9 @@ class DisableFlagSecureZygote : YukiBaseHooker() {
                     name = "setFlags"
                 }
                 beforeHook {
-                    if (prefs(XposedPrefs).getBoolean("disable_flag_secure",false)){
-                        var flags: Int = args[0] as Int
-                        flags = flags and WindowManager.LayoutParams.FLAG_SECURE.inv()
-                        args(0).set(flags)
-                    }
+                    var flags: Int = args[0] as Int
+                    flags = flags and WindowManager.LayoutParams.FLAG_SECURE.inv()
+                    args(0).set(flags)
                 }
             }
         }
@@ -54,7 +48,7 @@ class DisableFlagSecureZygote : YukiBaseHooker() {
                     name = "setSecure"
                 }
                 beforeHook {
-                    if (prefs(XposedPrefs).getBoolean("disable_flag_secure",false)) args(0).setFalse()
+                    args(0).setFalse()
                 }
             }
         }

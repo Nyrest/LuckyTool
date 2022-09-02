@@ -1,15 +1,11 @@
 package com.luckyzyx.luckytool.hook.apps.systemui
 
-import com.highcapable.yukihookapi.hook.bean.VariousClass
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 
 class RemoveStatusBarSecurePayment : YukiBaseHooker() {
     override fun onHook() {
         //安全支付图标
-        VariousClass(
-            "com.oplusos.systemui.statusbar.helper.StatusBarHelper", //OOS
-            "com.oplusos.systemui.ext.SecurePaymentControllerExt", //Oplus
-        ).hook {
+        findClass("com.oplusos.systemui.ext.SecurePaymentControllerExt").hook {
             injectMember {
                 method {
                     name = "handlePaymentDetectionMessage"

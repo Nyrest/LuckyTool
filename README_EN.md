@@ -17,7 +17,7 @@
 Recommend ColorOS 12+
 
 ## Test Models
-OnePlus 9RT 12.1
+OnePlus 9RT A13 C13
 
 ## Scopes
 system framework,security center,clock,system interface,system desktop,camera,application package installer,game assistant,cloud services,theme store,screenshot,battery  

@@ -68,6 +68,14 @@ class MainActivity : AppCompatActivity() {
             intent.setClassName("com.oplus.games","business.compact.activity.GameBoxCoverActivity")
             setIntent(intent)
         }.build()
+        val chargingTest = ShortcutInfo.Builder(this, "chargingTest").apply {
+            setShortLabel(getString(R.string.charging_test))
+            setIcon(Icon.createWithResource(packageName,R.drawable.ic_baseline_charging_station_24))
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.putExtra("Shortcut","chargingTest")
+            intent.setClassName(packageName,"$packageName.ui.activity.ShortcutActivity")
+            setIntent(intent)
+        }.build()
         val processManager = ShortcutInfo.Builder(this, "processManager").apply {
             setShortLabel(getString(R.string.process_manager))
             setIcon(Icon.createWithResource(packageName,R.mipmap.android_icon))
@@ -76,7 +84,7 @@ class MainActivity : AppCompatActivity() {
             intent.setClassName(packageName,"$packageName.ui.activity.ShortcutActivity")
             setIntent(intent)
         }.build()
-        shortcutManager.dynamicShortcuts = listOf(oplusGames,processManager)
+        shortcutManager.dynamicShortcuts = listOf(oplusGames,chargingTest,processManager)
     }
 
     private fun initNavigationFragment(){

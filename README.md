@@ -17,7 +17,7 @@
 推荐ColorOS12+
 
 ## 测试机型
-OnePlus 9RT 12.1
+OnePlus 9RT A13 C13
 
 ## 作用域
 

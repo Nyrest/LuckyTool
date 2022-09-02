@@ -31,9 +31,7 @@ class StatusBarIcon : YukiBaseHooker() {
             }
             //移除下拉状态栏多用户图标
             if (prefs(XposedPrefs).getBoolean("remove_statusbar_user_switcher", false)) {
-                if (SDK_INT >= 33){
-                    loadHooker(RemoveStatusBarUserSwitcherV13())
-                }else{
+                if (SDK_INT < 33){
                     loadHooker(RemoveStatusBarUserSwitcher())
                 }
             }

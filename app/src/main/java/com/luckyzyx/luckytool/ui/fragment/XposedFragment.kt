@@ -9,7 +9,6 @@ import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle
 import android.view.*
 import android.widget.TextView
-import androidx.core.view.setPadding
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
@@ -28,7 +27,7 @@ import com.luckyzyx.luckytool.databinding.FragmentXposedBinding
 import com.luckyzyx.luckytool.ui.activity.MainActivity
 import com.luckyzyx.luckytool.utils.tools.SDK
 import com.luckyzyx.luckytool.utils.tools.XposedPrefs
-import com.luckyzyx.luckytool.utils.tools.dp2px
+import com.luckyzyx.luckytool.utils.tools.dp
 import com.luckyzyx.luckytool.utils.tools.getAppVersion
 import rikka.core.util.ResourceUtils
 
@@ -102,7 +101,7 @@ class XposedFragment : Fragment() {
             str += "\n$scope\n${getString(R.string.version_first)} ${arrayList[0]}(${arrayList[1]})[${arrayList[2]}]\n"
         }
         val nestedScrollView = NestedScrollView(requireActivity()).apply {
-            setPadding(requireActivity().dp2px(16F).toInt())
+            setPadding(8.dp,0,8.dp,0)
             addView(
                 TextView(requireActivity()).apply {
                     textSize = 16F
@@ -616,6 +615,14 @@ class StatusBarNotice : ModulePreferenceFragment() {
                     isIconSpaceReserved = false
                 }
             )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    title = getString(R.string.remove_flashlight_open_notification)
+                    key = "remove_flashlight_open_notification"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
         }
     }
 }
@@ -654,6 +661,7 @@ class StatusBarIcon : ModulePreferenceFragment(){
                     key = "remove_statusbar_user_switcher"
                     setDefaultValue(false)
                     isIconSpaceReserved = false
+                    isVisible = SDK < 33
                 }
             )
         }
@@ -1041,7 +1049,6 @@ class Application : ModulePreferenceFragment(){
             )
         }
         preferenceScreen.findPreference<Preference>("multi_app_list")?.dependency = "multi_app_enable"
-
     }
 }
 
@@ -1087,6 +1094,15 @@ class Miscellaneous : ModulePreferenceFragment(){
                     title = getString(R.string.disable_headphone_high_volume_warning)
                     summary = getString(R.string.disable_headphone_high_volume_warning_summary)
                     key = "disable_headphone_high_volume_warning"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    title = getString(R.string.disable_otg_auto_off)
+                    summary = getString(R.string.disable_otg_auto_off_summary)
+                    key = "disable_otg_auto_off"
                     setDefaultValue(false)
                     isIconSpaceReserved = false
                 }
