@@ -55,7 +55,7 @@ class MultiFragment : Fragment() {
     fun loadData(){
         val progressDialog = MaterialAlertDialogBuilder(requireActivity()).apply {
             setCancelable(false)
-            setView(R.layout.layout_progress)
+            setView(R.layout.layout_mutli_progress)
         }.create()
         GlobalScope.launch(Dispatchers.Main){
             progressDialog.show()

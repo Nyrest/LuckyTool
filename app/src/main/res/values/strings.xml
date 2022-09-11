@@ -9,7 +9,7 @@
     <string name="nav_home">Home page</string>
     <string name="nav_other">Other</string>
     <string name="fragment_settings">Settings</string>
-    <string name="fragment_source">Source code</string>
+    <string name="fragment_source">SourceCode</string>
     <!-- Settings -->
     <string name="theme_title">Theme</string>
     <string name="theme_title_summary">Page will be automatically refreshed</string>
@@ -23,6 +23,11 @@
     <string name="hide_desktop_appicon_summary">LSPosed must be turned off to force desktop icons</string>
     <!-- About -->
     <string name="about_title">About</string>
+    <string name="donate">Donate reward</string>
+    <string name="donate_summary">Your donation will be the driving force for the module update</string>
+    <string name="qq">QQ</string>
+    <string name="wechat">WeChat</string>
+    <string name="alipay">AliPay</string>
     <string name="feedback_download">Feedback and Download</string>
     <string name="feedback_download_summary">TG Channels, Groups, Repositories, etc.</string>
     <string name="coolmarket">Cool Home Page</string>
@@ -40,18 +45,18 @@
     <string name="menu_reboot">Restart menu</string>
     <string name="menu_settings">Set menu</string>
     <string name="restart_scope">Restart fields</string>
-    <string name="restart_scope_message">Are you sure you want to restart all fields except the system framework?\nmodule is not available when it is not available!</string>
+    <string name="restart_scope_message">Are you sure you want to restart all fields except the system framework?\nmodule is not available when it is not available!\nMake sure all the corresponding scopes are checked!</string>
     <string name="reboot">Restart System</string>
     <string name="fast_reboot">Fast reboot</string>
     <string name="menu_versioninfo">Version Information</string>
     <string name="scope_version_info">Role domain version information</string>
     <!--Xposed-->
-    <string name="system_app">ColorOS</string>
-    <string name="other_app">Third-Party App</string>
     <string name="restart_scope_summary">Reboot domain in top right</string>
-    <string name="version_first">Version: </string>
     <string name="Android">System Related</string>
-    <!-- 核心破解 -->
+    <string name="app_label">App Name</string>
+    <string name="package_name">Package Name</string>
+    <string name="version">Version</string>
+    <!-- CorePatch -->
     <string name="corepatch">Core Break</string>
     <string name="corepatch_summary">Uninstall Limit, Android 11–13</string>
     <string name="downgr">Allow downgrade install apps</string>
@@ -144,8 +149,8 @@
     <string name="multi_app_enable">Total App Chart Switch</string>
     <string name="multi_app_enable_summary">Restart to take effect</string>
     <string name="loading">Loading</string>
-    <string name="multi_app_list">Apps Support List</string>
-    <string name="multi_app_list_summary">It is recommended that the number of not too much, increase or decrease according to demand</string>
+    <string name="multi_app_custom_list">Set custom app clone list</string>
+    <string name="multi_app_custom_list_summary">It is recommended that the number of not too much, increase or decrease according to demand</string>
     <!--AppInstallationRelated-->
     <string name="AppInstallationRelated">App Installation Related</string>
     <string name="skip_apk_scan">Skip Apkscan</string>
@@ -180,18 +185,14 @@
     <string name="power_menu_remove_add_controls">Remove Adding Controls UI</string>
     <string name="power_menu_remove_add_controls_summary">This UI overlaps with the vertical arrangement, and can be removed when it is turned on\nIf there is no such UI, there is no need to turn it on</string>
     <!--Camera-->
-    <string name="Camera">Camera</string>
     <string name="remove_watermark_word_limit">Remove Watermark Limit</string>
     <!--OplusGames-->
-    <string name="OplusGames">Game Assistant</string>
     <string name="remove_root_check">Remove Game Filter Limit</string>
     <string name="remove_root_check_summary">Remove Root Detection Limit for Game Filter</string>
     <!--CloudService-->
-    <string name="CloudService">Cloud services</string>
     <string name="remove_network_limit">Remove Data Network Limit</string>
     <string name="remove_network_limit_summary">Remove backup/restore limitations that cannot use mobile data</string>
     <!--ThemeStore-->
-    <string name="ThemeStore">Theme Store</string>
     <string name="unlock_themestore_vip">Unlock some features VIP</string>
     <string name="unlock_themestore_vip_summary">Unlock part of the feature and try it on your own</string>
     <!--Screenshot-->
@@ -203,12 +204,12 @@
     <string name="disable_flag_secure">Disable FLAG_SECURE</string>
     <string name="disable_flag_secure_summary">Resolve most APPs cannot capture, screen share, or record limits, add corresponding APP fields</string>
     <!--Everyimage-->
-    <string name="Everyimage">Many moments</string>
     <string name="skip_startup_page">Skip startup page</string>
     <string name="vip_download">Download original</string>
     <!--AlphaBackupPro-->
-    <string name="AlphaBackupPro">Alpha Backup Pro</string>
     <string name="remove_pro_license">Remove license detection</string>
+    <!--GSVirtualMachine-->
+    <string name="enable_gs_vip_function">Enable VIP function</string>
     <!--Home-->
     <string name="fps_title">Force refresh rate</string>
     <string name="fps_summary">Conflict with other dynamic refresh rate processes, such as “dpfs”</string>
@@ -223,6 +224,14 @@
     <string name="module_notactive">Module not activated</string>
     <string name="module_version">Module version:</string>
     <string name="enable_module">Enable Module</string>
+    <string name="version_name">Version Name</string>
+    <string name="update_time">Update Time</string>
+    <string name="update_content">Update Content</string>
+    <string name="check_update_hint">New version detected!</string>
+    <string name="go_download_page">Go to the download page</string>
+    <string name="copy_download_link">Copy the download link</string>
+    <string name="direct_update">Direct update</string>
+    <string name="install_apk_toast">Please enable unknown app installation permission!</string>
     <!-- Other -->
     <string name="quick_entry">System Quick Entry</string>
     <string name="quick_entry_summary">e.g. System UI reconciliation tools, process management, engineering mode, etc.</string>
@@ -233,11 +242,14 @@
     <string name="feedback_toolbox">Feedback toolbox</string>
     <string name="game_assistant_page">Game helper page</string>
     <string name="developer_option">Developer Options</string>
-    <string name="display_refresh_rate_cap">Show Refresh Rate Limit</string>
+    <string name="display_refresh_rate">Show Refresh Rate</string>
+    <string name="display_refresh_rate_cap">Show Refresh Rate Cap</string>
     <string name="remote_adb_debug_title">Remote ADB debugging</string>
     <string name="remote_adb_debug_summary">Please close it when not in use</string>
     <string name="adb_port">ADB Port</string>
     <string name="enable_remote_adb_debugging">Enable remote ADB debugging</string>
     <string name="adb_debug_port_cannot_null">ADB debug port cannot be null</string>
+    <string name="battery_health">Battery Health</string>
+    <string name="battery_health_toast">Only supports ColorOS13</string>
 
 </resources>

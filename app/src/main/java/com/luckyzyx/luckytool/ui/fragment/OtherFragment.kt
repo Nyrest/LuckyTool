@@ -1,5 +1,6 @@
 package com.luckyzyx.luckytool.ui.fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -27,6 +28,7 @@ class OtherFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -36,6 +38,7 @@ class OtherFragment : Fragment() {
             val quicklist = arrayListOf<String>()
             quicklist.add(getString(R.string.engineering_mode))
             quicklist.add(getString(R.string.charging_test))
+            quicklist.add(getString(R.string.battery_health))
             quicklist.add(getString(R.string.process_manager))
             quicklist.add(getString(R.string.system_interface_adjustment))
             quicklist.add(getString(R.string.feedback_toolbox))
@@ -47,11 +50,18 @@ class OtherFragment : Fragment() {
                     when (which) {
                         0 -> jumpEngineermode(requireActivity())
                         1 -> jumpBatteryInfo(requireActivity())
-                        2 -> jumpRunningApp(requireActivity())
-                        3 -> ShellUtils.execCommand("am start -n com.android.systemui/.DemoMode", true)
-                        4 -> ShellUtils.execCommand("am start -n com.oplus.logkit/.activity.MainActivity", true)
-                        5 -> ShellUtils.execCommand("am start -a com.android.settings.APPLICATION_DEVELOPMENT_SETTINGS", true)
-                        6 -> ShellUtils.execCommand("am start -n com.oplus.games/business.compact.activity.GameBoxCoverActivity", true)
+                        2 -> {
+                            if (SDK < 33) {
+                                requireActivity().toast(getString(R.string.battery_health_toast))
+                                return@setItems
+                            }
+                            ShellUtils.execCommand("am start -n com.oplus.battery/com.oplus.powermanager.fuelgaue.BatteryHealthActivity", true)
+                        }
+                        3 -> jumpRunningApp(requireActivity())
+                        4 -> ShellUtils.execCommand("am start -n com.android.systemui/.DemoMode", true)
+                        5 -> ShellUtils.execCommand("am start -n com.oplus.logkit/.activity.MainActivity", true)
+                        6 -> ShellUtils.execCommand("am start -a com.android.settings.APPLICATION_DEVELOPMENT_SETTINGS", true)
+                        7 -> ShellUtils.execCommand("am start -n com.oplus.games/business.compact.activity.GameBoxCoverActivity", true)
                     }
                 }
                 .show()

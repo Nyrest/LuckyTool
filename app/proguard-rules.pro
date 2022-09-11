@@ -71,3 +71,11 @@
 # androidx
 -keep public class * extends androidx.annotation.** { *; }
 -keep public class * extends androidx.core.content.FileProvider
+
+# JSON解析异常处理
+# 保护代码中的Annotation不被混淆
+# 这在JSON实体映射时非常重要，比如fastJson
+-keepattributes *Annotation*
+# 避免混淆泛型
+# 这在JSON实体映射时非常重要，比如fastJson
+-keepattributes Signature

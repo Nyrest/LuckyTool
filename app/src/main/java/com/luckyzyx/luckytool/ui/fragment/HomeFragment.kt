@@ -12,8 +12,12 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.*
+import android.widget.ImageView
+import androidx.core.view.isVisible
+import androidx.core.view.setPadding
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.preference.*
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.highcapable.yukihookapi.YukiHookAPI
@@ -55,7 +59,7 @@ class HomeFragment : Fragment() {
 
         binding.statusSummary.apply {
             text = getString(R.string.module_version)
-            text = "$text$getBuildVersion"
+            text = "$text$getVersionName($getVersionCode)"
         }
         binding.enableModule.apply {
             text = context.getString(R.string.enable_module)
@@ -67,6 +71,15 @@ class HomeFragment : Fragment() {
                 }
             }
         }
+
+        UpdateTool.checkUpdate(requireActivity(), getVersionName, getVersionCode) { versionName, versionCode, function ->
+            binding.checkUpdateView.apply {
+                isVisible = true
+                setOnClickListener { function() }
+            }
+            binding.updateView.text = getString(R.string.check_update_hint)+"  -->  $versionName($versionCode)"
+        }
+
         binding.fpsTitle.text = getString(R.string.fps_title)
         binding.fpsSummary.text = getString(R.string.fps_summary)
 
@@ -191,10 +204,70 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
             )
             addPreference(
                 Preference(requireActivity()).apply {
+                    title = getString(R.string.donate)
+                    summary = getString(R.string.donate_summary)
+                    isIconSpaceReserved = false
+                    setOnPreferenceClickListener {
+                        val donateList = arrayOf(getString(R.string.qq),getString(R.string.wechat),getString(
+                                                    R.string.alipay))
+                        MaterialAlertDialogBuilder(requireActivity())
+                            .setItems(donateList) { _, which ->
+                                when (which) {
+                                    0 -> {
+                                        MaterialAlertDialogBuilder(
+                                            requireActivity(),
+                                            com.google.android.material.R.style.ThemeOverlay_Material3_MaterialAlertDialog_Centered
+                                        )
+                                            .setTitle(getString(R.string.qq))
+                                            .setView(
+                                                ImageView(requireActivity()).apply {
+                                                    setPadding(20.dp)
+                                                    setImageBitmap(baseDecode(Base64().qqCode))
+                                                }
+                                            )
+                                            .show()
+                                    }
+                                    1 -> {
+                                        MaterialAlertDialogBuilder(
+                                            requireActivity(),
+                                            com.google.android.material.R.style.ThemeOverlay_Material3_MaterialAlertDialog_Centered
+                                        )
+                                            .setTitle(getString(R.string.wechat))
+                                            .setView(
+                                                ImageView(requireActivity()).apply {
+                                                    setPadding(20.dp)
+                                                    setImageBitmap(baseDecode(Base64().wechatCode))
+                                                }
+                                            )
+                                            .show()
+                                    }
+                                    2 -> {
+                                        MaterialAlertDialogBuilder(
+                                            requireActivity(),
+                                            com.google.android.material.R.style.ThemeOverlay_Material3_MaterialAlertDialog_Centered
+                                        )
+                                            .setTitle(getString(R.string.alipay))
+                                            .setView(
+                                                ImageView(requireActivity()).apply {
+                                                    setPadding(20.dp)
+                                                    setImageBitmap(baseDecode(Base64().alipayCode))
+                                                }
+                                            )
+                                            .show()
+                                    }
+                                }
+                            }
+                            .show()
+                        true
+                    }
+                }
+            )
+            addPreference(
+                Preference(requireActivity()).apply {
                     title = getString(R.string.feedback_download)
                     summary = getString(R.string.feedback_download_summary)
                     isIconSpaceReserved = false
-                    onPreferenceClickListener = Preference.OnPreferenceClickListener {
+                    setOnPreferenceClickListener {
                         val updatelist = arrayOf(getString(R.string.coolmarket),getString(R.string.telegram_channel),getString(R.string.telegram_group),getString(R.string.lsposed_repo))
                         MaterialAlertDialogBuilder(requireActivity())
                             .setItems(updatelist) { _, which ->
@@ -214,7 +287,7 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
                     title = getString(R.string.participate_translation)
                     summary = getString(R.string.participate_translation_summary)
                     isIconSpaceReserved = false
-                    onPreferenceClickListener = Preference.OnPreferenceClickListener {
+                    setOnPreferenceClickListener {
                         startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://crwd.in/luckytool")))
                         true
                     }
@@ -225,8 +298,8 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
                     setTitle(R.string.open_source)
                     setSummary(R.string.open_source_summary)
                     isIconSpaceReserved = false
-                    onPreferenceClickListener = Preference.OnPreferenceClickListener {
-                        requireActivity().findNavController(R.id.nav_host_fragment_container).navigate(R.id.action_settingsFragment_to_sourceFragment)
+                    setOnPreferenceClickListener {
+                        findNavController().navigate(R.id.action_settingsFragment_to_sourceFragment)
                         true
                     }
                 }

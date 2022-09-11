@@ -5,7 +5,7 @@
     <!-- Nav Menu -->
     <string name="nav_xposed">Xposed</string>
     <string name="nav_home">Главная</string>
-    <string name="nav_other">Другое</string>
+    <string name="nav_other">Прочее</string>
     <string name="fragment_settings">Настройки</string>
     <string name="fragment_source">Исходный код</string>
     <!-- Settings -->
@@ -21,6 +21,11 @@
     <string name="hide_desktop_appicon_summary">LSPosed должен быть отключен, чтобы иконка на рабочем столе отображалась</string>
     <!-- About -->
     <string name="about_title">Информация</string>
+    <string name="donate">Донат</string>
+    <string name="donate_summary">Ваш донат станет движущей силой обновления модуля</string>
+    <string name="qq">QQ</string>
+    <string name="wechat">WeChat</string>
+    <string name="alipay">AliPay</string>
     <string name="feedback_download">Отзыв и загрузка</string>
     <string name="feedback_download_summary">ТГ-каналы, группы, склады и т.д.</string>
     <string name="coolmarket">CoolMarket</string>
@@ -40,18 +45,19 @@
     <string name="menu_settings">Настройки</string>
     <string name="restart_scope">Область перезапуска</string>
     <string name="restart_scope_message">Вы уверены, что хотите перезапустить все области видимости, кроме системной среды?
-Доступно, когда модуль не функционирует!</string>
+Доступно, когда модуль не функционирует!
+Убедитесь, что все соответствующие области отмечены!</string>
     <string name="reboot">Перезагрузить</string>
     <string name="fast_reboot">Быстрая перезагрузка</string>
     <string name="menu_versioninfo">Информация о версии</string>
     <string name="scope_version_info">Информация о версии</string>
     <!--Xposed-->
-    <string name="system_app">Системное приложение</string>
-    <string name="other_app">Другое приложение</string>
     <string name="restart_scope_summary">Область перезапуска меню в правом верхнем углу</string>
-    <string name="version_first">Версия:</string>
     <string name="Android">Android</string>
-    <!-- 核心破解 -->
+    <string name="app_label">Имя приложения</string>
+    <string name="package_name">Имя пакета</string>
+    <string name="version">Версия</string>
+    <!-- CorePatch -->
     <string name="corepatch">Патчи ядра</string>
     <string name="corepatch_summary">Снятие ограничений на установку, поддержка Android 10–12</string>
     <string name="downgr">Разрешить установку приложений с более ранними версиями</string>
@@ -144,8 +150,8 @@
     <string name="multi_app_enable">Включить/отключить клонирование</string>
     <string name="multi_app_enable_summary">Перезапустите, чтобы изменения вступили в силу</string>
     <string name="loading">Загрузка</string>
-    <string name="multi_app_list">Поддерживаемые приложения</string>
-    <string name="multi_app_list_summary">Предполагается, что количество не должно быть слишком большим, увеличиваться или уменьшаться в зависимости от спроса</string>
+    <string name="multi_app_custom_list">Настроить список приложений для клонирования</string>
+    <string name="multi_app_custom_list_summary">Рекомендуется, чтобы количество не было слишком большим, увеличивалось или уменьшалось в зависимости от спроса</string>
     <!--AppInstallationRelated-->
     <string name="AppInstallationRelated">Установка приложения</string>
     <string name="skip_apk_scan">Пропустить сканирование APK</string>
@@ -182,18 +188,14 @@
     <string name="power_menu_remove_add_controls_summary">Этот пользовательский интерфейс перекрывается с вертикальным расположением и может быть удален после открытия.
 Если такого интерфейса нет, то и открывать его не нужно.</string>
     <!--Camera-->
-    <string name="Camera">Камера</string>
     <string name="remove_watermark_word_limit">Удалить ограничение на количество слов водяного знака</string>
     <!--OplusGames-->
-    <string name="OplusGames">Игровой помощник</string>
     <string name="remove_root_check">Удалить определение игрового фильтра</string>
     <string name="remove_root_check_summary">Удалить обнаружение рута из игровых фильтров</string>
     <!--CloudService-->
-    <string name="CloudService">Облачные службы</string>
     <string name="remove_network_limit">Удалить ограничения сети передачи данных</string>
     <string name="remove_network_limit_summary">Удалить ограничение, согласно которому резервное копирование/восстановление не может использовать мобильные данные</string>
     <!--ThemeStore-->
-    <string name="ThemeStore">Темы</string>
     <string name="unlock_themestore_vip">Разблокировать некоторые функции VIP</string>
     <string name="unlock_themestore_vip_summary">Разблокируйте некоторые функции, нажмите на странице сведений о приложении</string>
     <!--Screenshot-->
@@ -205,12 +207,12 @@
     <string name="disable_flag_secure">Отключить FLAG_SECURE</string>
     <string name="disable_flag_secure_summary">Включение скриншотов, демонстрация экрана и запись в приложениях, которые обычно этого не позволяют</string>
     <!--Everyimage-->
-    <string name="Everyimage">Аниме</string>
     <string name="skip_startup_page">Пропустить стартовую страницу</string>
     <string name="vip_download">Загрузить исходное изображение</string>
     <!--AlphaBackupPro-->
-    <string name="AlphaBackupPro">Бэкап</string>
     <string name="remove_pro_license">Удалить обнаружение лицензии</string>
+    <!--GSVirtualMachine-->
+    <string name="enable_gs_vip_function">Включить VIP функцию</string>
     <!--Home-->
     <string name="fps_title">Принудительная частота обновления</string>
     <string name="fps_summary">Конфликты с другими процессами динамической частоты обновления, такими как dfps</string>
@@ -225,6 +227,14 @@
     <string name="module_notactive">Модуль не активен</string>
     <string name="module_version">Версия модуля:</string>
     <string name="enable_module">Включить модуль</string>
+    <string name="version_name">Название версии</string>
+    <string name="update_time">Время обновления</string>
+    <string name="update_content">Обновить содержимое</string>
+    <string name="check_update_hint">Обнаружена новая версия!</string>
+    <string name="go_download_page">Перейти на страницу загрузки</string>
+    <string name="copy_download_link">Скопируйте ссылку для загрузки</string>
+    <string name="direct_update">Прямое обновление</string>
+    <string name="install_apk_toast">Пожалуйста, включите неизвестное разрешение на установку приложения!</string>
     <!-- Other -->
     <string name="quick_entry">Быстрый вход в систему</string>
     <string name="quick_entry_summary">Например, инструменты настройки системного интерфейса, управление процессами, режим проекта и т.д.</string>
@@ -235,10 +245,13 @@
     <string name="feedback_toolbox">Инструменты обратной связи</string>
     <string name="game_assistant_page">Игровой помощник</string>
     <string name="developer_option">Параметры разработчика</string>
+    <string name="display_refresh_rate">Частота обновления экрана</string>
     <string name="display_refresh_rate_cap">Частота обновления экрана</string>
     <string name="remote_adb_debug_title">Удаленная отладка ADB</string>
     <string name="remote_adb_debug_summary">Пожалуйста, закройте его, когда он не используется</string>
     <string name="adb_port">Порт ADB</string>
     <string name="enable_remote_adb_debugging">Включить удаленную отладку ADB</string>
     <string name="adb_debug_port_cannot_null">Порт отладки ADB не может быть пустым</string>
+    <string name="battery_health">Состояние батареи</string>
+    <string name="battery_health_toast">Поддерживает только ColorOS13</string>
 </resources>

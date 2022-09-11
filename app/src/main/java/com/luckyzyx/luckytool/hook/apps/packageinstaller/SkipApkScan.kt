@@ -4,10 +4,16 @@ import android.util.ArraySet
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 import com.highcapable.yukihookapi.hook.type.java.BooleanType
 import com.luckyzyx.luckytool.utils.tools.XposedPrefs
+import java.util.*
 
 class SkipApkScan : YukiBaseHooker() {
     override fun onHook() {
-        val appSet = prefs(XposedPrefs).getStringSet(packageName, ArraySet()).toTypedArray()
+        val appSet = prefs(XposedPrefs).getStringSet(packageName, ArraySet()).toTypedArray().apply {
+            Arrays.sort(this)
+            forEach {
+                this[this.indexOf(it)] = it.substring(2)
+            }
+        }
         val member: Array<String> =
             when (appSet[2]) {
                 "7bc7db7", "e1a2c58" -> {

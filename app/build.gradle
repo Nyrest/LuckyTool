@@ -24,7 +24,7 @@ android {
         minSdk 30
         targetSdk 33
         versionCode currentVersionCode
-        versionName "2.1"
+        versionName "2.2"
     }
 
     buildTypes {
@@ -55,10 +55,10 @@ android {
     applicationVariants.all { variant ->
         variant.outputs.all {
             if ('release' == variant.buildType.name) {
-                outputFileName = "LuckyTool_v${variant.versionName}.${versionCode}.apk"
+                outputFileName = "LuckyTool_v${variant.versionName}(${versionCode}).apk"
             }
             if ('debug' == variant.buildType.name) {
-                outputFileName = "LuckyTool_v${variant.versionName}.${versionCode}.apk"
+                outputFileName = "LuckyTool_v${variant.versionName}(${versionCode})_debug.apk"
             }
         }
     }
@@ -95,6 +95,9 @@ dependencies {
     //kotlin协程
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
+    //OkHttp相关
+    implementation 'com.squareup.okhttp3:okhttp:4.10.0'
+    implementation 'com.github.liangjingkanji:Net:3.5.0'
 }
 
 def getVersionCode() {

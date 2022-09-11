@@ -1,48 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_container"
-    app:startDestination="@id/nav_home">
-
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/nav_container"
+        app:startDestination="@id/nav_home">
+    
     <fragment
-        android:id="@+id/nav_home"
-        android:name="com.luckyzyx.luckytool.ui.fragment.HomeFragment"
-        android:label="@string/app_name"
-        tools:layout="@layout/fragment_home" >
+            android:id="@+id/nav_home"
+            android:name="com.luckyzyx.luckytool.ui.fragment.HomeFragment"
+            android:label="@string/app_name"
+            tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_homeFragment_to_settingsFragment"
-            app:destination="@id/settingsFragment"
-            app:enterAnim="@anim/fragment_enter"
-            app:exitAnim="@anim/fragment_exit"
-            app:popEnterAnim="@anim/fragment_enter_pop"
-            app:popExitAnim="@anim/fragment_exit_pop" />
+                android:id="@+id/action_homeFragment_to_settingsFragment"
+                app:destination="@id/settingsFragment"
+                app:enterAnim="@anim/fragment_enter"
+                app:exitAnim="@anim/fragment_exit"
+                app:popEnterAnim="@anim/fragment_enter_pop"
+                app:popExitAnim="@anim/fragment_exit_pop" />
     </fragment>
     <fragment
-        android:id="@+id/nav_other"
-        android:name="com.luckyzyx.luckytool.ui.fragment.OtherFragment"
-        android:label="@string/nav_other"
-        tools:layout="@layout/fragment_other" />
-    <fragment
-        android:id="@+id/nav_xposed"
-        android:name="com.luckyzyx.luckytool.ui.fragment.XposedFragment"
-        android:label="@string/nav_xposed"
-        tools:layout="@layout/fragment_xposed" />
-    <fragment
-        android:id="@+id/settingsFragment"
-        android:name="com.luckyzyx.luckytool.ui.fragment.SettingsFragment"
-        android:label="@string/fragment_settings" >
-        <action
-            android:id="@+id/action_settingsFragment_to_sourceFragment"
-            app:destination="@id/sourceFragment"
-            app:enterAnim="@anim/fragment_enter"
-            app:exitAnim="@anim/fragment_exit"
-            app:popEnterAnim="@anim/fragment_enter_pop"
-            app:popExitAnim="@anim/fragment_exit_pop"/>
+            android:id="@+id/nav_other"
+            android:name="com.luckyzyx.luckytool.ui.fragment.OtherFragment"
+            android:label="@string/nav_other"
+            tools:layout="@layout/fragment_other">
     </fragment>
     <fragment
-        android:id="@+id/sourceFragment"
-        android:name="com.luckyzyx.luckytool.ui.fragment.SourceFragment"
-        android:label="@string/fragment_source" />
+            android:id="@+id/nav_xposed"
+            android:name="com.luckyzyx.luckytool.ui.fragment.XposedFragment"
+            android:label="@string/nav_xposed"
+            tools:layout="@layout/fragment_xposed">
+    </fragment>
+    <fragment
+            android:id="@+id/settingsFragment"
+            android:name="com.luckyzyx.luckytool.ui.fragment.SettingsFragment"
+            android:label="@string/fragment_settings">
+        <action
+                android:id="@+id/action_settingsFragment_to_sourceFragment"
+                app:destination="@id/sourceFragment"
+                app:enterAnim="@anim/fragment_enter"
+                app:exitAnim="@anim/fragment_exit"
+                app:popEnterAnim="@anim/fragment_enter_pop"
+                app:popExitAnim="@anim/fragment_exit_pop" />
+    </fragment>
+    <fragment
+            android:id="@+id/sourceFragment"
+            android:name="com.luckyzyx.luckytool.ui.fragment.SourceFragment"
+            android:label="@string/fragment_source" />
 
 </navigation>

@@ -21,6 +21,11 @@
     <string name="hide_desktop_appicon_summary">必须关闭LSPosed强制显示桌面图标</string>
     <!-- About -->
     <string name="about_title">关于</string>
+    <string name="donate">捐赠打赏</string>
+    <string name="donate_summary">您的捐赠将是模块更新的动力</string>
+    <string name="qq">QQ</string>
+    <string name="wechat">微信</string>
+    <string name="alipay">支付宝</string>
     <string name="feedback_download">反馈与下载</string>
     <string name="feedback_download_summary">TG频道, 群组, 仓库等</string>
     <string name="coolmarket">酷安主页</string>
@@ -38,18 +43,18 @@
     <string name="menu_reboot">重启菜单</string>
     <string name="menu_settings">设置菜单</string>
     <string name="restart_scope">重启作用域</string>
-    <string name="restart_scope_message">确定要重启除系统框架外的全部作用域?\n模块不生效时可用!</string>
+    <string name="restart_scope_message">确定要重启除系统框架外的全部作用域?\n模块不生效时可用!\n确保已经勾选全部对应作用域!</string>
     <string name="reboot">重启系统</string>
     <string name="fast_reboot">快速重启</string>
     <string name="menu_versioninfo">版本信息</string>
     <string name="scope_version_info">作用域版本信息</string>
     <!--Xposed-->
-    <string name="system_app">ColorOS</string>
-    <string name="other_app">三方APP</string>
     <string name="restart_scope_summary">右上角菜单重启作用域</string>
-    <string name="version_first">版本: </string>
     <string name="Android">系统相关</string>
-    <!-- 核心破解 -->
+    <string name="app_label">应用名</string>
+    <string name="package_name">包名</string>
+    <string name="version">版本</string>
+    <!-- CorePatch -->
     <string name="corepatch">核心破解</string>
     <string name="corepatch_summary">解除安装限制, 支持 Android 11–13</string>
     <string name="downgr">允许降级安装应用</string>
@@ -142,8 +147,8 @@
     <string name="multi_app_enable">应用分身总开关</string>
     <string name="multi_app_enable_summary">重启生效</string>
     <string name="loading">正在加载</string>
-    <string name="multi_app_list">应用分身支持列表</string>
-    <string name="multi_app_list_summary">建议数量不要过多, 按需求增减</string>
+    <string name="multi_app_custom_list">设置自定义分身列表</string>
+    <string name="multi_app_custom_list_summary">建议数量不要过多，根据需求增减</string>
     <!--AppInstallationRelated-->
     <string name="AppInstallationRelated">应用安装相关</string>
     <string name="skip_apk_scan">跳过Apk扫描</string>
@@ -178,18 +183,14 @@
     <string name="power_menu_remove_add_controls">移除添加控件UI</string>
     <string name="power_menu_remove_add_controls_summary">此UI与竖向排列重叠, 开启后可移除 \n 若无此UI则无需开启</string>
     <!--Camera-->
-    <string name="Camera">相机</string>
     <string name="remove_watermark_word_limit">移除水印字数限制</string>
     <!--OplusGames-->
-    <string name="OplusGames">游戏助手</string>
     <string name="remove_root_check">移除游戏滤镜限制</string>
     <string name="remove_root_check_summary">移除游戏滤镜的Root检测限制</string>
     <!--CloudService-->
-    <string name="CloudService">云服务</string>
     <string name="remove_network_limit">移除数据网络限制</string>
     <string name="remove_network_limit_summary">移除备份/恢复无法使用移动数据的限制</string>
     <!--ThemeStore-->
-    <string name="ThemeStore">主题商店</string>
     <string name="unlock_themestore_vip">解锁部分功能VIP</string>
     <string name="unlock_themestore_vip_summary">解锁部分功能, 可自行尝试</string>
     <!--Screenshot-->
@@ -201,12 +202,12 @@
     <string name="disable_flag_secure">禁用FLAG_SECURE</string>
     <string name="disable_flag_secure_summary">解决大部分APP无法截图、屏幕共享或录制的限制, 添加对应APP作用域</string>
     <!--Everyimage-->
-    <string name="Everyimage">好多动漫</string>
     <string name="skip_startup_page">跳过启动页</string>
     <string name="vip_download">下载原图</string>
     <!--AlphaBackupPro-->
-    <string name="AlphaBackupPro">Alpha Backup Pro</string>
     <string name="remove_pro_license">移除许可证检测</string>
+    <!--GSVirtualMachine-->
+    <string name="enable_gs_vip_function">开启VIP功能</string>
     <!--Home-->
     <string name="fps_title">强制刷新率</string>
     <string name="fps_summary">与其他动态刷新率进程冲突, 例如dfps</string>
@@ -221,6 +222,14 @@
     <string name="module_notactive">模块未激活</string>
     <string name="module_version">模块版本:</string>
     <string name="enable_module">启用模块</string>
+    <string name="version_name">版本号</string>
+    <string name="update_time">更新时间</string>
+    <string name="update_content">更新内容</string>
+    <string name="check_update_hint">检测到新版本!</string>
+    <string name="go_download_page">跳转下载页面</string>
+    <string name="copy_download_link">复制下载链接</string>
+    <string name="direct_update">直接更新</string>
+    <string name="install_apk_toast">请打开未知应用安装权限!</string>
     <!-- Other -->
     <string name="quick_entry">系统快捷入口</string>
     <string name="quick_entry_summary">例如系统界面调节工具,进程管理,工程模式等</string>
@@ -231,10 +240,13 @@
     <string name="feedback_toolbox">反馈工具箱</string>
     <string name="game_assistant_page">游戏助手页面</string>
     <string name="developer_option">开发者选项</string>
+    <string name="display_refresh_rate">显示刷新率</string>
     <string name="display_refresh_rate_cap">显示刷新率上限</string>
     <string name="remote_adb_debug_title">远程ADB调试</string>
     <string name="remote_adb_debug_summary">不使用时请及时关闭</string>
     <string name="adb_port">端口</string>
     <string name="enable_remote_adb_debugging">开启远程ADB调试</string>
     <string name="adb_debug_port_cannot_null">ADB调试端口不可为空</string>
+    <string name="battery_health">电池健康度</string>
+    <string name="battery_health_toast">仅支持ColorOS13</string>
 </resources>

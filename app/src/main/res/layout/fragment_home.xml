@@ -73,7 +73,31 @@
                     </RelativeLayout>
 
                 </com.google.android.material.card.MaterialCardView>
-
+    
+                <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/check_update_view"
+                        android:clickable="true"
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp">
+        
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+            
+                        <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/update_view"
+                                android:paddingHorizontal="10dp"
+                                android:paddingVertical="10dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+        
+                    </LinearLayout>
+    
+                </com.google.android.material.card.MaterialCardView>
+                
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -104,7 +128,7 @@
                             android:id="@+id/fps_title"
                             android:paddingHorizontal="10dp"
                             android:paddingTop="10dp"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
 
                         <com.google.android.material.textview.MaterialTextView
@@ -112,7 +136,7 @@
                             android:textSize="11sp"
                             android:paddingHorizontal="10dp"
                             android:paddingBottom="10dp"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
 
                     </LinearLayout>

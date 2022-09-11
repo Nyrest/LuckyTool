@@ -22,9 +22,7 @@ class MainHook : IYukiHookXposedInit {
 
     override fun onInit() {
         configs {
-            // 全局调试用的 TAG,在 Logcat 控制台过滤此 TAG 可找到详细日志
             debugTag = "LuckyTool"
-            // 是否开启调试模式,请注意 - 若作为发布版本请务必关闭调试功能防止对用户设备造成大量日志填充
             isDebug = false
         }
     }
@@ -67,6 +65,7 @@ class MainHook : IYukiHookXposedInit {
 
         //其他APP
         loadApp(hooker = HookOtherApp())
+
     }
 
     override fun onXposedEvent() {

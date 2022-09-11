@@ -3,14 +3,16 @@
 package com.luckyzyx.luckytool.utils.tools
 
 import android.app.AndroidAppHelper
-import android.content.ComponentName
-import android.content.Context
-import android.content.Intent
+import android.content.*
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.content.res.Resources
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.drawable.Drawable
 import android.os.Build
 import android.util.ArraySet
+import android.util.Base64
 import android.widget.Toast
 import com.highcapable.yukihookapi.hook.factory.classOf
 import com.highcapable.yukihookapi.hook.factory.field
@@ -40,17 +42,21 @@ val getColorOSVersion
  * 写入SP xml文件内
  * @return [ArraySet]
  */
-fun Context.getAppVersion(packName: String) = safeOf(default = ArrayList<String>()) {
+fun Context.getAppVersion(packName: String): ArrayList<String> = safeOf(default = ArrayList()) {
     val arrayList = ArrayList<String>()
+    val arraySet = ArraySet<String>()
     val packageInfo = packageManager.getPackageInfo(packName, 0)
     val commitInfo = packageManager.getApplicationInfo(packName, PackageManager.GET_META_DATA)
     val versionName = safeOf(default = "null") { packageInfo.versionName }
     arrayList.add(versionName)
+    arraySet.add("0.$versionName")
     val versionCode = safeOf(default = "null") { packageInfo.longVersionCode }
     arrayList.add(versionCode.toString())
+    arraySet.add("1.$versionCode")
     val versionCommit = safeOf(default = "null") { commitInfo.metaData.getString("versionCommit") }
     arrayList.add(versionCommit.toString())
-    putStringSet(XposedPrefs,packName,arrayList.toSet())
+    arraySet.add("2.$versionCommit")
+    putStringSet(XposedPrefs,packName,arraySet)
     return arrayList
 }
 
@@ -58,18 +64,29 @@ fun Context.getAppVersion(packName: String) = safeOf(default = ArrayList<String>
  * 获取构建版本名/版本号
  * @return [String]
  */
-val getBuildVersion get() = "${VERSION_NAME}(${VERSION_CODE})"
+val getVersionName get() = VERSION_NAME
+val getVersionCode get() = VERSION_CODE
 
 /**
- * 查询包名是否存在
+ * 获取APP
  */
-fun Context.checkPackName(packageName: String): Boolean {
+fun Context.checkPackName(packName: String) = safeOfFalse {
+    packageManager.getPackageInfo(packName,0) != null
+}
+
+/**
+ * 获取APP图标
+ */
+fun Context.getAppIcon(packName: String): Drawable? = safeOf(default = null) {
     val packageManager = packageManager
-    val applist = packageManager.getInstalledPackages(0)
-    for (i in applist) {
-        if (i.packageName == packageName) return true
-    }
-    return false
+    return packageManager.getApplicationInfo(packName,0).loadIcon(packageManager)
+}
+/**
+ * 获取APP名称
+ */
+fun Context.getAppLabel(packName: String): CharSequence? = safeOf(default = null) {
+    val packageManager = packageManager
+    return packageManager.getApplicationInfo(packName,0).loadLabel(packageManager)
 }
 
 /**
@@ -247,3 +264,20 @@ val Int.sp: Int
         this.toFloat(),
         Resources.getSystem().displayMetrics
     ).toInt()
+
+/**
+ * 复制到剪贴板
+ */
+fun Context.copyStr(string: String) {
+    val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+    val clipData = ClipData.newPlainText(null, string)
+    clipboard.setPrimaryClip(clipData)
+}
+
+/**
+ * Base64转Bitmap图片
+ */
+fun baseDecode(code: String): Bitmap? {
+    val decode: ByteArray = Base64.decode(code.split(",")[1], Base64.DEFAULT)
+    return BitmapFactory.decodeByteArray(decode, 0, decode.size)
+}

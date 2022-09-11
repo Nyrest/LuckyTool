@@ -54,6 +54,7 @@ class MainActivity : AppCompatActivity() {
         checkPrefsRW()
         initNavigationFragment()
         initDynamicShortcuts()
+
     }
 
     private fun initDynamicShortcuts(){
@@ -61,7 +62,7 @@ class MainActivity : AppCompatActivity() {
         if(status == 2) return
         val shortcutManager = getSystemService(ShortcutManager::class.java)
         val oplusGames = ShortcutInfo.Builder(this, "oplusGames").apply {
-            setShortLabel(getString(R.string.OplusGames))
+            setShortLabel(getAppLabel("com.oplus.games").toString())
             setIcon(Icon.createWithResource(packageName,R.mipmap.oplusgames_icon))
             val intent = Intent(Intent.ACTION_VIEW)
             intent.putExtra("Shortcut","oplusGames")
@@ -163,7 +164,7 @@ class MainActivity : AppCompatActivity() {
                 continue
             }
             commands.add("am force-stop $scope")
-            getAppVersion(scope)
+            context.getAppVersion(scope)
         }
         safeOfNull {
             if (!(getBoolean(XposedPrefs,"statusbar_clock_enable",false) && getBoolean(XposedPrefs,"statusbar_clock_show_second",false))) {

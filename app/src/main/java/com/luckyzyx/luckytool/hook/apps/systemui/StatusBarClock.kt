@@ -135,8 +135,8 @@ class StatusBarClock : YukiBaseHooker() {
                 dateFormat += "M"
                 if (isDay) dateFormat += "/"
             }
-            if (isDay) dateFormat += "d"
-            if (isWeek) dateFormat += " E"
+            if (isDay) dateFormat += "d "
+            if (isWeek) dateFormat += "E "
         }
         return SimpleDateFormat(dateFormat).format(nowTime!!)
     }
