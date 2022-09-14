@@ -19,7 +19,7 @@ class UnlockStartupLimitV13 : YukiBaseHooker() {
             "6f0072e" -> "i7.b"
             "51b4747" -> "q7.b"
             "aca22d0", "b509955" -> "u7.b"
-            "6a8ec66" -> "y7.b"
+            "6a8ec66", "66d303d", "a8135b1" -> "y7.b"
             else -> "StartupManager"
         }
         findClass(clazz).hook {

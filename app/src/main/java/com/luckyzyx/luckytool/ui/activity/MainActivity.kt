@@ -13,7 +13,6 @@ import android.os.Process
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.BuildCompat
-import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -89,14 +88,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initNavigationFragment(){
-        setSupportActionBar(binding.toolbar)
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
-        val navController: NavController = navHostFragment.navController
+        val navController = navHostFragment.navController
         appBarConfiguration = AppBarConfiguration.Builder(
             R.id.nav_home,
             R.id.nav_xposed,
             R.id.nav_other,
         ).build()
+        setSupportActionBar(binding.toolbar)
         setupActionBarWithNavController(navController,appBarConfiguration)
         binding.toolbar.setNavigationOnClickListener {
             onBackPressedDispatcher.onBackPressed()

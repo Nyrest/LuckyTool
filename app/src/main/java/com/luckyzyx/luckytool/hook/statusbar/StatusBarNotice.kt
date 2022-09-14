@@ -1,7 +1,12 @@
 package com.luckyzyx.luckytool.hook.statusbar
 
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
-import com.luckyzyx.luckytool.hook.apps.systemui.*
+import com.luckyzyx.luckytool.hook.apps.battery.RemoveAppHighBatteryConsumptionWarning
+import com.luckyzyx.luckytool.hook.apps.systemui.RemoveChargingCompleted
+import com.luckyzyx.luckytool.hook.apps.systemui.RemoveFlashlightOpenNotification
+import com.luckyzyx.luckytool.hook.apps.systemui.RemoveStatusBarBottomNetworkWarn
+import com.luckyzyx.luckytool.hook.apps.systemui.RemoveStatusBarDevMode
+import com.luckyzyx.luckytool.hook.apps.wirelesssettings.RemovePersonalHotspotWarning
 import com.luckyzyx.luckytool.utils.tools.XposedPrefs
 
 class StatusBarNotice : YukiBaseHooker() {
@@ -24,7 +29,18 @@ class StatusBarNotice : YukiBaseHooker() {
             if (prefs(XposedPrefs).getBoolean("remove_flashlight_open_notification",false)) loadHooker(
                 RemoveFlashlightOpenNotification()
             )
-
+        }
+        loadApp("com.oplus.battery") {
+            //移除应用耗电异常优化警告
+            if (prefs(XposedPrefs).getBoolean("remove_app_high_battery_consumption_warning",false)) loadHooker(
+                RemoveAppHighBatteryConsumptionWarning()
+            )
+        }
+        loadApp("com.oplus.wirelesssettings"){
+            //移除长时间开启个人热点警告
+            if (prefs(XposedPrefs).getBoolean("remove_personal_hotspot_warning",false)) loadHooker(
+                RemovePersonalHotspotWarning()
+            )
         }
     }
 }

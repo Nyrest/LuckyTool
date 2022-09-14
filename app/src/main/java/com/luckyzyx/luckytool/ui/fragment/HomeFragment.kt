@@ -13,8 +13,10 @@ import android.os.Build
 import android.os.Bundle
 import android.view.*
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.core.view.setPadding
+import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -189,6 +191,14 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
             )
             addPreference(
                 SwitchPreference(requireActivity()).apply {
+                    key = "hide_xp_page_icon"
+                    title = getString(R.string.hide_xp_page_icon)
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
                     key = "hide_desktop_appicon"
                     setDefaultValue(false)
                     title = getString(R.string.hide_desktop_appicon)
@@ -208,16 +218,12 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
                     summary = getString(R.string.donate_summary)
                     isIconSpaceReserved = false
                     setOnPreferenceClickListener {
-                        val donateList = arrayOf(getString(R.string.qq),getString(R.string.wechat),getString(
-                                                    R.string.alipay))
+                        val donateList = arrayOf(getString(R.string.qq),getString(R.string.wechat),getString(R.string.alipay),getString(R.string.donation_list))
                         MaterialAlertDialogBuilder(requireActivity())
                             .setItems(donateList) { _, which ->
                                 when (which) {
                                     0 -> {
-                                        MaterialAlertDialogBuilder(
-                                            requireActivity(),
-                                            com.google.android.material.R.style.ThemeOverlay_Material3_MaterialAlertDialog_Centered
-                                        )
+                                        MaterialAlertDialogBuilder(requireActivity(),dialogCentered)
                                             .setTitle(getString(R.string.qq))
                                             .setView(
                                                 ImageView(requireActivity()).apply {
@@ -228,10 +234,7 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
                                             .show()
                                     }
                                     1 -> {
-                                        MaterialAlertDialogBuilder(
-                                            requireActivity(),
-                                            com.google.android.material.R.style.ThemeOverlay_Material3_MaterialAlertDialog_Centered
-                                        )
+                                        MaterialAlertDialogBuilder(requireActivity(),dialogCentered)
                                             .setTitle(getString(R.string.wechat))
                                             .setView(
                                                 ImageView(requireActivity()).apply {
@@ -242,15 +245,31 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
                                             .show()
                                     }
                                     2 -> {
-                                        MaterialAlertDialogBuilder(
-                                            requireActivity(),
-                                            com.google.android.material.R.style.ThemeOverlay_Material3_MaterialAlertDialog_Centered
-                                        )
+                                        MaterialAlertDialogBuilder(requireActivity(),dialogCentered)
                                             .setTitle(getString(R.string.alipay))
                                             .setView(
                                                 ImageView(requireActivity()).apply {
                                                     setPadding(20.dp)
                                                     setImageBitmap(baseDecode(Base64().alipayCode))
+                                                }
+                                            )
+                                            .show()
+                                    }
+                                    3 -> {
+                                        MaterialAlertDialogBuilder(requireActivity(), dialogCentered)
+                                            .setTitle(getString(R.string.donation_list))
+                                            .setView(
+                                                NestedScrollView(context).apply {
+                                                    addView(
+                                                        TextView(context).apply {
+                                                            setPadding(20.dp, 0, 20.dp, 20.dp)
+                                                            text = getString(R.string.donate_list_hint)+"\n"
+                                                            DonateData.getDonateList().forEach {
+                                                                text = "$text\n$it"
+                                                            }
+                                                            gravity = Gravity.CENTER_HORIZONTAL
+                                                        }
+                                                    )
                                                 }
                                             )
                                             .show()
@@ -310,6 +329,7 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
         if (key == "use_dynamic_color") (activity as MainActivity).restart()
         if (key == "dark_theme") (activity as MainActivity).restart()
+        if (key == "hide_xp_page_icon") (activity as MainActivity).restart()
         if (key == "hide_desktop_appicon") sharedPreferences?.let { requireActivity().setDesktopIcon(it.getBoolean("hide_desktop_appicon",false)) }
     }
 

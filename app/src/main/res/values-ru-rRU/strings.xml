@@ -17,6 +17,7 @@
     <string name="follow_system">Выбор системы</string>
     <!-- Other Settings -->
     <string name="other_settings">Другие настройки</string>
+    <string name="hide_xp_page_icon">Скрыть иконку страницы опыта</string>
     <string name="hide_desktop_appicon">Скрыть иконку приложения</string>
     <string name="hide_desktop_appicon_summary">LSPosed должен быть отключен, чтобы иконка на рабочем столе отображалась</string>
     <!-- About -->
@@ -26,6 +27,8 @@
     <string name="qq">QQ</string>
     <string name="wechat">WeChat</string>
     <string name="alipay">AliPay</string>
+    <string name="donation_list">Список донатов</string>
+    <string name="donate_list_hint">Если вы хотите появиться в этом списке, вы можете оставить комментарий при награждении (если я не забыл).</string>
     <string name="feedback_download">Отзыв и загрузка</string>
     <string name="feedback_download_summary">ТГ-каналы, группы, склады и т.д.</string>
     <string name="coolmarket">CoolMarket</string>
@@ -103,6 +106,10 @@
     <string name="remove_statusbar_bottom_networkwarn">Удалить предупреждение о сети в нижней части раскрывающейся строки состояния</string>
     <string name="remove_statusbar_bottom_networkwarn_summary">Удалить информацию о сети внизу, когда раскрывающаяся строка состояния развернута</string>
     <string name="remove_flashlight_open_notification">Удалить уведомление о фонарике</string>
+    <string name="remove_personal_hotspot_warning">Удалить предупреждение о включении точки доступа</string>
+    <string name="remove_personal_hotspot_warning_summary">Удалено предупреждение о том, что включение точки доступа увеличит энергопотребление и выделение тепла</string>
+    <string name="remove_app_high_battery_consumption_warning">Удалить предупреждение приложения о высоком расходе заряда батареи</string>
+    <string name="remove_app_high_battery_consumption_warning_summary">Удалено предупреждение о том, что приложение расходует заряд батареи ненормально и требует немедленной оптимизации</string>
     <!--StatusBarIcon-->
     <string name="StatusBarIcon">Иконки статусбара</string>
     <string name="StatusBarIcon_summary">Связанная иконка строки состояния</string>

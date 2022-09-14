@@ -15,14 +15,10 @@ class MultiApp : YukiBaseHooker() {
                 }
                 beforeHook {
                     if (prefs(XposedPrefs).getBoolean("multi_app_enable",false)){
-                        val appList = ArrayList<String>()
-                        for (i in prefs(XposedPrefs).getStringSet("enabledMulti",HashSet())){
-                            appList.add(i)
-                        }
                         field {
                             name = "mAllowedPkgList"
                             type = ListClass
-                        }.get(instance).set(appList)
+                        }.get(instance).set(prefs(XposedPrefs).getStringSet("enabledMulti",HashSet()).toList())
                     }
                 }
             }.onNoSuchMemberFailure {

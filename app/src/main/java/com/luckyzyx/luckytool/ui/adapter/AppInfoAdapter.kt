@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.switchmaterial.SwitchMaterial
 import com.luckyzyx.luckytool.databinding.LayoutAppinfoItemBinding
 import com.luckyzyx.luckytool.utils.tools.XposedPrefs
+import com.luckyzyx.luckytool.utils.tools.checkPackName
 import com.luckyzyx.luckytool.utils.tools.getStringSet
 import com.luckyzyx.luckytool.utils.tools.putStringSet
 import java.io.Serializable
@@ -28,16 +29,38 @@ class AppInfoViewAdapter(private val context: Context, datas: ArrayList<AppInfo>
     private var allDatas = ArrayList<AppInfo>()
     private var filterDatas = ArrayList<AppInfo>()
     private var enabledMulti = ArrayList<String>()
+    private var sortData = ArrayList<AppInfo>()
 
     init {
+        allDatas = datas
+        filterDatas = datas
+        sortDatas()
+    }
+
+    private fun sortDatas(){
         val getEnabledMulti = context.getStringSet(XposedPrefs,"enabledMulti", HashSet<String>())
         if (getEnabledMulti != null && getEnabledMulti.isNotEmpty()){
             for (i in getEnabledMulti){
                 enabledMulti.add(i)
             }
         }
-        allDatas = datas
-        filterDatas = datas
+        allDatas.forEach { its ->
+            enabledMulti.forEach {
+                if (!context.checkPackName(it)){
+                    enabledMulti.remove(it)
+                    context.putStringSet(XposedPrefs,"enabledMulti",enabledMulti.toSet())
+                }
+                if (its.packName == it){
+                    sortData.add(0,its)
+                }
+            }
+        }
+        allDatas.apply {
+            sortData.forEach {
+                this.remove(it)
+                this.add(0,it)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -96,7 +119,6 @@ class AppInfoViewAdapter(private val context: Context, datas: ArrayList<AppInfo>
             filterDatas = results?.values as ArrayList<AppInfo>
             notifyDataSetChanged()
         }
-
     }
 
     class ViewHolder(binding: LayoutAppinfoItemBinding) : RecyclerView.ViewHolder(binding.root){

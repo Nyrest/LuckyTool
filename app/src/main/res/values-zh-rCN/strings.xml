@@ -17,6 +17,7 @@
     <string name="follow_system">跟随系统</string>
     <!-- Other Settings -->
     <string name="other_settings">其他设置</string>
+    <string name="hide_xp_page_icon">隐藏XP页面图标</string>
     <string name="hide_desktop_appicon">隐藏桌面APP图标</string>
     <string name="hide_desktop_appicon_summary">必须关闭LSPosed强制显示桌面图标</string>
     <!-- About -->
@@ -26,6 +27,8 @@
     <string name="qq">QQ</string>
     <string name="wechat">微信</string>
     <string name="alipay">支付宝</string>
+    <string name="donation_list">捐赠列表</string>
+    <string name="donate_list_hint">如果你希望出现在此列表中, 可以在打赏时留下备注(如果我没有忘记的话)</string>
     <string name="feedback_download">反馈与下载</string>
     <string name="feedback_download_summary">TG频道, 群组, 仓库等</string>
     <string name="coolmarket">酷安主页</string>
@@ -100,6 +103,10 @@
     <string name="remove_statusbar_bottom_networkwarn">移除状态栏底部网络警告</string>
     <string name="remove_statusbar_bottom_networkwarn_summary">移除下拉状态栏展开时最底部的网络信息</string>
     <string name="remove_flashlight_open_notification">移除手电筒已开启通知</string>
+    <string name="remove_personal_hotspot_warning">移除长时间开启个人热点警告</string>
+    <string name="remove_personal_hotspot_warning_summary">移除打开个人热点会增加耗电与发热警告</string>
+    <string name="remove_app_high_battery_consumption_warning">移除应用后台耗电异常优化警告</string>
+    <string name="remove_app_high_battery_consumption_warning_summary">移除应用后台电池快速耗电，建议立即优化的警告</string>
     <!--StatusBarIcon-->
     <string name="StatusBarIcon">状态栏图标</string>
     <string name="StatusBarIcon_summary">状态栏图标相关</string>

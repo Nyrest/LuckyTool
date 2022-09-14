@@ -98,6 +98,7 @@ class Android : ModulePreferenceFragment(), SharedPreferences.OnSharedPreference
 class StatusBar : ModulePreferenceFragment(){
     override fun onCreatePreferencesInModuleApp(savedInstanceState: Bundle?, rootKey: String?) {
         preferenceManager.sharedPreferencesName = XposedPrefs
+        findNavController()
         preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
             addPreference(
                 Preference(requireActivity()).apply {
@@ -107,7 +108,9 @@ class StatusBar : ModulePreferenceFragment(){
                     key = "StatusBarClock"
                     isIconSpaceReserved = false
                     setOnPreferenceClickListener {
-                        findNavController().navigate(R.id.action_statusBar_to_statusBarClock)
+                        findNavController().navigate(R.id.action_statusBar_to_statusBarClock,Bundle().apply {
+                            putCharSequence("title_label",title)
+                        })
                         true
                     }
                 }
@@ -120,7 +123,9 @@ class StatusBar : ModulePreferenceFragment(){
                     isIconSpaceReserved = false
                     setOnPreferenceClickListener {
                         findNavController().navigate(
-                            R.id.action_statusBar_to_statusBarDate)
+                            R.id.action_statusBar_to_statusBarDate,Bundle().apply {
+                                putCharSequence("title_label",title)
+                            })
                         true
                     }
                 }
@@ -133,7 +138,9 @@ class StatusBar : ModulePreferenceFragment(){
                     isIconSpaceReserved = false
                     setOnPreferenceClickListener {
                         findNavController().navigate(
-                            R.id.action_statusBar_to_statusBarNotice)
+                            R.id.action_statusBar_to_statusBarNotice,Bundle().apply {
+                                putCharSequence("title_label",title)
+                            })
                         true
                     }
                 }
@@ -146,7 +153,9 @@ class StatusBar : ModulePreferenceFragment(){
                     isIconSpaceReserved = false
                     setOnPreferenceClickListener {
                         findNavController().navigate(
-                            R.id.action_statusBar_to_statusBarIcon)
+                            R.id.action_statusBar_to_statusBarIcon,Bundle().apply {
+                                putCharSequence("title_label",title)
+                            })
                         true
                     }
                 }
@@ -159,7 +168,9 @@ class StatusBar : ModulePreferenceFragment(){
                     isIconSpaceReserved = false
                     setOnPreferenceClickListener {
                         findNavController().navigate(
-                            R.id.action_statusBar_to_statusBarTile)
+                            R.id.action_statusBar_to_statusBarTile,Bundle().apply {
+                                putCharSequence("title_label",title)
+                            })
                         true
                     }
                 }
@@ -353,6 +364,24 @@ class StatusBarNotice : ModulePreferenceFragment() {
                 SwitchPreference(requireActivity()).apply {
                     title = getString(R.string.remove_flashlight_open_notification)
                     key = "remove_flashlight_open_notification"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    title = getString(R.string.remove_app_high_battery_consumption_warning)
+                    summary = getString(R.string.remove_app_high_battery_consumption_warning_summary)
+                    key = "remove_app_high_battery_consumption_warning"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    title = getString(R.string.remove_personal_hotspot_warning)
+                    summary = getString(R.string.remove_personal_hotspot_warning_summary)
+                    key = "remove_personal_hotspot_warning"
                     setDefaultValue(false)
                     isIconSpaceReserved = false
                 }
@@ -700,8 +729,9 @@ class Application : ModulePreferenceFragment(){
                     key = "multi_app_custom_list"
                     isIconSpaceReserved = false
                     setOnPreferenceClickListener {
-                        findNavController().navigate(
-                            R.id.action_application_to_multiFragment)
+                        findNavController().navigate(R.id.action_application_to_multiFragment,Bundle().apply {
+                            putCharSequence("title_label",title)
+                        })
                         true
                     }
                 }
@@ -798,8 +828,9 @@ class Miscellaneous : ModulePreferenceFragment(){
                     key = "PowerMenu"
                     isIconSpaceReserved = false
                     setOnPreferenceClickListener {
-                        findNavController().navigate(
-                            R.id.action_miscellaneous_to_powerMenu)
+                        findNavController().navigate(R.id.action_miscellaneous_to_powerMenu,Bundle().apply {
+                            putCharSequence("title_label",title)
+                        })
                         true
                     }
                     isVisible = Build.VERSION.SDK_INT in 31..32

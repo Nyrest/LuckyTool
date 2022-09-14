@@ -6,17 +6,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.drake.net.utils.scopeLife
+import com.drake.net.utils.withIO
+import com.drake.net.utils.withMain
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.progressindicator.LinearProgressIndicator
 import com.luckyzyx.luckytool.R
 import com.luckyzyx.luckytool.databinding.FragmentMultiBinding
 import com.luckyzyx.luckytool.ui.adapter.AppInfo
 import com.luckyzyx.luckytool.ui.adapter.AppInfoViewAdapter
-import kotlinx.coroutines.*
 
 class MultiFragment : Fragment() {
 
@@ -51,27 +51,19 @@ class MultiFragment : Fragment() {
     }
 
     @SuppressLint("SetTextI18n")
-    @OptIn(DelicateCoroutinesApi::class)
     fun loadData(){
         val progressDialog = MaterialAlertDialogBuilder(requireActivity()).apply {
             setCancelable(false)
-            setView(R.layout.layout_mutli_progress)
+            setMessage("")
         }.create()
-        GlobalScope.launch(Dispatchers.Main){
+        scopeLife {
             progressDialog.show()
-            withContext(Dispatchers.IO){
+            withIO {
                 val packageManager = requireActivity().packageManager
                 val appinfos = packageManager.getInstalledApplications(0)
                 for (i in appinfos) {
-                    withContext(Dispatchers.Main){
-                        progressDialog.findViewById<TextView>(R.id.tv)?.apply {
-                            text = "${getString(R.string.loading)} ${appinfos.indexOf(i)} / ${appinfos.size}"
-                            gravity = TextView.TEXT_ALIGNMENT_CENTER
-                        }
-                        progressDialog.findViewById<LinearProgressIndicator>(R.id.progress)?.apply {
-                            max = appinfos.size
-                            setProgress(appinfos.indexOf(i),true)
-                        }
+                    withMain {
+                        progressDialog.setMessage("${getString(R.string.loading)} ${appinfos.indexOf(i)} / ${appinfos.size}")
                     }
                     if (i.flags and ApplicationInfo.FLAG_SYSTEM == 1) continue
                     appListAllDatas.add(

@@ -67,6 +67,15 @@ fun Context.getAppVersion(packName: String): ArrayList<String> = safeOf(default 
 val getVersionName get() = VERSION_NAME
 val getVersionCode get() = VERSION_CODE
 
+fun Context.checkKey(key: String?, keyList: Array<String>): String = safeOfNothing {
+    keyList.forEach {
+        if (checkPackName(it)) {
+            if (key == null) return it
+        }
+    }
+    return "null"
+}
+
 /**
  * 获取APP
  */
@@ -280,4 +289,24 @@ fun Context.copyStr(string: String) {
 fun baseDecode(code: String): Bitmap? {
     val decode: ByteArray = Base64.decode(code.split(",")[1], Base64.DEFAULT)
     return BitmapFactory.decodeByteArray(decode, 0, decode.size)
+}
+
+/**
+ * 返回MaterialDialog Title居中样式
+ */
+val dialogCentered get() = com.google.android.material.R.style.ThemeOverlay_Material3_MaterialAlertDialog_Centered
+
+/**
+ * 判断是否显示Preference图标
+ */
+fun Context.getXPIcon(resource: Any?,result:(Drawable?,Boolean) -> Unit) {
+    if (getBoolean(SettingsPrefs,"hide_xp_page_icon",false)){
+        result(null,false)
+        return
+    }
+    when(resource){
+        is Int -> result(getDrawable(resource),true)
+        is Drawable -> result(resource,true)
+        is String -> result(getAppIcon(resource),true)
+    }
 }

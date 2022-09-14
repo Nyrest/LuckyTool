@@ -14,18 +14,19 @@
         <item>com.heytap.cloud</item>
         <item>com.oplus.screenshot</item>
         <item>com.oplus.battery</item>
+        <item>com.oplus.wirelesssettings</item>
         <item>com.android.settings</item>
         <item>com.east2d.everyimage</item>
         <item>com.vphonegaga.titan</item>
         <item>com.ruet_cse_1503050.ragib.appbackup.pro</item>
     </string-array>
-
+    
     <string-array name="dark_theme" translatable="false">
         <item>@string/dark_theme_off</item>
         <item>@string/dark_theme_on</item>
         <item>@string/dark_theme_follow_system</item>
     </string-array>
-
+    
     <string-array name="dark_theme_value" translatable="false">
         <item>MODE_NIGHT_NO</item>
         <item>MODE_NIGHT_YES</item>

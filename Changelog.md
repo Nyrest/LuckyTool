@@ -3,6 +3,31 @@
 出现问题请带上作用域 Apk 和 LSPosed Log 前往 TG 群组反馈  
 If there is a problem, please bring the scope Apk and LSPosed Log to the TG group for feedback  
 
+### v2.3
+
+[优化] 自定义分身列表-已勾选APP显示在顶部  
+[修复] 检查更新-检测逻辑  
+[修复] 检查更新-更新内容无法滚动与显示不全  
+[移除] 检查更新-复制下载链接  
+[修复] 修复XP页面异常崩溃  
+[添加] 设置-捐赠打赏-捐赠名单  
+[适配] C13电池-自启数量限制  
+[添加] 移除长时间开启热点警告  
+[添加] 移除应用后台耗电警告  
+[修复] 核心破解同步上游  
+[添加] 设置-隐藏XP页面图标  
+[Fix] Custom doppelganger list - Checked APP is displayed at the top  
+[Fix] Check for updates - Detect logic  
+[Fix] Check for updates - The updated content cannot be scrolled and displayed incompletely  
+[Remove] Check for Updates - Copy Download Link  
+[Fix] Repair the abnormal crash of XP page  
+[Add] Settings - Donation Reward - Donation List  
+[Fix] C13 battery - Self-starting quantity limit  
+[Add] Remove the warning of turning on hot spots for a long time  
+[Add] Remove application background power consumption warning  
+[Fix] Core crack synchronization upstream  
+[Add] Settings - Hide XP page icon  
+
 ### v2.2
 
 [添加] 添加显示刷新率磁贴  
