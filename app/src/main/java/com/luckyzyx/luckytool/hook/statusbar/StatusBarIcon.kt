@@ -35,6 +35,17 @@ class StatusBarIcon : YukiBaseHooker() {
                     loadHooker(RemoveStatusBarUserSwitcher())
                 }
             }
+
+            //移除WiFi数据箭头
+            if (prefs(XposedPrefs).getBoolean("remove_wifi_data_inout", false)) {
+                loadHooker(RemoveWiFiDataInout())
+            }
+            //移除移动数据箭头
+            if (prefs(XposedPrefs).getBoolean("remove_mobile_data_inout", false)) {
+                loadHooker(RemoveMobileDataInout())
+            }
+
+
         }
     }
 }

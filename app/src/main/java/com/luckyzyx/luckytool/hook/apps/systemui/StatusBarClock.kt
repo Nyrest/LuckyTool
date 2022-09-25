@@ -3,15 +3,16 @@ package com.luckyzyx.luckytool.hook.apps.systemui
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Typeface
+import android.os.Handler
 import android.provider.Settings
 import android.util.TypedValue
 import android.view.Gravity
 import android.widget.TextView
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 import com.highcapable.yukihookapi.hook.type.android.TypefaceClass
-import com.highcapable.yukihookapi.hook.type.java.BooleanType
 import com.highcapable.yukihookapi.hook.type.java.CharSequenceType
 import com.luckyzyx.luckytool.utils.tools.XposedPrefs
+import java.lang.reflect.Method
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -46,7 +47,8 @@ class StatusBarClock : YukiBaseHooker() {
                 }
                 afterHook {
                     context = args(0).cast<Context>()
-                    (instance as TextView).apply {
+                    val clockView = instance as TextView
+                    clockView.apply {
                         if (this.resources.getResourceEntryName(id) != "clock") return@afterHook
                         isSingleLine = false
                         gravity = Gravity.CENTER
@@ -62,6 +64,18 @@ class StatusBarClock : YukiBaseHooker() {
                             }
                         }
                     }
+
+                    val d: Method = clockView.javaClass.superclass.getDeclaredMethod("updateClock")
+                    val r = Runnable {
+                        d.isAccessible = true
+                        d.invoke(clockView)
+                    }
+                    class T : TimerTask() {
+                        override fun run() {
+                            Handler(clockView.context.mainLooper).post(r)
+                        }
+                    }
+                    Timer().scheduleAtFixedRate(T(), 1000 - System.currentTimeMillis() % 1000, 1000)
                 }
             }
             injectMember {
@@ -75,17 +89,6 @@ class StatusBarClock : YukiBaseHooker() {
                     }
                     nowTime = Calendar.getInstance().time
                     result = getDate(context!!) + newline + getTime(context!!)
-                }
-            }
-            injectMember {
-                method {
-                    name = "updateShowSeconds"
-                }
-                beforeHook {
-                    field {
-                        name = "mShowSeconds"
-                        type = BooleanType
-                    }.get(instance).set(isSecond)
                 }
             }
         }

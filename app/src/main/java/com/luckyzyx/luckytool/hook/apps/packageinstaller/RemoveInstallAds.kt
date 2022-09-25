@@ -18,10 +18,10 @@ class RemoveInstallAds : YukiBaseHooker() {
                     name = "initView"
                 }
                 afterHook {
-                    suggestLayout[0] = field { name = "mSuggestLayoutA" }.get(instance).self as LinearLayout
-                    suggestLayout[1] = field { name = "mSuggestLayoutB" }.get(instance).self as LinearLayout
-                    suggestLayout[2] = field { name = "mSuggestLayoutC" }.get(instance).self as LinearLayout
-                    suggestLayoutARelativeLayout[0] = field { name = "mSuggestLayoutATitle" }.get(instance).self as RelativeLayout
+                    suggestLayout[0] = field { name = "mSuggestLayoutA" }.get(instance).cast<LinearLayout>()
+                    suggestLayout[1] = field { name = "mSuggestLayoutB" }.get(instance).cast<LinearLayout>()
+                    suggestLayout[2] = field { name = "mSuggestLayoutC" }.get(instance).cast<LinearLayout>()
+                    suggestLayoutARelativeLayout[0] = field { name = "mSuggestLayoutATitle" }.get(instance).cast<RelativeLayout>()
                 }
             }.onNoSuchMemberFailure {
                 loggerD(msg = "NoSuchMember->InstallAppProgress->initView")

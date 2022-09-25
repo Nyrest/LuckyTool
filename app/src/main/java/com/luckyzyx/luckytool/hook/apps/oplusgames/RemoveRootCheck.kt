@@ -17,9 +17,6 @@ class RemoveRootCheck : YukiBaseHooker() {
         ).hook {
             injectMember {
                 method {
-                    name {
-                        onlyLetters()
-                    }
                     emptyParam()
                     returnType(BundleClass)
                 }
@@ -32,9 +29,6 @@ class RemoveRootCheck : YukiBaseHooker() {
         findClass("com.oplus.a0.g").hook {
             injectMember {
                 method {
-                    name {
-                        onlyLetters()
-                    }
                     emptyParam()
                     returnType(BundleClass)
                 }

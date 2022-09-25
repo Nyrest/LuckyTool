@@ -57,7 +57,9 @@ class OtherFragment : Fragment() {
                             }
                             ShellUtils.execCommand("am start -n com.oplus.battery/com.oplus.powermanager.fuelgaue.BatteryHealthActivity", true)
                         }
-                        3 -> jumpRunningApp(requireActivity())
+                        3 -> safeOf(default = requireActivity().toast(getString(R.string.system_not_support))) {
+                            jumpRunningApp(requireActivity())
+                        }
                         4 -> ShellUtils.execCommand("am start -n com.android.systemui/.DemoMode", true)
                         5 -> ShellUtils.execCommand("am start -n com.oplus.logkit/.activity.MainActivity", true)
                         6 -> ShellUtils.execCommand("am start -a com.android.settings.APPLICATION_DEVELOPMENT_SETTINGS", true)

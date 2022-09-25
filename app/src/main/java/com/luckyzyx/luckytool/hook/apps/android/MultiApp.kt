@@ -1,7 +1,6 @@
 package com.luckyzyx.luckytool.hook.apps.android
 
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
-import com.highcapable.yukihookapi.hook.log.loggerE
 import com.highcapable.yukihookapi.hook.type.java.ListClass
 import com.luckyzyx.luckytool.utils.tools.XposedPrefs
 
@@ -13,19 +12,11 @@ class MultiApp : YukiBaseHooker() {
                     name = "getAllowedPkgList"
                     returnType = ListClass
                 }
-                beforeHook {
-                    if (prefs(XposedPrefs).getBoolean("multi_app_enable",false)){
-                        field {
-                            name = "mAllowedPkgList"
-                            type = ListClass
-                        }.get(instance).set(prefs(XposedPrefs).getStringSet("enabledMulti",HashSet()).toList())
-                    }
+                afterHook {
+                    if (prefs(XposedPrefs).getBoolean("multi_app_enable", false)) result =
+                        prefs(XposedPrefs).getStringSet("enabledMulti", HashSet()).toList()
                 }
-            }.onNoSuchMemberFailure {
-                loggerE(msg = "NoSuchMember -> getAllowedPkgList")
             }
-        }.onHookClassNotFoundFailure {
-            loggerE(msg = "ClassNotFound -> OplusMultiAppConfig")
         }
     }
 }

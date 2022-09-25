@@ -3,6 +3,53 @@
 出现问题请带上作用域 Apk 和 LSPosed Log 前往 TG 群组反馈  
 If there is a problem, please bring the scope Apk and LSPosed Log to the TG group for feedback  
 
+### v2.6
+
+[更新] 捐赠名单列表  
+
+
+### v2.5
+
+[更新] 捐赠名单列表  
+[修复] 修复功能页面异常显示问题  
+[添加] 移除WiFi数据箭头  
+[添加] 移除移动数据箭头  
+[更改] 磁贴展开行数最大支持6  
+[更改] 下拉状态栏时钟显秒逻辑  
+[修复] 下拉状态栏时钟冒号不对齐  
+[修复] 部分异常报错问题  
+[修复] 应用分身列表概率清空问题  
+[添加] C13移除解锁页面SOS紧急联络按钮  
+[添加] 移除高性能模式通知  
+[Update] Donation list list  
+[Fix] Fix abnormal display issue on feature page  
+[Add] Remove WiFi data arrow  
+[Add] Remove mobile data arrow  
+[Change] Maximum number of tile expansion rows support 6  
+[Change] Clock seconds logic in status bar  
+[Fix] Clock colon in status bar is not aligned  
+[Fix] Partial exception error reporting problem  
+[Fix] Probable emptying of app split list  
+[Add] C13 remove SOS emergency contact button on unlock page  
+[Add] Remove high performance mode notification  
+
+### v2.4
+
+[修复] 移除耗电异常优化通知失效  
+[适配] C13移除自启数量限制  
+[添加] C13移除下拉状态栏我的设备  
+[更新] 捐赠名单列表  
+[修复] C13移除VPN已激活通知  
+[添加] 移除锁屏左下角按钮  
+[添加] 桌面文件夹布局4x4 (打开布局)  
+[Fix] Remove the power consumption abnormality optimization notification failure  
+[Fix] C13 Remove the self-starting quantity limit  
+[Add] C13 Remove the drop-down status bar My Device  
+[Update] List of Donation Lists  
+[Fix] C13 Remove notification that VPN has been activated  
+[Add] Remove the button in the lower left corner of the lock screen  
+[Add] Desktop Folder Layout 4x4 (Open Layout)  
+
 ### v2.3
 
 [优化] 自定义分身列表-已勾选APP显示在顶部  

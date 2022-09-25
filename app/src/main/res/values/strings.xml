@@ -74,9 +74,9 @@
     <string name="enhancedMode_summary">You can solve some internal integrity check within the app, which does not need to be enabled</string>
     <string name="usepresig_warn">!!! All packages can override installed App!!\nto install unknown packages</string>
     <!--Status Bar-->
-    <string name="StatusBar">Status bar related</string>
+    <string name="StatusBar">StatusBar Related</string>
     <!--StatusBarClock-->
-    <string name="StatusBarClock">StatusBar clock</string>
+    <string name="StatusBarClock">StatusBar Clock</string>
     <string name="statusbar_clock_enable">Status bar clock total toggle</string>
     <string name="statusbar_clock_show_year">Show year</string>
     <string name="statusbar_clock_show_month">Show month</string>
@@ -88,13 +88,17 @@
     <string name="statusbar_clock_singlerow_fontsize">Single row font size</string>
     <string name="statusbar_clock_doublerow_fontsize">Double row font size</string>
     <string name="statusbar_clock_fontsize_summary">If it is 0, the font size will not be modified</string>
-    <string name="remove_statusbar_clock_redone">Remove dropdown clock red one</string>
+    <!--DropDownStatusBarClock-->
+    <string name="DropDownStatusBarClock">DropDown StatusBar Clock</string>
+    <string name="dropdown_statusbar_clock_show_second">DropDown Statusbar Clock show second</string>
+    <string name="remove_dropdown_statusbar_clock_style_summary">Colon alignment, red number 1</string>
+    <string name="remove_dropdown_statusbar_clock_style">Remove dropdown statusbar clock style</string>
     <!--StatusBarDate-->
-    <string name="StatusBarDate">Status bar date</string>
+    <string name="StatusBarDate">StatusBar Date</string>
     <string name="remove_statusbar_date_comma">Remove dropdown status bar date comma</string>
     <string name="remove_statusbar_date_comma_summary">Guessing is limited to ZH users</string>
     <!--StatusBarNotice-->
-    <string name="StatusBarNotice">Status bar notifications</string>
+    <string name="StatusBarNotice">StatusBar Notifications</string>
     <string name="StatusBarNotice_summary">Status bar notification related</string>
     <string name="remove_statusbar_devmode">Remove status bar developer option notifications</string>
     <string name="remove_charging_completed">Remove charging completion notification</string>
@@ -105,20 +109,24 @@
     <string name="remove_statusbar_bottom_networkwarn">Remove bottom network warning from statusbar</string>
     <string name="remove_statusbar_bottom_networkwarn_summary">Remove bottom network information when the pulldown status bar is expanded</string>
     <string name="remove_flashlight_open_notification">Remove flashlight is open notification</string>
-    <string name="remove_personal_hotspot_warning">Remove Turn on Personal Hotspot Warning</string>
-    <string name="remove_personal_hotspot_warning_summary">Removed warning that turning on personal hotspot will increase power consumption and heat</string>
     <string name="remove_app_high_battery_consumption_warning">Remove app high battery consumption warning</string>
     <string name="remove_app_high_battery_consumption_warning_summary">Removed the warning that the application\'s battery consumption is abnormal and needs to be optimized immediately</string>
+    <string name="remove_high_performance_mode_notifications">Remove high performance mode notifications</string>
     <!--StatusBarIcon-->
-    <string name="StatusBarIcon">Status bar icon</string>
+    <string name="StatusBarIcon">StatusBar Icon</string>
     <string name="StatusBarIcon_summary">Status bar icon related</string>
     <string name="set_network_speed">Set status bar speed refresh rate 1 s</string>
     <string name="remove_statusbar_securepayment_icon">Remove status bar payment protection icons</string>
     <string name="remove_statusbar_battery_percent">Remove battery percentage number in statusbar</string>
     <string name="remove_statusbar_user_switcher">Remove drop-down status bar multi-user icon</string>
-    <!--StatusBarTiles-->
-    <string name="StatusBarTiles">Status bar tiles</string>
-    <string name="StatusBarTiles_summary">Drop Status Bar Related</string>
+    <string name="remove_wifi_data_inout">Remove WiFi data inout</string>
+    <string name="remove_mobile_data_inout">Remove Mobile data inout</string>
+    <!--StatusBarContent-->
+    <string name="StatusBarContent">StatusBar Content</string>
+    <string name="StatusBar_UI_Related">StatusBar UI Related</string>
+    <string name="remove_drop_down_statusbar_mydevice">remove drop down statusbar my device</string>
+    
+    <string name="StatusBar_Tile_Related">StatusBar Tile Related</string>
     <string name="statusbar_tile_enable">Total statusbar tiles switch</string>
     <string name="tile_unexpanded_columns_vertical">No tiles expanded (portrait)</string>
     <string name="tile_unexpanded_columns_horizontal">No tiles expanded (Landscape)</string>
@@ -129,15 +137,19 @@
     <!--LockScreen-->
     <string name="LockScreen">Lockscreen Related</string>
     <string name="remove_lock_screen_redone">Remove lock screen red 1</string>
-    <string name="remove_lock_screen_camera">Remove lockscreen bottom right camera</string>
+    <string name="remove_lock_screen_bottom_left_button">Remove lockscreen bottom left button</string>
+    <string name="remove_lock_screen_bottom_right_camera">Remove lockscreen bottom right camera</string>
     <string name="set_lock_screen_centered">Center the lockscreen component</string>
     <string name="set_lock_screen_centered_summary">Only for systems where the lock screen cannot be centered in the settings</string>
+    <string name="remove_lock_screen_bottom_sos_button">Remove SOS emergency contact button</string>
+    <string name="remove_lock_screen_bottom_sos_button_summary">Removed the SOS emergency button at the bottom of the unlock page</string>
     <!--Desktop-->
     <string name="Desktop">Desktop Related</string>
     <string name="remove_alarmclock_widget_redone">Remove desktop clock component red</string>
     <string name="remove_appicon_dot">Remove API icon dots</string>
     <string name="show_charging_ripple">Charging display charging texture waves</string>
     <string name="show_charging_ripple_summary">Valid only when connecting to charger</string>
+    <string name="set_folder_layout_4x4">Set Folder Layout 4 x 4</string>
     <string name="launcher_layout_related">Desktop Layout Related</string>
     <string name="launcher_layout_row_colume">Sets the maximum number of rows and columns supported by the desktop layout</string>
     <string name="launcher_layout_enable">Desktop icon layout general switch</string>
@@ -167,7 +179,7 @@
     <string name="disable_apk_signature_verification">Disable APK signature verification</string>
     <string name="disable_apk_signature_verification_summary">Can install different signed APPs, use the core breakup</string>
     <string name="remove_install_ads">Remove installation completed ads</string>
-    <string name="remove_install_ads_summary">Close Settings -&gt;Security App Recommendations</string>
+    <string name="remove_install_ads_summary">Close Settings - Security App Recommendations</string>
     <string name="replase_aosp_installer">Replace AOSP Installer</string>
     <string name="replase_aosp_installer_summary">Replace with Google Native Installer</string>
     <!--Miscellaneous-->
@@ -258,5 +270,6 @@
     <string name="adb_debug_port_cannot_null">ADB debug port cannot be null</string>
     <string name="battery_health">Battery Health</string>
     <string name="battery_health_toast">Only supports ColorOS13</string>
+    <string name="system_not_support">The current system does not support!</string>
 
 </resources>

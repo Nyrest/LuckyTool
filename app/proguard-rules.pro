@@ -20,8 +20,6 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
-#不要警告
--dontwarn
 #忽略警告
 -ignorewarnings
 

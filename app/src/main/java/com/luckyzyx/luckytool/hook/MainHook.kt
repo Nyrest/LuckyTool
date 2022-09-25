@@ -1,6 +1,5 @@
 package com.luckyzyx.luckytool.hook
 
-import android.os.Build.VERSION.SDK_INT
 import android.os.Build.VERSION_CODES.*
 import com.highcapable.yukihookapi.annotation.xposed.InjectYukiHookWithXposed
 import com.highcapable.yukihookapi.hook.factory.configs
@@ -13,6 +12,7 @@ import com.luckyzyx.luckytool.hook.apps.CorePatch.CorePatchForS
 import com.luckyzyx.luckytool.hook.apps.CorePatch.CorePatchForSv2
 import com.luckyzyx.luckytool.hook.apps.CorePatch.CorePatchForT
 import com.luckyzyx.luckytool.hook.statusbar.*
+import com.luckyzyx.luckytool.utils.tools.SDK
 import com.luckyzyx.luckytool.utils.tools.XposedPrefs
 import de.robv.android.xposed.IXposedHookZygoteInit
 import de.robv.android.xposed.callbacks.XC_LoadPackage
@@ -22,8 +22,13 @@ class MainHook : IYukiHookXposedInit {
 
     override fun onInit() {
         configs {
-            debugTag = "LuckyTool"
             isDebug = false
+            debugLog {
+                isEnable = true
+                tag = "LuckyTool"
+                isRecord = false
+                elements(TAG, PRIORITY, PACKAGE_NAME, USER_ID)
+            }
         }
     }
 
@@ -33,16 +38,17 @@ class MainHook : IYukiHookXposedInit {
         loadSystem(HookAndroid())
         loadZygote(HookZygote())
 
-        //状态栏通知
-        loadApp(hooker = StatusBarNotice())
-        //状态栏图标
-        loadApp(hooker = StatusBarIcon())
-        //状态栏磁贴
-        loadApp(hooker = StatusBarTiles())
         //状态栏时钟
         loadApp(hooker = StatusBarClock())
         //状态栏日期
         loadApp(hooker = StatusBarDate())
+        //状态栏通知
+        loadApp(hooker = StatusBarNotice())
+        //状态栏图标
+        loadApp(hooker = StatusBarIcon())
+        //状态栏内容
+        loadApp(hooker = StatusBarContent())
+
         //桌面
         loadApp(hooker = Desktop())
         //锁屏
@@ -71,24 +77,24 @@ class MainHook : IYukiHookXposedInit {
     override fun onXposedEvent() {
         YukiXposedEvent.onInitZygote { startupParam: IXposedHookZygoteInit.StartupParam ->
             run {
-                when (SDK_INT) {
-                    33 -> CorePatchForT().initZygote(startupParam)
+                when (SDK) {
+                    TIRAMISU -> CorePatchForT().initZygote(startupParam)
                     S_V2 -> CorePatchForSv2().initZygote(startupParam)
                     S -> CorePatchForS().initZygote(startupParam)
                     R -> CorePatchForR().initZygote(startupParam)
-                    else -> loggerE(msg = "Unsupported Version of Android -> $SDK_INT")
+                    else -> loggerE(msg = "Unsupported Version of Android -> $SDK")
                 }
             }
         }
         YukiXposedEvent.onHandleLoadPackage { lpparam: XC_LoadPackage.LoadPackageParam ->
             run {
                 if (lpparam.packageName == "android" && lpparam.processName == "android") {
-                    when (SDK_INT) {
-                        33 -> CorePatchForT().handleLoadPackage(lpparam)
+                    when (SDK) {
+                        TIRAMISU -> CorePatchForT().handleLoadPackage(lpparam)
                         S_V2 -> CorePatchForSv2().handleLoadPackage(lpparam)
                         S -> CorePatchForS().handleLoadPackage(lpparam)
                         R -> CorePatchForR().handleLoadPackage(lpparam)
-                        else -> loggerE(msg = "Unsupported Version of Android -> $SDK_INT")
+                        else -> loggerE(msg = "Unsupported Version of Android -> $SDK")
                     }
                 }
             }

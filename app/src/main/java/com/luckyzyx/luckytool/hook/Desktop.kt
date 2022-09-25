@@ -3,6 +3,7 @@ package com.luckyzyx.luckytool.hook
 import android.os.Build.VERSION.SDK_INT
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 import com.luckyzyx.luckytool.hook.apps.alarmclock.RemoveAlarmClockWidgetRedOne
+import com.luckyzyx.luckytool.hook.apps.launcher.FolderLayoutRowColume
 import com.luckyzyx.luckytool.hook.apps.launcher.LauncherLayoutRowColume
 import com.luckyzyx.luckytool.hook.apps.launcher.RemoveAppUpdateDot
 import com.luckyzyx.luckytool.hook.apps.launcher.RemoveAppUpdateDotV13
@@ -28,6 +29,10 @@ class Desktop : YukiBaseHooker() {
             //设置桌面布局行和列
             if (prefs(XposedPrefs).getBoolean("launcher_layout_enable",false)) loadHooker(
                 LauncherLayoutRowColume()
+            )
+            //设置桌面文件夹行列数
+            if (prefs(XposedPrefs).getBoolean("set_folder_layout_4x4",false)) loadHooker(
+                FolderLayoutRowColume()
             )
         }
     }

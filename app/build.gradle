@@ -16,15 +16,15 @@ android {
             keyPassword 'luckyzyx'
         }
     }
-    compileSdk 32
+    compileSdk 33
     def currentVersionCode = getVersionCode()
-
+    namespace 'com.luckyzyx.luckytool'
     defaultConfig {
         applicationId "com.luckyzyx.luckytool"
         minSdk 30
         targetSdk 33
         versionCode currentVersionCode
-        versionName "2.3"
+        versionName "2.6_beta"
     }
 
     buildTypes {
@@ -68,8 +68,12 @@ dependencies {
     //Xposed基础
     compileOnly "de.robv.android.xposed:api:82"
     //YukiHookAPI ksp
-    implementation "com.highcapable.yukihookapi:api:1.0.92"
-    ksp "com.highcapable.yukihookapi:ksp-xposed:1.0.92"
+//    implementation "com.highcapable.yukihookapi:api:1.0.92"
+//    ksp "com.highcapable.yukihookapi:ksp-xposed:1.0.92"
+
+    implementation files("libs/yukihookapi-1.1.0-fix-6.jar")
+    ksp files("libs/yukihookapi-ksp-xposed-1.1.0-preview.jar")
+
     //Material主题
     implementation 'com.google.android.material:material:1.6.1'
     //约束布局
@@ -77,17 +81,19 @@ dependencies {
     //快速创建settings
     implementation 'androidx.preference:preference:1.2.0'
     //Navigation
+    //noinspection GradleDependency
     implementation 'androidx.navigation:navigation-fragment-ktx:2.4.2'
+    //noinspection GradleDependency
     implementation 'androidx.navigation:navigation-ui-ktx:2.4.2'
     //一个强大并且灵活的RecyclerViewAdapter
 //    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.7'
     //崩溃日志显示
     implementation "com.github.simplepeng.SpiderMan:spiderman:v1.1.9"
-    //权限请求框架
-//    implementation 'com.github.getActivity:XXPermissions:15.0'
+    // 权限请求框架
+    implementation 'com.github.getActivity:XXPermissions:16.2'
     // MoShi JSON ksp 注释处理
-    implementation 'com.squareup.moshi:moshi:1.13.0'
-    ksp "com.squareup.moshi:moshi-kotlin-codegen:1.13.0"
+    implementation 'com.squareup.moshi:moshi:1.14.0'
+    ksp 'com.squareup.moshi:moshi-kotlin-codegen:1.14.0'
     //ColorPickerView
     api "com.github.skydoves:colorpickerview:2.2.4"
     //Rikka
@@ -96,8 +102,9 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
     //OkHttp相关
+    //noinspection GradleDependency
     implementation 'com.squareup.okhttp3:okhttp:4.10.0'
-    implementation 'com.github.liangjingkanji:Net:3.5.0'
+    implementation 'com.github.liangjingkanji:Net:3.5.1'
 }
 
 def getVersionCode() {

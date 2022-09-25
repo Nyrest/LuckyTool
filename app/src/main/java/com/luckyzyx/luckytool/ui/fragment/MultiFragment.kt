@@ -17,6 +17,7 @@ import com.luckyzyx.luckytool.R
 import com.luckyzyx.luckytool.databinding.FragmentMultiBinding
 import com.luckyzyx.luckytool.ui.adapter.AppInfo
 import com.luckyzyx.luckytool.ui.adapter.AppInfoViewAdapter
+import com.luckyzyx.luckytool.utils.tools.PackageUtils
 
 class MultiFragment : Fragment() {
 
@@ -60,7 +61,7 @@ class MultiFragment : Fragment() {
             progressDialog.show()
             withIO {
                 val packageManager = requireActivity().packageManager
-                val appinfos = packageManager.getInstalledApplications(0)
+                val appinfos = PackageUtils(packageManager).getInstalledApplications(0)
                 for (i in appinfos) {
                     withMain {
                         progressDialog.setMessage("${getString(R.string.loading)} ${appinfos.indexOf(i)} / ${appinfos.size}")

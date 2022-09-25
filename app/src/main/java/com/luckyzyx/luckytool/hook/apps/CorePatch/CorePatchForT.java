@@ -67,7 +67,6 @@ public class CorePatchForT extends CorePatchForSv2 {
             }
         });
 
-
         if (prefs.getBoolean("digestCreak", true) && prefs.getBoolean("UsePreSig", false)) {
             findAndHookMethod("com.android.server.pm.InstallPackageHelper", loadPackageParam.classLoader, "doesSignatureMatchForPermissions", String.class, "com.android.server.pm.parsing.pkg.ParsedPackage", int.class, new XC_MethodHook() {
                 @Override

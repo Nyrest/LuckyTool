@@ -2,9 +2,7 @@
 
 package com.luckyzyx.luckytool.utils.tools
 
-import android.app.AndroidAppHelper
 import android.content.*
-import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.content.res.Resources
 import android.graphics.Bitmap
@@ -45,8 +43,8 @@ val getColorOSVersion
 fun Context.getAppVersion(packName: String): ArrayList<String> = safeOf(default = ArrayList()) {
     val arrayList = ArrayList<String>()
     val arraySet = ArraySet<String>()
-    val packageInfo = packageManager.getPackageInfo(packName, 0)
-    val commitInfo = packageManager.getApplicationInfo(packName, PackageManager.GET_META_DATA)
+    val packageInfo = PackageUtils(packageManager).getPackageInfo(packName,0)
+    val commitInfo = PackageUtils(packageManager).getApplicationInfo(packName,128)
     val versionName = safeOf(default = "null") { packageInfo.versionName }
     arrayList.add(versionName)
     arraySet.add("0.$versionName")
@@ -80,57 +78,28 @@ fun Context.checkKey(key: String?, keyList: Array<String>): String = safeOfNothi
  * 获取APP
  */
 fun Context.checkPackName(packName: String) = safeOfFalse {
-    packageManager.getPackageInfo(packName,0) != null
+    @Suppress("SENSELESS_COMPARISON")
+    PackageUtils(packageManager).getPackageInfo(packName,0) != null
 }
 
 /**
  * 获取APP图标
  */
 fun Context.getAppIcon(packName: String): Drawable? = safeOf(default = null) {
-    val packageManager = packageManager
-    return packageManager.getApplicationInfo(packName,0).loadIcon(packageManager)
+    return PackageUtils(packageManager).getApplicationInfo(packName,0).loadIcon(packageManager)
 }
 /**
  * 获取APP名称
  */
 fun Context.getAppLabel(packName: String): CharSequence? = safeOf(default = null) {
-    val packageManager = packageManager
-    return packageManager.getApplicationInfo(packName,0).loadLabel(packageManager)
-}
-
-/**
- * 获取已安装APP列表
- */
-fun getInstalledApp(hasSystem: Boolean = false): ArrayList<String> {
-    return getInstalledApp(null,hasSystem,null)
-}
-fun getInstalledApp(hasSystem: Boolean = false, size: Int? = null): ArrayList<String> {
-    return getInstalledApp(null,hasSystem,size)
-}
-fun getInstalledApp(context: Context? = null, hasSystem: Boolean = false, size: Int? = null): ArrayList<String> {
-    val packageManager = if (context == null) {
-        AndroidAppHelper.currentApplication().packageManager
-    }else{
-        context.packageManager
-    }
-    val packageInfos = packageManager.getInstalledPackages(0)
-    val applist = ArrayList<String>()
-    for (info in packageInfos){
-        if((info.applicationInfo.flags and ApplicationInfo.FLAG_SYSTEM) == 0){
-            applist.add(info.packageName)
-        }else if (hasSystem){
-            applist.add(info.packageName)
-        }
-        if (size != null && applist.size == size) break
-    }
-    return applist
+    return PackageUtils(packageManager).getApplicationInfo(packName,0).loadLabel(packageManager)
 }
 
 /**
  * 检查隐藏活动是否存在
  */
-fun Context.checkResolveActivity(intent: Intent): Boolean {
-    return packageManager.resolveActivity(intent, 0) != null
+fun Context.checkResolveActivity(intent: Intent): Boolean = safeOf(default = true){
+    return PackageUtils(packageManager).resolveActivity(intent, 0) != null
 }
 
 /**

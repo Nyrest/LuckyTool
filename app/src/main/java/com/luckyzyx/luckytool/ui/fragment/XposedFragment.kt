@@ -83,7 +83,7 @@ class XposedFragment : ModulePreferenceFragment() {
                         isIconSpaceReserved = show
                     }
                     title = getString(R.string.LockScreen)
-                    summary = getString(R.string.remove_lock_screen_redone)+","+getString(R.string.remove_lock_screen_camera)
+                    summary = getString(R.string.remove_lock_screen_redone)+","+getString(R.string.remove_lock_screen_bottom_right_camera)
                     setOnPreferenceClickListener {
                         findNavController().navigate(R.id.action_nav_xposed_to_lockScreen,Bundle().apply {
                             putCharSequence("title_label",title)

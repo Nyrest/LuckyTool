@@ -157,8 +157,8 @@
             android:name="com.luckyzyx.luckytool.ui.fragment.StatusBarIcon"
             android:label="{title_label}" />
     <fragment
-            android:id="@+id/statusBarTile"
-            android:name="com.luckyzyx.luckytool.ui.fragment.StatusBarTile"
+            android:id="@+id/statusBarContent"
+            android:name="com.luckyzyx.luckytool.ui.fragment.StatusBarContent"
             android:label="{title_label}" />
     <fragment
             android:id="@+id/statusBarClock"
@@ -230,7 +230,7 @@
                 app:popExitAnim="@anim/fragment_exit_pop" />
         <action
                 android:id="@+id/action_statusBar_to_statusBarTile"
-                app:destination="@id/statusBarTile"
+                app:destination="@id/statusBarContent"
                 app:enterAnim="@anim/fragment_enter"
                 app:exitAnim="@anim/fragment_exit"
                 app:popEnterAnim="@anim/fragment_enter_pop"
@@ -252,6 +252,13 @@
         <action
                 android:id="@+id/action_statusBar_to_statusBarDate"
                 app:destination="@id/statusBarDate"
+                app:enterAnim="@anim/fragment_enter"
+                app:exitAnim="@anim/fragment_exit"
+                app:popEnterAnim="@anim/fragment_enter_pop"
+                app:popExitAnim="@anim/fragment_exit_pop" />
+        <action
+                android:id="@+id/action_statusBar_to_dropDownStatusBarClock"
+                app:destination="@id/dropDownStatusBarClock"
                 app:enterAnim="@anim/fragment_enter"
                 app:exitAnim="@anim/fragment_exit"
                 app:popEnterAnim="@anim/fragment_enter_pop"
@@ -284,6 +291,10 @@
     <fragment
             android:id="@+id/GSVirtualMachine"
             android:name="com.luckyzyx.luckytool.ui.fragment.GSVirtualMachine"
+            android:label="{title_label}" />
+    <fragment
+            android:id="@+id/dropDownStatusBarClock"
+            android:name="com.luckyzyx.luckytool.ui.fragment.DropDownStatusBarClock"
             android:label="{title_label}" />
 
 </navigation>

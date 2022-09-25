@@ -17,7 +17,7 @@
     <string name="follow_system">Выбор системы</string>
     <!-- Other Settings -->
     <string name="other_settings">Другие настройки</string>
-    <string name="hide_xp_page_icon">Скрыть иконку страницы опыта</string>
+    <string name="hide_xp_page_icon">Скрыть иконки пунктов</string>
     <string name="hide_desktop_appicon">Скрыть иконку приложения</string>
     <string name="hide_desktop_appicon_summary">LSPosed должен быть отключен, чтобы иконка на рабочем столе отображалась</string>
     <!-- About -->
@@ -77,7 +77,7 @@
     <!--Status Bar-->
     <string name="StatusBar">Строка состояния</string>
     <!--StatusBarClock-->
-    <string name="StatusBarClock">Часы строки состояния</string>
+    <string name="StatusBarClock">Часы в строке состояния</string>
     <string name="statusbar_clock_enable">Включить/отключить часы строки состояния</string>
     <string name="statusbar_clock_show_year">Показывать год</string>
     <string name="statusbar_clock_show_month">Показывать месяц</string>
@@ -89,13 +89,17 @@
     <string name="statusbar_clock_singlerow_fontsize">Размер шрифта в одну строку</string>
     <string name="statusbar_clock_doublerow_fontsize">Размер шрифта в две строки</string>
     <string name="statusbar_clock_fontsize_summary">Если он равен 0, размер шрифта не будет изменен</string>
-    <string name="remove_statusbar_clock_redone">Удалить красные часы из раскрывающегося списка состояния</string>
+    <!--DropDownStatusBarClock-->
+    <string name="DropDownStatusBarClock">Выпадающий список часов в строке состояния</string>
+    <string name="dropdown_statusbar_clock_show_second">Выпадающие часы в строке состояния показывают секунды</string>
+    <string name="remove_dropdown_statusbar_clock_style_summary">Выравнивание колонки, красное число 1</string>
+    <string name="remove_dropdown_statusbar_clock_style">Удалить стиль часов выпадающей строки состояния</string>
     <!--StatusBarDate-->
-    <string name="StatusBarDate">Дата строки состояния</string>
+    <string name="StatusBarDate">Дата в строке состояния</string>
     <string name="remove_statusbar_date_comma">Удалить запятую в строке состояния в раскрывающемся списке</string>
     <string name="remove_statusbar_date_comma_summary">Удалить сводку даты и даты в строке состояния</string>
     <!--StatusBarNotice-->
-    <string name="StatusBarNotice">Статусбар</string>
+    <string name="StatusBarNotice">Уведомления в строке состояния</string>
     <string name="StatusBarNotice_summary">Верхняя строка состояния и раскрывающаяся строка состояния</string>
     <string name="remove_statusbar_devmode">Удалить уведомления о параметрах разработчика в строке состояния</string>
     <string name="remove_charging_completed">Удалить уведомление о завершении зарядки</string>
@@ -106,20 +110,23 @@
     <string name="remove_statusbar_bottom_networkwarn">Удалить предупреждение о сети в нижней части раскрывающейся строки состояния</string>
     <string name="remove_statusbar_bottom_networkwarn_summary">Удалить информацию о сети внизу, когда раскрывающаяся строка состояния развернута</string>
     <string name="remove_flashlight_open_notification">Удалить уведомление о фонарике</string>
-    <string name="remove_personal_hotspot_warning">Удалить предупреждение о включении точки доступа</string>
-    <string name="remove_personal_hotspot_warning_summary">Удалено предупреждение о том, что включение точки доступа увеличит энергопотребление и выделение тепла</string>
     <string name="remove_app_high_battery_consumption_warning">Удалить предупреждение приложения о высоком расходе заряда батареи</string>
     <string name="remove_app_high_battery_consumption_warning_summary">Удалено предупреждение о том, что приложение расходует заряд батареи ненормально и требует немедленной оптимизации</string>
+    <string name="remove_high_performance_mode_notifications">Удалить уведомления режима высокой производительности</string>
     <!--StatusBarIcon-->
-    <string name="StatusBarIcon">Иконки статусбара</string>
+    <string name="StatusBarIcon">Иконки в строке состояния</string>
     <string name="StatusBarIcon_summary">Связанная иконка строки состояния</string>
     <string name="set_network_speed">Установить частоту обновления веб-скорости в строке состояния на 1 секунду</string>
     <string name="remove_statusbar_securepayment_icon">Удалить иконку защиты платежа в строке состояния</string>
     <string name="remove_statusbar_battery_percent">Удалить иконку процента заряда батареи из строки состояния</string>
     <string name="remove_statusbar_user_switcher">Удалить иконку многопользовательского режима в раскрывающемся списке</string>
-    <!--StatusBarTiles-->
-    <string name="StatusBarTiles">Плитки строки состояния</string>
-    <string name="StatusBarTiles_summary">Плитки раскрывающейся строки состояния связаны</string>
+    <string name="remove_wifi_data_inout">Удалить входящие Wi-Fi данные</string>
+    <string name="remove_mobile_data_inout">Удалить входящие мобильные данные</string>
+    <!--StatusBarContent-->
+    <string name="StatusBarContent">Содержимое в строке состояния</string>
+    <string name="StatusBar_UI_Related">Интерфейс строки состояния</string>
+    <string name="remove_drop_down_statusbar_mydevice">Удалить выпадающую строку состояния моего устройства</string>
+    <string name="StatusBar_Tile_Related">Плитки строки состояния</string>
     <string name="statusbar_tile_enable">Включить/отключить плитки в строке состояния</string>
     <string name="tile_unexpanded_columns_vertical">Количество неразвернутых столбцов плитки</string>
     <string name="tile_unexpanded_columns_horizontal">Количество неразвернутых столбцов плитки</string>
@@ -130,15 +137,19 @@
     <!--LockScreen-->
     <string name="LockScreen">Экран блокировки</string>
     <string name="remove_lock_screen_redone">Удалить красные часы с экрана блокировки</string>
-    <string name="remove_lock_screen_camera">Удалить камеру из правого нижнего угла экрана блокировки</string>
+    <string name="remove_lock_screen_bottom_left_button">Удалить нижнюю левую кнопку на экране блокировки</string>
+    <string name="remove_lock_screen_bottom_right_camera">Удалить камеру из правого нижнего угла экрана блокировки</string>
     <string name="set_lock_screen_centered">Компонент экрана блокировки расположен по центру</string>
     <string name="set_lock_screen_centered_summary">Только для систем, в которых экран блокировки нельзя отцентрировать в настройках</string>
+    <string name="remove_lock_screen_bottom_sos_button">Удалить кнопку экстренного контакта SOS</string>
+    <string name="remove_lock_screen_bottom_sos_button_summary">Кнопка экстренного контакта SOS внизу страницы разблокировки была удалена</string>
     <!--Desktop-->
     <string name="Desktop">Рабочий стол</string>
     <string name="remove_alarmclock_widget_redone">Удалить компонент красного цвета в виджете \"Часы на рабочем столе\"</string>
     <string name="remove_appicon_dot">Удалить точку с иконки приложения</string>
     <string name="show_charging_ripple">Пульсация зарядки</string>
     <string name="show_charging_ripple_summary">Работает только при подключении к зарядному устройству</string>
+    <string name="set_folder_layout_4x4">Установить сетку папки 4 x 4</string>
     <string name="launcher_layout_related">Сетка рабочего стола</string>
     <string name="launcher_layout_row_colume">Установите количество строк сетки рабочего стола</string>
     <string name="launcher_layout_enable">Включить/отключить сетку иконок на рабочем столе</string>
@@ -148,7 +159,7 @@
     <string name="Application">Приложения</string>
     <string name="ApplyOtherRestrictions">Применить другие ограничения</string>
     <string name="remove_adb_install_confirm">Удалить подтверждение установки ADB</string>
-    <string name="remove_adb_install_confirm_summary">Установите APP напрямую с помощью ADB, не нажимая</string>
+    <string name="remove_adb_install_confirm_summary">Установите приложение напрямую с помощью ADB</string>
     <string name="unlock_startup_limit">Разблокировать количество автозапусков</string>
     <string name="unlock_startup_limit_summary">Разблокировать ограничение на количество автозапусков приложения</string>
     <string name="unlock_task_locks">Разблокировать количество заблокированных фоновых задач</string>
@@ -164,11 +175,11 @@
     <string name="skip_apk_scan">Пропустить сканирование APK</string>
     <string name="skip_apk_scan_summary">Сканирование APK на наличие вирусов</string>
     <string name="allow_downgrade_install">Разрешить установку более ранней версии</string>
-    <string name="allow_downgrade_install_summary">Удаление предупреждений о низкой/идентичной версии и т.д., которые необходимо использовать с кряком ядра</string>
+    <string name="allow_downgrade_install_summary">Удаление предупреждений о низкой/идентичной версии и т.д., которые необходимо использовать с патчем ядра</string>
     <string name="disable_apk_signature_verification">Отключить проверку подписи APK</string>
     <string name="disable_apk_signature_verification_summary">Могут быть установлены приложения с разными подписями, что представляет угрозу безопасности и должно использоваться с осторожностью</string>
     <string name="remove_install_ads">Удалить объявления о завершении установки</string>
-    <string name="remove_install_ads_summary">рекомендации приложений безопасности/реклама магазина ПО</string>
+    <string name="remove_install_ads_summary">Рекомендации приложений безопасности/реклама магазина ПО</string>
     <string name="replase_aosp_installer">Заменить установщик AOSP</string>
     <string name="replase_aosp_installer_summary">Заменить собственным установщиком</string>
     <!--Miscellaneous-->
@@ -261,4 +272,5 @@
     <string name="adb_debug_port_cannot_null">Порт отладки ADB не может быть пустым</string>
     <string name="battery_health">Состояние батареи</string>
     <string name="battery_health_toast">Поддерживает только ColorOS13</string>
+    <string name="system_not_support">Текущее состояние не поддерживается!</string>
 </resources>

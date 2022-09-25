@@ -117,6 +117,20 @@ class StatusBar : ModulePreferenceFragment(){
             )
             addPreference(
                 Preference(requireActivity()).apply {
+                    title = getString(R.string.DropDownStatusBarClock)
+                    summary = getString(R.string.dropdown_statusbar_clock_show_second)+","+getString(R.string.remove_dropdown_statusbar_clock_style)
+                    key = "DropDownStatusBarClock"
+                    isIconSpaceReserved = false
+                    setOnPreferenceClickListener {
+                        findNavController().navigate(R.id.action_statusBar_to_dropDownStatusBarClock,Bundle().apply {
+                            putCharSequence("title_label",title)
+                        })
+                        true
+                    }
+                }
+            )
+            addPreference(
+                Preference(requireActivity()).apply {
                     title = getString(R.string.StatusBarDate)
                     summary = getString(R.string.remove_statusbar_date_comma)
                     key = "StatusBarDate"
@@ -162,9 +176,9 @@ class StatusBar : ModulePreferenceFragment(){
             )
             addPreference(
                 Preference(requireActivity()).apply {
-                    title = getString(R.string.StatusBarTiles)
-                    summary = getString(R.string.tile_unexpanded_columns_vertical)+","+getString(R.string.tile_expanded_columns_vertical)
-                    key = "StatusBarTiles"
+                    title = getString(R.string.StatusBarContent)
+                    summary = getString(R.string.remove_drop_down_statusbar_mydevice)+","+getString(R.string.tile_unexpanded_columns_vertical)
+                    key = "StatusBarContent"
                     isIconSpaceReserved = false
                     setOnPreferenceClickListener {
                         findNavController().navigate(
@@ -275,14 +289,6 @@ class StatusBarClock : ModulePreferenceFragment(){
                     isIconSpaceReserved = false
                 }
             )
-            addPreference(
-                SwitchPreference(requireActivity()).apply {
-                    title = getString(R.string.remove_statusbar_clock_redone)
-                    key = "remove_statusbar_clock_redone"
-                    setDefaultValue(false)
-                    isIconSpaceReserved = false
-                }
-            )
         }
         preferenceScreen.findPreference<SwitchPreference>("statusbar_clock_show_year")?.dependency = "statusbar_clock_enable"
         preferenceScreen.findPreference<SwitchPreference>("statusbar_clock_show_month")?.dependency = "statusbar_clock_enable"
@@ -293,6 +299,31 @@ class StatusBarClock : ModulePreferenceFragment(){
         preferenceScreen.findPreference<SwitchPreference>("statusbar_clock_show_doublerow")?.dependency = "statusbar_clock_enable"
         preferenceScreen.findPreference<SeekBarPreference>("statusbar_clock_singlerow_fontsize")?.dependency = "statusbar_clock_enable"
         preferenceScreen.findPreference<SeekBarPreference>("statusbar_clock_doublerow_fontsize")?.dependency = "statusbar_clock_show_doublerow"
+    }
+}
+
+class DropDownStatusBarClock : ModulePreferenceFragment(){
+    override fun onCreatePreferencesInModuleApp(savedInstanceState: Bundle?, rootKey: String?) {
+        preferenceManager.sharedPreferencesName = XposedPrefs
+        preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    title = getString(R.string.dropdown_statusbar_clock_show_second)
+                    key = "dropdown_statusbar_clock_show_second"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    title = getString(R.string.remove_dropdown_statusbar_clock_style)
+                    summary = getString(R.string.remove_dropdown_statusbar_clock_style_summary)
+                    key = "remove_dropdown_statusbar_clock_style"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+        }
     }
 }
 
@@ -379,9 +410,8 @@ class StatusBarNotice : ModulePreferenceFragment() {
             )
             addPreference(
                 SwitchPreference(requireActivity()).apply {
-                    title = getString(R.string.remove_personal_hotspot_warning)
-                    summary = getString(R.string.remove_personal_hotspot_warning_summary)
-                    key = "remove_personal_hotspot_warning"
+                    title = getString(R.string.remove_high_performance_mode_notifications)
+                    key = "remove_high_performance_mode_notifications"
                     setDefaultValue(false)
                     isIconSpaceReserved = false
                 }
@@ -427,14 +457,54 @@ class StatusBarIcon : ModulePreferenceFragment(){
                     isVisible = SDK < 33
                 }
             )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    title = getString(R.string.remove_wifi_data_inout)
+                    key = "remove_wifi_data_inout"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    title = getString(R.string.remove_mobile_data_inout)
+                    key = "remove_mobile_data_inout"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
         }
     }
 }
 
-class StatusBarTile : ModulePreferenceFragment(){
+class StatusBarContent : ModulePreferenceFragment(){
     override fun onCreatePreferencesInModuleApp(savedInstanceState: Bundle?, rootKey: String?) {
         preferenceManager.sharedPreferencesName = XposedPrefs
         preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
+            addPreference(
+                PreferenceCategory(requireActivity()).apply {
+                    title = getString(R.string.StatusBar_UI_Related)
+                    key = "StatusBar_UI_Related"
+                    isIconSpaceReserved = false
+                    isVisible = SDK >= 33
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    title = getString(R.string.remove_drop_down_statusbar_mydevice)
+                    key = "remove_drop_down_statusbar_mydevice"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                    isVisible = SDK >= 33
+                }
+            )
+            addPreference(
+                PreferenceCategory(requireActivity()).apply {
+                    title = getString(R.string.StatusBar_Tile_Related)
+                    key = "StatusBar_Tile_Related"
+                    isIconSpaceReserved = false
+                }
+            )
             addPreference(
                 SwitchPreference(requireActivity()).apply {
                     title = getString(R.string.statusbar_tile_enable)
@@ -518,7 +588,7 @@ class StatusBarTile : ModulePreferenceFragment(){
                     title = getString(R.string.tile_expanded_rows_vertical)
                     key = "tile_expanded_rows_vertical_c13"
                     setDefaultValue(3)
-                    max = 4
+                    max = 6
                     min = 1
                     seekBarIncrement = 1
                     showSeekBarValue = true
@@ -588,6 +658,14 @@ class Desktop : ModulePreferenceFragment() {
                 }
             )
             addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    title = getString(R.string.set_folder_layout_4x4)
+                    key = "set_folder_layout_4x4"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
                 PreferenceCategory(requireActivity()).apply {
                     title = getString(R.string.launcher_layout_related)
                     isIconSpaceReserved = false
@@ -648,19 +726,37 @@ class LockScreen : ModulePreferenceFragment(){
             )
             addPreference(
                 SwitchPreference(requireActivity()).apply {
-                    title = getString(R.string.remove_lock_screen_camera)
-                    key = "remove_lock_screen_camera"
+                    title = getString(R.string.set_lock_screen_centered)
+                    summary = getString(R.string.set_lock_screen_centered_summary)
+                    key = "set_lock_screen_centered"
                     setDefaultValue(false)
                     isIconSpaceReserved = false
                 }
             )
             addPreference(
                 SwitchPreference(requireActivity()).apply {
-                    title = getString(R.string.set_lock_screen_centered)
-                    summary = getString(R.string.set_lock_screen_centered_summary)
-                    key = "set_lock_screen_centered"
+                    title = getString(R.string.remove_lock_screen_bottom_left_button)
+                    key = "remove_lock_screen_bottom_left_button"
                     setDefaultValue(false)
                     isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    title = getString(R.string.remove_lock_screen_bottom_right_camera)
+                    key = "remove_lock_screen_bottom_right_camera"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    title = getString(R.string.remove_lock_screen_bottom_sos_button)
+                    summary = getString(R.string.remove_lock_screen_bottom_sos_button_summary)
+                    key = "remove_lock_screen_bottom_sos_button"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                    isVisible = SDK >= 33
                 }
             )
         }
