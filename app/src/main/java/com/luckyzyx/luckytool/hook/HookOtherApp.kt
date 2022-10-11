@@ -12,7 +12,9 @@ class HookOtherApp : YukiBaseHooker(){
         loadApp("com.east2d.everyimage",HookMoreAnime())
 
         //Alpha Backup Pro
-        loadApp("com.ruet_cse_1503050.ragib.appbackup.pro",HookAlphaBackupPro())
+        if (prefs(XposedPrefs).getBoolean("remove_check_license",false)){
+            loadApp("com.ruet_cse_1503050.ragib.appbackup.pro",HookAlphaBackupPro())
+        }
 
         //光速虚拟机
         if (prefs(XposedPrefs).getBoolean("enable_gs_vip_function",false)){

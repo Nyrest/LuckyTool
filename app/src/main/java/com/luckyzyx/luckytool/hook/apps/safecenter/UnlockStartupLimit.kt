@@ -11,7 +11,7 @@ class UnlockStartupLimit : YukiBaseHooker() {
         //Search -> update max allow count -5 -> method,-1 -> field
         VariousClass(
             "com.oplus.safecenter.startupapp.a", //6f0072e
-        ).clazz.hook {
+        ).toClass().hook {
             injectMember {
                 method {
                     name = "b"
@@ -34,7 +34,7 @@ class UnlockStartupLimitV11 : YukiBaseHooker() {
         //Search -> auto_start_max_allow_count -2 -> method,+2 -> field
         VariousClass(
             "com.coloros.safecenter.startupapp.b", //6f0072e
-        ).clazz.hook {
+        ).toClass().hook {
             injectMember {
                 method {
                     name = "c"

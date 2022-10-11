@@ -7,6 +7,8 @@ import com.luckyzyx.luckytool.utils.tools.XposedPrefs
 class HookCloudService : YukiBaseHooker() {
     override fun onHook() {
         //移除网络限制
-        if (prefs(XposedPrefs).getBoolean("remove_network_limit",false)) loadHooker(RemoveNetworkRestriction())
+        if (prefs(XposedPrefs).getBoolean("remove_network_limit",false)) {
+            loadHooker(RemoveNetworkRestriction())
+        }
     }
 }

@@ -2,7 +2,6 @@ package com.luckyzyx.luckytool.hook.apps.launcher
 
 import android.widget.TextView
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
-import com.highcapable.yukihookapi.hook.log.loggerD
 
 class RemoveAppUpdateDot : YukiBaseHooker() {
     override fun onHook() {
@@ -15,7 +14,7 @@ class RemoveAppUpdateDot : YukiBaseHooker() {
                 }
                 beforeHook {
                     //Source ItemInfo
-                    val field = "com.android.launcher3.model.data.ItemInfo".clazz.getDeclaredField("title")
+                    val field = "com.android.launcher3.model.data.ItemInfo".toClass().getDeclaredField("title")
                     field.isAccessible = true
                     instance<TextView>().text = field[args[0]] as CharSequence
                     resultNull()
@@ -35,7 +34,7 @@ class RemoveAppUpdateDotV13 : YukiBaseHooker() {
                 }
                 beforeHook {
                     //Source ItemInfo
-                    val field = "com.android.launcher3.model.data.ItemInfo".clazz.getDeclaredField("title")
+                    val field = "com.android.launcher3.model.data.ItemInfo".toClass().getDeclaredField("title")
                     field.isAccessible = true
                     instance<TextView>().text = field[args[0]] as CharSequence
                     resultNull()

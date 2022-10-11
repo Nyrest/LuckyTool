@@ -20,7 +20,7 @@ class ReplaseAospInstaller : YukiBaseHooker() {
                     VariousClass(
                         "com.android.packageinstaller.oplus.common.j",
                         "com.android.packageinstaller.oplus.common.FeatureOption"
-                    ).clazz.field {
+                    ).toClass().field {
 //                        name {
                             //7bc7db7,e1a2c58,75fe984,532ffef,38477f0,a222497
 //                            equalsOf(other = "f",isIgnoreCase = false)

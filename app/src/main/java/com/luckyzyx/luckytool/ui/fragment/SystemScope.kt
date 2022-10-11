@@ -970,6 +970,33 @@ class Miscellaneous : ModulePreferenceFragment(){
                     isIconSpaceReserved = false
                 }
             )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    title = getString(R.string.disable_dpi_reboot_recovery)
+                    summary = getString(R.string.disable_dpi_reboot_recovery_summary)
+                    key = "disable_dpi_reboot_recovery"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    title = getString(R.string.remove_low_battery_dialog_warning)
+                    summary = getString(R.string.remove_low_battery_dialog_warning_summary)
+                    key = "remove_low_battery_dialog_warning"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    title = getString(R.string.remove_warning_dialog_that_app_runs_on_desktop)
+                    summary = getString(R.string.remove_warning_dialog_that_app_runs_on_desktop_summary)
+                    key = "remove_warning_dialog_that_app_runs_on_desktop"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
         }
     }
 }

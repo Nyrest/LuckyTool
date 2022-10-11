@@ -1,19 +1,33 @@
 package com.luckyzyx.luckytool.hook.apps.heytapcloud
 
-import com.highcapable.yukihookapi.hook.bean.VariousClass
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
+import com.highcapable.yukihookapi.hook.type.android.ContextClass
 import com.highcapable.yukihookapi.hook.type.java.IntType
 
 class RemoveNetworkRestriction : YukiBaseHooker() {
     override fun onHook() {
         //Source NetworkUtil
         //Search -> MOBILE -> method
-        VariousClass(
-            "com.cloud.base.commonsdk.baseutils.al",
-            "com.cloud.base.commonsdk.baseutils.o0",
-        ).hook {
+        searchClass {
+            from("com.cloud.base.commonsdk.baseutils")
+            constructor().count(0)
+            field().count(0)
+            method().count(14)
+            method {
+                param(ContextClass)
+            }.count(7)
+            method {
+                param(IntType)
+            }.count(5)
+            method {
+                modifiers { isPublic && isStatic }
+                emptyParam()
+                returnType = IntType
+            }.count(1)
+        }.get()?.hook {
             injectMember {
                 method {
+                    modifiers { isPublic && isStatic }
                     emptyParam()
                     returnType = IntType
                 }

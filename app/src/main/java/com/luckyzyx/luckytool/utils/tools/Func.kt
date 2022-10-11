@@ -12,9 +12,9 @@ import android.os.Build
 import android.util.ArraySet
 import android.util.Base64
 import android.widget.Toast
-import com.highcapable.yukihookapi.hook.factory.classOf
 import com.highcapable.yukihookapi.hook.factory.field
 import com.highcapable.yukihookapi.hook.factory.method
+import com.highcapable.yukihookapi.hook.factory.toClass
 import com.luckyzyx.luckytool.BuildConfig.*
 import com.luckyzyx.luckytool.R
 import java.util.regex.Pattern
@@ -28,10 +28,10 @@ val SDK get() = Build.VERSION.SDK_INT
  */
 val getColorOSVersion
     get() = safeOf(default = "null") {
-        classOf(name = "com.oplus.os.OplusBuild").let {
-            it.field { name = "VERSIONS" }.ignoredError().get().array<String>()
+        "com.oplus.os.OplusBuild".toClass().let {
+            it.field { name = "VERSIONS" }.ignored().get().array<String>()
                 .takeIf { e -> e.isNotEmpty() }
-                ?.get(it.method { name = "getOplusOSVERSION" }.ignoredError().get().int() - 1)
+                ?.get(it.method { name = "getOplusOSVERSION" }.ignored().get().int() - 1)
         }
     }
 
@@ -51,7 +51,8 @@ fun Context.getAppVersion(packName: String): ArrayList<String> = safeOf(default 
     val versionCode = safeOf(default = "null") { packageInfo.longVersionCode }
     arrayList.add(versionCode.toString())
     arraySet.add("1.$versionCode")
-    val versionCommit = safeOf(default = "null") { commitInfo.metaData.getString("versionCommit") }
+    @Suppress("DEPRECATION") //修复获取null
+    val versionCommit = safeOf(default = "null") { commitInfo.metaData.get("versionCommit") }
     arrayList.add(versionCommit.toString())
     arraySet.add("2.$versionCommit")
     putStringSet(XposedPrefs,packName,arraySet)
@@ -98,7 +99,7 @@ fun Context.getAppLabel(packName: String): CharSequence? = safeOf(default = null
 /**
  * 检查隐藏活动是否存在
  */
-fun Context.checkResolveActivity(intent: Intent): Boolean = safeOf(default = true){
+fun Context.checkResolveActivity(intent: Intent): Boolean = safeOf(default = false){
     return PackageUtils(packageManager).resolveActivity(intent, 0) != null
 }
 
@@ -205,6 +206,9 @@ fun Context.setDesktopIcon(value : Boolean){
     )
 }
 
+/**
+ * 获取闪存信息(移除字符前空格)
+ */
 fun getFlashInfo(): String = safeOf(default = "null"){
     val info = ShellUtils.execCommand("cat /sys/class/block/sda/device/inquiry", true, true).successMsg
     val pattern = Pattern.compile("\\p{L}")

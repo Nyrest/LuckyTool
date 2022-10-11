@@ -275,18 +275,18 @@ class XposedFragment : ModulePreferenceFragment() {
 
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        menu.add(0, 1, 0, getString(R.string.menu_reboot)).setIcon(R.drawable.ic_baseline_refresh_24).setShowAsActionFlags(
-            MenuItem.SHOW_AS_ACTION_IF_ROOM
-        ).apply {
+        menu.add(0, 1, 0, getString(R.string.menu_reboot)).apply {
+            setIcon(R.drawable.ic_baseline_refresh_24)
+            setShowAsActionFlags(MenuItem.SHOW_AS_ACTION_IF_ROOM)
             if (ResourceUtils.isNightMode(resources.configuration)){
-                this.iconTintList = ColorStateList.valueOf(Color.WHITE)
+                iconTintList = ColorStateList.valueOf(Color.WHITE)
             }
         }
-        menu.add(0, 2, 0, getString(R.string.menu_versioninfo)).setIcon(R.drawable.ic_baseline_info_24).setShowAsActionFlags(
-            MenuItem.SHOW_AS_ACTION_IF_ROOM
-        ).apply {
+        menu.add(0, 2, 0, getString(R.string.menu_versioninfo)).apply {
+            setIcon(R.drawable.ic_baseline_extension_24)
+            setShowAsActionFlags(MenuItem.SHOW_AS_ACTION_IF_ROOM)
             if (ResourceUtils.isNightMode(resources.configuration)){
-                this.iconTintList = ColorStateList.valueOf(Color.WHITE)
+                iconTintList = ColorStateList.valueOf(Color.WHITE)
             }
         }
     }

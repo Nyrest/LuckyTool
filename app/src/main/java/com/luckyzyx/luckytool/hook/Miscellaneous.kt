@@ -2,8 +2,11 @@ package com.luckyzyx.luckytool.hook
 
 import android.os.Build.VERSION.SDK_INT
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
+import com.luckyzyx.luckytool.hook.apps.exsystemservice.RemoveWarningDialogThatAppRunsOnDesktop
+import com.luckyzyx.luckytool.hook.apps.settings.DisableDPIRebootRecovery
 import com.luckyzyx.luckytool.hook.apps.systemui.*
 import com.luckyzyx.luckytool.utils.tools.XposedPrefs
+import rikka.core.BuildConfig
 
 class Miscellaneous : YukiBaseHooker() {
     override fun onHook() {
@@ -33,6 +36,46 @@ class Miscellaneous : YukiBaseHooker() {
                 loadHooker(DisableOTGAutoOff())
             }
 
+            //移除低电量对话框警告
+            if (prefs(XposedPrefs).getBoolean("remove_low_battery_dialog_warning",false)){
+                loadHooker(RemoveLowBatteryDialogWarning())
+            }
+
+        }
+        loadApp("com.android.settings"){
+            //禁用DPI重启恢复
+            if (prefs(XposedPrefs).getBoolean("disable_dpi_reboot_recovery",false)) {
+                loadHooker(DisableDPIRebootRecovery())
+            }
+            if (BuildConfig.DEBUG){
+                findClass("com.oplus.settings.feature.deviceinfo.DeviceRamInfoItemPreference").hook {
+                    injectMember {
+                        method {
+                            name = "onBindViewHolder"
+                        }
+                        beforeHook {
+                            //扩展大小
+                            field {
+                                name = "H"
+                            }.get(instance).set(1024*1024*100)
+                            //扩展大小图标
+                            field {
+                                name = "I"
+                            }.get(instance).setTrue()
+                            //跳转箭头
+                            field {
+                                name = "J"
+                            }.get(instance).setTrue()
+                        }
+                    }
+                }
+            }
+        }
+        loadApp("com.oplus.exsystemservice"){
+            //移除应用运行在桌面上警告对话框
+            if (prefs(XposedPrefs).getBoolean("remove_warning_dialog_that_app_runs_on_desktop",false)){
+                loadHooker(RemoveWarningDialogThatAppRunsOnDesktop())
+            }
         }
     }
 }

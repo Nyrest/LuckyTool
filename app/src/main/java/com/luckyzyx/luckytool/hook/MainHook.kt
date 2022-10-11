@@ -22,13 +22,13 @@ class MainHook : IYukiHookXposedInit {
 
     override fun onInit() {
         configs {
-            isDebug = false
             debugLog {
-                isEnable = true
                 tag = "LuckyTool"
-                isRecord = false
+                isEnable = true
+                isRecord = true
                 elements(TAG, PRIORITY, PACKAGE_NAME, USER_ID)
             }
+            isDebug = false
         }
     }
 

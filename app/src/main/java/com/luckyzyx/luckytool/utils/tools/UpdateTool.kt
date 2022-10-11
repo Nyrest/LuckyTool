@@ -4,13 +4,13 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.provider.Settings
-import android.widget.TextView
 import androidx.core.content.FileProvider
 import androidx.core.widget.NestedScrollView
 import com.drake.net.Get
 import com.drake.net.utils.scopeNet
 import com.drake.net.utils.withMain
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.textview.MaterialTextView
 import com.luckyzyx.luckytool.R
 import kotlinx.coroutines.Dispatchers
 import org.json.JSONObject
@@ -37,7 +37,7 @@ object UpdateTool {
                             .setView(
                                 NestedScrollView(context).apply {
                                     addView(
-                                        TextView(context).apply {
+                                        MaterialTextView(context).apply {
                                             setPadding(20.dp, 0, 20.dp, 0)
                                             text = "${context.getString(R.string.version_name)}: $name($code)\n${context.getString(R.string.update_time)}: $updateTime\n${context.getString(R.string.update_content)}: \n$changeLog"
                                         }

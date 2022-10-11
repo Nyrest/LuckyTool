@@ -5,10 +5,11 @@
     <!-- Application -->
     <string name="xposeddescription">Xposed module optimized for extensions to ColorOS</string>
     <!-- Nav Menu -->
-    <string name="nav_xposed">Xposed</string>
+    <string name="nav_function">Function</string>
     <string name="nav_home">Home page</string>
     <string name="nav_other">Other</string>
-    <string name="fragment_settings">Settings</string>
+    <string name="nav_log">Logs</string>
+    <string name="nav_setting">Settings</string>
     <string name="fragment_source">SourceCode</string>
     <!-- Settings -->
     <string name="theme_title">Theme</string>
@@ -17,6 +18,8 @@
     <string name="use_dynamic_color_summary">Use dynamic colors</string>
     <string name="dark_theme">Dark theme</string>
     <string name="follow_system">Follow system</string>
+    <string name="privacy_agreement">Privacy Agreement</string>
+    <string name="read_agreement">You need to read and agree to the following content before you can use this module</string>
     <!-- Other Settings -->
     <string name="other_settings">Other settings</string>
     <string name="hide_xp_page_icon">Hide XP Page Icon</string>
@@ -24,13 +27,13 @@
     <string name="hide_desktop_appicon_summary">LSPosed must be turned off to force desktop icons</string>
     <!-- About -->
     <string name="about_title">About</string>
+    <string name="about_author">Author</string>
     <string name="donate">Donate reward</string>
-    <string name="donate_summary">Your donation will be the driving force for the module update</string>
+    <string name="donate_summary">Your donation will be the driving force for the module update\nBe sure to leave your nickname or ID when donating</string>
     <string name="qq">QQ</string>
     <string name="wechat">WeChat</string>
     <string name="alipay">AliPay</string>
     <string name="donation_list">Donation List</string>
-    <string name="donate_list_hint">If you want to appear in this list, you can leave a comment when you reward (if I haven\'t forgotten).</string>
     <string name="feedback_download">Feedback and Download</string>
     <string name="feedback_download_summary">TG Channels, Groups, Repositories, etc.</string>
     <string name="coolmarket">Cool Home Page</string>
@@ -191,6 +194,12 @@
     <string name="disable_headphone_high_volume_warning_summary">Disable the warning dialog that appears when turning up the volume after connecting the headset</string>
     <string name="disable_otg_auto_off">Disable OTG Auto-off</string>
     <string name="disable_otg_auto_off_summary">Disable OTG for more than ten minutes to automatically turn off</string>
+    <string name="disable_dpi_reboot_recovery">Disable DPI Reboot Recovery</string>
+    <string name="disable_dpi_reboot_recovery_summary">This module is not responsible for any failure to boot due to the setting of too large DPI value\nTo restore the default DPI, you need to enable this feature and reset the default DPI value after restarting the scope</string>
+    <string name="remove_low_battery_dialog_warning">Remove low battery dialog warning</string>
+    <string name="remove_low_battery_dialog_warning_summary">Remove warning dialogs for power save mode and super power save</string>
+    <string name="remove_warning_dialog_that_app_runs_on_desktop">Remove warning dialog that app runs on desktop</string>
+    <string name="remove_warning_dialog_that_app_runs_on_desktop_summary">Warning dialog box found that an application is running on the system desktop</string>
     <!--PowerMenu-->
     <string name="PowerMenu">Power menu related</string>
     <string name="PowerMenu_summary">Menu to show by long pressing power keys</string>
@@ -251,6 +260,8 @@
     <string name="copy_download_link">Copy the download link</string>
     <string name="direct_update">Direct update</string>
     <string name="install_apk_toast">Please enable unknown app installation permission!</string>
+    <!-- Logs -->
+    <string name="log_no_data">No abnormal data</string>
     <!-- Other -->
     <string name="quick_entry">System Quick Entry</string>
     <string name="quick_entry_summary">e.g. System UI reconciliation tools, process management, engineering mode, etc.</string>

@@ -9,6 +9,8 @@ object DonateData {
             add("邹王 (15R)")
             add("请大佬喝杯奶茶 (20R)")
             add("加油加油 (10R)")
+            add("天伞桜 (88.8R)")
+            add("北风是不是冷 (15R)")
         }
     }
 }

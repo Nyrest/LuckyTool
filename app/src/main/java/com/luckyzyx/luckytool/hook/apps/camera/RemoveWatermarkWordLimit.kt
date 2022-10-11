@@ -21,7 +21,7 @@ class RemoveWatermarkWordLimit : YukiBaseHooker() {
             "c7732c4" -> "com.oplus.camera.ui.menu.setting.p.5"
             else -> "com.oplus.camera.setting.j.5"
         }
-        clazz.clazz.hook {
+        clazz.toClass().hook {
             injectMember {
                 method {
                     paramCount = 6

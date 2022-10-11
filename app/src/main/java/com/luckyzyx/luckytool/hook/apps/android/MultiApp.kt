@@ -6,10 +6,10 @@ import com.luckyzyx.luckytool.utils.tools.XposedPrefs
 
 class MultiApp : YukiBaseHooker() {
     override fun onHook() {
-        findClass("com.oplus.multiapp.OplusMultiAppConfig").hook {
+        findClass("com.android.server.am.OplusMultiAppConfigManager").hook {
             injectMember {
                 method {
-                    name = "getAllowedPkgList"
+                    name = "getAllowedList"
                     returnType = ListClass
                 }
                 afterHook {

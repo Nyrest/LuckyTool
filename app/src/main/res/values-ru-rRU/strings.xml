@@ -3,10 +3,11 @@
     <!-- Application -->
     <string name="xposeddescription">Целью является расширение и оптимизация системы ColorOS</string>
     <!-- Nav Menu -->
-    <string name="nav_xposed">Xposed</string>
+    <string name="nav_function">Функции</string>
     <string name="nav_home">Главная</string>
     <string name="nav_other">Прочее</string>
-    <string name="fragment_settings">Настройки</string>
+    <string name="nav_log">Логи</string>
+    <string name="nav_setting">Настройки</string>
     <string name="fragment_source">Исходный код</string>
     <!-- Settings -->
     <string name="theme_title">Тема</string>
@@ -15,6 +16,8 @@
     <string name="use_dynamic_color_summary">Использовать динамический цвет</string>
     <string name="dark_theme">Темная тема</string>
     <string name="follow_system">Выбор системы</string>
+    <string name="privacy_agreement">Соглашение о конфиденциальности</string>
+    <string name="read_agreement">Вам нужно прочитать и согласиться со следующим содержимым, прежде чем использовать этот модуль</string>
     <!-- Other Settings -->
     <string name="other_settings">Другие настройки</string>
     <string name="hide_xp_page_icon">Скрыть иконки пунктов</string>
@@ -22,13 +25,13 @@
     <string name="hide_desktop_appicon_summary">LSPosed должен быть отключен, чтобы иконка на рабочем столе отображалась</string>
     <!-- About -->
     <string name="about_title">Информация</string>
+    <string name="about_author">Авторы</string>
     <string name="donate">Донат</string>
-    <string name="donate_summary">Ваш донат станет движущей силой обновления модуля</string>
+    <string name="donate_summary">Ваше пожертвование станет движущей силой обновления модуля\nНе забудьте оставить свой никнейм или ID при пожертвовании</string>
     <string name="qq">QQ</string>
     <string name="wechat">WeChat</string>
     <string name="alipay">AliPay</string>
     <string name="donation_list">Список донатов</string>
-    <string name="donate_list_hint">Если вы хотите появиться в этом списке, вы можете оставить комментарий при награждении (если я не забыл).</string>
     <string name="feedback_download">Отзыв и загрузка</string>
     <string name="feedback_download_summary">ТГ-каналы, группы, склады и т.д.</string>
     <string name="coolmarket">CoolMarket</string>
@@ -191,6 +194,12 @@
     <string name="disable_headphone_high_volume_warning_summary">Отключить диалоговое окно предупреждения при увеличении громкости при подключенных наушниках</string>
     <string name="disable_otg_auto_off">Отключить автоотключение OTG</string>
     <string name="disable_otg_auto_off_summary">Отключение автоматического отключения OTG через 10 минут</string>
+    <string name="disable_dpi_reboot_recovery">Отключить восстановление DPI после перезагрузки</string>
+    <string name="disable_dpi_reboot_recovery_summary">Этот модуль не несет ответственности за любые сбои загрузки из-за установки слишком большого значения DPI\nЧтобы восстановить значение DPI по умолчанию, вам необходимо включить эту функцию и сбросить значение DPI по умолчанию после перезагрузки</string>
+    <string name="remove_low_battery_dialog_warning">Удалить диалоговое предупреждение о низком заряде батареи</string>
+    <string name="remove_low_battery_dialog_warning_summary">Удалите предупреждающие диалоговые окна для режима энергосбережения и суперэнергосбережения</string>
+    <string name="remove_warning_dialog_that_app_runs_on_desktop">Удалить диалоговое окно с предупреждением о том, что приложение запускается на рабочем столе</string>
+    <string name="remove_warning_dialog_that_app_runs_on_desktop_summary">Диалоговое окно с предупреждением обнаружило, что приложение запущено на системном рабочем столе</string>
     <!--PowerMenu-->
     <string name="PowerMenu">Меню питания</string>
     <string name="PowerMenu_summary">Нажмите и удерживайте кнопку питания, чтобы отобразить меню</string>
@@ -253,6 +262,8 @@
     <string name="copy_download_link">Скопируйте ссылку для загрузки</string>
     <string name="direct_update">Прямое обновление</string>
     <string name="install_apk_toast">Пожалуйста, включите неизвестное разрешение на установку приложения!</string>
+    <!-- Logs -->
+    <string name="log_no_data">Нет аномальных данных</string>
     <!-- Other -->
     <string name="quick_entry">Быстрый вход в систему</string>
     <string name="quick_entry_summary">Например, инструменты настройки системного интерфейса, управление процессами, режим проекта и т.д.</string>

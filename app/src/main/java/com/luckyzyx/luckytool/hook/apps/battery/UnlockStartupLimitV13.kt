@@ -1,28 +1,20 @@
 package com.luckyzyx.luckytool.hook.apps.battery
 
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
+import com.highcapable.yukihookapi.hook.type.android.ContextClass
 import com.highcapable.yukihookapi.hook.type.java.IntType
-import com.luckyzyx.luckytool.utils.tools.XposedPrefs
-import java.util.*
 
 class UnlockStartupLimitV13 : YukiBaseHooker() {
     override fun onHook() {
         //Source StartupManager
         //Search -> ? 5 : 20; -1 -> Method
-        val appSet = prefs(XposedPrefs).getStringSet(packageName, HashSet()).toTypedArray().apply {
-            Arrays.sort(this)
-            forEach {
-                this[this.indexOf(it)] = it.substring(2)
-            }
-        }
-        val clazz = when (appSet[2]) {
-            "6f0072e" -> "i7.b"
-            "51b4747" -> "q7.b"
-            "aca22d0", "b509955", "811ab09" -> "u7.b"
-            "6a8ec66", "66d303d", "a8135b1", "e6c5d54" -> "y7.b"
-            else -> "StartupManager"
-        }
-        findClass(clazz).hook {
+        searchClass {
+            from("i7", "q7", "u7", "y7").absolute()
+            simpleName { it.length == 1 }
+            constructor { param(ContextClass) }.count(1)
+            field().count(4)
+            field { type = ContextClass }.count(1)
+        }.get()?.hook {
             injectMember {
                 method {
                     emptyParam()
@@ -31,5 +23,12 @@ class UnlockStartupLimitV13 : YukiBaseHooker() {
                 replaceTo(1000)
             }
         }
+
+
+
+
+
+
+
     }
 }

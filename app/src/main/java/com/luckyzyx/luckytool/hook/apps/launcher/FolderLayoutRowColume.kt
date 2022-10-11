@@ -8,7 +8,6 @@ class FolderLayoutRowColume : YukiBaseHooker() {
             injectMember {
                 method {
                     name = "initGrid"
-                    paramCount = 4
                 }
                 afterHook {
 //                    field {

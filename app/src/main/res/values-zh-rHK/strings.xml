@@ -3,10 +3,11 @@
     <!-- Application -->
     <string name="xposeddescription">对ColorOS系统进行扩展优化的Xposed模块</string>
     <!-- Nav Menu -->
-    <string name="nav_xposed">Xposed</string>
+    <string name="nav_function">功能</string>
     <string name="nav_home">主页</string>
     <string name="nav_other">其他</string>
-    <string name="fragment_settings">设置</string>
+    <string name="nav_log">日誌</string>
+    <string name="nav_setting">設定</string>
     <string name="fragment_source">源代码</string>
     <!-- Settings -->
     <string name="theme_title">主题</string>
@@ -15,6 +16,8 @@
     <string name="use_dynamic_color_summary">使用动态取色</string>
     <string name="dark_theme">深色主题</string>
     <string name="follow_system">跟随系统</string>
+    <string name="privacy_agreement">隐私协议</string>
+    <string name="read_agreement">您需要阅读并同意以下内容才可以使用此模块</string>
     <!-- Other Settings -->
     <string name="other_settings">其他设置</string>
     <string name="hide_xp_page_icon">隐藏XP页面图标</string>
@@ -22,13 +25,13 @@
     <string name="hide_desktop_appicon_summary">必须关闭LSPosed强制显示桌面图标</string>
     <!-- About -->
     <string name="about_title">关于</string>
+    <string name="about_author">作者</string>
     <string name="donate">捐赠打赏</string>
-    <string name="donate_summary">您的捐赠将是模块更新的动力</string>
+    <string name="donate_summary">您的捐赠将是模块更新的动力\n请务必在捐赠时留下您的昵称或ID</string>
     <string name="qq">QQ</string>
     <string name="wechat">微信</string>
     <string name="alipay">支付宝</string>
     <string name="donation_list">捐赠列表</string>
-    <string name="donate_list_hint">如果你希望出现在此列表中, 可以在打赏时留下备注(如果我没有忘记的话)</string>
     <string name="feedback_download">反馈与下载</string>
     <string name="feedback_download_summary">TG频道, 群组, 仓库等</string>
     <string name="coolmarket">酷安主页</string>
@@ -188,6 +191,12 @@
     <string name="disable_headphone_high_volume_warning_summary">禁用连接耳机后调高音量时出现的警告对话框</string>
     <string name="disable_otg_auto_off">禁用OTG自动关闭</string>
     <string name="disable_otg_auto_off_summary">禁用OTG超过十分钟自动关闭</string>
+    <string name="disable_dpi_reboot_recovery">禁用DPI重启恢复</string>
+    <string name="disable_dpi_reboot_recovery_summary">一切因设置DPI数值过大导致无法开机, 本模块概不负责\n若要恢复默认DPI, 需要开启此功能并且重启作用域后重新设置默认DPI数值</string>
+    <string name="remove_low_battery_dialog_warning">移除低电量警告对话框</string>
+    <string name="remove_low_battery_dialog_warning_summary">移除省电模式和超级省电模式的警告对话框</string>
+    <string name="remove_warning_dialog_that_app_runs_on_desktop">移除应用运行在桌面上警告对话框</string>
+    <string name="remove_warning_dialog_that_app_runs_on_desktop_summary">发现有应用运行在系统桌面上的警告对话框</string>
     <!--PowerMenu-->
     <string name="PowerMenu">电源菜单相关</string>
     <string name="PowerMenu_summary">长按电源键显示的菜单</string>
@@ -248,6 +257,8 @@
     <string name="copy_download_link">复制下载链接</string>
     <string name="direct_update">直接更新</string>
     <string name="install_apk_toast">请打开未知应用安装权限!</string>
+    <!-- Logs -->
+    <string name="log_no_data">无异常数据</string>
     <!-- Other -->
     <string name="quick_entry">系统快捷入口</string>
     <string name="quick_entry_summary">例如系统界面调节工具,进程管理,工程模式等</string>

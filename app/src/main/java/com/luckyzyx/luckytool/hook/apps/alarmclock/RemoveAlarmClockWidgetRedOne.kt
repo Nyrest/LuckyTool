@@ -7,7 +7,7 @@ import com.highcapable.yukihookapi.hook.type.java.CharSequenceType
 class RemoveAlarmClockWidgetRedOne : YukiBaseHooker() {
     override fun onHook() {
         //Search -> OnePlusWidget -> CharSequence field
-        "com.coloros.widget.smallweather.OnePlusWidget".clazz.field {
+        "com.coloros.widget.smallweather.OnePlusWidget".toClass().field {
             type(CharSequenceType).index().first()
         }.get().set("")
     }

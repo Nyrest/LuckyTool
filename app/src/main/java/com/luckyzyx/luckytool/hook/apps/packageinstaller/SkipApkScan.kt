@@ -6,6 +6,7 @@ import com.highcapable.yukihookapi.hook.type.java.BooleanType
 import com.luckyzyx.luckytool.utils.tools.XposedPrefs
 import java.util.*
 
+@Suppress("LocalVariableName")
 class SkipApkScan : YukiBaseHooker() {
     override fun onHook() {
         val appSet = prefs(XposedPrefs).getStringSet(packageName, ArraySet()).toTypedArray().apply {
@@ -14,48 +15,55 @@ class SkipApkScan : YukiBaseHooker() {
                 this[this.indexOf(it)] = it.substring(2)
             }
         }
+        val OPIA = "com.android.packageinstaller.oplus.OPlusPackageInstallerActivity"
+        val ADRU = "com.android.packageinstaller.oplus.utils.AppDetailRedirectionUtils"
         val member: Array<String> =
             when (appSet[2]) {
                 "7bc7db7", "e1a2c58" -> {
-                    arrayOf("L", "C", "K")
+                    arrayOf(OPIA, "L", "C", "K")
                 }
                 "75fe984", "532ffef" -> {
-                    arrayOf("L", "D", "i")
+                    arrayOf(OPIA, "L", "D", "i")
                 }
                 "38477f0" -> {
-                    arrayOf("M", "D", "k")
+                    arrayOf(OPIA, "M", "D", "k")
                 }
                 "a222497" -> {
-                    arrayOf("M", "E", "j")
+                    arrayOf(OPIA, "M", "E", "j")
                 }
-                //d132ce2,faec6ba,860700c
+                "d1fd8fc" -> {
+                    arrayOf(ADRU, "shouldStartAppDetail", "checkToScanRisk", "initiateInstall")
+                }
+                //d132ce2,faec6ba,860700c,3d2dbd1
                 else -> {
-                    arrayOf("isStartAppDetail", "checkToScanRisk", "initiateInstall")
+                    arrayOf(OPIA, "isStartAppDetail", "checkToScanRisk", "initiateInstall")
                 }
             }
-
         //Source OPlusPackageInstallerActivity
-        findClass("com.android.packageinstaller.oplus.OPlusPackageInstallerActivity").hook {
+        findClass(member[0]).hook {
             //skip appdetail,search isStartAppDetail
             //search -> count_canceled_by_app_detail -4 -> Method
             injectMember {
                 method {
-                    name = member[0]
+                    name = member[1]
                     returnType = BooleanType
                 }
-                replaceToFalse()
+                if (member[0] == OPIA) replaceToFalse()
+                if (member[0] == ADRU) replaceTo(9)
             }
+        }
+        findClass(OPIA).hook {
             //skip app scan, search method checkToScanRisk
             //search -> "button_type", "install_old_version_button" -5 -> Method
             //replace to initiateInstall
             //search -> "button_type", "install_old_version_button" -11 -> Method
             injectMember {
                 method {
-                    name = member[1]
+                    name = member[2]
                 }
                 replaceUnit {
                     method {
-                        name = member[2]
+                        name = member[3]
                     }.get(instance).call()
                 }
             }

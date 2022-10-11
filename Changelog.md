@@ -3,10 +3,36 @@
 出现问题请带上作用域 Apk 和 LSPosed Log 前往 TG 群组反馈  
 If there is a problem, please bring the scope Apk and LSPosed Log to the TG group for feedback  
 
+### v2.8
+[修复] C12桌面文件夹4x4  
+
+
+### v2.7
+[优化] 优化Log日志页面  
+[添加] 移除低电量对话框警告  
+[添加] 移除应用运行在桌面上警告对话框  
+[添加] 用户协议与隐私政策  
+[Fix] optimize the Log log page  
+[Add] Remove low battery dialog warning  
+[Add] Remove the warning dialog box that the application runs on the desktop  
+[Add] User Agreement and Privacy Policy  
+
 ### v2.6
 
 [更新] 捐赠名单列表  
-
+[适配] C13自启数量限制  
+[适配] C12应用包安装程序  
+[添加] 添加LOG页面(建设中,后面可能会删)  
+[修复] 开启远程ADB调试时可以修改端口的问题  
+[添加] 禁止最小宽度(DPI)重启恢复  
+[修复] 获取Commit数据异常  
+[Update] List of Donation Lists  
+[Fix] C13 self-starting quantity limit  
+[Fix] C12 application package installer  
+[Add] Add the LOG page (under construction, it may be deleted later)  
+[Fix] the problem that the port can be modified when remote ADB debugging is started  
+[Add] Minimum Width (DPI) restart recovery is prohibited  
+[Fix] Exception in obtaining Commit data  
 
 ### v2.5
 

@@ -10,9 +10,12 @@ import android.content.pm.ShortcutManager
 import android.graphics.drawable.Icon
 import android.os.Bundle
 import android.os.Process
+import android.text.Html
+import android.text.method.LinkMovementMethod
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.BuildCompat
+import androidx.core.widget.NestedScrollView
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -20,10 +23,8 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.color.DynamicColors
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.textview.MaterialTextView
 import com.highcapable.yukihookapi.hook.factory.modulePrefs
-import com.hjq.permissions.OnPermissionCallback
-import com.hjq.permissions.Permission
-import com.hjq.permissions.XXPermissions
 import com.joom.paranoid.Obfuscate
 import com.luckyzyx.luckytool.R
 import com.luckyzyx.luckytool.databinding.ActivityMainBinding
@@ -32,12 +33,12 @@ import kotlin.system.exitProcess
 
 @Obfuscate
 @Suppress("PrivatePropertyName")
-class MainActivity : AppCompatActivity() {
+open class MainActivity : AppCompatActivity() {
     private val KEY_PREFIX = MainActivity::class.java.name + '.'
     private val EXTRA_SAVED_INSTANCE_STATE = KEY_PREFIX + "SAVED_INSTANCE_STATE"
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var appBarConfiguration: AppBarConfiguration
+    private var isCheckPrefs = true
 
     private fun newIntent(context: Context): Intent {
         return Intent(context, MainActivity::class.java)
@@ -53,11 +54,39 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        checkPrefsRW()
         initNavigationFragment()
         initDynamicShortcuts()
-//        initPermission()
+        checkPrefsRW()
+        initAgreement(true)
+    }
 
+    open fun initAgreement(status: Boolean) {
+        if (!isCheckPrefs) return
+        if (status && getBoolean(SettingsPrefs,"read_agreement",false)) return
+        MaterialAlertDialogBuilder(this).apply {
+            setView(
+                NestedScrollView(this.context).apply {
+                    addView(
+                        MaterialTextView(this.context).apply {
+                            setPadding(20.dp, 20.dp, 20.dp, 0)
+                            val privacyPolicy = "<a href='https://gitee.com/luckyzyx/luckyzyx/raw/master/PrivacyAgreement.md'>《隐私政策》</a>"
+                            text = Html.fromHtml("${getString(R.string.read_agreement)} $privacyPolicy",0)
+                            movementMethod = LinkMovementMethod.getInstance()
+                        }
+                    )
+
+                }
+            )
+            setCancelable(false)
+            setPositiveButton(android.R.string.ok) { _, _ ->
+                putBoolean(SettingsPrefs,"read_agreement",true)
+            }
+            setNeutralButton(android.R.string.cancel) { _, _ ->
+                putBoolean(SettingsPrefs,"read_agreement",false)
+                exitProcess(0)
+            }
+            show()
+        }
     }
 
     private fun initDynamicShortcuts(){
@@ -94,10 +123,12 @@ class MainActivity : AppCompatActivity() {
     private fun initNavigationFragment(){
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
         val navController = navHostFragment.navController
-        appBarConfiguration = AppBarConfiguration.Builder(
-            R.id.nav_home,
-            R.id.nav_xposed,
+        val appBarConfiguration = AppBarConfiguration.Builder(
             R.id.nav_other,
+            R.id.nav_function,
+            R.id.nav_home,
+            R.id.nav_log    ,
+            R.id.nav_setting,
         ).build()
         setSupportActionBar(binding.toolbar)
         setupActionBarWithNavController(navController,appBarConfiguration)
@@ -124,49 +155,19 @@ class MainActivity : AppCompatActivity() {
     @Suppress("DEPRECATION")
     @SuppressLint("WorldReadableFiles")
     private fun checkPrefsRW() {
-        try {
-            getSharedPreferences(SettingsPrefs, MODE_WORLD_READABLE)
-            getSharedPreferences(XposedPrefs, MODE_WORLD_READABLE)
-            getSharedPreferences(MagiskPrefs, MODE_WORLD_READABLE)
-            getSharedPreferences(OtherPrefs, MODE_WORLD_READABLE)
-        } catch (ignored: SecurityException) {
+        safeOf(default = {
+            isCheckPrefs = false
             MaterialAlertDialogBuilder(this)
                 .setCancelable(false)
                 .setMessage(getString(R.string.unsupported_xposed))
                 .setPositiveButton(android.R.string.ok) { _: DialogInterface?, _: Int -> exitProcess(0) } //.setNegativeButton(R.string.ignore, null)
                 .show()
+        }) {
+            getSharedPreferences(SettingsPrefs, MODE_WORLD_READABLE)
+            getSharedPreferences(XposedPrefs, MODE_WORLD_READABLE)
+            getSharedPreferences(MagiskPrefs, MODE_WORLD_READABLE)
+            getSharedPreferences(OtherPrefs, MODE_WORLD_READABLE)
         }
-    }
-
-    private fun initPermission(){
-        XXPermissions.with(this)
-            // 申请单个权限
-            .permission(Permission.REQUEST_INSTALL_PACKAGES)
-            // 申请多个权限
-            .permission(Permission.Group.STORAGE)
-            // 设置权限请求拦截器（局部设置）
-            //.interceptor(new PermissionInterceptor())
-            // 设置不触发错误检测机制（局部设置）
-            .unchecked()
-            .request(object : OnPermissionCallback {
-                override fun onGranted(permissions: MutableList<String>, all: Boolean) {
-                    if (!all) {
-                        toast("获取部分权限成功，但部分权限未正常授予")
-                        return
-                    }
-                    toast("获取录音和日历权限成功")
-                }
-
-                override fun onDenied(permissions: MutableList<String>, never: Boolean) {
-                    if (never) {
-                        toast("被永久拒绝授权，请手动授予录音和日历权限")
-                        // 如果是被永久拒绝就跳转到应用权限系统设置页面
-                        XXPermissions.startPermissionActivity(this@MainActivity, permissions)
-                    } else {
-                        toast("获取录音和日历权限失败")
-                    }
-                }
-            })
     }
 
     private val isParasitic get() = !Process.isApplicationUid(Process.myUid())

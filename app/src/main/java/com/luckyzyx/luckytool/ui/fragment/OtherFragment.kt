@@ -57,9 +57,7 @@ class OtherFragment : Fragment() {
                             }
                             ShellUtils.execCommand("am start -n com.oplus.battery/com.oplus.powermanager.fuelgaue.BatteryHealthActivity", true)
                         }
-                        3 -> safeOf(default = requireActivity().toast(getString(R.string.system_not_support))) {
-                            jumpRunningApp(requireActivity())
-                        }
+                        3 -> jumpRunningApp(requireActivity())
                         4 -> ShellUtils.execCommand("am start -n com.android.systemui/.DemoMode", true)
                         5 -> ShellUtils.execCommand("am start -n com.oplus.logkit/.activity.MainActivity", true)
                         6 -> ShellUtils.execCommand("am start -a com.android.settings.APPLICATION_DEVELOPMENT_SETTINGS", true)
@@ -68,6 +66,7 @@ class OtherFragment : Fragment() {
                 }
                 .show()
         }
+
         binding.displayFps.apply {
             text = getString(R.string.display_refresh_rate_cap)
         }.setOnCheckedChangeListener { buttonView, isChecked ->
@@ -95,6 +94,7 @@ class OtherFragment : Fragment() {
                 isCounterEnabled = true
                 counterMaxLength = 6
             }
+            val adbPortLayout = adbDialog.findViewById<TextInputLayout>(R.id.adb_port_layout)
             val adbPort = adbDialog.findViewById<TextInputEditText>(R.id.adb_port)?.apply {
                 inputType = EditorInfo.TYPE_CLASS_NUMBER
                 setText(requireActivity().getString(OtherPrefs,"adb_port","6666"))
@@ -109,6 +109,7 @@ class OtherFragment : Fragment() {
             adbDialog.findViewById<SwitchMaterial>(R.id.adb_switch)?.apply {
                 text = context.getString(R.string.enable_remote_adb_debugging)
                 isChecked = !(getPort == "" || getPort.toInt() == -1)
+                adbPortLayout?.isEnabled = isChecked.not()
                 setOnCheckedChangeListener { _, isChecked ->
                     if (isChecked){
                         val port = adbPort?.text.toString()
@@ -125,6 +126,7 @@ class OtherFragment : Fragment() {
                         )
                         ShellUtils.execCommand(commands,true)
                         requireActivity().putString(OtherPrefs,"adb_port",port)
+                        adbPortLayout?.isEnabled = false
                         adbTv?.text = "adb connect $getIP:$port"
                     }else{
                         val commands = arrayOf(
@@ -135,6 +137,7 @@ class OtherFragment : Fragment() {
                             "setprop service.adb.tcp.port ''"
                         )
                         ShellUtils.execCommand(commands,true)
+                        adbPortLayout?.isEnabled = true
                         adbTv?.text = null
                     }
                 }

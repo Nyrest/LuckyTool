@@ -11,11 +11,7 @@ class StatusBarIcon : YukiBaseHooker() {
             //状态栏图标
             //设置状态栏网速刷新率
             if (prefs(XposedPrefs).getBoolean("set_network_speed", false)) {
-                if (SDK_INT >= 33){
-                    loadHooker(NetworkSpeedV13())
-                }else{
-                    loadHooker(NetworkSpeed())
-                }
+                loadHooker(NetworkSpeed())
             }
             //移除状态栏电量百分号
             if (prefs(XposedPrefs).getBoolean("remove_statusbar_battery_percent", false)) loadHooker(
@@ -23,11 +19,7 @@ class StatusBarIcon : YukiBaseHooker() {
             )
             //移除状态栏支付保护图标
             if (prefs(XposedPrefs).getBoolean("remove_statusbar_securepayment_icon", false)) {
-                if (SDK_INT >= 33){
-                    loadHooker(RemoveStatusBarSecurePaymentV13())
-                }else{
-                    loadHooker(RemoveStatusBarSecurePayment())
-                }
+                loadHooker(RemoveStatusBarSecurePayment())
             }
             //移除下拉状态栏多用户图标
             if (prefs(XposedPrefs).getBoolean("remove_statusbar_user_switcher", false)) {
