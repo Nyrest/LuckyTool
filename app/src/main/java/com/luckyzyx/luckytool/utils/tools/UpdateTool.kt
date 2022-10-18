@@ -4,9 +4,12 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.provider.Settings
+import android.widget.SeekBar
 import androidx.core.content.FileProvider
 import androidx.core.widget.NestedScrollView
 import com.drake.net.Get
+import com.drake.net.component.Progress
+import com.drake.net.interfaces.ProgressListener
 import com.drake.net.utils.scopeNet
 import com.drake.net.utils.withMain
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -59,18 +62,41 @@ object UpdateTool {
 
     //https://dl.coolapk.com/down?pn=com.coolapk.market&id=NDU5OQ&h=46bb9d98&from=from-web
     private fun downloadFile(context: Context, apkName: String, url: String) {
-        scopeNet(Dispatchers.IO) {
+        scopeNet {
             File("sdcard/Download/$apkName").apply {
                 if (this.exists()) {
                     installApk(context, this)
                     return@scopeNet
                 }
             }
+            val downloadDialog = MaterialAlertDialogBuilder(context).apply {
+                setTitle(context.getString(R.string.downloading))
+                setCancelable(false)
+                setView(R.layout.layout_download_dialog)
+            }.create()
+            downloadDialog.show()
             val apkFile = Get<File>(url) {
                 setDownloadFileName(apkName)
                 setDownloadDir("sdcard/Download/")
                 setDownloadMd5Verify()
                 setDownloadTempFile()
+                addDownloadListener(object : ProgressListener(100){
+                    override fun onProgress(p: Progress) {
+                        val downSeek = downloadDialog.findViewById<SeekBar>(R.id.down_seek)
+                        val downTv = downloadDialog.findViewById<MaterialTextView>(R.id.down_tv)
+                        downSeek?.post {
+                            val progress = p.progress()
+                            downSeek.progress = progress
+                            downTv?.text = """
+                                ${context.getString(R.string.download_progress)}: $progress%
+                                ${context.getString(R.string.download_speed)}: ${p.speedSize()}
+                                ${context.getString(R.string.remain_size)}: ${p.remainSize()}
+                                ${context.getString(R.string.downloaded)}: ${p.currentSize()} / ${p.totalSize()}
+                                ${context.getString(R.string.used_time)}: ${p.useTime()}  ${context.getString(R.string.remain_time)}: ${p.remainTime()}
+                            """.trimIndent()
+                        }
+                    }
+                })
             }.await()
             installApk(context, apkFile)
         }

@@ -6,6 +6,7 @@ import com.highcapable.yukihookapi.hook.type.java.BooleanType
 import com.luckyzyx.luckytool.utils.tools.XposedPrefs
 import java.util.*
 
+
 class DisableDPIRebootRecovery : YukiBaseHooker() {
     override fun onHook() {
         val appSet = prefs(XposedPrefs).getStringSet(packageName, ArraySet()).toTypedArray().apply {
@@ -18,6 +19,7 @@ class DisableDPIRebootRecovery : YukiBaseHooker() {
             //C13
             "a6de75c" -> arrayOf("fi.n", "A0")
             "9470266" -> arrayOf("gi.n", "A0")
+            "75f9a97" -> arrayOf("ki.n", "B0")
             //C12
             "cd12d6b" -> arrayOf("uf.m", "l0")
             "4bb0ba5" -> arrayOf("uf.l", "n0")

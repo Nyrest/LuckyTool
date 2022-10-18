@@ -166,6 +166,8 @@
     <string name="unlock_startup_limit">Unlock Auto-Enabled Limit</string>
     <string name="unlock_startup_limit_summary">Unlock app self-startup limit</string>
     <string name="unlock_task_locks">Unlocks the number of background tasks</string>
+    <string name="remove_app_splash_screen">Remove App Splash Screen</string>
+    <string name="remove_app_splash_screen_summary">Effective after system restart</string>
     <!--MultiApp-->
     <string name="MultiApp">App Stand Related</string>
     <string name="multi_app_enable">Total App Chart Switch</string>
@@ -260,6 +262,14 @@
     <string name="copy_download_link">Copy the download link</string>
     <string name="direct_update">Direct update</string>
     <string name="install_apk_toast">Please enable unknown app installation permission!</string>
+    <string name="downloading">Downloading</string>
+    <string name="download_progress">Download Progress</string>
+    <string name="download_speed">Download Speed</string>
+    <string name="remain_size">Remain Size</string>
+    <string name="downloaded">Downloaded</string>
+    <string name="used_time">Used Time</string>
+    <string name="remain_time">Remain Time</string>
+    <string name="fps_autostart">Auto-start</string>
     <!-- Logs -->
     <string name="log_no_data">No abnormal data</string>
     <!-- Other -->
@@ -273,7 +283,6 @@
     <string name="game_assistant_page">Game helper page</string>
     <string name="developer_option">Developer Options</string>
     <string name="display_refresh_rate">Show Refresh Rate</string>
-    <string name="display_refresh_rate_cap">Show Refresh Rate Cap</string>
     <string name="remote_adb_debug_title">Remote ADB debugging</string>
     <string name="remote_adb_debug_summary">Please close it when not in use</string>
     <string name="adb_port">ADB Port</string>

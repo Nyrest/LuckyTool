@@ -2,11 +2,15 @@ package com.luckyzyx.luckytool.hook.apps.systemui
 
 import android.view.View
 import androidx.core.view.isVisible
+import com.highcapable.yukihookapi.hook.bean.VariousClass
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 
 class RemoveWiFiDataInout : YukiBaseHooker() {
     override fun onHook() {
-        findClass("com.oplus.systemui.statusbar.phone.signal.OplusStatusBarWifiViewExImpl").hook {
+        VariousClass(
+            "com.oplusos.systemui.statusbar.OplusStatusBarWifiView",
+            "com.oplus.systemui.statusbar.phone.signal.OplusStatusBarWifiViewExImpl"
+        ).hook {
             injectMember {
                 method {
                     name = "initViewState"

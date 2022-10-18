@@ -1,11 +1,40 @@
 # 更新日志 Changelog
 
-出现问题请带上作用域 Apk 和 LSPosed Log 前往 TG 群组反馈  
-If there is a problem, please bring the scope Apk and LSPosed Log to the TG group for feedback  
+出现问题请带上作用域 APK 和 LOG 前往 TG 群组反馈  
+If you have problems, please bring the scope APK and LOG to the TG group for feedback  
+
+### 3.0
+
+
+### v2.9
+[更新] 捐赠名单列表  
+[添加] 检测更新下载进度对话框  
+[添加] C13移除应用启动遮罩  
+[适配] C12移除高性能模式通知  
+[适配] C12移除耗电异常优化通知  
+[添加] 强制刷新率开机自启  
+[修复] 读取功能数据异常  
+[适配] C13禁用DPI重启恢复  
+[Update] Donation list  
+[Add] Detect update download progress dialog  
+[Add] C13 Remove App Launch Mask  
+[Fix] C12 Remove High Performance Mode Notification  
+[Fix] C12 Remove power consumption exception optimization notification  
+[Add] Force refresh rate boot up  
+[Fix] Read function data exceptions  
+[Fix] C13 Disable DPI reboot recovery  
 
 ### v2.8
 [修复] C12桌面文件夹4x4  
-
+[修复] 应用分身异常问题  
+[适配] C12移除数据箭头  
+[适配] 云服务移动网络限制  
+[更新] 用户协议和隐私政策  
+[Fix] C12 desktop folder 4x4  
+[Fix] the application member exception problem  
+[Fix] C12 remove data arrow  
+[Fix] Cloud service mobile network restrictions  
+[Update] User Agreement and Privacy Policy  
 
 ### v2.7
 [优化] 优化Log日志页面  

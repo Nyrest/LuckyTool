@@ -35,12 +35,10 @@ class StatusBarNotice : YukiBaseHooker() {
             if (prefs(XposedPrefs).getBoolean("remove_app_high_battery_consumption_warning",false)) loadHooker(
                 RemoveAppHighBatteryConsumptionWarning()
             )
-
             //移除高性能模式通知
             if (prefs(XposedPrefs).getBoolean("remove_high_performance_mode_notifications", false)) loadHooker(
                 RemoveHighPerformanceModeNotifications()
             )
-
         }
     }
 }

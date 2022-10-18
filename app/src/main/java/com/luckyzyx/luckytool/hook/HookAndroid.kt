@@ -2,6 +2,7 @@ package com.luckyzyx.luckytool.hook
 
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 import com.luckyzyx.luckytool.hook.apps.android.*
+import com.luckyzyx.luckytool.utils.tools.SDK
 
 class HookAndroid : YukiBaseHooker() {
 
@@ -24,5 +25,7 @@ class HookAndroid : YukiBaseHooker() {
         //USB安装确认
         loadHooker(ADBInstallConfirm())
 
+        //启动遮罩Splash Screen
+        if (SDK >= 33) loadHooker(ActivitySplashScreen())
     }
 }

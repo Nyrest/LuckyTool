@@ -8,9 +8,14 @@ import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.*
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.ListView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.switchmaterial.SwitchMaterial
 import com.highcapable.yukihookapi.YukiHookAPI
 import com.joom.paranoid.Obfuscate
 import com.luckyzyx.luckytool.R
@@ -74,22 +79,42 @@ class HomeFragment : Fragment() {
         binding.fpsSummary.text = getString(R.string.fps_summary)
 
         binding.fps.setOnClickListener {
-            MaterialAlertDialogBuilder(requireActivity())
-                .setCancelable(true)
-                .setItems(requireActivity().getFpsMode()) { _, which ->
-                    val fpsList = ArrayList<String>()
-                    fpsList.add(requireActivity().getFpsMode().size.toString())
-                    if (requireActivity().getFpsMode().lastIndex == which) {
-                        ShellUtils.execCommand("su -c service call SurfaceFlinger 1035 i32 -1", true)
-                        fpsList.add("-1")
-                    }else {
-                        ShellUtils.execCommand("su -c service call SurfaceFlinger 1035 i32 $which", true)
-                        fpsList.add(which.toString())
-                    }
-                    requireActivity().putStringSet(XposedPrefs,"current_fps",fpsList.toSet())
+            val fpsDialog = MaterialAlertDialogBuilder(requireActivity()).apply {
+                setView(R.layout.layout_fps_dialog)
+            }.show()
+
+            fpsDialog.findViewById<ListView>(R.id.fps_list)?.apply {
+                adapter = ArrayAdapter(context,android.R.layout.simple_list_item_1,context.getFpsMode())
+                onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
+                    context.putInt(XposedPrefs, "current_fps", position)
+                    ShellUtils.execCommand("su -c service call SurfaceFlinger 1035 i32 $position", true)
                 }
-                .show()
+            }
+            fpsDialog.findViewById<SwitchMaterial>(R.id.fps_mode)?.apply {
+                text = getString(R.string.fps_autostart)
+                isChecked = context.getBoolean(XposedPrefs,"fps_autostart",false)
+                setOnCheckedChangeListener { buttonView, isChecked ->
+                    if (buttonView.isPressed) {
+                        context.putBoolean(XposedPrefs,"fps_autostart",isChecked)
+                    }
+                }
+            }
+            fpsDialog.findViewById<SwitchMaterial>(R.id.fps_window)?.apply {
+                text = getString(R.string.display_refresh_rate)
+                setOnCheckedChangeListener { buttonView, isChecked ->
+                    if (buttonView.isPressed) {
+                        ShellUtils.execCommand("su -c service call SurfaceFlinger 1034 i32 ${if (isChecked) 1 else 0}", true)
+                    }
+                }
+            }
+            fpsDialog.findViewById<MaterialButton>(R.id.fps_recover)?.apply {
+                text = getString(R.string.Restore_default_refresh_rate)
+                setOnClickListener {
+                    ShellUtils.execCommand("su -c service call SurfaceFlinger 1035 i32 -1", true)
+                }
+            }
         }
+
         binding.systemInfo.text =
             """
                 ${getString(R.string.brand)}: ${Build.BRAND}

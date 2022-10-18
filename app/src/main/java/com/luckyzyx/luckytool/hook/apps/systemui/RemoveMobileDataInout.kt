@@ -2,11 +2,15 @@ package com.luckyzyx.luckytool.hook.apps.systemui
 
 import android.view.View
 import androidx.core.view.isVisible
+import com.highcapable.yukihookapi.hook.bean.VariousClass
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 
 class RemoveMobileDataInout : YukiBaseHooker() {
     override fun onHook() {
-        findClass("com.oplus.systemui.statusbar.phone.signal.OplusStatusBarMobileViewExImpl").hook {
+        VariousClass(
+            "com.oplusos.systemui.statusbar.OplusStatusBarMobileView",
+            "com.oplus.systemui.statusbar.phone.signal.OplusStatusBarMobileViewExImpl"
+        ).hook {
             injectMember {
                 method {
                     name = "initViewState"
@@ -19,7 +23,11 @@ class RemoveMobileDataInout : YukiBaseHooker() {
             }
             injectMember {
                 method {
-                    name = "updateState"
+                    name = when(instanceClass.simpleName){
+                        "OplusStatusBarMobileView" -> "updateMobileViewState"
+                        "OplusStatusBarMobileViewExImpl" -> "updateState"
+                        else -> "updateState"
+                    }
                 }
                 afterHook {
                     field {

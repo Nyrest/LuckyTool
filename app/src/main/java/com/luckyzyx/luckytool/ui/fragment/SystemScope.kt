@@ -893,6 +893,16 @@ class Application : ModulePreferenceFragment(){
             )
             addPreference(
                 SwitchPreference(requireActivity()).apply {
+                    title = getString(R.string.remove_app_splash_screen)
+                    summary = getString(R.string.remove_app_splash_screen_summary)
+                    key = "remove_app_splash_screen"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                    isVisible = SDK >= 33
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
                     title = getString(R.string.unlock_startup_limit)
                     summary = getString(R.string.unlock_startup_limit_summary)
                     key = "unlock_startup_limit"

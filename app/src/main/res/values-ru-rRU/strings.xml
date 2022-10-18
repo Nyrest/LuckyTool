@@ -166,6 +166,8 @@
     <string name="unlock_startup_limit">Разблокировать количество автозапусков</string>
     <string name="unlock_startup_limit_summary">Разблокировать ограничение на количество автозапусков приложения</string>
     <string name="unlock_task_locks">Разблокировать количество заблокированных фоновых задач</string>
+    <string name="remove_app_splash_screen">Удалить заставку приложения</string>
+    <string name="remove_app_splash_screen_summary">Вступит в силу после перезагрузки системы</string>
     <!--MultiApp-->
     <string name="MultiApp">Клонирование приложений</string>
     <string name="multi_app_enable">Включить/отключить клонирование</string>
@@ -262,6 +264,14 @@
     <string name="copy_download_link">Скопируйте ссылку для загрузки</string>
     <string name="direct_update">Прямое обновление</string>
     <string name="install_apk_toast">Пожалуйста, включите неизвестное разрешение на установку приложения!</string>
+    <string name="downloading">Загрузка</string>
+    <string name="download_progress">Прогресс загрузки</string>
+    <string name="download_speed">Скорость загрузки</string>
+    <string name="remain_size">Оставшийся размер</string>
+    <string name="downloaded">Загружено</string>
+    <string name="used_time">Использованное время</string>
+    <string name="remain_time">Оставшееся время</string>
+    <string name="fps_autostart">Автозапуск</string>
     <!-- Logs -->
     <string name="log_no_data">Нет аномальных данных</string>
     <!-- Other -->
@@ -275,7 +285,6 @@
     <string name="game_assistant_page">Игровой помощник</string>
     <string name="developer_option">Параметры разработчика</string>
     <string name="display_refresh_rate">Частота обновления экрана</string>
-    <string name="display_refresh_rate_cap">Частота обновления экрана</string>
     <string name="remote_adb_debug_title">Удаленная отладка ADB</string>
     <string name="remote_adb_debug_summary">Пожалуйста, закройте его, когда он не используется</string>
     <string name="adb_port">Порт ADB</string>

@@ -54,19 +54,6 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp">
-
-                <com.google.android.material.switchmaterial.SwitchMaterial
-                        android:id="@+id/display_fps"
-                        android:paddingHorizontal="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
                     android:id="@+id/remote_adb_debug"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

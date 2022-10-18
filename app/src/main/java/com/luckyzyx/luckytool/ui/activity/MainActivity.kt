@@ -31,6 +31,7 @@ import com.luckyzyx.luckytool.databinding.ActivityMainBinding
 import com.luckyzyx.luckytool.utils.tools.*
 import kotlin.system.exitProcess
 
+
 @Obfuscate
 @Suppress("PrivatePropertyName")
 open class MainActivity : AppCompatActivity() {
@@ -38,7 +39,6 @@ open class MainActivity : AppCompatActivity() {
     private val EXTRA_SAVED_INSTANCE_STATE = KEY_PREFIX + "SAVED_INSTANCE_STATE"
 
     private lateinit var binding: ActivityMainBinding
-    private var isCheckPrefs = true
 
     private fun newIntent(context: Context): Intent {
         return Intent(context, MainActivity::class.java)
@@ -56,25 +56,26 @@ open class MainActivity : AppCompatActivity() {
 
         initNavigationFragment()
         initDynamicShortcuts()
-        checkPrefsRW()
         initAgreement(true)
+
+        checkPrefsRW()
+
     }
 
     open fun initAgreement(status: Boolean) {
-        if (!isCheckPrefs) return
         if (status && getBoolean(SettingsPrefs,"read_agreement",false)) return
         MaterialAlertDialogBuilder(this).apply {
             setView(
-                NestedScrollView(this.context).apply {
+                NestedScrollView(context).apply {
                     addView(
-                        MaterialTextView(this.context).apply {
+                        MaterialTextView(context).apply {
                             setPadding(20.dp, 20.dp, 20.dp, 0)
+                            val userAgreement = "<a href='https://gitee.com/luckyzyx/luckyzyx/raw/master/UserAgreement.md'>《用户协议》</a>"
                             val privacyPolicy = "<a href='https://gitee.com/luckyzyx/luckyzyx/raw/master/PrivacyAgreement.md'>《隐私政策》</a>"
-                            text = Html.fromHtml("${getString(R.string.read_agreement)} $privacyPolicy",0)
+                            text = Html.fromHtml("${getString(R.string.read_agreement)} $userAgreement $privacyPolicy",0)
                             movementMethod = LinkMovementMethod.getInstance()
                         }
                     )
-
                 }
             )
             setCancelable(false)
@@ -156,7 +157,6 @@ open class MainActivity : AppCompatActivity() {
     @SuppressLint("WorldReadableFiles")
     private fun checkPrefsRW() {
         safeOf(default = {
-            isCheckPrefs = false
             MaterialAlertDialogBuilder(this)
                 .setCancelable(false)
                 .setMessage(getString(R.string.unsupported_xposed))

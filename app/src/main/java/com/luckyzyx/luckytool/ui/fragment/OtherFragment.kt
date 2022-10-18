@@ -67,14 +67,6 @@ class OtherFragment : Fragment() {
                 .show()
         }
 
-        binding.displayFps.apply {
-            text = getString(R.string.display_refresh_rate_cap)
-        }.setOnCheckedChangeListener { buttonView, isChecked ->
-            if (buttonView.isPressed) {
-                ShellUtils.execCommand("su -c service call SurfaceFlinger 1034 i32 ${if (isChecked) 1 else 0}", true)
-            }
-        }
-
         binding.remoteAdbDebugTitle.text = getString(R.string.remote_adb_debug_title)
         binding.remoteAdbDebugSummary.text = getString(R.string.remote_adb_debug_summary)
         binding.remoteAdbDebug.setOnClickListener {

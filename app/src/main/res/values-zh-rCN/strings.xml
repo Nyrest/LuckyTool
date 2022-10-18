@@ -163,6 +163,8 @@
     <string name="unlock_startup_limit">解锁自启数量限制</string>
     <string name="unlock_startup_limit_summary">解锁应用自启动数量限制</string>
     <string name="unlock_task_locks">解锁后台任务锁定数量</string>
+    <string name="remove_app_splash_screen">移除应用启动遮罩</string>
+    <string name="remove_app_splash_screen_summary">系统重启后生效</string>
     <!--MultiApp-->
     <string name="MultiApp">应用分身相关</string>
     <string name="multi_app_enable">应用分身总开关</string>
@@ -257,6 +259,14 @@
     <string name="copy_download_link">复制下载链接</string>
     <string name="direct_update">直接更新</string>
     <string name="install_apk_toast">请打开未知应用安装权限!</string>
+    <string name="downloading">正在下载</string>
+    <string name="download_progress">下载进度</string>
+    <string name="download_speed">下载速度</string>
+    <string name="remain_size">剩余大小</string>
+    <string name="downloaded">已下载</string>
+    <string name="used_time">已用时间</string>
+    <string name="remain_time">剩余时间</string>
+    <string name="fps_autostart">自动启动</string>
     <!-- Logs -->
     <string name="log_no_data">无异常数据</string>
     <!-- Other -->
@@ -270,7 +280,6 @@
     <string name="game_assistant_page">游戏助手页面</string>
     <string name="developer_option">开发者选项</string>
     <string name="display_refresh_rate">显示刷新率</string>
-    <string name="display_refresh_rate_cap">显示刷新率上限</string>
     <string name="remote_adb_debug_title">远程ADB调试</string>
     <string name="remote_adb_debug_summary">不使用时请及时关闭</string>
     <string name="adb_port">端口</string>

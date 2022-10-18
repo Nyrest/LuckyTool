@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingHorizontal="20dp"
+        android:orientation="vertical">
+    
+    <ListView
+            android:id="@+id/fps_list"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        
+        <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/fps_mode"
+                android:layout_weight="1"
+                android:paddingHorizontal="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        
+        <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/fps_window"
+                android:paddingHorizontal="5dp"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        
+    </LinearLayout>
+    
+    <com.google.android.material.button.MaterialButton
+            android:id="@+id/fps_recover"
+            android:layout_marginBottom="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+</LinearLayout>

@@ -37,7 +37,6 @@ class StatusBarIcon : YukiBaseHooker() {
                 loadHooker(RemoveMobileDataInout())
             }
 
-
         }
     }
 }

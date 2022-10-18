@@ -1,41 +1,53 @@
 package com.luckyzyx.luckytool.hook.apps.battery
 
-import com.highcapable.yukihookapi.hook.bean.VariousClass
+import android.app.NotificationManager
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
+import com.highcapable.yukihookapi.hook.type.android.HandlerClass
 
 class RemoveAppHighBatteryConsumptionWarning : YukiBaseHooker() {
     override fun onHook() {
-        val method = arrayOf("H", "w", "x", "z")
         // Source NotifyUtil
         // Search power_consumption_optimization_title / pco_notification_text / String \n String
-        VariousClass(
-            "c4.b"
-        ).hook {
+        searchClass {
+            from("c4","com.oplus.a.g")
+            constructor().count(1)
+            field {
+                type = NotificationManager::class.java
+            }.count(1)
+            field {
+                type = HandlerClass
+            }.count(1)
+            method {
+                modifiers { isPublic }
+                param(String,Boolean)
+                paramCount = 2
+            }.count(4)
+        }.get()?.hook {
             injectMember {
                 method {
-                    name = method[0]
                     paramCount = 2
+                    param(String,Boolean).index(0)
                 }
                 replaceTo(null)
             }
             injectMember {
                 method {
-                    name = method[1]
                     paramCount = 2
+                    param(String,Boolean).index(1)
                 }
                 replaceTo(null)
             }
             injectMember {
                 method {
-                    name = method[2]
                     paramCount = 2
+                    param(String,Boolean).index(2)
                 }
                 replaceTo(null)
             }
             injectMember {
                 method {
-                    name = method[3]
                     paramCount = 2
+                    param(String,Boolean).index(3)
                 }
                 replaceTo(null)
             }

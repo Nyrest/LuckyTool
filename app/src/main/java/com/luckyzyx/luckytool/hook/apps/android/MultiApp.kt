@@ -6,15 +6,19 @@ import com.luckyzyx.luckytool.utils.tools.XposedPrefs
 
 class MultiApp : YukiBaseHooker() {
     override fun onHook() {
-        findClass("com.android.server.am.OplusMultiAppConfigManager").hook {
+        findClass("com.oplus.multiapp.OplusMultiAppConfig").hook {
             injectMember {
                 method {
-                    name = "getAllowedList"
+                    name = "getAllowedPkgList"
                     returnType = ListClass
                 }
-                afterHook {
-                    if (prefs(XposedPrefs).getBoolean("multi_app_enable", false)) result =
-                        prefs(XposedPrefs).getStringSet("enabledMulti", HashSet()).toList()
+                beforeHook {
+                    if (prefs(XposedPrefs).getBoolean("multi_app_enable", false)){
+                        field {
+                            name = "mAllowedPkgList"
+                            type = ListClass
+                        }.get(instance).set(prefs(XposedPrefs).getStringSet("enabledMulti", HashSet()).toList())
+                    }
                 }
             }
         }

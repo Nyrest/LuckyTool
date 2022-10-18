@@ -9,7 +9,7 @@ class RemoveNetworkRestriction : YukiBaseHooker() {
         //Source NetworkUtil
         //Search -> MOBILE -> method
         searchClass {
-            from("com.cloud.base.commonsdk.baseutils")
+            from("com.cloud.base.commonsdk.baseutils","t2")
             constructor().count(0)
             field().count(0)
             method().count(14)

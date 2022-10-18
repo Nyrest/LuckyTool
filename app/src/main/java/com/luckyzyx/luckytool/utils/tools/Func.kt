@@ -16,7 +16,6 @@ import com.highcapable.yukihookapi.hook.factory.field
 import com.highcapable.yukihookapi.hook.factory.method
 import com.highcapable.yukihookapi.hook.factory.toClass
 import com.luckyzyx.luckytool.BuildConfig.*
-import com.luckyzyx.luckytool.R
 import java.util.regex.Pattern
 
 
@@ -140,9 +139,7 @@ fun Context.getFpsMode(): Array<String> {
         "  fi\n" +
         "done"
     val result = ShellUtils.execCommand(command, true, true).successMsg ?: return arrayOf("获取错误,请勿点击")
-    return result.substring(0,result.length - 1).split("@").toMutableList().apply {
-        add(getString(R.string.Restore_default_refresh_rate))
-    }.toTypedArray()
+    return result.substring(0,result.length - 1).split("@").toMutableList().toTypedArray()
 }
 
 /**
