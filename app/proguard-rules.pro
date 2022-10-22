@@ -24,7 +24,7 @@
 -ignorewarnings
 
 #不做预校验，preverify是proguard的四个步骤之一，Android不需要preverify，去掉这一步能够加快混淆速度。
--dontpreverify
+#-dontpreverify
 
 #指定代码优化级别，值在0-7之间，默认为5
 -optimizationpasses 10

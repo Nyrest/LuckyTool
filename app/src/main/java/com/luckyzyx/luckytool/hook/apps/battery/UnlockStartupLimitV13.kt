@@ -14,6 +14,10 @@ class UnlockStartupLimitV13 : YukiBaseHooker() {
             constructor { param(ContextClass) }.count(1)
             field().count(4)
             field { type = ContextClass }.count(1)
+            method {
+                emptyParam()
+                returnType = IntType
+            }.count(1)
         }.get()?.hook {
             injectMember {
                 method {

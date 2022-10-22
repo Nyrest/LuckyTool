@@ -20,6 +20,9 @@
     <string name="follow_system">Follow system</string>
     <string name="privacy_agreement">Privacy Agreement</string>
     <string name="read_agreement">You need to read and agree to the following content before you can use this module</string>
+    <string name="clear_all_data">Clear all data</string>
+    <string name="clear_all_data_summary">Clear all function data in the module</string>
+    <string name="clear_all_data_message">Make sure you want to clear all the function data of the module, and you need to reset the function after clearing?</string>
     <!-- Other Settings -->
     <string name="other_settings">Other settings</string>
     <string name="hide_xp_page_icon">Hide XP Page Icon</string>
@@ -166,8 +169,8 @@
     <string name="unlock_startup_limit">Unlock Auto-Enabled Limit</string>
     <string name="unlock_startup_limit_summary">Unlock app self-startup limit</string>
     <string name="unlock_task_locks">Unlocks the number of background tasks</string>
-    <string name="remove_app_splash_screen">Remove App Splash Screen</string>
-    <string name="remove_app_splash_screen_summary">Effective after system restart</string>
+    <string name="AppStartupRelated">Application startup related</string>
+    <string name="disable_splash_screen">Disable splash screen</string>
     <!--MultiApp-->
     <string name="MultiApp">App Stand Related</string>
     <string name="multi_app_enable">Total App Chart Switch</string>
@@ -219,6 +222,7 @@
     <!--OplusGames-->
     <string name="remove_root_check">Remove Game Filter Limit</string>
     <string name="remove_root_check_summary">Remove Root Detection Limit for Game Filter</string>
+    <string name="remove_startup_animation">Remove startup animation</string>
     <!--CloudService-->
     <string name="remove_network_limit">Remove Data Network Limit</string>
     <string name="remove_network_limit_summary">Remove backup/restore limitations that cannot use mobile data</string>
@@ -269,6 +273,8 @@
     <string name="downloaded">Downloaded</string>
     <string name="used_time">Used Time</string>
     <string name="remain_time">Remain Time</string>
+    <string name="install_button">Install now</string>
+    <string name="cancel_button">Cancel download</string>
     <string name="fps_autostart">Auto-start</string>
     <!-- Logs -->
     <string name="log_no_data">No abnormal data</string>

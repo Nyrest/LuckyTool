@@ -18,6 +18,7 @@ import com.luckyzyx.luckytool.R
 import com.luckyzyx.luckytool.databinding.FragmentOtherBinding
 import com.luckyzyx.luckytool.utils.tools.*
 
+
 @Obfuscate
 class OtherFragment : Fragment() {
 

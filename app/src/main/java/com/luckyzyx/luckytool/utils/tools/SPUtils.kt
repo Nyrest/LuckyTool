@@ -5,15 +5,15 @@ package com.luckyzyx.luckytool.utils.tools
 import android.content.Context
 
 fun Context.putString(PrefsName: String?, key: String?, value: String?): Boolean {
-    val settings = getSharedPreferences(PrefsName, Context.MODE_PRIVATE)
-    val editor = settings.edit()
+    val prefs = getSharedPreferences(PrefsName, Context.MODE_PRIVATE)
+    val editor = prefs.edit()
     editor.putString(key, value)
     return editor.commit()
 }
 
 fun Context.putStringSet(PrefsName: String?, key: String?, value: Set<String?>?): Boolean {
-    val settings = getSharedPreferences(PrefsName, Context.MODE_PRIVATE)
-    val editor = settings.edit()
+    val prefs = getSharedPreferences(PrefsName, Context.MODE_PRIVATE)
+    val editor = prefs.edit()
     editor.putStringSet(key, value)
     return editor.commit()
 }
@@ -27,18 +27,18 @@ fun Context.getStringSet(PrefsName: String?, key: String?): Set<String>? {
 }
 
 fun Context.getString(PrefsName: String?, key: String?, defaultValue: String?): String? {
-    val settings = getSharedPreferences(PrefsName, Context.MODE_PRIVATE)
-    return settings.getString(key, defaultValue)
+    val prefs = getSharedPreferences(PrefsName, Context.MODE_PRIVATE)
+    return prefs.getString(key, defaultValue)
 }
 
 fun Context.getStringSet(PrefsName: String?, key: String?, defaultValue: Set<String?>?): Set<String>? {
-    val settings = getSharedPreferences(PrefsName, Context.MODE_PRIVATE)
-    return settings.getStringSet(key, defaultValue)
+    val prefs = getSharedPreferences(PrefsName, Context.MODE_PRIVATE)
+    return prefs.getStringSet(key, defaultValue)
 }
 
 fun Context.putInt(PrefsName: String?, key: String?, value: Int): Boolean {
-    val settings = getSharedPreferences(PrefsName, Context.MODE_PRIVATE)
-    val editor = settings.edit()
+    val prefs = getSharedPreferences(PrefsName, Context.MODE_PRIVATE)
+    val editor = prefs.edit()
     editor.putInt(key, value)
     return editor.commit()
 }
@@ -48,13 +48,13 @@ fun Context.getInt(PrefsName: String?, key: String?): Int {
 }
 
 fun Context.getInt(PrefsName: String?, key: String?, defaultValue: Int): Int {
-    val settings = getSharedPreferences(PrefsName, Context.MODE_PRIVATE)
-    return settings.getInt(key, defaultValue)
+    val prefs = getSharedPreferences(PrefsName, Context.MODE_PRIVATE)
+    return prefs.getInt(key, defaultValue)
 }
 
 fun Context.putLong(PrefsName: String?, key: String?, value: Long): Boolean {
-    val settings = getSharedPreferences(PrefsName, Context.MODE_PRIVATE)
-    val editor = settings.edit()
+    val prefs = getSharedPreferences(PrefsName, Context.MODE_PRIVATE)
+    val editor = prefs.edit()
     editor.putLong(key, value)
     return editor.commit()
 }
@@ -64,13 +64,13 @@ fun Context.getLong(PrefsName: String?, key: String?): Long {
 }
 
 fun Context.getLong(PrefsName: String?, key: String?, defaultValue: Long): Long {
-    val settings = getSharedPreferences(PrefsName, Context.MODE_PRIVATE)
-    return settings.getLong(key, defaultValue)
+    val prefs = getSharedPreferences(PrefsName, Context.MODE_PRIVATE)
+    return prefs.getLong(key, defaultValue)
 }
 
 fun Context.putFloat(PrefsName: String?, key: String?, value: Float): Boolean {
-    val settings = getSharedPreferences(PrefsName, Context.MODE_PRIVATE)
-    val editor = settings.edit()
+    val prefs = getSharedPreferences(PrefsName, Context.MODE_PRIVATE)
+    val editor = prefs.edit()
     editor.putFloat(key, value)
     return editor.commit()
 }
@@ -80,13 +80,13 @@ fun Context.getFloat(PrefsName: String?, key: String?): Float {
 }
 
 fun Context.getFloat(PrefsName: String?, key: String?, defaultValue: Float): Float {
-    val settings = getSharedPreferences(PrefsName, Context.MODE_PRIVATE)
-    return settings.getFloat(key, defaultValue)
+    val prefs = getSharedPreferences(PrefsName, Context.MODE_PRIVATE)
+    return prefs.getFloat(key, defaultValue)
 }
 
 fun Context.putBoolean(PrefsName: String?, key: String?, value: Boolean): Boolean {
-    val settings = getSharedPreferences(PrefsName, Context.MODE_PRIVATE)
-    val editor = settings.edit()
+    val prefs = getSharedPreferences(PrefsName, Context.MODE_PRIVATE)
+    val editor = prefs.edit()
     editor.putBoolean(key, value)
     return editor.commit()
 }
@@ -96,6 +96,18 @@ fun Context.getBoolean(PrefsName: String?, key: String?): Boolean {
 }
 
 fun Context.getBoolean(PrefsName: String?, key: String?, defaultValue: Boolean): Boolean {
-    val settings = getSharedPreferences(PrefsName, Context.MODE_PRIVATE)
-    return settings.getBoolean(key, defaultValue)
+    val prefs = getSharedPreferences(PrefsName, Context.MODE_PRIVATE)
+    return prefs.getBoolean(key, defaultValue)
+}
+
+fun Context.clear(PrefsName: String?) {
+    val prefs = getSharedPreferences(PrefsName, Context.MODE_PRIVATE)
+    prefs.edit().clear().commit()
+}
+
+fun Context.clearAll(vararg Prefs: String?) {
+    Prefs.forEach {
+        val prefs = getSharedPreferences(it, Context.MODE_PRIVATE)
+        prefs.edit().clear().commit()
+    }
 }

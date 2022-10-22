@@ -5,6 +5,7 @@ import com.luckyzyx.luckytool.hook.apps.systemui.LockScreenCentered
 import com.luckyzyx.luckytool.hook.apps.systemui.RemoveLockScreenBottomButton
 import com.luckyzyx.luckytool.hook.apps.systemui.RemoveLockScreenBottomSOSButton
 import com.luckyzyx.luckytool.hook.apps.systemui.RemoveLockScreenRedOne
+import com.luckyzyx.luckytool.utils.tools.A13
 import com.luckyzyx.luckytool.utils.tools.SDK
 import com.luckyzyx.luckytool.utils.tools.XposedPrefs
 
@@ -29,7 +30,7 @@ class LockScreen : YukiBaseHooker() {
 
             //移除SOS紧急联络按钮
             if (prefs(XposedPrefs).getBoolean("remove_lock_screen_bottom_sos_button",false)){
-                if (SDK >= 33) loadHooker(RemoveLockScreenBottomSOSButton())
+                if (SDK >= A13) loadHooker(RemoveLockScreenBottomSOSButton())
             }
         }
     }

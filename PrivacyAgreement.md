@@ -22,11 +22,14 @@ _LuckyTool_ 是一款由 _忆清鸣、luckyzyx_ （以下简称“我们”）�
 
 ## 4\. 权限相关
 
-*   INTERNET -> 用于检测更新功能的正常使用
-*   REQUEST_INSTALL_PACKAGES -> 用于检测更新后的安装操作
-*   READ_EXTERNAL_STORAGE -> 用于读取检测更新文件
-*   WRITE_EXTERNAL_STORAGE -> 用于写入检测更新文件
-*   QUERY_ALL_PACKAGES -> 用于获取其他APP版本信息来进行功能适配
+* INTERNET -> 用于检测更新功能的正常使用
+* REQUEST_INSTALL_PACKAGES -> 用于检测更新后的安装操作
+* READ_EXTERNAL_STORAGE -> 用于读取检测更新文件
+* WRITE_EXTERNAL_STORAGE -> 用于写入检测更新文件
+* QUERY_ALL_PACKAGES -> 用于获取其他APP版本信息来进行功能适配
+* RECEIVE_BOOT_COMPLETED -> 用于监听系统启动广播
+* KILL_BACKGROUND_PROCESSES -> 用于重启作用域
+* FORCE_STOP_PACKAGES -> 用于重启作用域
 
 ## 6\. 您的权利
 

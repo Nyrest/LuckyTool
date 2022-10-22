@@ -11,6 +11,7 @@ import androidx.preference.SwitchPreference
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.highcapable.yukihookapi.hook.xposed.prefs.ui.ModulePreferenceFragment
 import com.luckyzyx.luckytool.R
+import com.luckyzyx.luckytool.utils.tools.A13
 import com.luckyzyx.luckytool.utils.tools.SDK
 import com.luckyzyx.luckytool.utils.tools.XposedPrefs
 
@@ -804,6 +805,23 @@ class Application : ModulePreferenceFragment(){
         preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
             addPreference(
                 PreferenceCategory(requireActivity()).apply {
+                    title = getString(R.string.AppStartupRelated)
+                    key = "AppStartupRelated"
+                    isIconSpaceReserved = false
+                    isVisible = SDK >= A13
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    title = getString(R.string.disable_splash_screen)
+                    key = "disable_splash_screen"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                    isVisible = SDK >= A13
+                }
+            )
+            addPreference(
+                PreferenceCategory(requireActivity()).apply {
                     title = getString(R.string.MultiApp)
                     key = "MultiApp"
                     isIconSpaceReserved = false
@@ -889,16 +907,6 @@ class Application : ModulePreferenceFragment(){
                     title = getString(R.string.ApplyOtherRestrictions)
                     key = "ApplyOtherRestrictions"
                     isIconSpaceReserved = false
-                }
-            )
-            addPreference(
-                SwitchPreference(requireActivity()).apply {
-                    title = getString(R.string.remove_app_splash_screen)
-                    summary = getString(R.string.remove_app_splash_screen_summary)
-                    key = "remove_app_splash_screen"
-                    setDefaultValue(false)
-                    isIconSpaceReserved = false
-                    isVisible = SDK >= 33
                 }
             )
             addPreference(
@@ -1092,6 +1100,14 @@ class OplusGames : ModulePreferenceFragment() {
                     title = getString(R.string.remove_root_check)
                     summary = getString(R.string.remove_root_check_summary)
                     key = "remove_root_check"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    title = getString(R.string.remove_startup_animation)
+                    key = "remove_startup_animation"
                     setDefaultValue(false)
                     isIconSpaceReserved = false
                 }

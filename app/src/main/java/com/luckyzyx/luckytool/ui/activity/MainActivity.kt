@@ -1,6 +1,5 @@
 package com.luckyzyx.luckytool.ui.activity
 
-import android.annotation.SuppressLint
 import android.content.ComponentName
 import android.content.Context
 import android.content.DialogInterface
@@ -56,7 +55,7 @@ open class MainActivity : AppCompatActivity() {
 
         initNavigationFragment()
         initDynamicShortcuts()
-        initAgreement(true)
+//        initAgreement(true)
 
         checkPrefsRW()
 
@@ -154,19 +153,19 @@ open class MainActivity : AppCompatActivity() {
     }
 
     @Suppress("DEPRECATION")
-    @SuppressLint("WorldReadableFiles")
     private fun checkPrefsRW() {
-        safeOf(default = {
-            MaterialAlertDialogBuilder(this)
-                .setCancelable(false)
-                .setMessage(getString(R.string.unsupported_xposed))
-                .setPositiveButton(android.R.string.ok) { _: DialogInterface?, _: Int -> exitProcess(0) } //.setNegativeButton(R.string.ignore, null)
-                .show()
-        }) {
+        try {
             getSharedPreferences(SettingsPrefs, MODE_WORLD_READABLE)
             getSharedPreferences(XposedPrefs, MODE_WORLD_READABLE)
             getSharedPreferences(MagiskPrefs, MODE_WORLD_READABLE)
             getSharedPreferences(OtherPrefs, MODE_WORLD_READABLE)
+        } catch (ignored: SecurityException) {
+            MaterialAlertDialogBuilder(this)
+                .setCancelable(false)
+                .setMessage(getString(R.string.unsupported_xposed))
+                .setPositiveButton(android.R.string.ok) { _: DialogInterface?, _: Int -> exitProcess(0) }
+                //.setNegativeButton(R.string.ignore, null)
+                .show()
         }
     }
 
@@ -198,6 +197,7 @@ open class MainActivity : AppCompatActivity() {
                 commands.add("kill -9 `pgrep systemui`")
                 continue
             }
+            commands.add("killall $scope")
             commands.add("am force-stop $scope")
             context.getAppVersion(scope)
         }

@@ -170,7 +170,7 @@ class XposedFragment : ModulePreferenceFragment() {
                         isIconSpaceReserved = show
                     }
                     title = requireActivity().getAppLabel(key)
-                    summary = getString(R.string.remove_root_check)
+                    summary = getString(R.string.remove_root_check)+","+getString(R.string.remove_startup_animation)
                     isVisible = requireActivity().checkPackName(key)
                     setOnPreferenceClickListener {
                         findNavController().navigate(R.id.action_nav_xposed_to_oplusGames,Bundle().apply {

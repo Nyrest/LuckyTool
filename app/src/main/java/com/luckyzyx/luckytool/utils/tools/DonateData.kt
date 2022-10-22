@@ -15,6 +15,9 @@ object DonateData {
             add("挺好用的 (15R)")
             add("松花蛋 (10R)")
             add("佘樂 (20R)")
+            add("风冷涂的蜡 (10R)")
+            add("才 (10R)")
+            add("灯 (5R)")
         }
     }
 }

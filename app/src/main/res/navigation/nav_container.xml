@@ -207,7 +207,7 @@
             android:id="@+id/multiFragment"
             android:name="com.luckyzyx.luckytool.ui.fragment.MultiFragment"
             android:label="{title_label}"
-            tools:layout="@layout/fragment_multi" >
+            tools:layout="@layout/fragment_multi">
         <action
                 android:id="@+id/action_multiFragment_self"
                 app:destination="@id/multiFragment" />

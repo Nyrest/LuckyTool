@@ -4,7 +4,26 @@
 If you have problems, please bring the scope APK and LOG to the TG group for feedback  
 
 ### 3.0
-
+[更新] 捐赠名单列表  
+[添加] 移除游戏助手启动动画  
+[优化] 强制刷新率和检查更新对话框  
+[修复] 读取数据异常崩溃  
+[添加] 清除全部功能数据功能  
+[更改] 工程模式跳转页面  
+[修复] C13充电纹波  
+[适配] C13移除高性能通知  
+[修复] 高性能通知和耗电异常通知冲突  
+[适配] C13桌面时钟红一  
+[Update] Donation list  
+[Add] Remove game assistant startup animation  
+[Fix] Force refresh rate and check update dialog  
+[Fix] Read data abnormal crash  
+[Add] Clear all function data function  
+[Change] Project mode jump page  
+[Fix] C13 charging ripple  
+[Fix] C13 Remove High Performance Notification  
+[Fix] High performance notifications and power consumption exception notifications conflict  
+[Fix] C13 Desktop Clock Red One  
 
 ### v2.9
 [更新] 捐赠名单列表  

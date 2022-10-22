@@ -10,8 +10,8 @@ class UnlockStartupLimit : YukiBaseHooker() {
         //Source StratupManager
         //Search -> update max allow count -5 -> method,-1 -> field
         VariousClass(
-            "com.oplus.safecenter.startupapp.a", //6f0072e
-        ).toClass().hook {
+            "com.oplus.safecenter.startupapp.a"
+        ).hook {
             injectMember {
                 method {
                     name = "b"
@@ -28,13 +28,14 @@ class UnlockStartupLimit : YukiBaseHooker() {
         }
     }
 }
+
 class UnlockStartupLimitV11 : YukiBaseHooker() {
     override fun onHook() {
         //Source StratupManager
         //Search -> auto_start_max_allow_count -2 -> method,+2 -> field
         VariousClass(
-            "com.coloros.safecenter.startupapp.b", //6f0072e
-        ).toClass().hook {
+            "com.coloros.safecenter.startupapp.b"
+        ).hook {
             injectMember {
                 method {
                     name = "c"

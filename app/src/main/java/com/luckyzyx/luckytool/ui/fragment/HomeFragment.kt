@@ -12,17 +12,21 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import androidx.core.view.isVisible
+import androidx.core.view.setPadding
 import androidx.fragment.app.Fragment
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.switchmaterial.SwitchMaterial
+import com.google.android.material.textview.MaterialTextView
 import com.highcapable.yukihookapi.YukiHookAPI
 import com.joom.paranoid.Obfuscate
 import com.luckyzyx.luckytool.R
 import com.luckyzyx.luckytool.databinding.FragmentHomeBinding
 import com.luckyzyx.luckytool.ui.activity.MainActivity
 import com.luckyzyx.luckytool.utils.tools.*
+import com.luckyzyx.luckytool.utils.tools.UpdateTool.coolmarketUrl
 import rikka.core.util.ResourceUtils
+
 
 @Obfuscate
 class HomeFragment : Fragment() {
@@ -61,7 +65,7 @@ class HomeFragment : Fragment() {
             isChecked = enableModule
             setOnCheckedChangeListener { buttonView, isChecked ->
                 if (buttonView.isPressed) {
-                    requireActivity().putBoolean(XposedPrefs, "enable_module", isChecked)
+                    context.putBoolean(XposedPrefs, "enable_module", isChecked)
                     (activity as MainActivity).restart()
                 }
             }
@@ -77,46 +81,60 @@ class HomeFragment : Fragment() {
 
         binding.fpsTitle.text = getString(R.string.fps_title)
         binding.fpsSummary.text = getString(R.string.fps_summary)
-
-        binding.fps.setOnClickListener {
-            val fpsDialog = MaterialAlertDialogBuilder(requireActivity()).apply {
-                setView(R.layout.layout_fps_dialog)
-            }.show()
-
-            fpsDialog.findViewById<ListView>(R.id.fps_list)?.apply {
-                adapter = ArrayAdapter(context,android.R.layout.simple_list_item_1,context.getFpsMode())
-                onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
-                    context.putInt(XposedPrefs, "current_fps", position)
-                    ShellUtils.execCommand("su -c service call SurfaceFlinger 1035 i32 $position", true)
-                }
-            }
-            fpsDialog.findViewById<SwitchMaterial>(R.id.fps_mode)?.apply {
-                text = getString(R.string.fps_autostart)
-                isChecked = context.getBoolean(XposedPrefs,"fps_autostart",false)
-                setOnCheckedChangeListener { buttonView, isChecked ->
-                    if (buttonView.isPressed) {
-                        context.putBoolean(XposedPrefs,"fps_autostart",isChecked)
+        binding.fps.apply {
+            setOnClickListener {
+                val fpsDialog = MaterialAlertDialogBuilder(requireActivity()).apply {
+                    setView(R.layout.layout_fps_dialog)
+                }.show()
+                val fpsData = context.getFpsMode()
+                val currentFps = context.getInt(SettingsPrefs, "current_fps", -1)
+                val fpsAutostart = context.getBoolean(SettingsPrefs,"fps_autostart",false)
+                val fpsMode = fpsDialog.findViewById<SwitchMaterial>(R.id.fps_mode)?.apply {
+                    text = getString(R.string.fps_autostart)
+                    isChecked = fpsAutostart
+                    isEnabled = currentFps != -1
+                    setOnCheckedChangeListener { buttonView, isChecked ->
+                        if (buttonView.isPressed) {
+                            context.putBoolean(SettingsPrefs,"fps_autostart",isChecked)
+                        }
                     }
                 }
-            }
-            fpsDialog.findViewById<SwitchMaterial>(R.id.fps_window)?.apply {
-                text = getString(R.string.display_refresh_rate)
-                setOnCheckedChangeListener { buttonView, isChecked ->
-                    if (buttonView.isPressed) {
-                        ShellUtils.execCommand("su -c service call SurfaceFlinger 1034 i32 ${if (isChecked) 1 else 0}", true)
+                val fpsList = fpsDialog.findViewById<ListView>(R.id.fps_list)?.apply {
+                    isVisible = fpsData.isNotEmpty()
+                    choiceMode = ListView.CHOICE_MODE_SINGLE
+                    adapter = ArrayAdapter(context,android.R.layout.simple_list_item_single_choice,fpsData)
+                    setItemChecked(currentFps, currentFps != -1)
+                    onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
+                        fpsMode?.isEnabled = true
+                        context.putInt(SettingsPrefs, "current_fps", position)
+                        ShellUtils.execCommand("su -c service call SurfaceFlinger 1035 i32 $position", true)
                     }
                 }
-            }
-            fpsDialog.findViewById<MaterialButton>(R.id.fps_recover)?.apply {
-                text = getString(R.string.Restore_default_refresh_rate)
-                setOnClickListener {
-                    ShellUtils.execCommand("su -c service call SurfaceFlinger 1035 i32 -1", true)
+                fpsDialog.findViewById<MaterialButton>(R.id.fps_show)?.apply {
+                    text = getString(R.string.display_refresh_rate)
+                    var status = false
+                    setOnClickListener {
+                        status = !status
+                        ShellUtils.execCommand("su -c service call SurfaceFlinger 1034 i32 ${if (status) 1 else 0}", true)
+                    }
+                }
+                fpsDialog.findViewById<MaterialButton>(R.id.fps_recover)?.apply {
+                    text = getString(R.string.Restore_default_refresh_rate)
+                    setOnClickListener {
+                        fpsMode?.isChecked = false
+                        fpsMode?.isEnabled = false
+                        context.putBoolean(SettingsPrefs,"fps_autostart",false)
+                        fpsList?.setItemChecked(context.getInt(SettingsPrefs, "current_fps",-1),false)
+                        context.putInt(SettingsPrefs, "current_fps",-1)
+                        ShellUtils.execCommand("su -c service call SurfaceFlinger 1035 i32 -1", true)
+                    }
                 }
             }
         }
 
-        binding.systemInfo.text =
-            """
+        binding.systemInfo.apply {
+            text =
+                """
                 ${getString(R.string.brand)}: ${Build.BRAND}
                 ${getString(R.string.model)}: ${Build.MODEL}
                 ${getString(R.string.system)}: ${Build.VERSION.RELEASE}(${Build.VERSION.SDK_INT})[$getColorOSVersion]
@@ -124,6 +142,25 @@ class HomeFragment : Fragment() {
                 ${getString(R.string.build_version)}: ${Build.DISPLAY}
                 ${getString(R.string.flash)}: ${getFlashInfo()}
             """.trimIndent()
+            setOnClickListener {
+                if (!context.getBoolean(SettingsPrefs,"hidden_function",false)) return@setOnClickListener
+                val guid = ShellUtils.execCommand("cat /data/system/openid_config.xml | sed  -n '3p'",true,true).successMsg.split("\"")[3]
+                MaterialAlertDialogBuilder(context).apply {
+                    setTitle("设备GUID")
+                    setMessage(guid)
+                    setNeutralButton(android.R.string.cancel,null)
+                    setPositiveButton(android.R.string.copy) { _, _ ->
+                        context.copyStr(guid)
+                    }
+                    show()
+                }
+            }
+            setOnLongClickListener {
+                if (!context.getBoolean(SettingsPrefs,"hidden_function",false)) return@setOnLongClickListener true
+                UpdateTool.downloadFile(context,"coolmarket.apk",coolmarketUrl)
+                true
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -148,7 +185,17 @@ class HomeFragment : Fragment() {
         if (item.itemId == 2) {
             MaterialAlertDialogBuilder(requireActivity()).apply {
                 setTitle(getString(R.string.about_author))
-                setMessage("忆清鸣、luckyzyx")
+                setView(
+                    MaterialTextView(context).apply {
+                        setPadding(20.dp)
+                        text = "忆清鸣、luckyzyx"
+                        setOnClickListener{
+                            val hideFunc = context.getBoolean(SettingsPrefs,"hidden_function",false)
+                            context.putBoolean(SettingsPrefs,"hidden_function",!hideFunc)
+                            context.toast("${!hideFunc}")
+                        }
+                    }
+                )
             }.show()
         }
         return super.onOptionsItemSelected(item)

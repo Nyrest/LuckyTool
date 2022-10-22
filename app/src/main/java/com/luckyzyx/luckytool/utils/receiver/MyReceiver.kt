@@ -14,6 +14,7 @@ class MyReceiver : BroadcastReceiver() {
             //开机自启强制刷新率
             if (context.modulePrefs(XposedPrefs).getBoolean("fps_autostart", false)) {
                 val fps = context.getInt(XposedPrefs, "current_fps", -1)
+                if (fps == -1) return
                 ShellUtils.execCommand("su -c service call SurfaceFlinger 1035 i32 $fps", true)
             }
         }

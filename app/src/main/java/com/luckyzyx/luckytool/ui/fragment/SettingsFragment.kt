@@ -18,6 +18,7 @@ import com.joom.paranoid.Obfuscate
 import com.luckyzyx.luckytool.R
 import com.luckyzyx.luckytool.ui.activity.MainActivity
 import com.luckyzyx.luckytool.utils.tools.*
+import kotlin.system.exitProcess
 
 @Obfuscate
 class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeListener {
@@ -72,6 +73,25 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
                     title = getString(R.string.hide_desktop_appicon)
                     summary = getString(R.string.hide_desktop_appicon_summary)
                     isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                Preference(requireActivity()).apply {
+                    title = getString(R.string.clear_all_data)
+                    summary = getString(R.string.clear_all_data_summary)
+                    isIconSpaceReserved = false
+                    setOnPreferenceClickListener {
+                        MaterialAlertDialogBuilder(context).apply {
+                            setMessage(getString(R.string.clear_all_data_message))
+                            setPositiveButton(android.R.string.ok) { _, _ ->
+                                context.clearAll(SettingsPrefs, XposedPrefs, OtherPrefs, MagiskPrefs)
+                                exitProcess(0)
+                            }
+                            setNeutralButton(android.R.string.cancel,null)
+                            show()
+                        }
+                        true
+                    }
                 }
             )
             addPreference(
@@ -312,6 +332,17 @@ class SourceFragment : ModulePreferenceFragment() {
                     intent = Intent(
                         Intent.ACTION_VIEW,
                         Uri.parse("https://github.com/VarunS2002/Xposed-Disable-FLAG_SECURE")
+                    )
+                }
+            )
+            addPreference(
+                Preference(requireActivity()).apply {
+                    title = "RestoreSplashScreen"
+                    summary = "GSWXXN , AGPL-3.0 license"
+                    isIconSpaceReserved = false
+                    intent = Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("https://github.com/GSWXXN/RestoreSplashScreen")
                     )
                 }
             )

@@ -4,6 +4,7 @@ import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 
 class FolderLayoutRowColume : YukiBaseHooker() {
     override fun onHook() {
+        //Source FolderGridOrganizer
         findClass("com.android.launcher3.folder.FolderGridOrganizer").hook {
             injectMember {
                 constructor {

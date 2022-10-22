@@ -18,6 +18,9 @@
     <string name="follow_system">Выбор системы</string>
     <string name="privacy_agreement">Соглашение о конфиденциальности</string>
     <string name="read_agreement">Вам нужно прочитать и согласиться со следующим содержимым, прежде чем использовать этот модуль</string>
+    <string name="clear_all_data">Удалить все данные</string>
+    <string name="clear_all_data_summary">Очистить все функциональные данные в модуле</string>
+    <string name="clear_all_data_message">Убедитесь, что вы хотите очистить все функциональные данные модуля, и вам нужно сбросить функцию после очистки?</string>
     <!-- Other Settings -->
     <string name="other_settings">Другие настройки</string>
     <string name="hide_xp_page_icon">Скрыть иконки пунктов</string>
@@ -166,8 +169,8 @@
     <string name="unlock_startup_limit">Разблокировать количество автозапусков</string>
     <string name="unlock_startup_limit_summary">Разблокировать ограничение на количество автозапусков приложения</string>
     <string name="unlock_task_locks">Разблокировать количество заблокированных фоновых задач</string>
-    <string name="remove_app_splash_screen">Удалить заставку приложения</string>
-    <string name="remove_app_splash_screen_summary">Вступит в силу после перезагрузки системы</string>
+    <string name="AppStartupRelated">Запуск приложения</string>
+    <string name="disable_splash_screen">Отключить заставку</string>
     <!--MultiApp-->
     <string name="MultiApp">Клонирование приложений</string>
     <string name="multi_app_enable">Включить/отключить клонирование</string>
@@ -221,6 +224,7 @@
     <!--OplusGames-->
     <string name="remove_root_check">Удалить определение игрового фильтра</string>
     <string name="remove_root_check_summary">Удалить обнаружение рута из игровых фильтров</string>
+    <string name="remove_startup_animation">Удалить стартовую анимацию</string>
     <!--CloudService-->
     <string name="remove_network_limit">Удалить ограничения сети передачи данных</string>
     <string name="remove_network_limit_summary">Удалить ограничение, согласно которому резервное копирование/восстановление не может использовать мобильные данные</string>
@@ -271,6 +275,8 @@
     <string name="downloaded">Загружено</string>
     <string name="used_time">Использованное время</string>
     <string name="remain_time">Оставшееся время</string>
+    <string name="install_button">Установите сейчас</string>
+    <string name="cancel_button">Отменить загрузку</string>
     <string name="fps_autostart">Автозапуск</string>
     <!-- Logs -->
     <string name="log_no_data">Нет аномальных данных</string>

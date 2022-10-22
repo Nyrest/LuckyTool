@@ -20,6 +20,10 @@ import java.util.regex.Pattern
 
 
 val SDK get() = Build.VERSION.SDK_INT
+val A11 get() = Build.VERSION_CODES.R
+val A12 get() = Build.VERSION_CODES.S
+val A121 get() = Build.VERSION_CODES.S_V2
+val A13 get() = Build.VERSION_CODES.TIRAMISU
 
 /**
  * 获取ColorOS版本
@@ -138,7 +142,7 @@ fun Context.getFpsMode(): Array<String> {
         "    echo -e '@'\n" +
         "  fi\n" +
         "done"
-    val result = ShellUtils.execCommand(command, true, true).successMsg ?: return arrayOf("获取错误,请勿点击")
+    val result = ShellUtils.execCommand(command, true, true).successMsg ?: return arrayOf("Error, don't click")
     return result.substring(0,result.length - 1).split("@").toMutableList().toTypedArray()
 }
 
@@ -147,9 +151,9 @@ fun Context.getFpsMode(): Array<String> {
  */
 fun jumpEngineermode(context: Context) {
     if (context.checkPackName("com.oppo.engineermode")) {
-        ShellUtils.execCommand("am start -n com.oppo.engineermode/.aftersale.AfterSalePage", true)
+        ShellUtils.execCommand("am start -n com.oppo.engineermode/.EngineerModeMain", true)
     }else if (context.checkPackName("com.oplus.engineermode")) {
-        ShellUtils.execCommand("am start -n com.oplus.engineermode/.aftersale.AfterSalePage", true)
+        ShellUtils.execCommand("am start -n com.oplus.engineermode/.EngineerModeMain", true)
     }
 }
 /**

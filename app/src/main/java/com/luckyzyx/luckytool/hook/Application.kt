@@ -1,6 +1,5 @@
 package com.luckyzyx.luckytool.hook
 
-import android.os.Build.VERSION.SDK_INT
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 import com.luckyzyx.luckytool.hook.apps.battery.UnlockStartupLimitV13
 import com.luckyzyx.luckytool.hook.apps.launcher.UnlockTaskLocks
@@ -11,6 +10,8 @@ import com.luckyzyx.luckytool.hook.apps.packageinstaller.ReplaseAospInstaller
 import com.luckyzyx.luckytool.hook.apps.packageinstaller.SkipApkScan
 import com.luckyzyx.luckytool.hook.apps.safecenter.UnlockStartupLimit
 import com.luckyzyx.luckytool.hook.apps.safecenter.UnlockStartupLimitV11
+import com.luckyzyx.luckytool.utils.tools.A13
+import com.luckyzyx.luckytool.utils.tools.SDK
 import com.luckyzyx.luckytool.utils.tools.XposedPrefs
 
 class Application : YukiBaseHooker() {
@@ -18,7 +19,7 @@ class Application : YukiBaseHooker() {
 
         //移除自启数量限制
         if (prefs(XposedPrefs).getBoolean("unlock_startup_limit",false)) {
-            if (SDK_INT >= 33){
+            if (SDK >= A13){
                 //电池
                 loadApp("com.oplus.battery",UnlockStartupLimitV13())
             }else{

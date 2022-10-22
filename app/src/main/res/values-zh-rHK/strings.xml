@@ -18,6 +18,9 @@
     <string name="follow_system">跟随系统</string>
     <string name="privacy_agreement">隐私协议</string>
     <string name="read_agreement">您需要阅读并同意以下内容才可以使用此模块</string>
+    <string name="clear_all_data">清除所有數據</string>
+    <string name="clear_all_data_summary">清除模块中的所有功能数据</string>
+    <string name="clear_all_data_message">确定要清除模块所有功能数据，清除后需要重新设置功能？</string>
     <!-- Other Settings -->
     <string name="other_settings">其他设置</string>
     <string name="hide_xp_page_icon">隐藏XP页面图标</string>
@@ -163,8 +166,8 @@
     <string name="unlock_startup_limit">解锁自启数量限制</string>
     <string name="unlock_startup_limit_summary">解锁应用自启动数量限制</string>
     <string name="unlock_task_locks">解锁后台任务锁定数量</string>
-    <string name="remove_app_splash_screen">移除应用启动遮罩</string>
-    <string name="remove_app_splash_screen_summary">系统重启后生效</string>
+    <string name="AppStartupRelated">应用启动相关</string>
+    <string name="disable_splash_screen">关闭应用遮罩</string>
     <!--MultiApp-->
     <string name="MultiApp">应用分身相关</string>
     <string name="multi_app_enable">应用分身总开关</string>
@@ -216,6 +219,7 @@
     <!--OplusGames-->
     <string name="remove_root_check">移除游戏滤镜限制</string>
     <string name="remove_root_check_summary">移除游戏滤镜的Root检测限制</string>
+    <string name="remove_startup_animation">移除启动动画</string>
     <!--CloudService-->
     <string name="remove_network_limit">移除数据网络限制</string>
     <string name="remove_network_limit_summary">移除备份/恢复无法使用移动数据的限制</string>
@@ -266,6 +270,8 @@
     <string name="downloaded">已下載</string>
     <string name="used_time">已用时间</string>
     <string name="remain_time">剩余时间</string>
+    <string name="install_button">立即安裝</string>
+    <string name="cancel_button">取消下載</string>
     <string name="fps_autostart">自動啟動</string>
     <!-- Logs -->
     <string name="log_no_data">无异常数据</string>

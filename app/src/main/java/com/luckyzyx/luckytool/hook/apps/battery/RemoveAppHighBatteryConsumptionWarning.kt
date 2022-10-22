@@ -3,6 +3,8 @@ package com.luckyzyx.luckytool.hook.apps.battery
 import android.app.NotificationManager
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 import com.highcapable.yukihookapi.hook.type.android.HandlerClass
+import com.highcapable.yukihookapi.hook.type.java.BooleanType
+import com.highcapable.yukihookapi.hook.type.java.StringType
 
 class RemoveAppHighBatteryConsumptionWarning : YukiBaseHooker() {
     override fun onHook() {
@@ -10,7 +12,9 @@ class RemoveAppHighBatteryConsumptionWarning : YukiBaseHooker() {
         // Search power_consumption_optimization_title / pco_notification_text / String \n String
         searchClass {
             from("c4","com.oplus.a.g")
-            constructor().count(1)
+            constructor {
+                paramCount = 1
+            }.count(1)
             field {
                 type = NotificationManager::class.java
             }.count(1)
@@ -18,36 +22,31 @@ class RemoveAppHighBatteryConsumptionWarning : YukiBaseHooker() {
                 type = HandlerClass
             }.count(1)
             method {
-                modifiers { isPublic }
-                param(String,Boolean)
+                param(StringType,BooleanType)
                 paramCount = 2
             }.count(4)
         }.get()?.hook {
             injectMember {
                 method {
-                    paramCount = 2
-                    param(String,Boolean).index(0)
+                    param(StringType, BooleanType).index(0)
                 }
                 replaceTo(null)
             }
             injectMember {
                 method {
-                    paramCount = 2
-                    param(String,Boolean).index(1)
+                    param(StringType, BooleanType).index(1)
                 }
                 replaceTo(null)
             }
             injectMember {
                 method {
-                    paramCount = 2
-                    param(String,Boolean).index(2)
+                    param(StringType, BooleanType).index(2)
                 }
                 replaceTo(null)
             }
             injectMember {
                 method {
-                    paramCount = 2
-                    param(String,Boolean).index(3)
+                    param(StringType, BooleanType).index(3)
                 }
                 replaceTo(null)
             }

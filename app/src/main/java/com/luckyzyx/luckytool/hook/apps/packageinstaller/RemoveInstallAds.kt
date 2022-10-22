@@ -1,10 +1,9 @@
 package com.luckyzyx.luckytool.hook.apps.packageinstaller
 
-import android.view.View
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
+import androidx.core.view.isVisible
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
-import com.highcapable.yukihookapi.hook.log.loggerD
 import com.highcapable.yukihookapi.hook.type.android.MessageClass
 
 class RemoveInstallAds : YukiBaseHooker() {
@@ -23,11 +22,7 @@ class RemoveInstallAds : YukiBaseHooker() {
                     suggestLayout[2] = field { name = "mSuggestLayoutC" }.get(instance).cast<LinearLayout>()
                     suggestLayoutARelativeLayout[0] = field { name = "mSuggestLayoutATitle" }.get(instance).cast<RelativeLayout>()
                 }
-            }.onNoSuchMemberFailure {
-                loggerD(msg = "NoSuchMember->InstallAppProgress->initView")
             }
-        }.onHookClassNotFoundFailure {
-            loggerD(msg = "ClassNotFound->InstallAppProgress")
         }
         //Source InstallAppProgress
         findClass("com.android.packageinstaller.oplus.InstallAppProgress$1").hook {
@@ -37,16 +32,12 @@ class RemoveInstallAds : YukiBaseHooker() {
                     param(MessageClass)
                 }
                 afterHook {
-                    suggestLayout[0]?.visibility = View.GONE
-                    suggestLayout[1]?.visibility = View.GONE
-                    suggestLayout[2]?.visibility = View.GONE
-                    suggestLayoutARelativeLayout[0]?.visibility = View.GONE
+                    suggestLayout[0]?.isVisible = false
+                    suggestLayout[1]?.isVisible = false
+                    suggestLayout[2]?.isVisible = false
+                    suggestLayoutARelativeLayout[0]?.isVisible = false
                 }
-            }.onNoSuchMemberFailure {
-                loggerD(msg = "NoSuchMember->InstallAppProgress$1->handleMessage")
             }
-        }.onHookClassNotFoundFailure {
-            loggerD(msg = "ClassNotFound->InstallAppProgress\$1")
         }
     }
 }

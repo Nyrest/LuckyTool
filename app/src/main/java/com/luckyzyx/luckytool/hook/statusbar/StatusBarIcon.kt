@@ -1,8 +1,9 @@
 package com.luckyzyx.luckytool.hook.statusbar
 
-import android.os.Build.VERSION.SDK_INT
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 import com.luckyzyx.luckytool.hook.apps.systemui.*
+import com.luckyzyx.luckytool.utils.tools.A13
+import com.luckyzyx.luckytool.utils.tools.SDK
 import com.luckyzyx.luckytool.utils.tools.XposedPrefs
 
 class StatusBarIcon : YukiBaseHooker() {
@@ -23,9 +24,7 @@ class StatusBarIcon : YukiBaseHooker() {
             }
             //移除下拉状态栏多用户图标
             if (prefs(XposedPrefs).getBoolean("remove_statusbar_user_switcher", false)) {
-                if (SDK_INT < 33){
-                    loadHooker(RemoveStatusBarUserSwitcher())
-                }
+                if (SDK < A13) loadHooker(RemoveStatusBarUserSwitcher())
             }
 
             //移除WiFi数据箭头

@@ -26,7 +26,6 @@ android {
         versionCode currentVersionCode
         versionName "3.0"
     }
-
     buildTypes {
         release {
             debuggable false
