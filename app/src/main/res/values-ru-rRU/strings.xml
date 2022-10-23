@@ -17,6 +17,8 @@
     <string name="dark_theme">Темная тема</string>
     <string name="follow_system">Выбор системы</string>
     <string name="privacy_agreement">Соглашение о конфиденциальности</string>
+    <string name="auto_check_update">Automatically check for updates</string>
+    <string name="auto_check_update_summary">Automatically check for updates when opening the module home page</string>
     <string name="read_agreement">Вам нужно прочитать и согласиться со следующим содержимым, прежде чем использовать этот модуль</string>
     <string name="clear_all_data">Удалить все данные</string>
     <string name="clear_all_data_summary">Очистить все функциональные данные в модуле</string>

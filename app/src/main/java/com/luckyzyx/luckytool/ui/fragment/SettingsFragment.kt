@@ -5,18 +5,18 @@ import android.content.SharedPreferences
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener
 import android.net.Uri
 import android.os.Bundle
-import android.view.Gravity
 import android.widget.ImageView
-import android.widget.TextView
+import android.widget.ListView
 import androidx.core.view.setPadding
-import androidx.core.widget.NestedScrollView
 import androidx.navigation.fragment.findNavController
 import androidx.preference.*
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.highcapable.yukihookapi.hook.xposed.prefs.ui.ModulePreferenceFragment
 import com.joom.paranoid.Obfuscate
 import com.luckyzyx.luckytool.R
+import com.luckyzyx.luckytool.databinding.LayoutDonateItemBinding
 import com.luckyzyx.luckytool.ui.activity.MainActivity
+import com.luckyzyx.luckytool.ui.adapter.bindAdapter
 import com.luckyzyx.luckytool.utils.tools.*
 import kotlin.system.exitProcess
 
@@ -55,6 +55,15 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
             addPreference(
                 PreferenceCategory(requireActivity()).apply {
                     title = getString(R.string.other_settings)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    key = "auto_check_update"
+                    title = getString(R.string.auto_check_update)
+                    summary = getString(R.string.auto_check_update_summary)
+                    setDefaultValue(true)
                     isIconSpaceReserved = false
                 }
             )
@@ -147,17 +156,17 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
                                         MaterialAlertDialogBuilder(requireActivity(), dialogCentered)
                                             .setTitle(getString(R.string.donation_list))
                                             .setView(
-                                                NestedScrollView(context).apply {
-                                                    addView(
-                                                        TextView(context).apply {
-                                                            setPadding(20.dp, 0, 20.dp, 20.dp)
-                                                            text = ""
-                                                            DonateData.getDonateList().forEach {
-                                                                text = "$text\n$it"
+                                                ListView(context).apply {
+                                                    setPadding(0,10.dp,0,10.dp)
+                                                    bindAdapter {
+                                                        onBindDatas { DonateData.getDonateList() }
+                                                        onBindViews<LayoutDonateItemBinding> { binding, position ->
+                                                            DonateData.getDonateList()[position].also {
+                                                                binding.donateName.text = it.name
+                                                                binding.donateMoney.text = it.money.toString()
                                                             }
-                                                            gravity = Gravity.CENTER_HORIZONTAL
                                                         }
-                                                    )
+                                                    }
                                                 }
                                             )
                                             .show()

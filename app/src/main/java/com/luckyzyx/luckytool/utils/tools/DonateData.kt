@@ -1,23 +1,32 @@
 package com.luckyzyx.luckytool.utils.tools
 
+import java.io.Serializable
+
+data class DonateInfo(
+    val name: String,
+    val money: Double
+) : Serializable
+
 object DonateData {
-    fun getDonateList(): ArrayList<String> {
-        return ArrayList<String>().apply {
-            add("是小奶糖啊 (21R)")
-            add("Kimjaejiang (5R)")
-            add("午时已到 (20R)")
-            add("邹王 (15R)")
-            add("请大佬喝杯奶茶 (20R)")
-            add("加油加油 (10R)")
-            add("天伞桜 (88.8R)")
-            add("北风是不是冷 (15R)")
-            add("ssd.风格 (5R)")
-            add("挺好用的 (15R)")
-            add("松花蛋 (10R)")
-            add("佘樂 (20R)")
-            add("风冷涂的蜡 (10R)")
-            add("才 (10R)")
-            add("灯 (5R)")
+    fun getDonateList(): ArrayList<DonateInfo> {
+        return ArrayList<DonateInfo>().apply {
+            add(DonateInfo("是小奶糖啊", 21.0))
+            add(DonateInfo("Kimjaejiang", 5.0))
+            add(DonateInfo("午时已到", 20.0))
+            add(DonateInfo("邹王", 15.0))
+            add(DonateInfo("す", 20.0))
+            add(DonateInfo("楠", 10.0))
+            add(DonateInfo("天伞桜", 88.8))
+            add(DonateInfo("北风是不是冷", 15.0))
+            add(DonateInfo("ssd.风格", 5.0))
+            add(DonateInfo("智", 15.0))
+            add(DonateInfo("松花蛋", 10.0))
+            add(DonateInfo("佘樂", 20.0))
+            add(DonateInfo("风冷涂的蜡", 10.0))
+            add(DonateInfo("才", 10.0))
+            add(DonateInfo("灯", 5.0))
+            add(DonateInfo("G", 66.0))
+            add(DonateInfo("荣", 8.80))
         }
     }
 }

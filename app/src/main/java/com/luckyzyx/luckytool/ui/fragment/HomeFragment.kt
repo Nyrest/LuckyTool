@@ -72,6 +72,7 @@ class HomeFragment : Fragment() {
         }
 
         UpdateTool.checkUpdate(requireActivity(), getVersionName, getVersionCode) { versionName, versionCode, function ->
+            if (!requireActivity().getBoolean(SettingsPrefs,"auto_check_update",true)) return@checkUpdate
             binding.checkUpdateView.apply {
                 isVisible = true
                 setOnClickListener { function() }

@@ -3,6 +3,10 @@
 出现问题请带上作用域 APK 和 LOG 前往 TG 群组反馈  
 If you have problems, please bring the scope APK and LOG to the TG group for feedback  
 
+### 3.1
+[更新] 捐赠名单  
+[添加] 自动检查更新开关  
+
 ### 3.0
 [更新] 捐赠名单列表  
 [添加] 移除游戏助手启动动画  
