@@ -17,8 +17,8 @@
     <string name="dark_theme">Темная тема</string>
     <string name="follow_system">Выбор системы</string>
     <string name="privacy_agreement">Соглашение о конфиденциальности</string>
-    <string name="auto_check_update">Automatically check for updates</string>
-    <string name="auto_check_update_summary">Automatically check for updates when opening the module home page</string>
+    <string name="auto_check_update">Автоматически проверять наличие обновлений</string>
+    <string name="auto_check_update_summary">Автоматически проверять наличие обновлений при открытии главной страницы модуля</string>
     <string name="read_agreement">Вам нужно прочитать и согласиться со следующим содержимым, прежде чем использовать этот модуль</string>
     <string name="clear_all_data">Удалить все данные</string>
     <string name="clear_all_data_summary">Очистить все функциональные данные в модуле</string>
@@ -207,6 +207,8 @@
     <string name="remove_low_battery_dialog_warning_summary">Удалите предупреждающие диалоговые окна для режима энергосбережения и суперэнергосбережения</string>
     <string name="remove_warning_dialog_that_app_runs_on_desktop">Удалить диалоговое окно с предупреждением о том, что приложение запускается на рабочем столе</string>
     <string name="remove_warning_dialog_that_app_runs_on_desktop_summary">Диалоговое окно с предупреждением обнаружило, что приложение запущено на системном рабочем столе</string>
+    <string name="remove_storage_limit">Remove storage limit</string>
+    <string name="remove_storage_limit_summary">Remove the restriction that this folder cannot be used</string>
     <!--PowerMenu-->
     <string name="PowerMenu">Меню питания</string>
     <string name="PowerMenu_summary">Нажмите и удерживайте кнопку питания, чтобы отобразить меню</string>

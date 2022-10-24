@@ -2,6 +2,7 @@ package com.luckyzyx.luckytool.hook
 
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 import com.luckyzyx.luckytool.hook.apps.exsystemservice.RemoveWarningDialogThatAppRunsOnDesktop
+import com.luckyzyx.luckytool.hook.apps.externalstorage.RemoveStorageLimit
 import com.luckyzyx.luckytool.hook.apps.settings.DisableDPIRebootRecovery
 import com.luckyzyx.luckytool.hook.apps.systemui.*
 import com.luckyzyx.luckytool.utils.tools.*
@@ -75,6 +76,10 @@ class Miscellaneous : YukiBaseHooker() {
             if (prefs(XposedPrefs).getBoolean("remove_warning_dialog_that_app_runs_on_desktop",false)){
                 loadHooker(RemoveWarningDialogThatAppRunsOnDesktop())
             }
+        }
+        loadApp("com.android.externalstorage"){
+            //移除存储限制
+            if (prefs(XposedPrefs).getBoolean("remove_storage_limit",false)) loadHooker(RemoveStorageLimit())
         }
     }
 }

@@ -6,6 +6,7 @@ If you have problems, please bring the scope APK and LOG to the TG group for fee
 ### 3.1
 [更新] 捐赠名单  
 [添加] 自动检查更新开关  
+[添加] 移除存储限制  
 
 ### 3.0
 [更新] 捐赠名单列表  

@@ -6,17 +6,17 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener
 import android.net.Uri
 import android.os.Bundle
 import android.widget.ImageView
-import android.widget.ListView
 import androidx.core.view.setPadding
 import androidx.navigation.fragment.findNavController
 import androidx.preference.*
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.highcapable.yukihookapi.hook.xposed.prefs.ui.ModulePreferenceFragment
 import com.joom.paranoid.Obfuscate
 import com.luckyzyx.luckytool.R
-import com.luckyzyx.luckytool.databinding.LayoutDonateItemBinding
 import com.luckyzyx.luckytool.ui.activity.MainActivity
-import com.luckyzyx.luckytool.ui.adapter.bindAdapter
+import com.luckyzyx.luckytool.ui.adapter.DonateListAdapter
 import com.luckyzyx.luckytool.utils.tools.*
 import kotlin.system.exitProcess
 
@@ -156,17 +156,10 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
                                         MaterialAlertDialogBuilder(requireActivity(), dialogCentered)
                                             .setTitle(getString(R.string.donation_list))
                                             .setView(
-                                                ListView(context).apply {
-                                                    setPadding(0,10.dp,0,10.dp)
-                                                    bindAdapter {
-                                                        onBindDatas { DonateData.getDonateList() }
-                                                        onBindViews<LayoutDonateItemBinding> { binding, position ->
-                                                            DonateData.getDonateList()[position].also {
-                                                                binding.donateName.text = it.name
-                                                                binding.donateMoney.text = it.money.toString()
-                                                            }
-                                                        }
-                                                    }
+                                                RecyclerView(context).apply {
+                                                    setPadding(0, 10.dp, 0, 10.dp)
+                                                    adapter = DonateListAdapter(context, DonateData.getDonateList())
+                                                    layoutManager = LinearLayoutManager(context)
                                                 }
                                             )
                                             .show()

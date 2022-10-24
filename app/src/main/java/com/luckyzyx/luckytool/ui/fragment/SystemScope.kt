@@ -1015,6 +1015,15 @@ class Miscellaneous : ModulePreferenceFragment(){
                     isIconSpaceReserved = false
                 }
             )
+            addPreference(
+                SwitchPreference(context).apply {
+                    title = getString(R.string.remove_storage_limit)
+                    summary = getString(R.string.remove_storage_limit_summary)
+                    key = "remove_storage_limit"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
         }
     }
 }

@@ -1,6 +1,5 @@
 package com.luckyzyx.luckytool.ui.fragment
 
-import android.annotation.SuppressLint
 import android.content.pm.ApplicationInfo
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -51,8 +50,7 @@ class MultiFragment : Fragment() {
         }
     }
 
-    @SuppressLint("SetTextI18n")
-    fun loadData(){
+    private fun loadData(){
         val progressDialog = MaterialAlertDialogBuilder(requireActivity()).apply {
             setCancelable(false)
             setMessage("")
@@ -77,9 +75,8 @@ class MultiFragment : Fragment() {
                 }
             }
             progressDialog.dismiss()
-            appInfoAdapter = AppInfoViewAdapter(requireActivity(), appListAllDatas)
             binding.recyclerView.apply {
-                adapter = appInfoAdapter
+                adapter = AppInfoViewAdapter(requireActivity(), appListAllDatas)
                 layoutManager = LinearLayoutManager(requireActivity())
             }
         }

@@ -5,14 +5,14 @@
         android:paddingVertical="10dp"
         android:paddingHorizontal="20dp"
         android:orientation="horizontal">
-
+    
     <com.google.android.material.textview.MaterialTextView
             android:id="@+id/donate_name"
             android:layout_weight="1"
             android:gravity="center"
             android:paddingHorizontal="20dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
     
     <com.google.android.material.textview.MaterialTextView
             android:id="@+id/donate_money"
@@ -20,6 +20,6 @@
             android:gravity="center"
             android:paddingHorizontal="20dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    
+            android:layout_height="wrap_content" />
+
 </LinearLayout>

@@ -204,6 +204,8 @@
     <string name="remove_low_battery_dialog_warning_summary">移除省电模式和超级省电模式的警告对话框</string>
     <string name="remove_warning_dialog_that_app_runs_on_desktop">移除应用运行在桌面上警告对话框</string>
     <string name="remove_warning_dialog_that_app_runs_on_desktop_summary">发现有应用运行在系统桌面上的警告对话框</string>
+    <string name="remove_storage_limit">移除存储限制</string>
+    <string name="remove_storage_limit_summary">移除无法使用此文件夹的限制</string>
     <!--PowerMenu-->
     <string name="PowerMenu">电源菜单相关</string>
     <string name="PowerMenu_summary">长按电源键显示的菜单</string>
