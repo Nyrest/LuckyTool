@@ -1,41 +1,44 @@
 package com.luckyzyx.luckytool.hook.apps.settings
 
-import android.util.ArraySet
+import android.content.Context
+import android.provider.Settings
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
-import com.highcapable.yukihookapi.hook.type.java.BooleanType
-import com.luckyzyx.luckytool.utils.tools.XposedPrefs
+import com.highcapable.yukihookapi.hook.factory.MembersType
+import com.highcapable.yukihookapi.hook.factory.field
+import com.highcapable.yukihookapi.hook.type.java.IntType
 import java.util.*
+import kotlin.math.max
+import kotlin.math.min
 
-
+@Suppress("LocalVariableName")
 class DisableDPIRebootRecovery : YukiBaseHooker() {
     override fun onHook() {
-        val appSet = prefs(XposedPrefs).getStringSet(packageName, ArraySet()).toTypedArray().apply {
-            Arrays.sort(this)
-            forEach {
-                this[this.indexOf(it)] = it.substring(2)
+        //Source OplusDensityPreference
+        findClass("com.oplus.settings.widget.preference.OplusDensityPreference").hook {
+            var context: Context? = null
+            injectMember {
+                allMembers(MembersType.CONSTRUCTOR)
+                afterHook {
+                    context = args(0).cast<Context>()
+                }
             }
-        }
-        val member = when (appSet[2]) {
-            //C13
-            "a6de75c" -> arrayOf("fi.n", "A0")
-            "9470266" -> arrayOf("fi.o", "z0")
-            "75f9a97" -> arrayOf("ki.n", "B0")
-            //C12
-            "cd12d6b" -> arrayOf("uf.m", "l0")
-            "4bb0ba5" -> arrayOf("uf.l", "n0")
-            "feb9e19" -> arrayOf("uf.l", "m0")
-            "1801866" -> arrayOf("tf.l", "n0")
-            else -> arrayOf("DPILock", "lock")
-        }
-        // Class OplusDensityPreference -> display_density_forced
-        // Source CustomizeFeatureUtils
-        findClass(member[0]).hook {
             injectMember {
                 method {
-                    name = member[1]
-                    returnType = BooleanType
+                    name = "onPreferenceChange"
+                    paramCount = 2
                 }
-                replaceToTrue()
+                afterHook {
+                    val obj = args(1).cast<Any>()
+                    val moduleType = "com.oplus.backup.sdk.common.utils.ModuleType".toClass()
+                    val TYPE_WEATHER = moduleType.field {
+                        name = "TYPE_WEATHER"
+                        type = IntType
+                    }.get().int()
+                    val displayMetrics = context!!.applicationContext.resources.displayMetrics
+                    val min = min(displayMetrics.widthPixels, displayMetrics.heightPixels) * 160 / max(obj.toString().toInt(), TYPE_WEATHER)
+                    val max = max(min, 120)
+                    Settings.Secure.putString(context!!.contentResolver, "display_density_forced", max.toString())
+                }
             }
         }
     }

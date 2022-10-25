@@ -30,8 +30,8 @@ class LoggerFragment : Fragment() {
         setHasOptionsMenu(true)
 
         binding.loglistView.apply {
-            adapter = LogInfoViewAdapter(requireActivity(),listData)
-            layoutManager = LinearLayoutManager(requireActivity())
+            adapter = LogInfoViewAdapter(context,listData)
+            layoutManager = LinearLayoutManager(context)
         }
         if (listData.isEmpty()) loadLogger()
     }

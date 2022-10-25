@@ -76,8 +76,8 @@ class MultiFragment : Fragment() {
             }
             progressDialog.dismiss()
             binding.recyclerView.apply {
-                adapter = AppInfoViewAdapter(requireActivity(), appListAllDatas)
-                layoutManager = LinearLayoutManager(requireActivity())
+                adapter = AppInfoViewAdapter(context, appListAllDatas)
+                layoutManager = LinearLayoutManager(context)
             }
         }
     }

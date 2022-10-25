@@ -122,6 +122,3 @@
 
 ## AlphaBackupPro com.ruet_cse_1503050.ragib.appbackup.pro
 - v33.0.5 -> 335
-
-## 光速虚拟机 com.ruet_cse_1503050.ragib.appbackup.pro
-- v3.0.0 -> 3330

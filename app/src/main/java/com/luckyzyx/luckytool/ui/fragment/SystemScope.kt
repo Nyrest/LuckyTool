@@ -20,7 +20,7 @@ class Android : ModulePreferenceFragment(), SharedPreferences.OnSharedPreference
         preferenceManager.sharedPreferencesName = XposedPrefs
         preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
             addPreference(
-                PreferenceCategory(requireActivity()).apply {
+                PreferenceCategory(context).apply {
                     setTitle(R.string.corepatch)
                     setSummary(R.string.corepatch_summary)
                     key = "CorePatch"
@@ -28,7 +28,7 @@ class Android : ModulePreferenceFragment(), SharedPreferences.OnSharedPreference
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     setTitle(R.string.downgr)
                     setSummary(R.string.downgr_summary)
                     key = "downgrade"
@@ -37,7 +37,7 @@ class Android : ModulePreferenceFragment(), SharedPreferences.OnSharedPreference
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     setTitle(R.string.authcreak)
                     setSummary(R.string.authcreak_summary)
                     key = "authcreak"
@@ -46,7 +46,7 @@ class Android : ModulePreferenceFragment(), SharedPreferences.OnSharedPreference
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     setTitle(R.string.digestCreak)
                     setSummary(R.string.digestCreak_summary)
                     key = "digestCreak"
@@ -55,7 +55,7 @@ class Android : ModulePreferenceFragment(), SharedPreferences.OnSharedPreference
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     setTitle(R.string.UsePreSig)
                     setSummary(R.string.UsePreSig_summary)
                     key = "UsePreSig"
@@ -64,7 +64,7 @@ class Android : ModulePreferenceFragment(), SharedPreferences.OnSharedPreference
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     setTitle(R.string.enhancedMode)
                     setSummary(R.string.enhancedMode_summary)
                     key = "enhancedMode"
@@ -102,7 +102,7 @@ class StatusBar : ModulePreferenceFragment(){
         findNavController()
         preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
             addPreference(
-                Preference(requireActivity()).apply {
+                Preference(context).apply {
                     title = getString(R.string.StatusBarClock)
                     summary = getString(R.string.statusbar_clock_show_second)+","+getString(R.string.statusbar_clock_show_doublerow)+","+getString(
                         R.string.statusbar_clock_doublerow_fontsize)
@@ -117,7 +117,7 @@ class StatusBar : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                Preference(requireActivity()).apply {
+                Preference(context).apply {
                     title = getString(R.string.DropDownStatusBarClock)
                     summary = getString(R.string.dropdown_statusbar_clock_show_second)+","+getString(R.string.remove_dropdown_statusbar_clock_style)
                     key = "DropDownStatusBarClock"
@@ -131,7 +131,7 @@ class StatusBar : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                Preference(requireActivity()).apply {
+                Preference(context).apply {
                     title = getString(R.string.StatusBarDate)
                     summary = getString(R.string.remove_statusbar_date_comma)
                     key = "StatusBarDate"
@@ -146,7 +146,7 @@ class StatusBar : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                Preference(requireActivity()).apply {
+                Preference(context).apply {
                     title = getString(R.string.StatusBarNotice)
                     summary = getString(R.string.remove_statusbar_top_notification)+","+getString(R.string.remove_charging_completed)
                     key = "StatusBarNotice"
@@ -161,7 +161,7 @@ class StatusBar : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                Preference(requireActivity()).apply {
+                Preference(context).apply {
                     title = getString(R.string.StatusBarIcon)
                     summary = getString(R.string.remove_statusbar_battery_percent)+","+getString(R.string.remove_statusbar_user_switcher)
                     key = "StatusBarIcon"
@@ -176,7 +176,7 @@ class StatusBar : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                Preference(requireActivity()).apply {
+                Preference(context).apply {
                     title = getString(R.string.StatusBarContent)
                     summary = getString(R.string.remove_drop_down_statusbar_mydevice)+","+getString(R.string.tile_unexpanded_columns_vertical)
                     key = "StatusBarContent"
@@ -199,7 +199,7 @@ class StatusBarClock : ModulePreferenceFragment(){
         preferenceManager.sharedPreferencesName = XposedPrefs
         preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.statusbar_clock_enable)
                     key = "statusbar_clock_enable"
                     setDefaultValue(false)
@@ -207,7 +207,7 @@ class StatusBarClock : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.statusbar_clock_show_year)
                     key = "statusbar_clock_show_year"
                     setDefaultValue(false)
@@ -215,7 +215,7 @@ class StatusBarClock : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.statusbar_clock_show_month)
                     key = "statusbar_clock_show_month"
                     setDefaultValue(false)
@@ -223,7 +223,7 @@ class StatusBarClock : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.statusbar_clock_show_day)
                     key = "statusbar_clock_show_day"
                     setDefaultValue(false)
@@ -231,7 +231,7 @@ class StatusBarClock : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.statusbar_clock_show_week)
                     key = "statusbar_clock_show_week"
                     setDefaultValue(false)
@@ -239,7 +239,7 @@ class StatusBarClock : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.statusbar_clock_show_period)
                     key = "statusbar_clock_show_period"
                     setDefaultValue(false)
@@ -247,7 +247,7 @@ class StatusBarClock : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.statusbar_clock_show_double_hour)
                     key = "statusbar_clock_show_double_hour"
                     setDefaultValue(false)
@@ -255,7 +255,7 @@ class StatusBarClock : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.statusbar_clock_show_second)
                     key = "statusbar_clock_show_second"
                     setDefaultValue(false)
@@ -263,7 +263,7 @@ class StatusBarClock : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.statusbar_clock_hide_spaces)
                     key = "statusbar_clock_hide_spaces"
                     setDefaultValue(false)
@@ -271,7 +271,7 @@ class StatusBarClock : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.statusbar_clock_show_doublerow)
                     key = "statusbar_clock_show_doublerow"
                     setDefaultValue(false)
@@ -279,7 +279,7 @@ class StatusBarClock : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                SeekBarPreference(requireActivity()).apply {
+                SeekBarPreference(context).apply {
                     title = getString(R.string.statusbar_clock_singlerow_fontsize)
                     summary = getString(R.string.statusbar_clock_fontsize_summary)
                     key = "statusbar_clock_singlerow_fontsize"
@@ -293,7 +293,7 @@ class StatusBarClock : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                SeekBarPreference(requireActivity()).apply {
+                SeekBarPreference(context).apply {
                     title = getString(R.string.statusbar_clock_doublerow_fontsize)
                     summary = getString(R.string.statusbar_clock_fontsize_summary)
                     key = "statusbar_clock_doublerow_fontsize"
@@ -324,7 +324,7 @@ class DropDownStatusBarClock : ModulePreferenceFragment(){
         preferenceManager.sharedPreferencesName = XposedPrefs
         preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.dropdown_statusbar_clock_show_second)
                     key = "dropdown_statusbar_clock_show_second"
                     setDefaultValue(false)
@@ -332,7 +332,7 @@ class DropDownStatusBarClock : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.remove_dropdown_statusbar_clock_style)
                     summary = getString(R.string.remove_dropdown_statusbar_clock_style_summary)
                     key = "remove_dropdown_statusbar_clock_style"
@@ -349,7 +349,7 @@ class StatusBarDate : ModulePreferenceFragment(){
         preferenceManager.sharedPreferencesName = XposedPrefs
         preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.remove_statusbar_date_comma)
                     summary = getString(R.string.remove_statusbar_date_comma_summary)
                     key = "remove_statusbar_date_comma"
@@ -366,7 +366,7 @@ class StatusBarNotice : ModulePreferenceFragment() {
         preferenceManager.sharedPreferencesName = XposedPrefs
         preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.remove_statusbar_top_notification)
                     summary = getString(R.string.remove_statusbar_top_notification_summary)
                     key = "remove_statusbar_top_notification"
@@ -375,7 +375,7 @@ class StatusBarNotice : ModulePreferenceFragment() {
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.remove_vpn_active_notification)
                     summary = getString(R.string.remove_vpn_active_notification_summary)
                     key = "remove_vpn_active_notification"
@@ -384,7 +384,7 @@ class StatusBarNotice : ModulePreferenceFragment() {
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.remove_statusbar_devmode)
                     key = "remove_statusbar_devmode"
                     setDefaultValue(false)
@@ -392,7 +392,7 @@ class StatusBarNotice : ModulePreferenceFragment() {
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.remove_charging_completed)
                     key = "remove_charging_completed"
                     setDefaultValue(false)
@@ -400,7 +400,7 @@ class StatusBarNotice : ModulePreferenceFragment() {
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.remove_statusbar_bottom_networkwarn)
                     summary = getString(R.string.remove_statusbar_bottom_networkwarn_summary)
                     key = "remove_statusbar_bottom_networkwarn"
@@ -409,7 +409,7 @@ class StatusBarNotice : ModulePreferenceFragment() {
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.remove_flashlight_open_notification)
                     key = "remove_flashlight_open_notification"
                     setDefaultValue(false)
@@ -417,7 +417,7 @@ class StatusBarNotice : ModulePreferenceFragment() {
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.remove_app_high_battery_consumption_warning)
                     summary = getString(R.string.remove_app_high_battery_consumption_warning_summary)
                     key = "remove_app_high_battery_consumption_warning"
@@ -426,7 +426,7 @@ class StatusBarNotice : ModulePreferenceFragment() {
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.remove_high_performance_mode_notifications)
                     key = "remove_high_performance_mode_notifications"
                     setDefaultValue(false)
@@ -442,7 +442,7 @@ class StatusBarIcon : ModulePreferenceFragment(){
         preferenceManager.sharedPreferencesName = XposedPrefs
         preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.remove_statusbar_battery_percent)
                     key = "remove_statusbar_battery_percent"
                     setDefaultValue(false)
@@ -450,7 +450,7 @@ class StatusBarIcon : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.set_network_speed)
                     key = "set_network_speed"
                     setDefaultValue(false)
@@ -458,7 +458,7 @@ class StatusBarIcon : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.remove_statusbar_securepayment_icon)
                     key = "remove_statusbar_securepayment_icon"
                     setDefaultValue(false)
@@ -466,7 +466,7 @@ class StatusBarIcon : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.remove_statusbar_user_switcher)
                     key = "remove_statusbar_user_switcher"
                     setDefaultValue(false)
@@ -475,7 +475,7 @@ class StatusBarIcon : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.remove_wifi_data_inout)
                     key = "remove_wifi_data_inout"
                     setDefaultValue(false)
@@ -483,7 +483,7 @@ class StatusBarIcon : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.remove_mobile_data_inout)
                     key = "remove_mobile_data_inout"
                     setDefaultValue(false)
@@ -499,7 +499,7 @@ class StatusBarContent : ModulePreferenceFragment(){
         preferenceManager.sharedPreferencesName = XposedPrefs
         preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
             addPreference(
-                PreferenceCategory(requireActivity()).apply {
+                PreferenceCategory(context).apply {
                     title = getString(R.string.StatusBar_UI_Related)
                     key = "StatusBar_UI_Related"
                     isIconSpaceReserved = false
@@ -507,7 +507,7 @@ class StatusBarContent : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.remove_drop_down_statusbar_mydevice)
                     key = "remove_drop_down_statusbar_mydevice"
                     setDefaultValue(false)
@@ -516,14 +516,14 @@ class StatusBarContent : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                PreferenceCategory(requireActivity()).apply {
+                PreferenceCategory(context).apply {
                     title = getString(R.string.StatusBar_Tile_Related)
                     key = "StatusBar_Tile_Related"
                     isIconSpaceReserved = false
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.statusbar_tile_enable)
                     key = "statusbar_tile_enable"
                     setDefaultValue(false)
@@ -531,7 +531,7 @@ class StatusBarContent : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                SeekBarPreference(requireActivity()).apply {
+                SeekBarPreference(context).apply {
                     title = getString(R.string.tile_unexpanded_columns_vertical)
                     key = "tile_unexpanded_columns_vertical"
                     setDefaultValue(6)
@@ -545,7 +545,7 @@ class StatusBarContent : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                SeekBarPreference(requireActivity()).apply {
+                SeekBarPreference(context).apply {
                     title = getString(R.string.tile_unexpanded_columns_horizontal)
                     key = "tile_unexpanded_columns_horizontal"
                     setDefaultValue(6)
@@ -559,7 +559,7 @@ class StatusBarContent : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                SeekBarPreference(requireActivity()).apply {
+                SeekBarPreference(context).apply {
                     title = getString(R.string.tile_expanded_columns_vertical)
                     key = "tile_expanded_columns_vertical"
                     setDefaultValue(4)
@@ -573,7 +573,7 @@ class StatusBarContent : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                SeekBarPreference(requireActivity()).apply {
+                SeekBarPreference(context).apply {
                     title = getString(R.string.tile_expanded_columns_horizontal)
                     key = "tile_expanded_columns_horizontal"
                     setDefaultValue(6)
@@ -587,7 +587,7 @@ class StatusBarContent : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                SeekBarPreference(requireActivity()).apply {
+                SeekBarPreference(context).apply {
                     title = getString(R.string.tile_unexpanded_columns_vertical)
                     key = "tile_unexpanded_columns_vertical_c13"
                     setDefaultValue(5)
@@ -601,7 +601,7 @@ class StatusBarContent : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                SeekBarPreference(requireActivity()).apply {
+                SeekBarPreference(context).apply {
                     title = getString(R.string.tile_expanded_rows_vertical)
                     key = "tile_expanded_rows_vertical_c13"
                     setDefaultValue(3)
@@ -615,7 +615,7 @@ class StatusBarContent : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                SeekBarPreference(requireActivity()).apply {
+                SeekBarPreference(context).apply {
                     title = getString(R.string.tile_expanded_columns_vertical)
                     key = "tile_expanded_columns_vertical_c13"
                     setDefaultValue(4)
@@ -629,7 +629,7 @@ class StatusBarContent : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                SeekBarPreference(requireActivity()).apply {
+                SeekBarPreference(context).apply {
                     title = getString(R.string.tile_columns_horizontal_c13)
                     key = "tile_columns_horizontal_c13"
                     setDefaultValue(5)
@@ -659,7 +659,7 @@ class Desktop : ModulePreferenceFragment() {
         preferenceManager.sharedPreferencesName = XposedPrefs
         preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.remove_alarmclock_widget_redone)
                     key = "remove_alarmclock_widget_redone"
                     setDefaultValue(false)
@@ -667,7 +667,7 @@ class Desktop : ModulePreferenceFragment() {
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.remove_appicon_dot)
                     key = "remove_appicon_dot"
                     setDefaultValue(false)
@@ -675,7 +675,7 @@ class Desktop : ModulePreferenceFragment() {
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.set_folder_layout_4x4)
                     key = "set_folder_layout_4x4"
                     setDefaultValue(false)
@@ -683,13 +683,13 @@ class Desktop : ModulePreferenceFragment() {
                 }
             )
             addPreference(
-                PreferenceCategory(requireActivity()).apply {
+                PreferenceCategory(context).apply {
                     title = getString(R.string.launcher_layout_related)
                     isIconSpaceReserved = false
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.launcher_layout_enable)
                     summary = getString(R.string.launcher_layout_row_colume)
                     key = "launcher_layout_enable"
@@ -698,7 +698,7 @@ class Desktop : ModulePreferenceFragment() {
                 }
             )
             addPreference(
-                SeekBarPreference(requireActivity()).apply {
+                SeekBarPreference(context).apply {
                     title = getString(R.string.launcher_layout_max_rows)
                     key = "launcher_layout_max_rows"
                     setDefaultValue(6)
@@ -711,7 +711,7 @@ class Desktop : ModulePreferenceFragment() {
                 }
             )
             addPreference(
-                SeekBarPreference(requireActivity()).apply {
+                SeekBarPreference(context).apply {
                     title = getString(R.string.launcher_layout_max_columns)
                     key = "launcher_layout_max_columns"
                     setDefaultValue(4)
@@ -734,7 +734,7 @@ class LockScreen : ModulePreferenceFragment(){
         preferenceManager.sharedPreferencesName = XposedPrefs
         preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.remove_lock_screen_redone)
                     key = "remove_lock_screen_redone"
                     setDefaultValue(false)
@@ -742,7 +742,7 @@ class LockScreen : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.set_lock_screen_centered)
                     summary = getString(R.string.set_lock_screen_centered_summary)
                     key = "set_lock_screen_centered"
@@ -751,7 +751,7 @@ class LockScreen : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.remove_lock_screen_bottom_left_button)
                     key = "remove_lock_screen_bottom_left_button"
                     setDefaultValue(false)
@@ -759,7 +759,7 @@ class LockScreen : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.remove_lock_screen_bottom_right_camera)
                     key = "remove_lock_screen_bottom_right_camera"
                     setDefaultValue(false)
@@ -767,7 +767,7 @@ class LockScreen : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.remove_lock_screen_bottom_sos_button)
                     summary = getString(R.string.remove_lock_screen_bottom_sos_button_summary)
                     key = "remove_lock_screen_bottom_sos_button"
@@ -785,7 +785,7 @@ class Screenshot : ModulePreferenceFragment() {
         preferenceManager.sharedPreferencesName = XposedPrefs
         preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.remove_system_screenshot_delay)
                     summary = getString(R.string.remove_system_screenshot_delay_summary)
                     key = "remove_system_screenshot_delay"
@@ -794,7 +794,7 @@ class Screenshot : ModulePreferenceFragment() {
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.remove_screenshot_privacy_limit)
                     summary = getString(R.string.remove_screenshot_privacy_limit_summary)
                     key = "remove_screenshot_privacy_limit"
@@ -803,7 +803,7 @@ class Screenshot : ModulePreferenceFragment() {
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.disable_flag_secure)
                     summary = getString(R.string.disable_flag_secure_summary)
                     key = "disable_flag_secure"
@@ -820,7 +820,7 @@ class Application : ModulePreferenceFragment(){
         preferenceManager.sharedPreferencesName = XposedPrefs
         preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
             addPreference(
-                PreferenceCategory(requireActivity()).apply {
+                PreferenceCategory(context).apply {
                     title = getString(R.string.AppStartupRelated)
                     key = "AppStartupRelated"
                     isIconSpaceReserved = false
@@ -828,7 +828,7 @@ class Application : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.disable_splash_screen)
                     key = "disable_splash_screen"
                     setDefaultValue(false)
@@ -837,14 +837,14 @@ class Application : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                PreferenceCategory(requireActivity()).apply {
+                PreferenceCategory(context).apply {
                     title = getString(R.string.MultiApp)
                     key = "MultiApp"
                     isIconSpaceReserved = false
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.multi_app_enable)
                     summary = getString(R.string.multi_app_enable_summary)
                     key = "multi_app_enable"
@@ -853,7 +853,7 @@ class Application : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                Preference(requireActivity()).apply {
+                Preference(context).apply {
                     title = getString(R.string.multi_app_custom_list)
                     summary = getString(R.string.multi_app_custom_list_summary)
                     key = "multi_app_custom_list"
@@ -867,14 +867,14 @@ class Application : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                PreferenceCategory(requireActivity()).apply {
+                PreferenceCategory(context).apply {
                     title = getString(R.string.AppInstallationRelated)
                     key = "PackageInstaller"
                     isIconSpaceReserved = false
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.skip_apk_scan)
                     summary = getString(R.string.skip_apk_scan_summary)
                     key = "skip_apk_scan"
@@ -883,7 +883,7 @@ class Application : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.allow_downgrade_install)
                     summary = getString(R.string.allow_downgrade_install_summary)
                     key = "allow_downgrade_install"
@@ -892,7 +892,7 @@ class Application : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.remove_install_ads)
                     summary = getString(R.string.remove_install_ads_summary)
                     key = "remove_install_ads"
@@ -901,7 +901,7 @@ class Application : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.replase_aosp_installer)
                     summary = getString(R.string.replase_aosp_installer_summary)
                     key = "replase_aosp_installer"
@@ -910,7 +910,7 @@ class Application : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.remove_adb_install_confirm)
                     summary = getString(R.string.remove_adb_install_confirm_summary)
                     key = "remove_adb_install_confirm"
@@ -919,14 +919,14 @@ class Application : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                PreferenceCategory(requireActivity()).apply {
+                PreferenceCategory(context).apply {
                     title = getString(R.string.ApplyOtherRestrictions)
                     key = "ApplyOtherRestrictions"
                     isIconSpaceReserved = false
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.unlock_startup_limit)
                     summary = getString(R.string.unlock_startup_limit_summary)
                     key = "unlock_startup_limit"
@@ -935,7 +935,7 @@ class Application : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.unlock_task_locks)
                     key = "unlock_task_locks"
                     setDefaultValue(false)
@@ -952,7 +952,7 @@ class Miscellaneous : ModulePreferenceFragment(){
         preferenceManager.sharedPreferencesName = XposedPrefs
         preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
             addPreference(
-                Preference(requireActivity()).apply {
+                Preference(context).apply {
                     title = getString(R.string.PowerMenu)
                     summary = getString(R.string.PowerMenu_summary)
                     key = "PowerMenu"
@@ -967,7 +967,7 @@ class Miscellaneous : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.show_charging_ripple)
                     summary = getString(R.string.show_charging_ripple_summary)
                     key = "show_charging_ripple"
@@ -977,7 +977,7 @@ class Miscellaneous : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.disable_duplicate_floating_window)
                     summary = getString(R.string.disable_duplicate_floating_window_summary)
                     key = "disable_duplicate_floating_window"
@@ -987,7 +987,7 @@ class Miscellaneous : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.disable_headphone_high_volume_warning)
                     summary = getString(R.string.disable_headphone_high_volume_warning_summary)
                     key = "disable_headphone_high_volume_warning"
@@ -996,7 +996,7 @@ class Miscellaneous : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.disable_otg_auto_off)
                     summary = getString(R.string.disable_otg_auto_off_summary)
                     key = "disable_otg_auto_off"
@@ -1005,7 +1005,7 @@ class Miscellaneous : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.disable_dpi_reboot_recovery)
                     summary = getString(R.string.disable_dpi_reboot_recovery_summary)
                     key = "disable_dpi_reboot_recovery"
@@ -1014,7 +1014,7 @@ class Miscellaneous : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.remove_low_battery_dialog_warning)
                     summary = getString(R.string.remove_low_battery_dialog_warning_summary)
                     key = "remove_low_battery_dialog_warning"
@@ -1023,7 +1023,7 @@ class Miscellaneous : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.remove_warning_dialog_that_app_runs_on_desktop)
                     summary = getString(R.string.remove_warning_dialog_that_app_runs_on_desktop_summary)
                     key = "remove_warning_dialog_that_app_runs_on_desktop"
@@ -1049,7 +1049,7 @@ class PowerMenu : ModulePreferenceFragment(){
         preferenceManager.sharedPreferencesName = XposedPrefs
         preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.power_menu_enable)
                     summary = getString(R.string.power_menu_enable_summary)
                     key = "power_menu_enable"
@@ -1057,7 +1057,7 @@ class PowerMenu : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.power_menu_sos_button)
                     summary = getString(R.string.power_menu_button_summary)
                     key = "power_menu_sos_button"
@@ -1066,7 +1066,7 @@ class PowerMenu : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.power_menu_lock_button)
                     summary = getString(R.string.power_menu_button_summary)
                     key = "power_menu_lock_button"
@@ -1075,7 +1075,7 @@ class PowerMenu : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.power_menu_simple_layout)
                     summary = getString(R.string.power_menu_simple_layout_summary)
                     key = "power_menu_simple_layout"
@@ -1084,7 +1084,7 @@ class PowerMenu : ModulePreferenceFragment(){
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.power_menu_remove_add_controls)
                     summary = getString(R.string.power_menu_remove_add_controls_summary)
                     key = "power_menu_remove_add_controls"
@@ -1105,7 +1105,7 @@ class Camera : ModulePreferenceFragment() {
         preferenceManager.sharedPreferencesName = XposedPrefs
         preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.remove_watermark_word_limit)
                     key = "remove_watermark_word_limit"
                     setDefaultValue(false)
@@ -1121,7 +1121,7 @@ class OplusGames : ModulePreferenceFragment() {
         preferenceManager.sharedPreferencesName = XposedPrefs
         preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.remove_root_check)
                     summary = getString(R.string.remove_root_check_summary)
                     key = "remove_root_check"
@@ -1130,7 +1130,7 @@ class OplusGames : ModulePreferenceFragment() {
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.remove_startup_animation)
                     key = "remove_startup_animation"
                     setDefaultValue(false)
@@ -1138,7 +1138,7 @@ class OplusGames : ModulePreferenceFragment() {
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.enable_developer_page)
                     summary = getString(R.string.enable_developer_page_summary)
                     key = "enable_developer_page"
@@ -1147,7 +1147,7 @@ class OplusGames : ModulePreferenceFragment() {
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.enable_eva_theme)
                     key = "enable_eva_theme"
                     setDefaultValue(false)
@@ -1163,7 +1163,7 @@ class CloudService : ModulePreferenceFragment() {
         preferenceManager.sharedPreferencesName = XposedPrefs
         preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.remove_network_limit)
                     summary = getString(R.string.remove_network_limit_summary)
                     key = "remove_network_limit"
@@ -1180,7 +1180,7 @@ class ThemeStore : ModulePreferenceFragment() {
         preferenceManager.sharedPreferencesName = XposedPrefs
         preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     title = getString(R.string.unlock_themestore_vip)
                     summary = getString(R.string.unlock_themestore_vip_summary)
                     key = "unlock_themestore_vip"

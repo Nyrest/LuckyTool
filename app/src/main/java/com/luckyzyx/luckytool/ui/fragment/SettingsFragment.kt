@@ -26,14 +26,14 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
         preferenceManager.sharedPreferencesName = SettingsPrefs
         preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
             addPreference(
-                PreferenceCategory(requireActivity()).apply {
+                PreferenceCategory(context).apply {
                     setTitle(R.string.theme_title)
                     setSummary(R.string.theme_title_summary)
                     isIconSpaceReserved = false
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     key = "use_dynamic_color"
                     setDefaultValue(false)
                     setTitle(R.string.use_dynamic_color)
@@ -42,7 +42,7 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
                 }
             )
             addPreference(
-                DropDownPreference(requireActivity()).apply {
+                DropDownPreference(context).apply {
                     key = "dark_theme"
                     title = getString(R.string.dark_theme)
                     summary = "%s"
@@ -53,13 +53,13 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
                 }
             )
             addPreference(
-                PreferenceCategory(requireActivity()).apply {
+                PreferenceCategory(context).apply {
                     title = getString(R.string.other_settings)
                     isIconSpaceReserved = false
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     key = "auto_check_update"
                     title = getString(R.string.auto_check_update)
                     summary = getString(R.string.auto_check_update_summary)
@@ -68,7 +68,7 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     key = "hide_xp_page_icon"
                     title = getString(R.string.hide_xp_page_icon)
                     setDefaultValue(false)
@@ -76,7 +76,7 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
                 }
             )
             addPreference(
-                SwitchPreference(requireActivity()).apply {
+                SwitchPreference(context).apply {
                     key = "hide_desktop_appicon"
                     setDefaultValue(false)
                     title = getString(R.string.hide_desktop_appicon)
@@ -85,7 +85,7 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
                 }
             )
             addPreference(
-                Preference(requireActivity()).apply {
+                Preference(context).apply {
                     title = getString(R.string.clear_all_data)
                     summary = getString(R.string.clear_all_data_summary)
                     isIconSpaceReserved = false
@@ -104,26 +104,26 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
                 }
             )
             addPreference(
-                PreferenceCategory(requireActivity()).apply {
+                PreferenceCategory(context).apply {
                     setTitle(R.string.about_title)
                     isIconSpaceReserved = false
                 }
             )
             addPreference(
-                Preference(requireActivity()).apply {
+                Preference(context).apply {
                     title = getString(R.string.donate)
                     summary = getString(R.string.donate_summary)
                     isIconSpaceReserved = false
                     setOnPreferenceClickListener {
                         val donateList = arrayOf(getString(R.string.qq),getString(R.string.wechat),getString(R.string.alipay),getString(R.string.donation_list))
-                        MaterialAlertDialogBuilder(requireActivity())
+                        MaterialAlertDialogBuilder(context)
                             .setItems(donateList) { _, which ->
                                 when (which) {
                                     0 -> {
-                                        MaterialAlertDialogBuilder(requireActivity(),dialogCentered)
+                                        MaterialAlertDialogBuilder(context,dialogCentered)
                                             .setTitle(getString(R.string.qq))
                                             .setView(
-                                                ImageView(requireActivity()).apply {
+                                                ImageView(context).apply {
                                                     setPadding(20.dp)
                                                     setImageBitmap(baseDecode(Base64().qqCode))
                                                 }
@@ -131,10 +131,10 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
                                             .show()
                                     }
                                     1 -> {
-                                        MaterialAlertDialogBuilder(requireActivity(),dialogCentered)
+                                        MaterialAlertDialogBuilder(context,dialogCentered)
                                             .setTitle(getString(R.string.wechat))
                                             .setView(
-                                                ImageView(requireActivity()).apply {
+                                                ImageView(context).apply {
                                                     setPadding(20.dp)
                                                     setImageBitmap(baseDecode(Base64().wechatCode))
                                                 }
@@ -142,10 +142,10 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
                                             .show()
                                     }
                                     2 -> {
-                                        MaterialAlertDialogBuilder(requireActivity(),dialogCentered)
+                                        MaterialAlertDialogBuilder(context,dialogCentered)
                                             .setTitle(getString(R.string.alipay))
                                             .setView(
-                                                ImageView(requireActivity()).apply {
+                                                ImageView(context).apply {
                                                     setPadding(20.dp)
                                                     setImageBitmap(baseDecode(Base64().alipayCode))
                                                 }
@@ -153,7 +153,7 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
                                             .show()
                                     }
                                     3 -> {
-                                        MaterialAlertDialogBuilder(requireActivity(), dialogCentered)
+                                        MaterialAlertDialogBuilder(context, dialogCentered)
                                             .setTitle(getString(R.string.donation_list))
                                             .setView(
                                                 RecyclerView(context).apply {
@@ -172,13 +172,13 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
                 }
             )
             addPreference(
-                Preference(requireActivity()).apply {
+                Preference(context).apply {
                     title = getString(R.string.feedback_download)
                     summary = getString(R.string.feedback_download_summary)
                     isIconSpaceReserved = false
                     setOnPreferenceClickListener {
                         val updatelist = arrayOf(getString(R.string.coolmarket),getString(R.string.telegram_channel),getString(R.string.telegram_group),getString(R.string.lsposed_repo))
-                        MaterialAlertDialogBuilder(requireActivity())
+                        MaterialAlertDialogBuilder(context)
                             .setItems(updatelist) { _, which ->
                                 when (which) {
                                     0 -> startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("coolmarket://u/1930284")))
@@ -192,7 +192,7 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
                 }
             )
             addPreference(
-                Preference(requireActivity()).apply {
+                Preference(context).apply {
                     title = getString(R.string.participate_translation)
                     summary = getString(R.string.participate_translation_summary)
                     isIconSpaceReserved = false
@@ -203,7 +203,7 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
                 }
             )
             addPreference(
-                Preference(requireActivity()).apply {
+                Preference(context).apply {
                     setTitle(R.string.open_source)
                     setSummary(R.string.open_source_summary)
                     isIconSpaceReserved = false
@@ -214,7 +214,7 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
                 }
             )
             addPreference(
-                Preference(requireActivity()).apply {
+                Preference(context).apply {
                     title = getString(R.string.privacy_agreement)
                     summary = getString(R.string.read_agreement)
                     isIconSpaceReserved = false
@@ -250,13 +250,13 @@ class SourceFragment : ModulePreferenceFragment() {
     override fun onCreatePreferencesInModuleApp(savedInstanceState: Bundle?, rootKey: String?) {
         preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
             addPreference(
-                PreferenceCategory(requireActivity()).apply {
+                PreferenceCategory(context).apply {
                     setTitle(R.string.open_source)
                     isIconSpaceReserved = false
                 }
             )
             addPreference(
-                Preference(requireActivity()).apply {
+                Preference(context).apply {
                     title = "Xposed"
                     summary = "rovo89 , Apache License 2.0"
                     isIconSpaceReserved = false
@@ -265,7 +265,7 @@ class SourceFragment : ModulePreferenceFragment() {
                 }
             )
             addPreference(
-                Preference(requireActivity()).apply {
+                Preference(context).apply {
                     title = "LSPosed"
                     summary = "LSPosed , GPL-3.0 License"
                     isIconSpaceReserved = false
@@ -274,7 +274,7 @@ class SourceFragment : ModulePreferenceFragment() {
                 }
             )
             addPreference(
-                Preference(requireActivity()).apply {
+                Preference(context).apply {
                     title = "YukiHookAPI"
                     summary = "fankes , MIT License"
                     isIconSpaceReserved = false
@@ -285,7 +285,7 @@ class SourceFragment : ModulePreferenceFragment() {
                 }
             )
             addPreference(
-                Preference(requireActivity()).apply {
+                Preference(context).apply {
                     title = "ColorOSNotifyIcon"
                     summary = "fankes , AGPL-3.0 License"
                     isIconSpaceReserved = false
@@ -296,7 +296,7 @@ class SourceFragment : ModulePreferenceFragment() {
                 }
             )
             addPreference(
-                Preference(requireActivity()).apply {
+                Preference(context).apply {
                     title = "ColorOSTool"
                     summary = "Oosl , GPL-3.0 License"
                     isIconSpaceReserved = false
@@ -305,7 +305,7 @@ class SourceFragment : ModulePreferenceFragment() {
                 }
             )
             addPreference(
-                Preference(requireActivity()).apply {
+                Preference(context).apply {
                     title = "WooBoxForColorOS"
                     summary = "Simplicity-Team , GPL-3.0 License"
                     isIconSpaceReserved = false
@@ -316,7 +316,7 @@ class SourceFragment : ModulePreferenceFragment() {
                 }
             )
             addPreference(
-                Preference(requireActivity()).apply {
+                Preference(context).apply {
                     title = "CorePatch"
                     summary = "LSPosed , GPL-2.0 license"
                     isIconSpaceReserved = false
@@ -327,7 +327,7 @@ class SourceFragment : ModulePreferenceFragment() {
                 }
             )
             addPreference(
-                Preference(requireActivity()).apply {
+                Preference(context).apply {
                     title = "Disable-FLAG_SECURE"
                     summary = "VarunS2002 , GPL-3.0 license"
                     isIconSpaceReserved = false
@@ -338,7 +338,7 @@ class SourceFragment : ModulePreferenceFragment() {
                 }
             )
             addPreference(
-                Preference(requireActivity()).apply {
+                Preference(context).apply {
                     title = "RestoreSplashScreen"
                     summary = "GSWXXN , AGPL-3.0 license"
                     isIconSpaceReserved = false

@@ -25,13 +25,13 @@ class XposedFragment : ModulePreferenceFragment() {
         setHasOptionsMenu(true)
         preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
             addPreference(
-                Preference(requireActivity()).apply {
+                Preference(context).apply {
                     key = "android"
-                    requireActivity().getXPIcon(android.R.mipmap.sym_def_app_icon) { resource, show ->
+                    context.getXPIcon(android.R.mipmap.sym_def_app_icon) { resource, show ->
                         icon = resource
                         isIconSpaceReserved = show
                     }
-                    title = requireActivity().getAppLabel(key)
+                    title = context.getAppLabel(key)
                     summary = getString(R.string.corepatch)
                     setOnPreferenceClickListener {
                         findNavController().navigate(R.id.action_nav_xposed_to_android,Bundle().apply {
@@ -42,9 +42,9 @@ class XposedFragment : ModulePreferenceFragment() {
                 }
             )
             addPreference(
-                Preference(requireActivity()).apply {
+                Preference(context).apply {
                     key = "StatusBar"
-                    requireActivity().getXPIcon("com.android.systemui") { resource, show ->
+                    context.getXPIcon("com.android.systemui") { resource, show ->
                         icon = resource
                         isIconSpaceReserved = show
                     }
@@ -59,9 +59,9 @@ class XposedFragment : ModulePreferenceFragment() {
                 }
             )
             addPreference(
-                Preference(requireActivity()).apply {
+                Preference(context).apply {
                     key = "com.android.launcher"
-                    requireActivity().getXPIcon(key) { resource, show ->
+                    context.getXPIcon(key) { resource, show ->
                         icon = resource
                         isIconSpaceReserved = show
                     }
@@ -76,9 +76,9 @@ class XposedFragment : ModulePreferenceFragment() {
                 }
             )
             addPreference(
-                Preference(requireActivity()).apply {
+                Preference(context).apply {
                     key = "LockScreen"
-                    requireActivity().getXPIcon("com.android.systemui") { resource, show ->
+                    context.getXPIcon("com.android.systemui") { resource, show ->
                         icon = resource
                         isIconSpaceReserved = show
                     }
@@ -93,9 +93,9 @@ class XposedFragment : ModulePreferenceFragment() {
                 }
             )
             addPreference(
-                Preference(requireActivity()).apply {
+                Preference(context).apply {
                     key = "com.oplus.screenshot"
-                    requireActivity().getXPIcon(key) { resource, show ->
+                    context.getXPIcon(key) { resource, show ->
                         icon = resource
                         isIconSpaceReserved = show
                     }
@@ -110,9 +110,9 @@ class XposedFragment : ModulePreferenceFragment() {
                 }
             )
             addPreference(
-                Preference(requireActivity()).apply {
+                Preference(context).apply {
                     key = "com.android.packageinstaller"
-                    requireActivity().getXPIcon(key) { resource, show ->
+                    context.getXPIcon(key) { resource, show ->
                         icon = resource
                         isIconSpaceReserved = show
                     }
@@ -127,9 +127,9 @@ class XposedFragment : ModulePreferenceFragment() {
                 }
             )
             addPreference(
-                Preference(requireActivity()).apply {
+                Preference(context).apply {
                     key = "Miscellaneous"
-                    requireActivity().getXPIcon("com.android.systemui") { resource, show ->
+                    context.getXPIcon("com.android.systemui") { resource, show ->
                         icon = resource
                         isIconSpaceReserved = show
                     }
@@ -144,16 +144,16 @@ class XposedFragment : ModulePreferenceFragment() {
                 }
             )
             addPreference(
-                Preference(requireActivity()).apply {
+                Preference(context).apply {
                     val keys = arrayOf("com.oplus.camera","com.oneplus.camera")
-                    key = requireActivity().checkKey(key,keys)
-                    requireActivity().getXPIcon(key) { resource, show ->
+                    key = context.checkKey(key,keys)
+                    context.getXPIcon(key) { resource, show ->
                         icon = resource
                         isIconSpaceReserved = show
                     }
-                    title = requireActivity().getAppLabel(key)
+                    title = context.getAppLabel(key)
                     summary = getString(R.string.remove_watermark_word_limit)
-                    isVisible = requireActivity().checkPackName(key)
+                    isVisible = context.checkPackName(key)
                     setOnPreferenceClickListener {
                         findNavController().navigate(R.id.action_nav_xposed_to_camera,Bundle().apply {
                             putCharSequence("title_label",title)
@@ -163,15 +163,15 @@ class XposedFragment : ModulePreferenceFragment() {
                 }
             )
             addPreference(
-                Preference(requireActivity()).apply {
+                Preference(context).apply {
                     key = "com.oplus.games"
-                    requireActivity().getXPIcon(key) { resource, show ->
+                    context.getXPIcon(key) { resource, show ->
                         icon = resource
                         isIconSpaceReserved = show
                     }
-                    title = requireActivity().getAppLabel(key)
-                    summary = getString(R.string.remove_root_check)+","+getString(R.string.remove_startup_animation)
-                    isVisible = requireActivity().checkPackName(key)
+                    title = context.getAppLabel(key)
+                    summary = getString(R.string.remove_root_check)+","+getString(R.string.enable_developer_page)
+                    isVisible = context.checkPackName(key)
                     setOnPreferenceClickListener {
                         findNavController().navigate(R.id.action_nav_xposed_to_oplusGames,Bundle().apply {
                             putCharSequence("title_label",title)
@@ -181,15 +181,15 @@ class XposedFragment : ModulePreferenceFragment() {
                 }
             )
             addPreference(
-                Preference(requireActivity()).apply {
+                Preference(context).apply {
                     key = "com.heytap.themestore"
-                    requireActivity().getXPIcon(key) { resource, show ->
+                    context.getXPIcon(key) { resource, show ->
                         icon = resource
                         isIconSpaceReserved = show
                     }
-                    title = requireActivity().getAppLabel(key)
+                    title = context.getAppLabel(key)
                     summary = getString(R.string.unlock_themestore_vip)
-                    isVisible = requireActivity().checkPackName(key)
+                    isVisible = context.checkPackName(key)
                     setOnPreferenceClickListener {
                         findNavController().navigate(R.id.action_nav_xposed_to_themeStore,Bundle().apply {
                             putCharSequence("title_label",title)
@@ -199,15 +199,15 @@ class XposedFragment : ModulePreferenceFragment() {
                 }
             )
             addPreference(
-                Preference(requireActivity()).apply {
+                Preference(context).apply {
                     key = "com.heytap.cloud"
-                    requireActivity().getXPIcon(key) { resource, show ->
+                    context.getXPIcon(key) { resource, show ->
                         icon = resource
                         isIconSpaceReserved = show
                     }
-                    title = requireActivity().getAppLabel(key)
+                    title = context.getAppLabel(key)
                     summary = getString(R.string.remove_network_limit)
-                    isVisible = requireActivity().checkPackName(key)
+                    isVisible = context.checkPackName(key)
                     setOnPreferenceClickListener {
                         findNavController().navigate(R.id.action_nav_xposed_to_cloudService,Bundle().apply {
                             putCharSequence("title_label",title)
@@ -217,15 +217,15 @@ class XposedFragment : ModulePreferenceFragment() {
                 }
             )
             addPreference(
-                Preference(requireActivity()).apply {
+                Preference(context).apply {
                     key = "com.east2d.everyimage"
-                    requireActivity().getXPIcon(key) { resource, show ->
+                    context.getXPIcon(key) { resource, show ->
                         icon = resource
                         isIconSpaceReserved = show
                     }
-                    title = requireActivity().getAppLabel(key)
+                    title = context.getAppLabel(key)
                     summary = getString(R.string.skip_startup_page)+","+getString(R.string.vip_download)
-                    isVisible = requireActivity().checkPackName(key)
+                    isVisible = context.checkPackName(key)
                     setOnPreferenceClickListener {
                         findNavController().navigate(R.id.action_nav_xposed_to_everyimage,Bundle().apply {
                             putCharSequence("title_label",title)
@@ -235,35 +235,17 @@ class XposedFragment : ModulePreferenceFragment() {
                 }
             )
             addPreference(
-                Preference(requireActivity()).apply {
+                Preference(context).apply {
                     key = "com.ruet_cse_1503050.ragib.appbackup.pro"
-                    requireActivity().getXPIcon(key) { resource, show ->
+                    context.getXPIcon(key) { resource, show ->
                         icon = resource
                         isIconSpaceReserved = show
                     }
-                    title = requireActivity().getAppLabel(key)
+                    title = context.getAppLabel(key)
                     summary = getString(R.string.remove_pro_license)
-                    isVisible = requireActivity().checkPackName(key)
+                    isVisible = context.checkPackName(key)
                     setOnPreferenceClickListener {
                         findNavController().navigate(R.id.action_nav_xposed_to_alphaBackupPro,Bundle().apply {
-                            putCharSequence("title_label",title)
-                        })
-                        true
-                    }
-                }
-            )
-            addPreference(
-                Preference(requireActivity()).apply {
-                    key = "com.vphonegaga.titan"
-                    requireActivity().getXPIcon(key) { resource, show ->
-                        icon = resource
-                        isIconSpaceReserved = show
-                    }
-                    title = requireActivity().getAppLabel(key)
-                    summary = getString(R.string.enable_gs_vip_function)
-                    isVisible = requireActivity().checkPackName(key)
-                    setOnPreferenceClickListener {
-                        findNavController().navigate(R.id.action_nav_xposed_to_GSVirtualMachine,Bundle().apply {
                             putCharSequence("title_label",title)
                         })
                         true
@@ -307,16 +289,16 @@ class XposedFragment : ModulePreferenceFragment() {
             if (arrayList.isEmpty()) continue
             str += "\n\n${getString(R.string.app_label)}: ${getAppLabel(scope)}\n${getString(R.string.package_name)}: $scope\n${getString(R.string.version)}: ${arrayList[0]}(${arrayList[1]})[${arrayList[2]}]"
         }
-        val nestedScrollView = NestedScrollView(requireActivity()).apply {
-            setPadding(8.dp,0,8.dp,0)
+        val nestedScrollView = NestedScrollView(this).apply {
+            setPadding(10.dp,20.dp,10.dp,20.dp)
             addView(
-                TextView(requireActivity()).apply {
+                TextView(context).apply {
                     textSize = 16F
                     text = str
                 }
             )
         }
-        val bottomSheetDialog = BottomSheetDialog(requireActivity())
+        val bottomSheetDialog = BottomSheetDialog(this)
         bottomSheetDialog.setContentView(nestedScrollView)
         bottomSheetDialog.show()
     }

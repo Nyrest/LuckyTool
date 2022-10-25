@@ -84,7 +84,7 @@ class HomeFragment : Fragment() {
         binding.fpsSummary.text = getString(R.string.fps_summary)
         binding.fps.apply {
             setOnClickListener {
-                val fpsDialog = MaterialAlertDialogBuilder(requireActivity()).apply {
+                val fpsDialog = MaterialAlertDialogBuilder(context).apply {
                     setView(R.layout.layout_fps_dialog)
                 }.show()
                 val fpsData = context.getFpsMode()
@@ -220,7 +220,7 @@ class HomeFragment : Fragment() {
             .setCancelable(true)
             .setItems(list) { _: DialogInterface?, i: Int ->
                 when (i) {
-                    0 -> (activity as MainActivity).restartScope(requireActivity())
+                    0 -> (activity as MainActivity).restartScope(context)
                     1 -> ShellUtils.execCommand("reboot",true)
                     2 -> ShellUtils.execCommand("killall zygote",true)
                 }

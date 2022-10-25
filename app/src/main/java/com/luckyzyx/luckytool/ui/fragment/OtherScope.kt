@@ -45,19 +45,3 @@ class AlphaBackupPro : ModulePreferenceFragment() {
         }
     }
 }
-
-class GSVirtualMachine : ModulePreferenceFragment() {
-    override fun onCreatePreferencesInModuleApp(savedInstanceState: Bundle?, rootKey: String?) {
-        preferenceManager.sharedPreferencesName = XposedPrefs
-        preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
-            addPreference(
-                SwitchPreference(requireActivity()).apply {
-                    title = getString(R.string.enable_gs_vip_function)
-                    key = "enable_gs_vip_function"
-                    setDefaultValue(false)
-                    isIconSpaceReserved = false
-                }
-            )
-        }
-    }
-}

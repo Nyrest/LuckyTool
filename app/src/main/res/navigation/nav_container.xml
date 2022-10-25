@@ -90,13 +90,6 @@
                 app:popEnterAnim="@anim/fragment_enter_pop"
                 app:popExitAnim="@anim/fragment_exit_pop" />
         <action
-                android:id="@+id/action_nav_xposed_to_GSVirtualMachine"
-                app:destination="@id/GSVirtualMachine"
-                app:enterAnim="@anim/fragment_enter"
-                app:exitAnim="@anim/fragment_exit"
-                app:popEnterAnim="@anim/fragment_enter_pop"
-                app:popExitAnim="@anim/fragment_exit_pop" />
-        <action
                 android:id="@+id/action_nav_xposed_to_camera"
                 app:destination="@id/camera"
                 app:enterAnim="@anim/fragment_enter"
@@ -282,10 +275,6 @@
     <fragment
             android:id="@+id/statusBarDate"
             android:name="com.luckyzyx.luckytool.ui.fragment.StatusBarDate"
-            android:label="{title_label}" />
-    <fragment
-            android:id="@+id/GSVirtualMachine"
-            android:name="com.luckyzyx.luckytool.ui.fragment.GSVirtualMachine"
             android:label="{title_label}" />
     <fragment
             android:id="@+id/dropDownStatusBarClock"
