@@ -15,6 +15,17 @@ If you have problems, please bring the scope APK and LOG to the TG group for fee
 [优化] C13禁用DPI重启恢复  
 [优化] 状态栏时钟布局  
 [移除] 光速虚拟机相关功能  
+[Update] Donation list  
+[Add] Auto-check update switch  
+[Add] Remove storage limit  
+[Change] Check Update UI Location  
+[Add] Long press device info to get GUID  
+[Update] MaterialSwitch style  
+[Add] Enable Game Assistant Developer option  
+[Add] Enable Game Assistant EVA theme  
+[Fix] C13 disabled DPI restart recovery  
+[Fix] Status bar clock layout  
+[Remove] LightSpeed VM related features  
 
 ### 3.0
 [更新] 捐赠名单列表  
