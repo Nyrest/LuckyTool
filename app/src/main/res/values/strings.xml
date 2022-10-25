@@ -91,7 +91,9 @@
     <string name="statusbar_clock_show_day">Show date</string>
     <string name="statusbar_clock_show_week">Show week</string>
     <string name="statusbar_clock_show_period">Show period</string>
+    <string name="statusbar_clock_show_double_hour">Show Double Hour</string>
     <string name="statusbar_clock_show_second">Show seconds</string>
+    <string name="statusbar_clock_hide_spaces">Hide spaces</string>
     <string name="statusbar_clock_show_doublerow">Double row display</string>
     <string name="statusbar_clock_singlerow_fontsize">Single row font size</string>
     <string name="statusbar_clock_doublerow_fontsize">Double row font size</string>
@@ -227,6 +229,9 @@
     <string name="remove_root_check">Remove Game Filter Limit</string>
     <string name="remove_root_check_summary">Remove Root Detection Limit for Game Filter</string>
     <string name="remove_startup_animation">Remove startup animation</string>
+    <string name="enable_developer_page">Enable developer page</string>
+    <string name="enable_eva_theme">Enable EVA theme</string>
+    <string name="enable_developer_page_summary">After enabling this feature and restarting the scope, \n can jump to it via the shortcut portal</string>
     <!--CloudService-->
     <string name="remove_network_limit">Remove Data Network Limit</string>
     <string name="remove_network_limit_summary">Remove backup/restore limitations that cannot use mobile data</string>
@@ -280,6 +285,7 @@
     <string name="install_button">Install now</string>
     <string name="cancel_button">Cancel download</string>
     <string name="fps_autostart">Auto-start</string>
+    <string name="device_guid">Device GUID</string>
     <!-- Logs -->
     <string name="log_no_data">No abnormal data</string>
     <!-- Other -->
@@ -290,7 +296,8 @@
     <string name="process_manager">Process management</string>
     <string name="system_interface_adjustment">System UI Tuner</string>
     <string name="feedback_toolbox">Feedback toolbox</string>
-    <string name="game_assistant_page">Game helper page</string>
+    <string name="game_assistant_page">Game Assistant Page</string>
+    <string name="game_assistant_develop_page">Game Assistant Developer Page</string>
     <string name="developer_option">Developer Options</string>
     <string name="display_refresh_rate">Show Refresh Rate</string>
     <string name="remote_adb_debug_title">Remote ADB debugging</string>

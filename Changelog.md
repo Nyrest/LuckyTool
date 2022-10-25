@@ -7,6 +7,13 @@ If you have problems, please bring the scope APK and LOG to the TG group for fee
 [更新] 捐赠名单  
 [添加] 自动检查更新开关  
 [添加] 移除存储限制  
+[更改] 检查更新UI位置  
+[添加] 长按设备信息获取GUID  
+[更新] MaterialSwitch样式  
+[添加] 启用游戏助手开发者选项  
+[添加] 启用游戏助手EVA主题  
+[适配] C13禁用DPI重启恢复  
+[优化] 状态栏时钟布局  
 
 ### 3.0
 [更新] 捐赠名单列表  

@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.switchmaterial.SwitchMaterial
+import com.google.android.material.materialswitch.MaterialSwitch
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.android.material.textview.MaterialTextView
@@ -45,6 +45,7 @@ class OtherFragment : Fragment() {
             quicklist.add(getString(R.string.feedback_toolbox))
             quicklist.add(getString(R.string.developer_option))
             quicklist.add(getString(R.string.game_assistant_page))
+            if (requireActivity().getBoolean(XposedPrefs,"enable_developer_page",false)) quicklist.add(getString(R.string.game_assistant_develop_page))
             MaterialAlertDialogBuilder(requireActivity())
                 .setCancelable(true)
                 .setItems(quicklist.toTypedArray()) { _, which ->
@@ -63,6 +64,7 @@ class OtherFragment : Fragment() {
                         5 -> ShellUtils.execCommand("am start -n com.oplus.logkit/.activity.MainActivity", true)
                         6 -> ShellUtils.execCommand("am start -a com.android.settings.APPLICATION_DEVELOPMENT_SETTINGS", true)
                         7 -> ShellUtils.execCommand("am start -n com.oplus.games/business.compact.activity.GameBoxCoverActivity", true)
+                        8 -> ShellUtils.execCommand("am start -n com.oplus.games/business.compact.activity.GameDevelopOptionsActivity", true)
                     }
                 }
                 .show()
@@ -90,7 +92,7 @@ class OtherFragment : Fragment() {
             val adbPortLayout = adbDialog.findViewById<TextInputLayout>(R.id.adb_port_layout)
             val adbPort = adbDialog.findViewById<TextInputEditText>(R.id.adb_port)?.apply {
                 inputType = EditorInfo.TYPE_CLASS_NUMBER
-                setText(requireActivity().getString(OtherPrefs,"adb_port","6666"))
+                setText(context.getString(OtherPrefs,"adb_port","6666"))
             }
             val adbTv = adbDialog.findViewById<MaterialTextView>(R.id.adb_tv)?.apply {
                 gravity = Gravity.CENTER
@@ -99,7 +101,7 @@ class OtherFragment : Fragment() {
                 }
             }
 
-            adbDialog.findViewById<SwitchMaterial>(R.id.adb_switch)?.apply {
+            adbDialog.findViewById<MaterialSwitch>(R.id.adb_switch)?.apply {
                 text = context.getString(R.string.enable_remote_adb_debugging)
                 isChecked = !(getPort == "" || getPort.toInt() == -1)
                 adbPortLayout?.isEnabled = isChecked.not()

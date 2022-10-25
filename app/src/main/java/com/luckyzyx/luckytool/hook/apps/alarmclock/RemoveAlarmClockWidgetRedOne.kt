@@ -6,6 +6,8 @@ import com.highcapable.yukihookapi.hook.factory.hasField
 import com.highcapable.yukihookapi.hook.type.android.HandlerClass
 import com.highcapable.yukihookapi.hook.type.java.BooleanType
 import com.highcapable.yukihookapi.hook.type.java.CharSequenceType
+import com.luckyzyx.luckytool.utils.tools.A12
+import com.luckyzyx.luckytool.utils.tools.SDK
 
 class RemoveAlarmClockWidgetRedOne : YukiBaseHooker() {
     override fun onHook() {
@@ -15,6 +17,7 @@ class RemoveAlarmClockWidgetRedOne : YukiBaseHooker() {
             type(CharSequenceType).index().first()
         }.get().set("")
 
+        if (SDK < A12) return
         //Source update one plus clock +4 -> setTextViewText
         searchClass {
             from("m0").absolute()

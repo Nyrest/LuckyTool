@@ -12,7 +12,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     
-    <com.google.android.material.switchmaterial.SwitchMaterial
+    <com.google.android.material.materialswitch.MaterialSwitch
             android:id="@+id/fps_mode"
             android:paddingHorizontal="10dp"
             android:layout_width="match_parent"

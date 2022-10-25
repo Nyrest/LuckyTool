@@ -1,4 +1,4 @@
-package com.luckyzyx.luckytool.hook.apps.settings
+package com.luckyzyx.luckytool.hook.apps.oplusgames
 
 import android.util.ArraySet
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
@@ -6,8 +6,7 @@ import com.highcapable.yukihookapi.hook.type.java.BooleanType
 import com.luckyzyx.luckytool.utils.tools.XposedPrefs
 import java.util.*
 
-
-class DisableDPIRebootRecovery : YukiBaseHooker() {
+class EnableEVATheme : YukiBaseHooker() {
     override fun onHook() {
         val appSet = prefs(XposedPrefs).getStringSet(packageName, ArraySet()).toTypedArray().apply {
             Arrays.sort(this)
@@ -15,21 +14,19 @@ class DisableDPIRebootRecovery : YukiBaseHooker() {
                 this[this.indexOf(it)] = it.substring(2)
             }
         }
+        val clazz = "com.coloros.gamespaceui"
         val member = when (appSet[2]) {
-            //C13
-            "a6de75c" -> arrayOf("fi.n", "A0")
-            "9470266" -> arrayOf("fi.o", "z0")
-            "75f9a97" -> arrayOf("ki.n", "B0")
-            //C12
-            "cd12d6b" -> arrayOf("uf.m", "l0")
-            "4bb0ba5" -> arrayOf("uf.l", "n0")
-            "feb9e19" -> arrayOf("uf.l", "m0")
-            "1801866" -> arrayOf("tf.l", "n0")
-            else -> arrayOf("DPILock", "lock")
+            "5e73d53", "d2010a8" -> arrayOf("m.e0", "I")
+            "46a4071" -> arrayOf("m.e0","H")
+            "1e58f62" -> arrayOf("m.e0","u")
+            "8c399bb" -> arrayOf("m.c0","t")
+            "d664479" -> arrayOf("m.a0","t")
+            "ddf7681" -> arrayOf("m.c0","t")
+            else -> arrayOf("Class", "EVA")
         }
-        // Class OplusDensityPreference -> display_density_forced
-        // Source CustomizeFeatureUtils
-        findClass(member[0]).hook {
+        //Source SystemPropertiesHelper
+        //Search isEvaThemePhone
+        findClass("$clazz.${member[0]}").hook {
             injectMember {
                 method {
                     name = member[1]

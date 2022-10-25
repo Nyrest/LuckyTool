@@ -16,7 +16,7 @@ import androidx.core.view.setPadding
 import androidx.fragment.app.Fragment
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.switchmaterial.SwitchMaterial
+import com.google.android.material.materialswitch.MaterialSwitch
 import com.google.android.material.textview.MaterialTextView
 import com.highcapable.yukihookapi.YukiHookAPI
 import com.joom.paranoid.Obfuscate
@@ -73,11 +73,11 @@ class HomeFragment : Fragment() {
 
         UpdateTool.checkUpdate(requireActivity(), getVersionName, getVersionCode) { versionName, versionCode, function ->
             if (!requireActivity().getBoolean(SettingsPrefs,"auto_check_update",true)) return@checkUpdate
-            binding.checkUpdateView.apply {
+            binding.updateView.apply {
                 isVisible = true
-                setOnClickListener { function() }
+                text = getString(R.string.check_update_hint)+"  -->  $versionName($versionCode)"
+                binding.statusCard.setOnClickListener { function() }
             }
-            binding.updateView.text = getString(R.string.check_update_hint)+"  -->  $versionName($versionCode)"
         }
 
         binding.fpsTitle.text = getString(R.string.fps_title)
@@ -90,7 +90,7 @@ class HomeFragment : Fragment() {
                 val fpsData = context.getFpsMode()
                 val currentFps = context.getInt(SettingsPrefs, "current_fps", -1)
                 val fpsAutostart = context.getBoolean(SettingsPrefs,"fps_autostart",false)
-                val fpsMode = fpsDialog.findViewById<SwitchMaterial>(R.id.fps_mode)?.apply {
+                val fpsMode = fpsDialog.findViewById<MaterialSwitch>(R.id.fps_mode)?.apply {
                     text = getString(R.string.fps_autostart)
                     isChecked = fpsAutostart
                     isEnabled = currentFps != -1
@@ -143,22 +143,34 @@ class HomeFragment : Fragment() {
                 ${getString(R.string.build_version)}: ${Build.DISPLAY}
                 ${getString(R.string.flash)}: ${getFlashInfo()}
             """.trimIndent()
-            setOnClickListener {
-                if (!context.getBoolean(SettingsPrefs,"hidden_function",false)) return@setOnClickListener
-                val guid = ShellUtils.execCommand("cat /data/system/openid_config.xml | sed  -n '3p'",true,true).successMsg.split("\"")[3]
-                MaterialAlertDialogBuilder(context).apply {
-                    setTitle("设备GUID")
-                    setMessage(guid)
-                    setNeutralButton(android.R.string.cancel,null)
-                    setPositiveButton(android.R.string.copy) { _, _ ->
-                        context.copyStr(guid)
-                    }
-                    show()
-                }
-            }
             setOnLongClickListener {
-                if (!context.getBoolean(SettingsPrefs,"hidden_function",false)) return@setOnLongClickListener true
-                UpdateTool.downloadFile(context,"coolmarket.apk",coolmarketUrl)
+                if (!context.getBoolean(SettingsPrefs, "hidden_function", false)) {
+                    val guid = ShellUtils.execCommand("cat /data/system/openid_config.xml | sed  -n '3p'", true, true).successMsg.split("\"")[3]
+                    MaterialAlertDialogBuilder(context, dialogCentered).apply {
+                        setTitle(context.getString(R.string.device_guid))
+                        setMessage(guid)
+                        setNeutralButton(android.R.string.cancel, null)
+                        setPositiveButton(android.R.string.copy) { _, _ ->
+                            context.copyStr(guid)
+                        }
+                        show()
+                    }
+                } else {
+                    MaterialAlertDialogBuilder(context, dialogCentered).apply {
+                        setTitle("下载功能")
+                        setView(
+                            MaterialTextView(context).apply {
+                                setPadding(20.dp)
+                                text = coolmarketUrl
+                            }
+                        )
+                        setNeutralButton(android.R.string.cancel, null)
+                        setPositiveButton(android.R.string.copy) { _, _ ->
+                            UpdateTool.downloadFile(context, "coolmarket.apk", coolmarketUrl)
+                        }
+                        show()
+                    }
+                }
                 true
             }
         }

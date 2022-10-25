@@ -92,7 +92,9 @@
     <string name="statusbar_clock_show_day">Показывать дату</string>
     <string name="statusbar_clock_show_week">Неделя в строке состояния</string>
     <string name="statusbar_clock_show_period">Показывать период времени</string>
+    <string name="statusbar_clock_show_double_hour">Show Double Hour</string>
     <string name="statusbar_clock_show_second">Показывать секунды</string>
+    <string name="statusbar_clock_hide_spaces">Hide spaces</string>
     <string name="statusbar_clock_show_doublerow">Двойной статусбар</string>
     <string name="statusbar_clock_singlerow_fontsize">Размер шрифта в одну строку</string>
     <string name="statusbar_clock_doublerow_fontsize">Размер шрифта в две строки</string>
@@ -207,8 +209,8 @@
     <string name="remove_low_battery_dialog_warning_summary">Удалите предупреждающие диалоговые окна для режима энергосбережения и суперэнергосбережения</string>
     <string name="remove_warning_dialog_that_app_runs_on_desktop">Удалить диалоговое окно с предупреждением о том, что приложение запускается на рабочем столе</string>
     <string name="remove_warning_dialog_that_app_runs_on_desktop_summary">Диалоговое окно с предупреждением обнаружило, что приложение запущено на системном рабочем столе</string>
-    <string name="remove_storage_limit">Remove storage limit</string>
-    <string name="remove_storage_limit_summary">Remove the restriction that this folder cannot be used</string>
+    <string name="remove_storage_limit">Удалить ограничение хранилища</string>
+    <string name="remove_storage_limit_summary">Снять ограничение, на использование этой папки</string>
     <!--PowerMenu-->
     <string name="PowerMenu">Меню питания</string>
     <string name="PowerMenu_summary">Нажмите и удерживайте кнопку питания, чтобы отобразить меню</string>
@@ -229,6 +231,9 @@
     <string name="remove_root_check">Удалить определение игрового фильтра</string>
     <string name="remove_root_check_summary">Удалить обнаружение рута из игровых фильтров</string>
     <string name="remove_startup_animation">Удалить стартовую анимацию</string>
+    <string name="enable_developer_page">Включить меню разработчика</string>
+    <string name="enable_eva_theme">Включить тему EVA</string>
+    <string name="enable_developer_page_summary">После включения этой функции и перезагрузки области, \n можно перейти к ней через меню быстрого доступа</string>
     <!--CloudService-->
     <string name="remove_network_limit">Удалить ограничения сети передачи данных</string>
     <string name="remove_network_limit_summary">Удалить ограничение, согласно которому резервное копирование/восстановление не может использовать мобильные данные</string>
@@ -282,6 +287,7 @@
     <string name="install_button">Установите сейчас</string>
     <string name="cancel_button">Отменить загрузку</string>
     <string name="fps_autostart">Автозапуск</string>
+    <string name="device_guid">GUID устройства</string>
     <!-- Logs -->
     <string name="log_no_data">Нет аномальных данных</string>
     <!-- Other -->
@@ -292,7 +298,8 @@
     <string name="process_manager">Управление процессом</string>
     <string name="system_interface_adjustment">Инструмент настройки системного интерфейса</string>
     <string name="feedback_toolbox">Инструменты обратной связи</string>
-    <string name="game_assistant_page">Игровой помощник</string>
+    <string name="game_assistant_page">Страница игрового помощника</string>
+    <string name="game_assistant_develop_page">Меню разработчика игрового помощника</string>
     <string name="developer_option">Параметры разработчика</string>
     <string name="display_refresh_rate">Частота обновления экрана</string>
     <string name="remote_adb_debug_title">Удаленная отладка ADB</string>

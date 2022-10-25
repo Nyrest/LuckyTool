@@ -89,7 +89,9 @@
     <string name="statusbar_clock_show_day">显示日期</string>
     <string name="statusbar_clock_show_week">显示星期</string>
     <string name="statusbar_clock_show_period">显示时段</string>
+    <string name="statusbar_clock_show_double_hour">显示时辰</string>
     <string name="statusbar_clock_show_second">显示秒数</string>
+    <string name="statusbar_clock_hide_spaces">隐藏空格</string>
     <string name="statusbar_clock_show_doublerow">双排显示</string>
     <string name="statusbar_clock_singlerow_fontsize">单排字体大小</string>
     <string name="statusbar_clock_doublerow_fontsize">双排字体大小</string>
@@ -224,6 +226,9 @@
     <string name="remove_root_check">移除游戏滤镜限制</string>
     <string name="remove_root_check_summary">移除游戏滤镜的Root检测限制</string>
     <string name="remove_startup_animation">移除启动动画</string>
+    <string name="enable_developer_page">启用开发者页面</string>
+    <string name="enable_eva_theme">启用 EVA 主题</string>
+    <string name="enable_developer_page_summary">启用此功能并重启作用域后\n即可通过快捷入口跳转进入</string>
     <!--CloudService-->
     <string name="remove_network_limit">移除数据网络限制</string>
     <string name="remove_network_limit_summary">移除备份/恢复无法使用移动数据的限制</string>
@@ -277,6 +282,7 @@
     <string name="install_button">立即安装</string>
     <string name="cancel_button">取消下载</string>
     <string name="fps_autostart">自动启动</string>
+    <string name="device_guid">设备 GUID</string>
     <!-- Logs -->
     <string name="log_no_data">无异常数据</string>
     <!-- Other -->
@@ -288,6 +294,7 @@
     <string name="system_interface_adjustment">系统界面调节工具</string>
     <string name="feedback_toolbox">反馈工具箱</string>
     <string name="game_assistant_page">游戏助手页面</string>
+    <string name="game_assistant_develop_page">游戏助手开发者页面</string>
     <string name="developer_option">开发者选项</string>
     <string name="display_refresh_rate">显示刷新率</string>
     <string name="remote_adb_debug_title">远程ADB调试</string>

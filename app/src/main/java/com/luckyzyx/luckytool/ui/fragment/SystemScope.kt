@@ -248,8 +248,24 @@ class StatusBarClock : ModulePreferenceFragment(){
             )
             addPreference(
                 SwitchPreference(requireActivity()).apply {
+                    title = getString(R.string.statusbar_clock_show_double_hour)
+                    key = "statusbar_clock_show_double_hour"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
                     title = getString(R.string.statusbar_clock_show_second)
                     key = "statusbar_clock_show_second"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    title = getString(R.string.statusbar_clock_hide_spaces)
+                    key = "statusbar_clock_hide_spaces"
                     setDefaultValue(false)
                     isIconSpaceReserved = false
                 }
@@ -1117,6 +1133,23 @@ class OplusGames : ModulePreferenceFragment() {
                 SwitchPreference(requireActivity()).apply {
                     title = getString(R.string.remove_startup_animation)
                     key = "remove_startup_animation"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    title = getString(R.string.enable_developer_page)
+                    summary = getString(R.string.enable_developer_page_summary)
+                    key = "enable_developer_page"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(requireActivity()).apply {
+                    title = getString(R.string.enable_eva_theme)
+                    key = "enable_eva_theme"
                     setDefaultValue(false)
                     isIconSpaceReserved = false
                 }

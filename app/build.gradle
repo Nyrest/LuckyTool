@@ -74,7 +74,8 @@ dependencies {
 //    ksp files("libs/yukihookapi-ksp-xposed-1.1.0-preview.jar")
 
     //Material主题
-    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'com.google.android.material:material:1.7.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
     //约束布局
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     //快速创建settings
@@ -85,21 +86,19 @@ dependencies {
     //noinspection GradleDependency
     implementation 'androidx.navigation:navigation-ui-ktx:2.4.2'
     //一个强大并且灵活的RecyclerViewAdapter
-//    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.7'
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.11'
     //崩溃日志显示
     implementation "com.github.simplepeng.SpiderMan:spiderman:v1.1.9"
     // 权限请求框架
-    implementation 'com.github.getActivity:XXPermissions:16.2'
+//    implementation 'com.github.getActivity:XXPermissions:16.2'
     // MoShi JSON ksp 注释处理
     implementation 'com.squareup.moshi:moshi:1.14.0'
     ksp 'com.squareup.moshi:moshi-kotlin-codegen:1.14.0'
-    //ColorPickerView
-    api "com.github.skydoves:colorpickerview:2.2.4"
     //Rikka
     implementation "dev.rikka.rikkax.core:core:1.4.1"
     //kotlin协程
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4"
     //OkHttp相关
     //noinspection GradleDependency
     implementation 'com.squareup.okhttp3:okhttp:4.10.0'

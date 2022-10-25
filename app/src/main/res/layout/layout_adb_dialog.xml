@@ -5,7 +5,7 @@
         android:paddingHorizontal="20dp"
         android:orientation="vertical">
 
-    <com.google.android.material.switchmaterial.SwitchMaterial
+    <com.google.android.material.materialswitch.MaterialSwitch
             android:id="@+id/adb_switch"
             android:layout_marginVertical="8dp"
             android:paddingHorizontal="10dp"

@@ -202,10 +202,10 @@ open class MainActivity : AppCompatActivity() {
             context.getAppVersion(scope)
         }
         safeOfNull {
-            if (!(getBoolean(XposedPrefs,"statusbar_clock_enable",false) && getBoolean(XposedPrefs,"statusbar_clock_show_second",false))) {
-                if(ShellUtils.execCommand("settings get secure clock_seconds",true,true).successMsg.toInt() == 1){
-                    commands.add("settings put secure clock_seconds 0")
-                }
+            if (getBoolean(XposedPrefs, "statusbar_clock_enable", false) && getBoolean(XposedPrefs, "statusbar_clock_show_second", false)) {
+                commands.add("settings put secure clock_seconds 0")
+            } else {
+                commands.add("settings put secure clock_seconds 0")
             }
         }
         MaterialAlertDialogBuilder(context)
