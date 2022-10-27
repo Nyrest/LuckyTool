@@ -10,19 +10,20 @@ import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
+@SuppressWarnings("ALL")
 public class CorePatchForT extends CorePatchForSv2 {
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam loadPackageParam) throws IllegalAccessException, InvocationTargetException, InstantiationException {
         super.handleLoadPackage(loadPackageParam);
-
+    
         findAndHookMethod("com.android.server.pm.PackageManagerServiceUtils", loadPackageParam.classLoader,
                 "checkDowngrade",
                 "com.android.server.pm.parsing.pkg.AndroidPackage",
                 "android.content.pm.PackageInfoLite",
                 new ReturnConstant(prefs, "downgrade", null));
-
+        
         var utilClass = findClass("com.android.server.pm.PackageManagerServiceUtils", loadPackageParam.classLoader);
-        Class<?> signingDetails = XposedHelpers.findClass("android.content.pm.SigningDetails", loadPackageParam.classLoader);
+        Class<?> signingDetails = getSigningDetails(loadPackageParam.classLoader);
         //New package has a different signature
         //处理覆盖安装但签名不一致
         hookAllMethods(signingDetails, "checkCapability", new XC_MethodHook() {
@@ -36,7 +37,7 @@ public class CorePatchForT extends CorePatchForSv2 {
                 }
             }
         });
-
+    
         if (utilClass != null) {
             for (var m : utilClass.getDeclaredMethods()) {
                 if ("verifySignatures".equals(m.getName())) {
@@ -55,7 +56,7 @@ public class CorePatchForT extends CorePatchForSv2 {
         hookAllMethods("android.content.pm.PackageParser", loadPackageParam.classLoader, "checkCapability", new XC_MethodHook() {
             @Override
             protected void beforeHookedMethod(MethodHookParam param) {
-                Log.e("CorePatch", "checkCapability");
+                // Log.e("CorePatch", "checkCapability");
                 // Don't handle PERMISSION (grant SIGNATURE permissions to pkgs with this cert)
                 // Or applications will have all privileged permissions
                 // https://cs.android.com/android/platform/superproject/+/master:frameworks/base/core/java/android/content/pm/PackageParser.java;l=5947?q=CertCapabilities
@@ -66,7 +67,7 @@ public class CorePatchForT extends CorePatchForSv2 {
                 }
             }
         });
-
+    
         if (prefs.getBoolean("digestCreak", true) && prefs.getBoolean("UsePreSig", false)) {
             findAndHookMethod("com.android.server.pm.InstallPackageHelper", loadPackageParam.classLoader, "doesSignatureMatchForPermissions", String.class, "com.android.server.pm.parsing.pkg.ParsedPackage", int.class, new XC_MethodHook() {
                 @Override
@@ -81,5 +82,30 @@ public class CorePatchForT extends CorePatchForSv2 {
                 }
             });
         }
+    
+        findAndHookMethod("com.android.server.pm.ScanPackageUtils", loadPackageParam.classLoader, "assertMinSignatureSchemeIsValid", "com.android.server.pm.parsing.pkg.AndroidPackage", int.class, new XC_MethodHook() {
+            @Override
+            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                if (prefs.getBoolean("authcreak", true)) {
+                    param.setResult(null);
+                }
+            }
+        });
+        Class<?> strictJarVerifier = findClass("android.util.jar.StrictJarVerifier", loadPackageParam.classLoader);
+        if (strictJarVerifier != null) {
+            XposedBridge.hookAllConstructors(strictJarVerifier, new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(MethodHookParam param) {
+                    if (prefs.getBoolean("authcreak", true)) {
+                        XposedHelpers.setBooleanField(param.thisObject, "signatureSchemeRollbackProtectionsEnforced", false);
+                    }
+                }
+            });
+        }
+    }
+    
+    @Override
+    Class<?> getSigningDetails(ClassLoader classLoader) {
+        return XposedHelpers.findClassIfExists("android.content.pm.SigningDetails", classLoader);
     }
 }

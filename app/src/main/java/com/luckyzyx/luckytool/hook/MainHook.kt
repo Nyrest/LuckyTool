@@ -75,17 +75,6 @@ class MainHook : IYukiHookXposedInit {
     }
 
     override fun onXposedEvent() {
-        YukiXposedEvent.onInitZygote { startupParam: IXposedHookZygoteInit.StartupParam ->
-            run {
-                when (SDK) {
-                    TIRAMISU -> CorePatchForT().initZygote(startupParam)
-                    S_V2 -> CorePatchForSv2().initZygote(startupParam)
-                    S -> CorePatchForS().initZygote(startupParam)
-                    R -> CorePatchForR().initZygote(startupParam)
-                    else -> loggerE(msg = "Unsupported Version of Android -> $SDK")
-                }
-            }
-        }
         YukiXposedEvent.onHandleLoadPackage { lpparam: XC_LoadPackage.LoadPackageParam ->
             run {
                 if (lpparam.packageName == "android" && lpparam.processName == "android") {
@@ -96,6 +85,17 @@ class MainHook : IYukiHookXposedInit {
                         R -> CorePatchForR().handleLoadPackage(lpparam)
                         else -> loggerE(msg = "Unsupported Version of Android -> $SDK")
                     }
+                }
+            }
+        }
+        YukiXposedEvent.onInitZygote { startupParam: IXposedHookZygoteInit.StartupParam ->
+            run {
+                when (SDK) {
+                    TIRAMISU -> CorePatchForT().initZygote(startupParam)
+                    S_V2 -> CorePatchForSv2().initZygote(startupParam)
+                    S -> CorePatchForS().initZygote(startupParam)
+                    R -> CorePatchForR().initZygote(startupParam)
+                    else -> loggerE(msg = "Unsupported Version of Android -> $SDK")
                 }
             }
         }

@@ -8,6 +8,7 @@ If you have problems, please bring the scope APK and LOG to the TG group for fee
 [适配] C13高性能通知  
 [优化] 桌面时钟组件红一  
 [适配] 游戏助手EVA主题  
+[更新] 核心破解同步上游  
 
 ### 3.1
 [更新] 捐赠名单  
