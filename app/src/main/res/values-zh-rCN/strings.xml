@@ -78,7 +78,7 @@
     <string name="UsePreSig_summary">不是一般的!危险! 仅在绝对需要时启用</string>
     <string name="enhancedMode">增强模式</string>
     <string name="enhancedMode_summary">可以解决一些App内部的完整性校验, 一般不需要开启</string>
-    <string name="usepresig_warn">!!所有安装包可以覆盖已安装的App!! \n 安装未知的安装包时请务必小心</string>
+    <string name="usepresig_warn">所有安装包可以覆盖已安装的App! \n 安装未知的安装包时请务必小心</string>
     <!--Status Bar-->
     <string name="StatusBar">状态栏相关</string>
     <!--StatusBarClock-->
@@ -153,6 +153,8 @@
     <!--Desktop-->
     <string name="Desktop">桌面相关</string>
     <string name="remove_alarmclock_widget_redone">移除桌面时钟组件红一</string>
+    <string name="remove_alarmclock_widget_redone_pro">移除桌面时钟组件红一·增强版</string>
+    <string name="remove_alarmclock_widget_redone_pro_summary">仅当常规版本未生效时可用，否则它将导致不可避免的错误</string>
     <string name="remove_appicon_dot">移除APP图标圆点</string>
     <string name="show_charging_ripple">充电显示充电纹波</string>
     <string name="show_charging_ripple_summary">仅在连接充电器时有效</string>
@@ -188,7 +190,7 @@
     <string name="disable_apk_signature_verification">禁用APK签名校验</string>
     <string name="disable_apk_signature_verification_summary">可以安装不同签名的APP, 搭配核心破解使用</string>
     <string name="remove_install_ads">移除安装完成广告</string>
-    <string name="remove_install_ads_summary">切记关闭设置-&gt;安全应用推荐</string>
+    <string name="remove_install_ads_summary">切记关闭设置-安全应用推荐</string>
     <string name="replase_aosp_installer">替换AOSP安装器</string>
     <string name="replase_aosp_installer_summary">替换为AOSP原生安装器</string>
     <!--Miscellaneous-->

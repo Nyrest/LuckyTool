@@ -142,8 +142,11 @@ fun Context.getFpsMode(): Array<String> {
         "    echo -e '@'\n" +
         "  fi\n" +
         "done"
-    val result = ShellUtils.execCommand(command, true, true).successMsg ?: return arrayOf("Error, don't click")
-    return result.substring(0,result.length - 1).split("@").toMutableList().toTypedArray()
+    return ShellUtils.execCommand(command, true, true).successMsg.let {
+        it.takeIf { e -> e.isNotEmpty() }?.substring(0, it.length - 1)?.split("@")
+            ?.toMutableList()
+            ?.toTypedArray() ?: arrayOf("Error, don't click")
+    }
 }
 
 /**

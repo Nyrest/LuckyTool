@@ -6,6 +6,7 @@ import com.luckyzyx.luckytool.hook.apps.systemui.RemoveStatusBarClockRedOne
 import com.luckyzyx.luckytool.hook.apps.systemui.StatusBarClock
 import com.luckyzyx.luckytool.utils.tools.XposedPrefs
 
+
 class StatusBarClock : YukiBaseHooker() {
     override fun onHook() {
         loadApp("com.android.systemui"){

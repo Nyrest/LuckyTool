@@ -668,6 +668,15 @@ class Desktop : ModulePreferenceFragment() {
             )
             addPreference(
                 SwitchPreference(context).apply {
+                    title = getString(R.string.remove_alarmclock_widget_redone_pro)
+                    summary = getString(R.string.remove_alarmclock_widget_redone_pro_summary)
+                    key = "remove_alarmclock_widget_redone_pro"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(context).apply {
                     title = getString(R.string.remove_appicon_dot)
                     key = "remove_appicon_dot"
                     setDefaultValue(false)

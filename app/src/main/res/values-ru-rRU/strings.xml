@@ -155,7 +155,9 @@
     <string name="remove_lock_screen_bottom_sos_button_summary">Кнопка экстренного контакта SOS внизу страницы разблокировки была удалена</string>
     <!--Desktop-->
     <string name="Desktop">Рабочий стол</string>
-    <string name="remove_alarmclock_widget_redone">Удалить компонент красного цвета в виджете \"Часы на рабочем столе\"</string>
+    <string name="remove_alarmclock_widget_redone">Удалить красный компонент виджете часов на рабочем столе</string>
+    <string name="remove_alarmclock_widget_redone_pro">Удалить красный компонент виджете часов на рабочем столе</string>
+    <string name="remove_alarmclock_widget_redone_pro_summary">Доступно только тогда, когда обычная версия не помогает, иначе это вызовет неизбежную ошибку</string>
     <string name="remove_appicon_dot">Удалить точку с иконки приложения</string>
     <string name="show_charging_ripple">Пульсация зарядки</string>
     <string name="show_charging_ripple_summary">Работает только при подключении к зарядному устройству</string>

@@ -17,7 +17,7 @@ class RemoveHighPerformanceModeNotifications : YukiBaseHooker() {
         }
         val member: String = when (appSet[2]) {
             "811ab09", "e6c5d54", "99a5850", "7c40d0e" -> "f"
-            "45704ff" -> "c"
+            "45704ff", "8ad4152" -> "c"
             else -> "gt_mode_status"
         }
         //Source GTModeBroadcastReceiver

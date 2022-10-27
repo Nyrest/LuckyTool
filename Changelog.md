@@ -3,6 +3,12 @@
 出现问题请带上作用域 APK 和 LOG 前往 TG 群组反馈  
 If you have problems, please bring the scope APK and LOG to the TG group for feedback  
 
+### 3.2
+[更新] 捐赠名单  
+[适配] C13高性能通知  
+[优化] 桌面时钟组件红一  
+[适配] 游戏助手EVA主题  
+
 ### 3.1
 [更新] 捐赠名单  
 [添加] 自动检查更新开关  

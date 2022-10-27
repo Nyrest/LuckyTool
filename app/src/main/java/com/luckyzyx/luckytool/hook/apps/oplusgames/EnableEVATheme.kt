@@ -17,7 +17,7 @@ class EnableEVATheme : YukiBaseHooker() {
         val clazz = "com.coloros.gamespaceui"
         val member = when (appSet[2]) {
             //7130,7123,7100
-            "5e73d53", "50f51f1", "d2010a8" -> arrayOf("m.e0", "I")
+            "5e73d53", "50f51f1", "d2010a8", "0d7d77d" -> arrayOf("m.e0", "I")
             "46a4071" -> arrayOf("m.e0", "H")//790
             "1e58f62" -> arrayOf("m.e0", "u")//780
             "ddf7681" -> arrayOf("m.c0", "t")//773

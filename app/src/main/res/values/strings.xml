@@ -155,7 +155,9 @@
     <string name="remove_lock_screen_bottom_sos_button_summary">Removed the SOS emergency button at the bottom of the unlock page</string>
     <!--Desktop-->
     <string name="Desktop">Desktop Related</string>
-    <string name="remove_alarmclock_widget_redone">Remove desktop clock component red</string>
+    <string name="remove_alarmclock_widget_redone">Remove desktop clock component red one</string>
+    <string name="remove_alarmclock_widget_redone_pro">Remove the desktop clock component Red One Enhanced Edition</string>
+    <string name="remove_alarmclock_widget_redone_pro_summary">Only available when the regular version does not take effect, otherwise it will cause an inevitable error</string>
     <string name="remove_appicon_dot">Remove API icon dots</string>
     <string name="show_charging_ripple">Charging display charging texture waves</string>
     <string name="show_charging_ripple_summary">Valid only when connecting to charger</string>
