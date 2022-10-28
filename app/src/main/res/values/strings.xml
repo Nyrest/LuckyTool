@@ -167,6 +167,7 @@
     <string name="launcher_layout_enable">Desktop icon layout general switch</string>
     <string name="launcher_layout_max_rows">Maximum number of lines in desktop layout</string>
     <string name="launcher_layout_max_columns">Maximum Desktop Layout Columns</string>
+    <string name="remove_recent_task_list_clear_button">Remove recent task list clear button</string>
     <!--Application-->
     <string name="Application">Apply related</string>
     <string name="ApplyOtherRestrictions">Apply Other Limit</string>

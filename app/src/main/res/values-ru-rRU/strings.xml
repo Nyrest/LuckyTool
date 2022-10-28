@@ -167,6 +167,7 @@
     <string name="launcher_layout_enable">Включить/отключить сетку иконок на рабочем столе</string>
     <string name="launcher_layout_max_rows">Количество строк для сетки рабочего стола</string>
     <string name="launcher_layout_max_columns">Количество столбцов для сетки рабочего стола</string>
+    <string name="remove_recent_task_list_clear_button">Remove recent task list clear button</string>
     <!--Application-->
     <string name="Application">Приложения</string>
     <string name="ApplyOtherRestrictions">Применить другие ограничения</string>

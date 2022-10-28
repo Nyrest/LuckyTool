@@ -2,10 +2,7 @@ package com.luckyzyx.luckytool.hook
 
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 import com.luckyzyx.luckytool.hook.apps.alarmclock.RemoveAlarmClockWidgetRedOne
-import com.luckyzyx.luckytool.hook.apps.launcher.FolderLayoutRowColume
-import com.luckyzyx.luckytool.hook.apps.launcher.LauncherLayoutRowColume
-import com.luckyzyx.luckytool.hook.apps.launcher.RemoveAppUpdateDot
-import com.luckyzyx.luckytool.hook.apps.launcher.RemoveAppUpdateDotV13
+import com.luckyzyx.luckytool.hook.apps.launcher.*
 import com.luckyzyx.luckytool.utils.tools.A13
 import com.luckyzyx.luckytool.utils.tools.SDK
 import com.luckyzyx.luckytool.utils.tools.XposedPrefs
@@ -30,6 +27,10 @@ class Desktop : YukiBaseHooker() {
             //设置桌面文件夹行列数
             if (prefs(XposedPrefs).getBoolean("set_folder_layout_4x4",false)) loadHooker(
                 FolderLayoutRowColume()
+            )
+            //移除最近任务列表清除按钮
+            if (prefs(XposedPrefs).getBoolean("remove_recent_task_list_clear_button",false)) loadHooker(
+                RemoveRecentTaskListClearButton()
             )
         }
     }

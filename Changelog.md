@@ -12,6 +12,7 @@ If you have problems, please bring the scope APK and LOG to the TG group for fee
 [修复] EVA主题功能异常  
 [更改] A11(C12)状态栏显秒逻辑  
 [添加] 移除72小时密码验证(Beta)  
+[添加] 移除最近任务列表清除按钮  
 
 ### 3.1
 [更新] 捐赠名单  

@@ -677,6 +677,14 @@ class Desktop : ModulePreferenceFragment() {
             )
             addPreference(
                 SwitchPreference(context).apply {
+                    title = getString(R.string.remove_recent_task_list_clear_button)
+                    key = "remove_recent_task_list_clear_button"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(context).apply {
                     title = getString(R.string.remove_appicon_dot)
                     key = "remove_appicon_dot"
                     setDefaultValue(false)

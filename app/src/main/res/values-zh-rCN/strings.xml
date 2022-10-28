@@ -164,6 +164,7 @@
     <string name="launcher_layout_enable">桌面图标布局总开关</string>
     <string name="launcher_layout_max_rows">桌面布局最大行数</string>
     <string name="launcher_layout_max_columns">桌面布局最大列数</string>
+    <string name="remove_recent_task_list_clear_button">移除最近任务列表清除按钮</string>
     <!--Application-->
     <string name="Application">应用相关</string>
     <string name="ApplyOtherRestrictions">应用其他限制</string>
