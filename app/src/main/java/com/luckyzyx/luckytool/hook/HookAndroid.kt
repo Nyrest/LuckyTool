@@ -7,7 +7,6 @@ import com.luckyzyx.luckytool.utils.tools.A13
 import com.luckyzyx.luckytool.utils.tools.SDK
 import com.luckyzyx.luckytool.utils.tools.XposedPrefs
 
-
 class HookAndroid : YukiBaseHooker() {
 
     override fun onHook() {
@@ -34,7 +33,7 @@ class HookAndroid : YukiBaseHooker() {
 
         //移除72小时密码验证
         if (!prefs(XposedPrefs).getBoolean("remove_72hour_password_verification",false)) return
-        findClass("com.android.server.devicepolicy.DevicePolicyManagerService").hook {
+        findClass("android.app.admin.DevicePolicyManager").hook {
             injectMember {
                 method {
                     name = "getRequiredStrongAuthTimeout"
