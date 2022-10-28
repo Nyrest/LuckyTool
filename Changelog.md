@@ -9,6 +9,9 @@ If you have problems, please bring the scope APK and LOG to the TG group for fee
 [优化] 桌面时钟组件红一  
 [适配] 游戏助手EVA主题  
 [更新] 核心破解同步上游  
+[修复] EVA主题功能异常  
+[更改] A11(C12)状态栏显秒逻辑  
+[添加] 移除72小时密码验证(Beta)  
 
 ### 3.1
 [更新] 捐赠名单  

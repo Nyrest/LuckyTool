@@ -14,6 +14,7 @@ import com.highcapable.yukihookapi.hook.type.java.CharSequenceType
 import com.luckyzyx.luckytool.utils.tools.A11
 import com.luckyzyx.luckytool.utils.tools.SDK
 import com.luckyzyx.luckytool.utils.tools.XposedPrefs
+import com.luckyzyx.luckytool.utils.tools.getColorOSVersion
 import java.lang.reflect.Method
 import java.text.SimpleDateFormat
 import java.util.*
@@ -87,6 +88,18 @@ class StatusBarClock : YukiBaseHooker() {
                     }
                     nowTime = Calendar.getInstance().time
                     result = getDate(context!!) + newline + getTime(context!!)
+                }
+            }
+            if (SDK == A11 && getColorOSVersion == "V12"){
+                injectMember {
+                    method {
+                        name = "updateShowSeconds"
+                    }
+                    beforeHook {
+                        field {
+                            name = "mShowSeconds"
+                        }.get(instance).setTrue()
+                    }
                 }
             }
         }

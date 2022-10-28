@@ -785,6 +785,16 @@ class LockScreen : ModulePreferenceFragment(){
                     isVisible = SDK >= 33
                 }
             )
+            addPreference(
+                SwitchPreference(context).apply {
+                    title = "移除72小时密码验证"
+                    summary = "beta测试性功能\n随时可能会删除,重启系统启用此功能"
+                    key = "remove_72hour_password_verification"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                    isVisible = SDK >= 33
+                }
+            )
         }
     }
 }

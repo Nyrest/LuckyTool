@@ -20,6 +20,6 @@ class HookOplusGames : YukiBaseHooker() {
         if (prefs(XposedPrefs).getBoolean("enable_developer_page",false)) loadHooker(EnableDeveloperPage())
 
         //启用EVA主题
-        if (prefs(XposedPrefs).getBoolean("enable_developer_page",false)) loadHooker(EnableEVATheme())
+        if (prefs(XposedPrefs).getBoolean("enable_eva_theme",false)) loadHooker(EnableEVATheme())
     }
 }
