@@ -979,21 +979,6 @@ class Miscellaneous : ModulePreferenceFragment(){
         preferenceManager.sharedPreferencesName = XposedPrefs
         preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
             addPreference(
-                Preference(context).apply {
-                    title = getString(R.string.PowerMenu)
-                    summary = getString(R.string.PowerMenu_summary)
-                    key = "PowerMenu"
-                    isIconSpaceReserved = false
-                    setOnPreferenceClickListener {
-                        findNavController().navigate(R.id.action_miscellaneous_to_powerMenu,Bundle().apply {
-                            putCharSequence("title_label",title)
-                        })
-                        true
-                    }
-                    isVisible = Build.VERSION.SDK_INT in 31..32
-                }
-            )
-            addPreference(
                 SwitchPreference(context).apply {
                     title = getString(R.string.show_charging_ripple)
                     summary = getString(R.string.show_charging_ripple_summary)
@@ -1068,62 +1053,6 @@ class Miscellaneous : ModulePreferenceFragment(){
                 }
             )
         }
-    }
-}
-
-class PowerMenu : ModulePreferenceFragment(){
-    override fun onCreatePreferencesInModuleApp(savedInstanceState: Bundle?, rootKey: String?) {
-        preferenceManager.sharedPreferencesName = XposedPrefs
-        preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
-            addPreference(
-                SwitchPreference(context).apply {
-                    title = getString(R.string.power_menu_enable)
-                    summary = getString(R.string.power_menu_enable_summary)
-                    key = "power_menu_enable"
-                    isIconSpaceReserved = false
-                }
-            )
-            addPreference(
-                SwitchPreference(context).apply {
-                    title = getString(R.string.power_menu_sos_button)
-                    summary = getString(R.string.power_menu_button_summary)
-                    key = "power_menu_sos_button"
-                    setDefaultValue(false)
-                    isIconSpaceReserved = false
-                }
-            )
-            addPreference(
-                SwitchPreference(context).apply {
-                    title = getString(R.string.power_menu_lock_button)
-                    summary = getString(R.string.power_menu_button_summary)
-                    key = "power_menu_lock_button"
-                    setDefaultValue(false)
-                    isIconSpaceReserved = false
-                }
-            )
-            addPreference(
-                SwitchPreference(context).apply {
-                    title = getString(R.string.power_menu_simple_layout)
-                    summary = getString(R.string.power_menu_simple_layout_summary)
-                    key = "power_menu_simple_layout"
-                    setDefaultValue(true)
-                    isIconSpaceReserved = false
-                }
-            )
-            addPreference(
-                SwitchPreference(context).apply {
-                    title = getString(R.string.power_menu_remove_add_controls)
-                    summary = getString(R.string.power_menu_remove_add_controls_summary)
-                    key = "power_menu_remove_add_controls"
-                    setDefaultValue(false)
-                    isIconSpaceReserved = false
-                }
-            )
-        }
-        preferenceScreen.findPreference<SwitchPreference>("power_menu_sos_button")?.dependency = "power_menu_enable"
-        preferenceScreen.findPreference<SwitchPreference>("power_menu_lock_button")?.dependency = "power_menu_enable"
-        preferenceScreen.findPreference<SwitchPreference>("power_menu_simple_layout")?.dependency = "power_menu_enable"
-        preferenceScreen.findPreference<SwitchPreference>("power_menu_remove_add_controls")?.dependency = "power_menu_enable"
     }
 }
 

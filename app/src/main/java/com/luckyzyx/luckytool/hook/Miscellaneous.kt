@@ -25,11 +25,6 @@ class Miscellaneous : YukiBaseHooker() {
                 loadHooker(DisableHeadphoneHighVolumeWarning())
             }
 
-            //电源菜单相关
-            if (prefs(XposedPrefs).getBoolean("power_menu_enable",false)){
-                if(SDK in A12..A121) loadHooker(PowerMenu())
-            }
-
             //禁用OTG自动关闭
             if (prefs(XposedPrefs).getBoolean("disable_otg_auto_off",false)){
                 loadHooker(DisableOTGAutoOff())
