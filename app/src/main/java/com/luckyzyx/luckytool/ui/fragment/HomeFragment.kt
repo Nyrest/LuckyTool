@@ -3,7 +3,6 @@ package com.luckyzyx.luckytool.ui.fragment
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.DialogInterface
-import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Build
@@ -24,7 +23,6 @@ import com.joom.paranoid.Obfuscate
 import com.luckyzyx.luckytool.R
 import com.luckyzyx.luckytool.databinding.FragmentHomeBinding
 import com.luckyzyx.luckytool.ui.activity.MainActivity
-import com.luckyzyx.luckytool.ui.activity.OTAActivity
 import com.luckyzyx.luckytool.utils.tools.*
 import com.luckyzyx.luckytool.utils.tools.UpdateTool.coolmarketUrl
 import rikka.core.util.ResourceUtils
@@ -166,22 +164,13 @@ class HomeFragment : Fragment() {
                             }
                         )
                         setNeutralButton(android.R.string.cancel, null)
-                        setPositiveButton(android.R.string.copy) { _, _ ->
+                        setPositiveButton(android.R.string.ok) { _, _ ->
                             UpdateTool.downloadFile(context, "coolmarket.apk", coolmarketUrl)
                         }
                         show()
                     }
                 }
                 true
-            }
-        }
-
-        if (!requireActivity().getBoolean(SettingsPrefs, "hidden_function", false)) return
-        binding.startOta.apply {
-            isVisible = true
-            text = "跳转OTA页面"
-            setOnClickListener {
-                startActivity(Intent(requireActivity(), OTAActivity::class.java))
             }
         }
     }
