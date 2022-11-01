@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.activity.OTAActivity">
+    
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
+            android:paddingVertical="20dp"
+            android:paddingHorizontal="20dp"
+            android:orientation="vertical">
+        
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="5dp"
+                android:orientation="horizontal">
+            
+            <com.google.android.material.textview.MaterialTextView
+                    android:text="选择地区"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            
+            <Spinner
+                    android:id="@+id/ota_area"
+                    android:layout_weight="1"
+                    android:spinnerMode="dropdown"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+        
+        </LinearLayout>
+    
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="5dp"
+                android:orientation="horizontal">
+        
+            <com.google.android.material.textview.MaterialTextView
+                    android:text="选择版本"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+        
+            <Spinner
+                    android:id="@+id/rui_version"
+                    android:layout_weight="1"
+                    android:spinnerMode="dropdown"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+    
+        </LinearLayout>
+        
+        <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/is_guid"
+                android:text="是否内测"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edit_guid_view"
+                android:visibility="gone"
+                android:animateLayoutChanges="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            
+            <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_guid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+        
+        </com.google.android.material.textfield.TextInputLayout>
+        
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/model_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            
+            <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/model"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+        
+        </com.google.android.material.textfield.TextInputLayout>
+        
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ota_version_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            
+            <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ota_version"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+        
+        </com.google.android.material.textfield.TextInputLayout>
+        
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/nv_id_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            
+            <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/nv_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+        
+        </com.google.android.material.textfield.TextInputLayout>
+        
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/ota_btn"
+                android:layout_marginTop="20dp"
+                android:paddingBottom="10dp"
+                android:paddingHorizontal="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        
+        <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/ota_tv"
+                android:paddingHorizontal="10dp"
+                android:paddingTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+    
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

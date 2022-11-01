@@ -11,6 +11,9 @@ object MoshiUtil {
     //addLast(KotlinJsonAdapterFactory())
     val moshi: Moshi = Moshi.Builder().build()
 
+    /**
+     * T 转换 Json
+     */
     inline fun <reified T> toJson(input: T, indent: String = ""): String {
         try {
             val jsonAdapter = moshi.adapter(T::class.java)
@@ -22,6 +25,9 @@ object MoshiUtil {
         return ""
     }
 
+    /**
+     * String 转换 T
+     */
     inline fun <reified T> fromJson(jsonStr: String): T? {
         try {
             val jsonAdapter = moshi.adapter(T::class.java)

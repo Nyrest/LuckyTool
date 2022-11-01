@@ -1,92 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
-
+        xmlns:tools="http://schemas.android.com/tools">
+    
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+    <uses-permission
+            android:name="android.permission.WRITE_EXTERNAL_STORAGE"
             tools:ignore="ScopedStorage" />
-    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"
+    <uses-permission
+            android:name="android.permission.QUERY_ALL_PACKAGES"
             tools:ignore="QueryAllPackagesPermission" />
-    <uses-permission android:name="android.permission.FORCE_STOP_PACKAGES"
+    <uses-permission
+            android:name="android.permission.FORCE_STOP_PACKAGES"
             tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-
+    
     <application
-        android:name=".ui.application.MyApplication"
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:sharedUserId="android.uid.system"
-        android:theme="@style/Theme.Luckyzyx">
+            android:name=".ui.application.MyApplication"
+            android:allowBackup="true"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:sharedUserId="android.uid.system"
+            android:supportsRtl="true"
+            android:theme="@style/Theme.Luckyzyx">
         <activity
-            android:name=".ui.activity.MainActivity"
-            android:exported="true">
+                android:name=".ui.activity.OTAActivity"
+                android:exported="false">
+            <meta-data
+                    android:name="android.app.lib_name"
+                    android:value="" />
+        </activity>
+        <activity
+                android:name=".ui.activity.MainActivity"
+                android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="de.robv.android.xposed.category.MODULE_SETTINGS" />
             </intent-filter>
         </activity>
+        
         <activity-alias
-            android:name=".Hide"
-            android:targetActivity=".ui.activity.MainActivity"
-            android:exported="true">
+                android:name=".Hide"
+                android:exported="true"
+                android:targetActivity=".ui.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+    
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity-alias>
+        
         <activity
-            android:name=".ui.activity.ShortcutActivity"
-            android:exported="false" />
+                android:name=".ui.activity.ShortcutActivity"
+                android:exported="false" />
+        
         <meta-data
-            android:name="xposedmodule"
-            android:value="true" />
+                android:name="xposedmodule"
+                android:value="true" />
         <meta-data
-            android:name="xposeddescription"
-            android:value="@string/xposeddescription" />
+                android:name="xposeddescription"
+                android:value="@string/xposeddescription" />
         <meta-data
-            android:name="xposedminversion"
-            android:value="93" />
+                android:name="xposedminversion"
+                android:value="93" />
         <meta-data
-            android:name="xposedscope"
-            android:resource="@array/xposed_scope" />
-
+                android:name="xposedscope"
+                android:resource="@array/xposed_scope" />
+        
         <service
-            android:name=".utils.tiles.ChargingTest"
-            android:label="@string/charging_test"
-            android:icon="@drawable/ic_baseline_charging_station_24"
-            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
-            android:exported="true">
+                android:name=".utils.tiles.ChargingTest"
+                android:exported="true"
+                android:icon="@drawable/ic_baseline_charging_station_24"
+                android:label="@string/charging_test"
+                android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE" />
             </intent-filter>
         </service>
         <service
-            android:name=".utils.tiles.ProcessManager"
-            android:label="@string/process_manager"
-            android:icon="@drawable/ic_baseline_settings_24"
-            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
-            android:exported="true">
+                android:name=".utils.tiles.ProcessManager"
+                android:exported="true"
+                android:icon="@drawable/ic_baseline_settings_24"
+                android:label="@string/process_manager"
+                android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE" />
             </intent-filter>
         </service>
         <service
-            android:name=".utils.tiles.ShowFPS"
-            android:label="@string/display_refresh_rate"
-            android:icon="@drawable/ic_baseline_settings_24"
-            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
-            android:exported="true">
+                android:name=".utils.tiles.ShowFPS"
+                android:exported="true"
+                android:icon="@drawable/ic_baseline_settings_24"
+                android:label="@string/display_refresh_rate"
+                android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE" />
             </intent-filter>
         </service>
-    
+        
         <provider
                 android:name="androidx.core.content.FileProvider"
                 android:authorities="${applicationId}.FileProvider"
@@ -96,18 +110,16 @@
                     android:name="android.support.FILE_PROVIDER_PATHS"
                     android:resource="@xml/file_paths" />
         </provider>
-    
+        
         <receiver
                 android:name=".utils.receiver.MyReceiver"
                 android:enabled="true"
                 android:exported="true"
                 android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
-            <intent-filter
-                android:priority="999999999">
+            <intent-filter android:priority="999999999">
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-        
     </application>
 
 </manifest>

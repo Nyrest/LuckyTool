@@ -17,6 +17,8 @@ import com.highcapable.yukihookapi.hook.factory.method
 import com.highcapable.yukihookapi.hook.factory.toClass
 import com.luckyzyx.luckytool.BuildConfig.*
 import java.util.regex.Pattern
+import kotlin.math.roundToLong
+import kotlin.random.Random
 
 
 val SDK get() = Build.VERSION.SDK_INT
@@ -147,6 +149,14 @@ fun Context.getFpsMode(): Array<String> {
             ?.toMutableList()
             ?.toTypedArray() ?: arrayOf("Error, don't click")
     }
+}
+
+/**
+ * 获取GUID
+ * /data/system/openid_config.xml
+ */
+val getGuid get() = ShellUtils.execCommand("cat /data/system/openid_config.xml | sed  -n '3p'", true, true).successMsg.let {
+    it.takeIf { e -> e.isNotEmpty() }?.split("\"")?.get(3) ?: "null"
 }
 
 /**
@@ -286,4 +296,36 @@ fun Context.getXPIcon(resource: Any?,result:(Drawable?,Boolean) -> Unit) {
         is Drawable -> result(resource,true)
         is String -> result(getAppIcon(resource),true)
     }
+}
+
+
+/**
+ * 获取指定长度随机字符串
+ */
+fun getRandomString(length: Int): String {
+    val random = Random
+    val sb = StringBuffer()
+    for (i in 0 until length) {
+        val number: Int = random.nextInt(3)
+        var result: Long
+        when (number) {
+            0 -> {
+                result = (Math.random() * 25 + 65).roundToLong()
+                sb.append(Char(result.toUShort()).toString())
+            }
+            1 -> {
+                result = (Math.random() * 25 + 97).roundToLong()
+                sb.append(Char(result.toUShort()).toString())
+            }
+            2 -> sb.append(java.lang.String.valueOf(Random.nextInt(10)))
+        }
+    }
+    return sb.toString()
+}
+
+/**
+ * Hex To Byte
+ */
+fun hexToByte(inHex: String): Byte {
+    return inHex.toInt(16).toByte()
 }
