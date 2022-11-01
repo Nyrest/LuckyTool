@@ -3,6 +3,7 @@ package com.luckyzyx.luckytool.ui.fragment
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Build
@@ -23,10 +24,10 @@ import com.joom.paranoid.Obfuscate
 import com.luckyzyx.luckytool.R
 import com.luckyzyx.luckytool.databinding.FragmentHomeBinding
 import com.luckyzyx.luckytool.ui.activity.MainActivity
+import com.luckyzyx.luckytool.ui.activity.OTAActivity
 import com.luckyzyx.luckytool.utils.tools.*
 import com.luckyzyx.luckytool.utils.tools.UpdateTool.coolmarketUrl
 import rikka.core.util.ResourceUtils
-
 
 @Obfuscate
 class HomeFragment : Fragment() {
@@ -47,7 +48,7 @@ class HomeFragment : Fragment() {
 
         enableModule = requireActivity().getBoolean(XposedPrefs,"enable_module",false)
 
-        if (YukiHookAPI.Status.isXposedModuleActive && enableModule){
+        if (enableModule && YukiHookAPI.Status.isXposedModuleActive){
             binding.statusIcon.setImageResource(R.drawable.ic_round_check_24)
             binding.statusTitle.text = getString(R.string.module_isactivated)
         }else{
@@ -145,7 +146,7 @@ class HomeFragment : Fragment() {
             """.trimIndent()
             setOnLongClickListener {
                 if (!context.getBoolean(SettingsPrefs, "hidden_function", false)) {
-                    val guid = ShellUtils.execCommand("cat /data/system/openid_config.xml | sed  -n '3p'", true, true).successMsg.split("\"")[3]
+                    val guid = getGuid
                     MaterialAlertDialogBuilder(context, dialogCentered).apply {
                         setTitle(context.getString(R.string.device_guid))
                         setMessage(guid)
@@ -172,6 +173,15 @@ class HomeFragment : Fragment() {
                     }
                 }
                 true
+            }
+        }
+
+        if (!requireActivity().getBoolean(SettingsPrefs, "hidden_function", false)) return
+        binding.startOta.apply {
+            isVisible = true
+            text = "跳转OTA页面"
+            setOnClickListener {
+                startActivity(Intent(requireActivity(), OTAActivity::class.java))
             }
         }
     }
@@ -202,10 +212,11 @@ class HomeFragment : Fragment() {
                     MaterialTextView(context).apply {
                         setPadding(20.dp)
                         text = "忆清鸣、luckyzyx"
-                        setOnClickListener{
+                        setOnLongClickListener{
                             val hideFunc = context.getBoolean(SettingsPrefs,"hidden_function",false)
                             context.putBoolean(SettingsPrefs,"hidden_function",!hideFunc)
                             context.toast("${!hideFunc}")
+                            true
                         }
                     }
                 )

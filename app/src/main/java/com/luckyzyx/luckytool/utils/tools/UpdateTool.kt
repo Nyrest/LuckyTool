@@ -21,7 +21,7 @@ import org.json.JSONObject
 import java.io.File
 
 object UpdateTool {
-    fun checkUpdate(context: Context, versionName: String, versionCode: Int, result: (String, Int, () -> Unit) -> Unit) {
+    fun checkUpdate(context: Context, @Suppress("UNUSED_PARAMETER") versionName: String, versionCode: Int, result: (String, Int, () -> Unit) -> Unit) {
         scopeNet {
             val latestUrl = "https://api.github.com/repos/Xposed-Modules-Repo/com.luckyzyx.luckytool/releases/latest"
             val getJson = Get<String>(latestUrl).await()
@@ -33,7 +33,11 @@ object UpdateTool {
                 val downloadUrl = getJSONArray("assets").getJSONObject(0).optString("browser_download_url")
                 val downloadPage = optString("html_url")
                 val updateTime = optString("published_at").replace("T", " ").replace("Z", "")
-                if ((versionCode >= code.toInt()) || (versionName == name)) return@scopeNet
+                //版本号大于等于云端,提示最新版本
+                if (versionCode >= code.toInt()) {
+//                    context.toast("已是最新版本v${versionName}!")
+                    return@scopeNet
+                }
                 result(name, code.toInt()) {
                     MaterialAlertDialogBuilder(context)
                         .setTitle(context.getString(R.string.check_update_hint))

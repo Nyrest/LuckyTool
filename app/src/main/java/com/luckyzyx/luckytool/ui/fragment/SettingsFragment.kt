@@ -125,7 +125,7 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
                                             .setView(
                                                 ImageView(context).apply {
                                                     setPadding(20.dp)
-                                                    setImageBitmap(baseDecode(Base64().qqCode))
+                                                    setImageBitmap(baseDecode(Base64Code().qqCode))
                                                 }
                                             )
                                             .show()
@@ -136,7 +136,7 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
                                             .setView(
                                                 ImageView(context).apply {
                                                     setPadding(20.dp)
-                                                    setImageBitmap(baseDecode(Base64().wechatCode))
+                                                    setImageBitmap(baseDecode(Base64Code().wechatCode))
                                                 }
                                             )
                                             .show()
@@ -147,7 +147,7 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
                                             .setView(
                                                 ImageView(context).apply {
                                                     setPadding(20.dp)
-                                                    setImageBitmap(baseDecode(Base64().alipayCode))
+                                                    setImageBitmap(baseDecode(Base64Code().alipayCode))
                                                 }
                                             )
                                             .show()

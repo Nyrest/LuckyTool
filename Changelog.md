@@ -14,6 +14,7 @@ If you have problems, please bring the scope APK and LOG to the TG group for fee
 [添加] 移除72小时密码验证(Beta)  
 [添加] 移除最近任务列表清除按钮  
 [移除] 电源菜单相关功能  
+[适配] 移除高性能通知  
 
 ### 3.1
 [更新] 捐赠名单  

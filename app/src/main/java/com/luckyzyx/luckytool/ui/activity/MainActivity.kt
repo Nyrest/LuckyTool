@@ -30,7 +30,6 @@ import com.luckyzyx.luckytool.databinding.ActivityMainBinding
 import com.luckyzyx.luckytool.utils.tools.*
 import kotlin.system.exitProcess
 
-
 @Obfuscate
 @Suppress("PrivatePropertyName")
 open class MainActivity : AppCompatActivity() {
