@@ -125,6 +125,9 @@
     <!--StatusBarIcon-->
     <string name="StatusBarIcon">StatusBar Icon</string>
     <string name="StatusBarIcon_summary">Status bar icon related</string>
+    <string name="StatusBarTopSmallIcon">StatusBar Top Small Icon</string>
+    <string name="StatusBarSmallIconStatus">StatusBar Small Icon Status</string>
+    <string name="remove_mobile_data_icon">Remove mobile data icon</string>
     <string name="set_network_speed">Set status bar speed refresh rate 1 s</string>
     <string name="remove_statusbar_securepayment_icon">Remove status bar payment protection icons</string>
     <string name="remove_statusbar_battery_percent">Remove battery percentage number in statusbar</string>

@@ -10,6 +10,5 @@ class HookZygote : YukiBaseHooker() {
         if (prefs(XposedPrefs).getBoolean("disable_flag_secure",false)){
             loadHooker(DisableFlagSecureZygote())
         }
-
     }
 }

@@ -49,8 +49,8 @@
     <string name="participate_translation">Участвовать в переводе модуля</string>
     <string name="participate_translation_summary">Перейдите на сайт Crowdin, чтобы добавить свой перевод</string>
     <!-- check Lsposed -->
-    <string name="unsupported_xposed">Убедитесь, что Xposed API &gt;= 93 и модуль имеет соответствующую область действия. 
-Если вышеописанное было выполнено, попробуйте нажать OK, чтобы выйти из приложения, а затем повторите попытку.</string>
+    <string name="unsupported_xposed">Убедитесь, что Xposed API = 93 и модуль имеет соответствующую область действия. 
+Если вышеописанное было выполнено, попробуйте нажать OK, чтобы выйти из приложения, а затем повторите попытку</string>
     <!-- Menu -->
     <string name="menu_reboot">Меню перезагрузки</string>
     <string name="menu_settings">Настройки</string>
@@ -126,6 +126,9 @@
     <!--StatusBarIcon-->
     <string name="StatusBarIcon">Иконки в строке состояния</string>
     <string name="StatusBarIcon_summary">Связанная иконка строки состояния</string>
+    <string name="StatusBarTopSmallIcon">StatusBar Top Small Icon</string>
+    <string name="StatusBarSmallIconStatus">StatusBar Small Icon Status</string>
+    <string name="remove_mobile_data_icon">Remove mobile data icon</string>
     <string name="set_network_speed">Установить частоту обновления веб-скорости в строке состояния на 1 секунду</string>
     <string name="remove_statusbar_securepayment_icon">Удалить иконку защиты платежа в строке состояния</string>
     <string name="remove_statusbar_battery_percent">Удалить иконку процента заряда батареи из строки состояния</string>
@@ -155,7 +158,7 @@
     <string name="remove_lock_screen_bottom_sos_button">Удалить кнопку экстренного контакта SOS</string>
     <string name="remove_lock_screen_bottom_sos_button_summary">Кнопка экстренного контакта SOS внизу страницы разблокировки была удалена</string>
     <string name="remove_72hour_password_verification">Удаление 72-часовой аутентификации по паролю (бета)</string>
-    <string name="remove_72hour_password_verification_summary">Эта функция может быть удалена в любое время \n Вступит в силу после перезагрузки системы</string>
+    <string name="remove_72hour_password_verification_summary">Эта функция может быть удалена в любое время\nВступит в силу после перезагрузки системы</string>
     <!--Desktop-->
     <string name="Desktop">Рабочий стол</string>
     <string name="remove_alarmclock_widget_redone">Удалить красный компонент виджете часов на рабочем столе</string>
@@ -225,7 +228,7 @@
     <string name="remove_startup_animation">Удалить стартовую анимацию</string>
     <string name="enable_developer_page">Включить меню разработчика</string>
     <string name="enable_eva_theme">Включить тему EVA</string>
-    <string name="enable_developer_page_summary">После включения этой функции и перезагрузки области, \n можно перейти к ней через меню быстрого доступа</string>
+    <string name="enable_developer_page_summary">После включения этой функции и перезагрузки области\nможно перейти к ней через меню быстрого доступа</string>
     <!--CloudService-->
     <string name="remove_network_limit">Удалить ограничения сети передачи данных</string>
     <string name="remove_network_limit_summary">Удалить ограничение, согласно которому резервное копирование/восстановление не может использовать мобильные данные</string>

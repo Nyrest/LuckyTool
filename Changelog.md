@@ -3,6 +3,9 @@
 出现问题请带上作用域 APK 和 LOG 前往 TG 群组反馈  
 If you have problems, please bring the scope APK and LOG to the TG group for feedback  
 
+### 3.3
+[添加] 移除状态栏移动数据图标  
+
 ### 3.2
 [更新] 捐赠名单  
 [适配] C13高性能通知  

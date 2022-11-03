@@ -337,17 +337,6 @@ class SourceFragment : ModulePreferenceFragment() {
                     )
                 }
             )
-            addPreference(
-                Preference(context).apply {
-                    title = "RestoreSplashScreen"
-                    summary = "GSWXXN , AGPL-3.0 license"
-                    isIconSpaceReserved = false
-                    intent = Intent(
-                        Intent.ACTION_VIEW,
-                        Uri.parse("https://github.com/GSWXXN/RestoreSplashScreen")
-                    )
-                }
-            )
         }
     }
 }

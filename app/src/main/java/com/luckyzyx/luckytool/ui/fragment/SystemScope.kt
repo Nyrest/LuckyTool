@@ -444,36 +444,10 @@ class StatusBarIcon : ModulePreferenceFragment(){
         preferenceManager.sharedPreferencesName = XposedPrefs
         preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
             addPreference(
-                SwitchPreference(context).apply {
-                    title = getString(R.string.remove_statusbar_battery_percent)
-                    key = "remove_statusbar_battery_percent"
-                    setDefaultValue(false)
+                PreferenceCategory(context).apply {
+                    title = getString(R.string.StatusBarTopSmallIcon)
+                    key = "StatusBarTopSmaliIcon"
                     isIconSpaceReserved = false
-                }
-            )
-            addPreference(
-                SwitchPreference(context).apply {
-                    title = getString(R.string.set_network_speed)
-                    key = "set_network_speed"
-                    setDefaultValue(false)
-                    isIconSpaceReserved = false
-                }
-            )
-            addPreference(
-                SwitchPreference(context).apply {
-                    title = getString(R.string.remove_statusbar_securepayment_icon)
-                    key = "remove_statusbar_securepayment_icon"
-                    setDefaultValue(false)
-                    isIconSpaceReserved = false
-                }
-            )
-            addPreference(
-                SwitchPreference(context).apply {
-                    title = getString(R.string.remove_statusbar_user_switcher)
-                    key = "remove_statusbar_user_switcher"
-                    setDefaultValue(false)
-                    isIconSpaceReserved = false
-                    isVisible = SDK < 33
                 }
             )
             addPreference(
@@ -494,8 +468,47 @@ class StatusBarIcon : ModulePreferenceFragment(){
             )
             addPreference(
                 SwitchPreference(context).apply {
+                    title = getString(R.string.remove_mobile_data_icon)
+                    key = "remove_mobile_data_icon"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(context).apply {
+                    title = getString(R.string.remove_statusbar_securepayment_icon)
+                    key = "remove_statusbar_securepayment_icon"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(context).apply {
+                    title = getString(R.string.remove_statusbar_battery_percent)
+                    key = "remove_statusbar_battery_percent"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                PreferenceCategory(context).apply {
+                    title = getString(R.string.StatusBarSmallIconStatus)
+                    key = "StatusBarSmallIconStatus"
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(context).apply {
                     title = getString(R.string.status_bar_icon_vertical_center)
                     key = "status_bar_icon_vertical_center"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(context).apply {
+                    title = getString(R.string.set_network_speed)
+                    key = "set_network_speed"
                     setDefaultValue(false)
                     isIconSpaceReserved = false
                 }
@@ -518,11 +531,20 @@ class StatusBarContent : ModulePreferenceFragment(){
             )
             addPreference(
                 SwitchPreference(context).apply {
+                    title = getString(R.string.remove_statusbar_user_switcher)
+                    key = "remove_statusbar_user_switcher"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                    isVisible = SDK < A13
+                }
+            )
+            addPreference(
+                SwitchPreference(context).apply {
                     title = getString(R.string.remove_drop_down_statusbar_mydevice)
                     key = "remove_drop_down_statusbar_mydevice"
                     setDefaultValue(false)
                     isIconSpaceReserved = false
-                    isVisible = SDK >= 33
+                    isVisible = SDK >= A13
                 }
             )
             addPreference(

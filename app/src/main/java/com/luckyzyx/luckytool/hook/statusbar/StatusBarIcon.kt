@@ -26,21 +26,18 @@ class StatusBarIcon : YukiBaseHooker() {
             if (prefs(XposedPrefs).getBoolean("remove_statusbar_user_switcher", false)) {
                 if (SDK < A13) loadHooker(RemoveStatusBarUserSwitcher())
             }
-
             //移除WiFi数据箭头
             if (prefs(XposedPrefs).getBoolean("remove_wifi_data_inout", false)) {
                 loadHooker(RemoveWiFiDataInout())
             }
-            //移除移动数据箭头
-            if (prefs(XposedPrefs).getBoolean("remove_mobile_data_inout", false)) {
-                loadHooker(RemoveMobileDataInout())
+            //移动数据图标相关
+            if (prefs(XposedPrefs).getBoolean("remove_mobile_data_icon",false) || prefs(XposedPrefs).getBoolean("remove_mobile_data_inout", false)) {
+                loadHooker(RemoveMobileDataIcon())
             }
-
             //状态栏图标垂直居中
             if (prefs(XposedPrefs).getBoolean("status_bar_icon_vertical_center",false)) {
                 loadHooker(StatusBarIconVerticalCenter())
             }
-
         }
     }
 }

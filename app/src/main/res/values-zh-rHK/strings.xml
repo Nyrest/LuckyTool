@@ -49,7 +49,7 @@
     <string name="participate_translation">参与模块翻译</string>
     <string name="participate_translation_summary">前往Crowdin贡献你的翻译</string>
     <!-- check Lsposed -->
-    <string name="unsupported_xposed">请使用最新版LSPosed勾选模块的作用域 \n 若上述已经完成, 可点击确定退出APP, 然后打开模块</string>
+    <string name="unsupported_xposed">请使用最新版LSPosed勾选模块的作用域!\n若上述已经完成, 可点击确定退出APP, 然后打开模块</string>
     <!-- Menu -->
     <string name="menu_reboot">重启菜单</string>
     <string name="menu_settings">设置菜单</string>
@@ -78,7 +78,7 @@
     <string name="UsePreSig_summary">不是一般的!危险! 仅在绝对需要时启用</string>
     <string name="enhancedMode">增强模式</string>
     <string name="enhancedMode_summary">可以解决一些App内部的完整性校验, 一般不需要开启</string>
-    <string name="usepresig_warn">!!所有安装包可以覆盖已安装的App!! \n 安装未知的安装包时请务必小心</string>
+    <string name="usepresig_warn">!!所有安装包可以覆盖已安装的App!\n安装未知的安装包时请务必小心</string>
     <!--Status Bar-->
     <string name="StatusBar">状态栏相关</string>
     <!--StatusBarClock-->
@@ -123,6 +123,9 @@
     <!--StatusBarIcon-->
     <string name="StatusBarIcon">状态栏图标</string>
     <string name="StatusBarIcon_summary">状态栏图标相关</string>
+    <string name="StatusBarTopSmallIcon">状态栏顶部小图标</string>
+    <string name="StatusBarSmallIconStatus">状态栏小图标状态</string>
+    <string name="remove_mobile_data_icon">移除移动数据图标</string>
     <string name="set_network_speed">设置状态栏网速刷新率1s</string>
     <string name="remove_statusbar_securepayment_icon">移除状态栏支付保护图标</string>
     <string name="remove_statusbar_battery_percent">移除状态栏电量百分号</string>
@@ -152,7 +155,7 @@
     <string name="remove_lock_screen_bottom_sos_button">移除SOS紧急联系按钮</string>
     <string name="remove_lock_screen_bottom_sos_button_summary">移除解锁页面底部的SOS紧急按钮</string>
     <string name="remove_72hour_password_verification">移除72小时密码验证(Beta)</string>
-    <string name="remove_72hour_password_verification_summary">此功能随时可能被删除 \n 系统重启后生效</string>
+    <string name="remove_72hour_password_verification_summary">此功能随时可能被删除\n系统重启后生效</string>
     <!--Desktop-->
     <string name="Desktop">桌面相关</string>
     <string name="remove_alarmclock_widget_redone">移除桌面时钟组件红一</string>
