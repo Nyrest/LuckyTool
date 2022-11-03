@@ -17,6 +17,19 @@ If you have problems, please bring the scope APK and LOG to the TG group for fee
 [适配] 移除高性能通知  
 [添加] 状态栏图标垂直居中  
 [修复] 状态栏时钟开关问题  
+[Update] Donation List  
+[Fix] C13 High Performance Notification  
+[Fix] Desktop clock component red one  
+[Fix] Game Assistant EVA theme  
+[Fix] Core Hack Sync Upstream  
+[Fix] EVA theme function exception  
+[Change] A11 (C12) status bar seconds logic  
+[Add] Remove 72 hours password verification (Beta)  
+[Add] Remove recent task list clear button  
+[Remove] Power menu related functions  
+[Fix] Remove high performance notifications  
+[Add] Status Bar Icon Vertical Centering  
+[Fix] Status bar clock switch issue  
 
 ### 3.1
 [更新] 捐赠名单  
