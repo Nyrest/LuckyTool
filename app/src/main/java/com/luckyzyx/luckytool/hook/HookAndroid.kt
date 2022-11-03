@@ -1,11 +1,9 @@
 package com.luckyzyx.luckytool.hook
 
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
-import com.highcapable.yukihookapi.hook.type.java.LongType
 import com.luckyzyx.luckytool.hook.apps.android.*
 import com.luckyzyx.luckytool.utils.tools.A13
 import com.luckyzyx.luckytool.utils.tools.SDK
-import com.luckyzyx.luckytool.utils.tools.XposedPrefs
 
 class HookAndroid : YukiBaseHooker() {
 
@@ -32,15 +30,7 @@ class HookAndroid : YukiBaseHooker() {
         if (SDK >= A13) loadHooker(AppSplashScreen())
 
         //移除72小时密码验证
-        if (!prefs(XposedPrefs).getBoolean("remove_72hour_password_verification",false)) return
-        findClass("android.app.admin.DevicePolicyManager").hook {
-            injectMember {
-                method {
-                    name = "getRequiredStrongAuthTimeout"
-                    returnType = LongType
-                }
-                replaceTo(0L)
-            }
-        }
+        loadHooker(Remove72HourPasswordVerification())
+
     }
 }

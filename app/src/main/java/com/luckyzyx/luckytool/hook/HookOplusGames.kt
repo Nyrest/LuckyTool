@@ -21,5 +21,25 @@ class HookOplusGames : YukiBaseHooker() {
 
         //启用EVA主题
         if (prefs(XposedPrefs).getBoolean("enable_eva_theme",false)) loadHooker(EnableEVATheme())
+
+        //游戏变声VIP (作废)
+//        findClass("com.oplus.games.account.bean.VipInfoBean.VipInfosDTO").hook {
+//            injectMember {
+//                method { name = "getExpireTime" }
+//                replaceTo("9999-9999-9999")
+//            }
+//            injectMember {
+//                method { name = "getExpiredVip" }
+//                replaceToFalse()
+//            }
+//            injectMember {
+//                method { name = "getSign" }
+//                replaceToTrue()
+//            }
+//            injectMember {
+//                method { name = "getVip" }
+//                replaceToTrue()
+//            }
+//        }
     }
 }

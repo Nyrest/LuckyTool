@@ -132,6 +132,7 @@
     <string name="remove_statusbar_user_switcher">Удалить иконку многопользовательского режима в раскрывающемся списке</string>
     <string name="remove_wifi_data_inout">Удалить входящие Wi-Fi данные</string>
     <string name="remove_mobile_data_inout">Удалить входящие мобильные данные</string>
+    <string name="status_bar_icon_vertical_center">Иконка строки состояния по вертикали в центре</string>
     <!--StatusBarContent-->
     <string name="StatusBarContent">Содержимое в строке состояния</string>
     <string name="StatusBar_UI_Related">Интерфейс строки состояния</string>
@@ -153,6 +154,8 @@
     <string name="set_lock_screen_centered_summary">Только для систем, в которых экран блокировки нельзя отцентрировать в настройках</string>
     <string name="remove_lock_screen_bottom_sos_button">Удалить кнопку экстренного контакта SOS</string>
     <string name="remove_lock_screen_bottom_sos_button_summary">Кнопка экстренного контакта SOS внизу страницы разблокировки была удалена</string>
+    <string name="remove_72hour_password_verification">Удаление 72-часовой аутентификации по паролю (бета)</string>
+    <string name="remove_72hour_password_verification_summary">Эта функция может быть удалена в любое время \n Вступит в силу после перезагрузки системы</string>
     <!--Desktop-->
     <string name="Desktop">Рабочий стол</string>
     <string name="remove_alarmclock_widget_redone">Удалить красный компонент виджете часов на рабочем столе</string>
@@ -167,7 +170,7 @@
     <string name="launcher_layout_enable">Включить/отключить сетку иконок на рабочем столе</string>
     <string name="launcher_layout_max_rows">Количество строк для сетки рабочего стола</string>
     <string name="launcher_layout_max_columns">Количество столбцов для сетки рабочего стола</string>
-    <string name="remove_recent_task_list_clear_button">Remove recent task list clear button</string>
+    <string name="remove_recent_task_list_clear_button">Удалить кнопку очистки списка последних задач</string>
     <!--Application-->
     <string name="Application">Приложения</string>
     <string name="ApplyOtherRestrictions">Применить другие ограничения</string>
@@ -214,20 +217,6 @@
     <string name="remove_warning_dialog_that_app_runs_on_desktop_summary">Диалоговое окно с предупреждением обнаружило, что приложение запущено на системном рабочем столе</string>
     <string name="remove_storage_limit">Удалить ограничение хранилища</string>
     <string name="remove_storage_limit_summary">Снять ограничение, на использование этой папки</string>
-    <!--PowerMenu-->
-    <string name="PowerMenu">Меню питания</string>
-    <string name="PowerMenu_summary">Нажмите и удерживайте кнопку питания, чтобы отобразить меню</string>
-    <string name="power_menu_enable">Включить/отключить</string>
-    <string name="power_menu_enable_summary">Закройте этот элемент, чтобы восстановить все настройки системы на основе адаптации ColorOS12</string>
-    <string name="power_menu_sos_button">Экстренный контакт SOS</string>
-    <string name="power_menu_button_summary">Включить для отображения, выключить для исчезновения</string>
-    <string name="power_menu_lock_button">Ручная блокировка</string>
-    <string name="power_menu_simple_layout">Оформление меню</string>
-    <string name="power_menu_simple_layout_summary">Система по умолчанию настроена вертикально, и она становится горизонтальной после срабатывания пасхального яйца.
-Открытый для вертикального расположения, закрытый для горизонтального расположения</string>
-    <string name="power_menu_remove_add_controls">Удалить интерфейс добавления элементов управления</string>
-    <string name="power_menu_remove_add_controls_summary">Этот пользовательский интерфейс перекрывается с вертикальным расположением и может быть удален после открытия.
-Если такого интерфейса нет, то и открывать его не нужно.</string>
     <!--Camera-->
     <string name="remove_watermark_word_limit">Удалить ограничение на количество слов водяного знака</string>
     <!--OplusGames-->
@@ -256,8 +245,6 @@
     <string name="vip_download">Загрузить исходное изображение</string>
     <!--AlphaBackupPro-->
     <string name="remove_pro_license">Удалить обнаружение лицензии</string>
-    <!--GSVirtualMachine-->
-    <string name="enable_gs_vip_function">Включить VIP функцию</string>
     <!--Home-->
     <string name="fps_title">Принудительная частота обновления</string>
     <string name="fps_summary">Конфликты с другими процессами динамической частоты обновления, такими как dfps</string>

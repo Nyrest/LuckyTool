@@ -131,6 +131,7 @@
     <string name="remove_statusbar_user_switcher">Remove drop-down status bar multi-user icon</string>
     <string name="remove_wifi_data_inout">Remove WiFi data inout</string>
     <string name="remove_mobile_data_inout">Remove Mobile data inout</string>
+    <string name="status_bar_icon_vertical_center">Statusbar icon vertical center</string>
     <!--StatusBarContent-->
     <string name="StatusBarContent">StatusBar Content</string>
     <string name="StatusBar_UI_Related">StatusBar UI Related</string>
@@ -153,6 +154,8 @@
     <string name="set_lock_screen_centered_summary">Only for systems where the lock screen cannot be centered in the settings</string>
     <string name="remove_lock_screen_bottom_sos_button">Remove SOS emergency contact button</string>
     <string name="remove_lock_screen_bottom_sos_button_summary">Removed the SOS emergency button at the bottom of the unlock page</string>
+    <string name="remove_72hour_password_verification">Remove 72-hour password authentication (Beta)</string>
+    <string name="remove_72hour_password_verification_summary">This feature may be removed at any time \n Effective after system restart</string>
     <!--Desktop-->
     <string name="Desktop">Desktop Related</string>
     <string name="remove_alarmclock_widget_redone">Remove desktop clock component red one</string>
@@ -214,18 +217,6 @@
     <string name="remove_warning_dialog_that_app_runs_on_desktop_summary">Warning dialog box found that an application is running on the system desktop</string>
     <string name="remove_storage_limit">Remove storage limit</string>
     <string name="remove_storage_limit_summary">Remove the restriction that this folder cannot be used</string>
-    <!--PowerMenu-->
-    <string name="PowerMenu">Power menu related</string>
-    <string name="PowerMenu_summary">Menu to show by long pressing power keys</string>
-    <string name="power_menu_enable">Power menu master switch</string>
-    <string name="power_menu_enable_summary">Close this to restore all system settings, based on ColorOS12 adaptation</string>
-    <string name="power_menu_sos_button">SOS Emergency Liaison</string>
-    <string name="power_menu_button_summary">Turn on to show and close to disappear</string>
-    <string name="power_menu_lock_button">Lock manually</string>
-    <string name="power_menu_simple_layout">Menu arrangement</string>
-    <string name="power_menu_simple_layout_summary">The system default vertical, after triggering the egg becomes horizontal \n open then vertical arrangement, close then horizontal arrangement</string>
-    <string name="power_menu_remove_add_controls">Remove Adding Controls UI</string>
-    <string name="power_menu_remove_add_controls_summary">This UI overlaps with the vertical arrangement, and can be removed when it is turned on\nIf there is no such UI, there is no need to turn it on</string>
     <!--Camera-->
     <string name="remove_watermark_word_limit">Remove Watermark Limit</string>
     <!--OplusGames-->
@@ -254,8 +245,6 @@
     <string name="vip_download">Download original</string>
     <!--AlphaBackupPro-->
     <string name="remove_pro_license">Remove license detection</string>
-    <!--GSVirtualMachine-->
-    <string name="enable_gs_vip_function">Enable VIP function</string>
     <!--Home-->
     <string name="fps_title">Force refresh rate</string>
     <string name="fps_summary">Conflict with other dynamic refresh rate processes, such as “dpfs”</string>

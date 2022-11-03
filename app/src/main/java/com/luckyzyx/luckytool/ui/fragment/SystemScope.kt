@@ -490,6 +490,14 @@ class StatusBarIcon : ModulePreferenceFragment(){
                     isIconSpaceReserved = false
                 }
             )
+            addPreference(
+                SwitchPreference(context).apply {
+                    title = getString(R.string.status_bar_icon_vertical_center)
+                    key = "status_bar_icon_vertical_center"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
         }
     }
 }
@@ -795,12 +803,11 @@ class LockScreen : ModulePreferenceFragment(){
             )
             addPreference(
                 SwitchPreference(context).apply {
-                    title = "移除72小时密码验证"
-                    summary = "beta测试性功能\n随时可能会删除,重启系统启用此功能"
+                    title = getString(R.string.remove_72hour_password_verification)
+                    summary = getString(R.string.remove_72hour_password_verification_summary)
                     key = "remove_72hour_password_verification"
                     setDefaultValue(false)
                     isIconSpaceReserved = false
-                    isVisible = SDK >= 33
                 }
             )
         }

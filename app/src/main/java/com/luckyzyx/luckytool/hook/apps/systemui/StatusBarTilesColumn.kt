@@ -35,7 +35,7 @@ class StatusBarTilesColumn : YukiBaseHooker() {
                     name = "updateColumns"
                 }
                 afterHook {
-                    val viewGroup = instance as ViewGroup
+                    val viewGroup = instance<ViewGroup>()
                     if (viewGroup.context.resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
                         isVertical = true
                         field { name = "mColumns" }.get(instance).set(columnExpandedVertical)
@@ -81,7 +81,7 @@ class StatusBarTilesColumnV13 : YukiBaseHooker() {
                     name = "updateColumns"
                 }
                 afterHook {
-                    (instance as ViewGroup).apply {
+                    instance<ViewGroup>().apply {
                         if (this.context.resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT){
                             field { name = "mColumns" }.get(instance).set(columnExpandedVerticalC13)
                         } else {

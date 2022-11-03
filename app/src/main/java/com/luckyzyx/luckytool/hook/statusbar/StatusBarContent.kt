@@ -20,6 +20,7 @@ class StatusBarContent : YukiBaseHooker() {
             if (prefs(XposedPrefs).getBoolean("remove_drop_down_statusbar_mydevice", false)) {
                 if (SDK >= A13) loadHooker(RemoveDropdownStatusbarMydevice())
             }
+
         }
     }
 }

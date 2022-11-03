@@ -36,6 +36,11 @@ class StatusBarIcon : YukiBaseHooker() {
                 loadHooker(RemoveMobileDataInout())
             }
 
+            //状态栏图标垂直居中
+            if (prefs(XposedPrefs).getBoolean("status_bar_icon_vertical_center",false)) {
+                loadHooker(StatusBarIconVerticalCenter())
+            }
+
         }
     }
 }
