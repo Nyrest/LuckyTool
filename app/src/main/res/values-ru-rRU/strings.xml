@@ -126,9 +126,9 @@
     <!--StatusBarIcon-->
     <string name="StatusBarIcon">Иконки в строке состояния</string>
     <string name="StatusBarIcon_summary">Связанная иконка строки состояния</string>
-    <string name="StatusBarTopSmallIcon">StatusBar Top Small Icon</string>
-    <string name="StatusBarSmallIconStatus">StatusBar Small Icon Status</string>
-    <string name="remove_mobile_data_icon">Remove mobile data icon</string>
+    <string name="StatusBarTopSmallIcon">Маленькая иконка в верхней части строки состояния</string>
+    <string name="StatusBarSmallIconStatus">Статус маленькой иконки в строке состояния</string>
+    <string name="remove_mobile_data_icon">Удалить иконку мобильных данных</string>
     <string name="set_network_speed">Установить частоту обновления веб-скорости в строке состояния на 1 секунду</string>
     <string name="remove_statusbar_securepayment_icon">Удалить иконку защиты платежа в строке состояния</string>
     <string name="remove_statusbar_battery_percent">Удалить иконку процента заряда батареи из строки состояния</string>
@@ -303,4 +303,5 @@
     <string name="battery_health">Состояние батареи</string>
     <string name="battery_health_toast">Поддерживает только ColorOS13</string>
     <string name="system_not_support">Текущее состояние не поддерживается!</string>
+    <string name="very_dark_mode">Very dark mode</string>
 </resources>

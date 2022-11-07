@@ -13,7 +13,7 @@ class RemoveRootCheck : YukiBaseHooker() {
         //Search -> dynamic_feature_cool_ex / getSupportCoolEx -> Method
         //("isSafe")) : null; -> isSafe:0
         searchClass {
-            from("com.oplus.x","com.oplus.f","com.oplus.a0").absolute()
+            from("com.oplus.x","com.oplus.f","com.oplus.a0","yp").absolute()
             field { type = StringType }.count(5..6)
             field { type = BooleanType }.count(2..3)
             field { type = IntType }.count(1..2)

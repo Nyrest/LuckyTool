@@ -300,4 +300,5 @@
     <string name="battery_health">电池健康度</string>
     <string name="battery_health_toast">仅支持ColorOS13</string>
     <string name="system_not_support">当前系统不支持!</string>
+    <string name="very_dark_mode">极暗模式</string>
 </resources>

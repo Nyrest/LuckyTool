@@ -1,6 +1,7 @@
 package com.luckyzyx.luckytool.ui.fragment
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -41,6 +42,7 @@ class OtherFragment : Fragment() {
                 quicklist.add(getString(R.string.charging_test))
                 quicklist.add(getString(R.string.battery_health))
                 quicklist.add(getString(R.string.process_manager))
+                quicklist.add(getString(R.string.very_dark_mode))
                 quicklist.add(getString(R.string.system_interface_adjustment))
                 quicklist.add(getString(R.string.feedback_toolbox))
                 quicklist.add(getString(R.string.developer_option))
@@ -60,11 +62,12 @@ class OtherFragment : Fragment() {
                                 ShellUtils.execCommand("am start -n com.oplus.battery/com.oplus.powermanager.fuelgaue.BatteryHealthActivity", true)
                             }
                             3 -> jumpRunningApp(context)
-                            4 -> ShellUtils.execCommand("am start -n com.android.systemui/.DemoMode", true)
-                            5 -> ShellUtils.execCommand("am start -n com.oplus.logkit/.activity.MainActivity", true)
-                            6 -> ShellUtils.execCommand("am start -a com.android.settings.APPLICATION_DEVELOPMENT_SETTINGS", true)
-                            7 -> ShellUtils.execCommand("am start -n com.oplus.games/business.compact.activity.GameBoxCoverActivity", true)
-                            8 -> ShellUtils.execCommand("am start -n com.oplus.games/business.compact.activity.GameDevelopOptionsActivity", true)
+                            4 -> startActivity(Intent(Intent.ACTION_MAIN).setClassName("com.android.settings", "com.android.settings.Settings\$ReduceBrightColorsSettingsActivity"))
+                            5 -> ShellUtils.execCommand("am start -n com.android.systemui/.DemoMode", true)
+                            6 -> ShellUtils.execCommand("am start -n com.oplus.logkit/.activity.MainActivity", true)
+                            7 -> ShellUtils.execCommand("am start -a com.android.settings.APPLICATION_DEVELOPMENT_SETTINGS", true)
+                            8 -> ShellUtils.execCommand("am start -n com.oplus.games/business.compact.activity.GameBoxCoverActivity", true)
+                            9 -> ShellUtils.execCommand("am start -n com.oplus.games/business.compact.activity.GameDevelopOptionsActivity", true)
                         }
                     }
                     .show()

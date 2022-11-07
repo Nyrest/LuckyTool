@@ -8,12 +8,13 @@ plugins {
 android {
     signingConfigs {
         release {
-            storeFile file('..\\keystore\\luckyzyx.jks')
             v1SigningEnabled true
             v2SigningEnabled true
-            storePassword 'luckyzyx'
-            keyAlias 'luckyzyx'
-            keyPassword 'luckyzyx'
+            def getKeys = getKeys()
+            storeFile file(getKeys[0])
+            storePassword getKeys[1]
+            keyAlias getKeys[2]
+            keyPassword getKeys[3]
         }
     }
     compileSdk 33
@@ -114,4 +115,19 @@ def getVersionCode() {
     properties['versionCode'] = (++vCode).toString()
     properties.store(propsFile.newWriter(), null)
     return vCode
+}
+
+def getKeys() {
+    Properties properties = new Properties()
+    ArrayList array = new ArrayList<String>()
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+    String storePath = properties.getProperty('keyStorePath')
+    String storePwd = properties.getProperty('keyStorePwd')
+    String alias = properties.getProperty('keyAlias')
+    String aliasPwd = properties.getProperty('keyAliasPwd')
+    array.add(storePath)
+    array.add(storePwd)
+    array.add(alias)
+    array.add(aliasPwd)
+    return array
 }

@@ -303,5 +303,6 @@
     <string name="battery_health">Battery Health</string>
     <string name="battery_health_toast">Only supports ColorOS13</string>
     <string name="system_not_support">The current system does not support!</string>
+    <string name="very_dark_mode">Very dark mode</string>
 
 </resources>

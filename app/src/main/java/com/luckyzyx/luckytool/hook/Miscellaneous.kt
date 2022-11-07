@@ -74,7 +74,9 @@ class Miscellaneous : YukiBaseHooker() {
         }
         loadApp("com.android.externalstorage"){
             //移除存储限制
-            if (prefs(XposedPrefs).getBoolean("remove_storage_limit",false)) loadHooker(RemoveStorageLimit())
+            if (prefs(XposedPrefs).getBoolean("remove_storage_limit",false)) {
+                loadHooker(RemoveStorageLimit())
+            }
         }
     }
 }
