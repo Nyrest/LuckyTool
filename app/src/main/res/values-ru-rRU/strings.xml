@@ -220,6 +220,8 @@
     <string name="remove_warning_dialog_that_app_runs_on_desktop_summary">Диалоговое окно с предупреждением обнаружило, что приложение запущено на системном рабочем столе</string>
     <string name="remove_storage_limit">Удалить ограничение хранилища</string>
     <string name="remove_storage_limit_summary">Снять ограничение, на использование этой папки</string>
+    <string name="media_volume_level">Media volume level</string>
+    <string name="media_volume_level_summary">Set to 0 to disable the function, and the system restarts to take effect</string>
     <!--Camera-->
     <string name="remove_watermark_word_limit">Удалить ограничение на количество слов водяного знака</string>
     <!--OplusGames-->

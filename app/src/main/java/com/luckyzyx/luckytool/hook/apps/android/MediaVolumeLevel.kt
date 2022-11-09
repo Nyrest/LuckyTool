@@ -1,24 +1,19 @@
 package com.luckyzyx.luckytool.hook.apps.android
 
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
-import com.highcapable.yukihookapi.hook.type.defined.VagueType
-import com.highcapable.yukihookapi.hook.type.java.IntType
-import com.highcapable.yukihookapi.hook.type.java.StringType
+import com.highcapable.yukihookapi.hook.factory.MembersType
 import com.luckyzyx.luckytool.utils.tools.XposedPrefs
 
 class MediaVolumeLevel : YukiBaseHooker() {
     override fun onHook() {
-        findClass("android.os.SystemProperties").hook {
+        //Source AudioService
+        findClass("com.android.server.audio.AudioService").hook {
             injectMember {
-                method {
-                    name = "getInt"
-                    param(StringType, VagueType)
-                    returnType = IntType
-                }
+                allMembers(MembersType.CONSTRUCTOR)
                 afterHook {
-                    if (args(0).cast<String>() == "ro.config.media_vol_steps") {
-                        result = prefs(XposedPrefs).getInt("media_volume_level", 0)
-                    }
+                    field {
+                        name = "MAX_STREAM_VOLUME"
+                    }.get(instance).cast<IntArray>()?.set(3, prefs(XposedPrefs).getInt("media_volume_level", 0))
                 }
             }
         }

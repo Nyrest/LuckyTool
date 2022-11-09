@@ -4,6 +4,7 @@ import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 import com.luckyzyx.luckytool.hook.apps.android.*
 import com.luckyzyx.luckytool.utils.tools.A13
 import com.luckyzyx.luckytool.utils.tools.SDK
+import com.luckyzyx.luckytool.utils.tools.XposedPrefs
 
 class HookAndroid : YukiBaseHooker() {
 
@@ -32,5 +33,8 @@ class HookAndroid : YukiBaseHooker() {
         //移除72小时密码验证
         loadHooker(Remove72HourPasswordVerification())
 
+        if (prefs(XposedPrefs).getInt("media_volume_level", 0) != 0) {
+            loadHooker(MediaVolumeLevel())
+        }
     }
 }

@@ -1083,6 +1083,20 @@ class Miscellaneous : ModulePreferenceFragment(){
                     isIconSpaceReserved = false
                 }
             )
+            addPreference(
+                SeekBarPreference(context).apply {
+                    title = getString(R.string.media_volume_level)
+                    summary = getString(R.string.media_volume_level_summary)
+                    key = "media_volume_level"
+                    setDefaultValue(0)
+                    max = 30
+                    min = 0
+                    seekBarIncrement = 1
+                    showSeekBarValue = true
+                    updatesContinuously = false
+                    isIconSpaceReserved = false
+                }
+            )
         }
     }
 }
