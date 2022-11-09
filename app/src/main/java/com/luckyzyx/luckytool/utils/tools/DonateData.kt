@@ -32,6 +32,7 @@ object DonateData {
             add(DonateInfo("?", 8.88))
             add(DonateInfo("晨钟酱", 100.0))
             add(DonateInfo("小李.", 15.0))
+            add(DonateInfo("yomol.", 18.0))
         }
     }
 }
