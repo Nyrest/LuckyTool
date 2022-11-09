@@ -303,5 +303,5 @@
     <string name="battery_health">Состояние батареи</string>
     <string name="battery_health_toast">Поддерживает только ColorOS13</string>
     <string name="system_not_support">Текущее состояние не поддерживается!</string>
-    <string name="very_dark_mode">Very dark mode</string>
+    <string name="very_dark_mode">Темный режим</string>
 </resources>

@@ -6,7 +6,8 @@ If you have problems, please bring the scope APK and LOG to the TG group for fee
 ### 3.3
 [添加] 移除状态栏移动数据图标  
 [适配] 游戏助手v7.14.0  
-[添加] 极暗页面快捷方式  
+[添加] 极暗页面快捷入口  
+[修复] 尝试修复72小时密码验证(Beta)  
 
 ### 3.2
 [更新] 捐赠名单  
