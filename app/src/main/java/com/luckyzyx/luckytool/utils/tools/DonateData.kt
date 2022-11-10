@@ -13,7 +13,7 @@ object DonateData {
             add(DonateInfo("是小奶糖啊", 21.0))
             add(DonateInfo("Kimjaejiang", 5.0))
             add(DonateInfo("午时已到", 20.0))
-            add(DonateInfo("邹王", 15.0))
+            add(DonateInfo("邹王", 15.0 + 51.66))
             add(DonateInfo("す", 20.0))
             add(DonateInfo("楠", 10.0))
             add(DonateInfo("天伞桜", 88.8))
