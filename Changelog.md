@@ -13,6 +13,9 @@ If you have problems, please bring the scope APK and LOG to the TG group for fee
 [更新] 捐赠名单  
 [添加] 电池屏幕省电入口  
 [添加] 电池健康入口  
+[添加] 浏览器简洁模式快捷入口  
+[优化] 快捷入口判断逻辑  
+[添加] 相机10亿色影像支持  
 
 ### 3.2
 [更新] 捐赠名单  

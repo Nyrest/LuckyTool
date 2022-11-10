@@ -228,6 +228,7 @@
     <string name="open_battery_health_summary">Settings - Battery - Battery Health</string>
     <!--Camera-->
     <string name="remove_watermark_word_limit">Remove Watermark Limit</string>
+    <string name="enable_10_bit_image_support">Enable 10 bit Images Support</string>
     <!--OplusGames-->
     <string name="remove_root_check">Remove Game Filter Limit</string>
     <string name="remove_root_check_summary">Remove Root Detection Limit for Game Filter</string>

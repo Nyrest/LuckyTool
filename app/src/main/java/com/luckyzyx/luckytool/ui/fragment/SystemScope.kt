@@ -1131,6 +1131,14 @@ class Camera : ModulePreferenceFragment() {
                     isIconSpaceReserved = false
                 }
             )
+            addPreference(
+                SwitchPreference(context).apply {
+                    title = getString(R.string.enable_10_bit_image_support)
+                    key = "enable_10_bit_image_support"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
         }
     }
 }

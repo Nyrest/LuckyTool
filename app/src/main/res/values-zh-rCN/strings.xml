@@ -225,6 +225,7 @@
     <string name="open_battery_health_summary">设置-电池-电池健康</string>
     <!--Camera-->
     <string name="remove_watermark_word_limit">移除水印字数限制</string>
+    <string name="enable_10_bit_image_support">启用10亿色影像支持</string>
     <!--OplusGames-->
     <string name="remove_root_check">移除游戏滤镜限制</string>
     <string name="remove_root_check_summary">移除游戏滤镜的Root检测限制</string>
