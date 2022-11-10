@@ -121,7 +121,7 @@ class SystemQuickEntry : ModulePreferenceFragment() {
     override fun onCreatePreferencesInModuleApp(savedInstanceState: Bundle?, rootKey: String?) {
         preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
             addPreference(PreferenceCategory(context).apply {
-                title = "系统调试相关"
+                title = getString(R.string.SystemDebuggingRelated)
                 key = "SystemDebuggingRelated"
                 isIconSpaceReserved = false
             })
@@ -154,6 +154,14 @@ class SystemQuickEntry : ModulePreferenceFragment() {
                 isIconSpaceReserved = false
                 setOnPreferenceClickListener {
                     ShellUtils.execCommand("am start -n com.android.systemui/.DemoMode", true)
+                    true
+                }
+            })
+            addPreference(Preference(context).apply {
+                title = getString(R.string.AOSPSettingsPage)
+                isIconSpaceReserved = false
+                setOnPreferenceClickListener {
+                    ShellUtils.execCommand("am start -n com.android.settings/.homepage.DeepLinkHomepageActivityInternal", true)
                     true
                 }
             })
