@@ -213,12 +213,14 @@ class SystemQuickEntry : ModulePreferenceFragment() {
                 isIconSpaceReserved = false
                 isVisible = context.checkPackName("com.heytap.browser")
                 setOnPreferenceClickListener {
-                    safeOf(default = context.toast("Error: Please check your browser version!")){
+                    try {
                         Intent().apply {
                             setClassName("com.heytap.browser", "com.heytap.browser.settings.component.BrowserPreferenceActivity")
                             putExtra("key.fragment.name","com.heytap.browser.settings.homepage.HomepagePreferenceFragment")
                             startActivity(this)
                         }
+                    } catch (ignore: java.lang.Exception) {
+                        context.toast("Error: Please check your browser version!")
                     }
                     true
                 }
