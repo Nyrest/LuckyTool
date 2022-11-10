@@ -46,8 +46,9 @@ class OtherFragment : Fragment() {
                 quicklist.add(getString(R.string.system_interface_adjustment))
                 quicklist.add(getString(R.string.feedback_toolbox))
                 quicklist.add(getString(R.string.developer_option))
-                quicklist.add(getString(R.string.game_assistant_page))
-                if (context.getBoolean(XposedPrefs,"enable_developer_page",false)) quicklist.add(getString(R.string.game_assistant_develop_page))
+                if (context.checkPackName("com.oplus.games")) quicklist.add(getString(R.string.game_assistant_page))
+                if (context.checkPackName("com.oplus.games") && context.getBoolean(XposedPrefs,"enable_developer_page",false)) quicklist.add(getString(R.string.game_assistant_develop_page))
+                if (context.checkPackName("com.heytap.browser")) quicklist.add("浏览器简洁模式")
                 MaterialAlertDialogBuilder(context)
                     .setCancelable(true)
                     .setItems(quicklist.toTypedArray()) { _, which ->
@@ -68,6 +69,12 @@ class OtherFragment : Fragment() {
                             7 -> ShellUtils.execCommand("am start -a com.android.settings.APPLICATION_DEVELOPMENT_SETTINGS", true)
                             8 -> ShellUtils.execCommand("am start -n com.oplus.games/business.compact.activity.GameBoxCoverActivity", true)
                             9 -> ShellUtils.execCommand("am start -n com.oplus.games/business.compact.activity.GameDevelopOptionsActivity", true)
+                            10 -> {
+                                val intent = Intent()
+                                intent.setClassName("com.heytap.browser", "com.heytap.browser.settings.component.BrowserPreferenceActivity")
+                                intent.putExtra("key.fragment.name","com.heytap.browser.settings.homepage.HomepagePreferenceFragment")
+                                startActivity(intent)
+                            }
                         }
                     }
                     .show()

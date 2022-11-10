@@ -81,7 +81,7 @@ fun Context.checkKey(key: String?, keyList: Array<String>): String = safeOfNothi
 }
 
 /**
- * 获取APP
+ * 判断APP是否存在
  */
 fun Context.checkPackName(packName: String) = safeOfFalse {
     @Suppress("SENSELESS_COMPARISON")
