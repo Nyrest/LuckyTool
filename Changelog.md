@@ -4,15 +4,13 @@
 If you have problems, please bring the scope APK and LOG to the TG group for feedback  
 
 ### 3.3
+[更新] 捐赠名单  
 [添加] 移除状态栏移动数据图标  
-[适配] 游戏助手v7.14.0  
+[适配] 游戏助手v7.14.0/v7.14.1  
 [添加] 极暗页面快捷入口  
 [修复] 尝试修复72小时密码验证(Beta)  
 [添加] 媒体音量阶数  
-[适配] 游戏助手v7.14.1  
-[更新] 捐赠名单  
-[添加] 电池屏幕省电入口  
-[添加] 电池健康入口  
+[添加] 电池屏幕省电入口和电池健康入口  
 [添加] 浏览器简洁模式快捷入口  
 [优化] 快捷入口判断逻辑  
 [添加] 相机10亿色影像支持  
@@ -21,6 +19,23 @@ If you have problems, please bring the scope APK and LOG to the TG group for fee
 [修复] 应用分身搜索异常  
 [添加] 应用分身下拉刷新  
 [添加] AOSP原生设置入口  
+[适配] C12电池屏幕省电入口  
+[Update] Donation list  
+[Add] Remove status bar mobile data icon  
+[Bug] Game Assistant v7.14.0/v7.14.1  
+[Add] Dark page shortcut entrance  
+[Fix] Try to fix 72 hours password verification (Beta)  
+[Add] Media Volume Levels  
+[Add] Battery screen power saving portal and battery health portal  
+[Add] Browser concise mode shortcut portal  
+[Optimize] Shortcut portal judgment logic  
+[Add] Camera 1 billion color image support  
+[Optimize] Status bar clock spacing  
+[Optimize] Jump page of shortcut portal  
+[Fix] App multi-app search exception  
+[Add] App multi-app drop-down refresh  
+[Add] AOSP native settings portal  
+[Fix] C12 battery screen power saving entrance  
 
 ### 3.2
 [更新] 捐赠名单  

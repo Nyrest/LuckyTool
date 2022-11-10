@@ -1113,6 +1113,7 @@ class Miscellaneous : ModulePreferenceFragment(){
                     key = "open_battery_health"
                     setDefaultValue(false)
                     isIconSpaceReserved = false
+                    isVisible = SDK >= A13
                 }
             )
         }

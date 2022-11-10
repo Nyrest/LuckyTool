@@ -160,6 +160,7 @@ class SystemQuickEntry : ModulePreferenceFragment() {
             addPreference(Preference(context).apply {
                 title = getString(R.string.AOSPSettingsPage)
                 isIconSpaceReserved = false
+                isVisible = SDK >= A13
                 setOnPreferenceClickListener {
                     ShellUtils.execCommand("am start -n com.android.settings/.homepage.DeepLinkHomepageActivityInternal", true)
                     true
@@ -201,6 +202,7 @@ class SystemQuickEntry : ModulePreferenceFragment() {
             addPreference(Preference(context).apply {
                 title = getString(R.string.camera_algo_page)
                 isIconSpaceReserved = false
+                isVisible = SDK >= A13
                 setOnPreferenceClickListener {
                     ShellUtils.execCommand("am start -n com.oplus.camera/.ui.menu.algoswitch.AlgoSwitchActivity", true)
                     true
@@ -211,10 +213,12 @@ class SystemQuickEntry : ModulePreferenceFragment() {
                 isIconSpaceReserved = false
                 isVisible = context.checkPackName("com.heytap.browser")
                 setOnPreferenceClickListener {
-                    Intent().apply {
-                        setClassName("com.heytap.browser", "com.heytap.browser.settings.component.BrowserPreferenceActivity")
-                        putExtra("key.fragment.name","com.heytap.browser.settings.homepage.HomepagePreferenceFragment")
-                        startActivity(this)
+                    safeOf(default = context.toast("Error: Please check your browser version!")){
+                        Intent().apply {
+                            setClassName("com.heytap.browser", "com.heytap.browser.settings.component.BrowserPreferenceActivity")
+                            putExtra("key.fragment.name","com.heytap.browser.settings.homepage.HomepagePreferenceFragment")
+                            startActivity(this)
+                        }
                     }
                     true
                 }
