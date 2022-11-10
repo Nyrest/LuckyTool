@@ -21,18 +21,18 @@ import java.util.*
 
 class StatusBarClock : YukiBaseHooker() {
 
-    private val isYear = prefs(XposedPrefs).getBoolean("statusbar_clock_show_year",false)
-    private val isMonth = prefs(XposedPrefs).getBoolean("statusbar_clock_show_month",false)
-    private val isDay = prefs(XposedPrefs).getBoolean("statusbar_clock_show_day",false)
-    private val isWeek = prefs(XposedPrefs).getBoolean("statusbar_clock_show_week",false)
-    private val isPeriod = prefs(XposedPrefs).getBoolean("statusbar_clock_show_period",false)
-    private val isDoubleHour = prefs(XposedPrefs).getBoolean("statusbar_clock_show_double_hour",false)
-    private val isSecond = prefs(XposedPrefs).getBoolean("statusbar_clock_show_second",false)
-    private val isHideSpace = prefs(XposedPrefs).getBoolean("statusbar_clock_hide_spaces",false)
-    private val isDoubleRow = prefs(XposedPrefs).getBoolean("statusbar_clock_show_doublerow",false)
+    private val isYear = prefs(XposedPrefs).getBoolean("statusbar_clock_show_year", false)
+    private val isMonth = prefs(XposedPrefs).getBoolean("statusbar_clock_show_month", false)
+    private val isDay = prefs(XposedPrefs).getBoolean("statusbar_clock_show_day", false)
+    private val isWeek = prefs(XposedPrefs).getBoolean("statusbar_clock_show_week", false)
+    private val isPeriod = prefs(XposedPrefs).getBoolean("statusbar_clock_show_period", false)
+    private val isDoubleHour = prefs(XposedPrefs).getBoolean("statusbar_clock_show_double_hour", false)
+    private val isSecond = prefs(XposedPrefs).getBoolean("statusbar_clock_show_second", false)
+    private val isHideSpace = prefs(XposedPrefs).getBoolean("statusbar_clock_hide_spaces", false)
+    private val isDoubleRow = prefs(XposedPrefs).getBoolean("statusbar_clock_show_doublerow", false)
 
-    private val singleRowFontSize = prefs(XposedPrefs).getInt("statusbar_clock_singlerow_fontsize",0)
-    private val doubleRowFontSize = prefs(XposedPrefs).getInt("statusbar_clock_doublerow_fontsize",0)
+    private val singleRowFontSize = prefs(XposedPrefs).getInt("statusbar_clock_singlerow_fontsize", 0)
+    private val doubleRowFontSize = prefs(XposedPrefs).getInt("statusbar_clock_doublerow_fontsize", 0)
 
     private var nowTime: Date? = null
     private var newline = ""
@@ -59,7 +59,10 @@ class StatusBarClock : YukiBaseHooker() {
                             setLineSpacing(0F, 0.8F)
                         } else {
                             if (singleRowFontSize != 0) {
-                                setTextSize(TypedValue.COMPLEX_UNIT_DIP, singleRowFontSize.toFloat())
+                                setTextSize(
+                                    TypedValue.COMPLEX_UNIT_DIP,
+                                    singleRowFontSize.toFloat()
+                                )
                             }
                         }
                     }
@@ -69,6 +72,7 @@ class StatusBarClock : YukiBaseHooker() {
                         d.isAccessible = true
                         d.invoke(clockView)
                     }
+
                     class T : TimerTask() {
                         override fun run() {
                             Handler(clockView.context.mainLooper).post(r)
@@ -90,7 +94,7 @@ class StatusBarClock : YukiBaseHooker() {
                     result = getDate(context!!) + newline + getTime(context!!)
                 }
             }
-            if (SDK == A11 && getColorOSVersion == "V12"){
+            if (SDK == A11 && getColorOSVersion == "V12") {
                 injectMember {
                     method {
                         name = "updateShowSeconds"
@@ -107,10 +111,12 @@ class StatusBarClock : YukiBaseHooker() {
         findClass("com.oplusos.systemui.statusbar.widget.StatClock").hook {
             injectMember {
                 method {
-                    if (SDK == A11) { name = "onConfigChanged" }
+                    if (SDK == A11) {
+                        name = "onConfigChanged"
+                    }
                     if (SDK > A11) name = "onConfigurationChanged"
                 }
-                if (isDoubleRow && doubleRowFontSize != 0){
+                if (isDoubleRow && doubleRowFontSize != 0) {
                     replaceUnit {
                         instance<TextView>().apply {
                             typeface = field {
@@ -119,7 +125,7 @@ class StatusBarClock : YukiBaseHooker() {
                             }.get(instance).cast<Typeface>()
                         }
                     }
-                }else if (!isDoubleRow && singleRowFontSize != 0){
+                } else if (!isDoubleRow && singleRowFontSize != 0) {
                     replaceUnit {
                         instance<TextView>().apply {
                             typeface = field {
@@ -135,12 +141,13 @@ class StatusBarClock : YukiBaseHooker() {
 
     private fun getDate(context: Context): String {
         var dateFormat = ""
-        if (isZh(context)){
+        if (isZh(context)) {
             if (isYear) dateFormat += "YY年"
             if (isMonth) dateFormat += "M月"
             if (isDay) dateFormat += "d日"
             if (isWeek) dateFormat += "E"
-        }else{
+            if (!isHideSpace && !isDoubleRow) dateFormat += " "
+        } else {
             if (isYear) {
                 dateFormat += "YY"
                 if (isMonth || isDay) dateFormat += "/"
@@ -149,8 +156,10 @@ class StatusBarClock : YukiBaseHooker() {
                 dateFormat += "M"
                 if (isDay) dateFormat += "/"
             }
-            if (isDay) dateFormat += "d "
-            if (isWeek) dateFormat += "E "
+            if (isDay) dateFormat += "d"
+            if (!isHideSpace && !isDoubleRow) dateFormat += " "
+            if (isWeek) dateFormat += "E"
+            if (!isHideSpace && !isDoubleRow) dateFormat += " "
         }
         return SimpleDateFormat(dateFormat).format(nowTime!!)
     }
@@ -160,7 +169,8 @@ class StatusBarClock : YukiBaseHooker() {
         timeFormat += if (is24(context)) "HH:mm" else "hh:mm"
         if (isSecond) timeFormat += ":ss"
         timeFormat = SimpleDateFormat(timeFormat).format(nowTime!!)
-        if (isZh(context)) timeFormat = getPeriod(context) + timeFormat else timeFormat += getPeriod(context)
+        if (isZh(context)) timeFormat =
+            getPeriod(context) + timeFormat else timeFormat += getPeriod(context)
         timeFormat = getDoubleHour() + timeFormat
         return timeFormat
     }
@@ -189,9 +199,9 @@ class StatusBarClock : YukiBaseHooker() {
                         period = "晚上"
                     }
                 }
-                if (!isHideSpace) period = "$period "
+                if (!isHideSpace) period += " "
             } else {
-                period = " "+SimpleDateFormat("a").format(nowTime!!)
+                period = " " + SimpleDateFormat("a").format(nowTime!!)
             }
         }
         return period

@@ -16,6 +16,7 @@ If you have problems, please bring the scope APK and LOG to the TG group for fee
 [添加] 浏览器简洁模式快捷入口  
 [优化] 快捷入口判断逻辑  
 [添加] 相机10亿色影像支持  
+[优化] 状态栏时钟间距  
 
 ### 3.2
 [更新] 捐赠名单  
