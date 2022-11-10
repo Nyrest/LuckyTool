@@ -152,7 +152,7 @@ class XposedFragment : ModulePreferenceFragment() {
                         isIconSpaceReserved = show
                     }
                     title = context.getAppLabel(key)
-                    summary = getString(R.string.remove_watermark_word_limit)
+                    summary = getString(R.string.remove_watermark_word_limit)+","+getString(R.string.enable_10_bit_image_support)
                     isVisible = context.checkPackName(key)
                     setOnPreferenceClickListener {
                         findNavController().navigate(R.id.action_nav_xposed_to_camera,Bundle().apply {
@@ -254,7 +254,6 @@ class XposedFragment : ModulePreferenceFragment() {
             )
         }
     }
-
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         menu.add(0, 1, 0, getString(R.string.menu_reboot)).apply {

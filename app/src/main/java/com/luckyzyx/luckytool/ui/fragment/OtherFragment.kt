@@ -1,6 +1,5 @@
 package com.luckyzyx.luckytool.ui.fragment
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.Gravity
@@ -9,11 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import androidx.preference.Preference
+import androidx.preference.PreferenceCategory
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.materialswitch.MaterialSwitch
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.android.material.textview.MaterialTextView
+import com.highcapable.yukihookapi.hook.xposed.prefs.ui.ModulePreferenceFragment
 import com.joom.paranoid.Obfuscate
 import com.luckyzyx.luckytool.R
 import com.luckyzyx.luckytool.databinding.FragmentOtherBinding
@@ -29,56 +32,15 @@ class OtherFragment : Fragment() {
         return binding.root
     }
 
-    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.quickEntryTitle.text = getString(R.string.quick_entry)
         binding.quickEntrySummary.text = getString(R.string.quick_entry_summary)
-        binding.quickEntry.apply {
-            setOnClickListener {
-                val quicklist = arrayListOf<String>()
-                quicklist.add(getString(R.string.engineering_mode))
-                quicklist.add(getString(R.string.charging_test))
-                quicklist.add(getString(R.string.battery_health))
-                quicklist.add(getString(R.string.process_manager))
-                quicklist.add(getString(R.string.very_dark_mode))
-                quicklist.add(getString(R.string.system_interface_adjustment))
-                quicklist.add(getString(R.string.feedback_toolbox))
-                quicklist.add(getString(R.string.developer_option))
-                if (context.checkPackName("com.oplus.games")) quicklist.add(getString(R.string.game_assistant_page))
-                if (context.checkPackName("com.oplus.games") && context.getBoolean(XposedPrefs,"enable_developer_page",false)) quicklist.add(getString(R.string.game_assistant_develop_page))
-                if (context.checkPackName("com.heytap.browser")) quicklist.add("浏览器简洁模式")
-                MaterialAlertDialogBuilder(context)
-                    .setCancelable(true)
-                    .setItems(quicklist.toTypedArray()) { _, which ->
-                        when (which) {
-                            0 -> jumpEngineermode(context)
-                            1 -> jumpBatteryInfo(context)
-                            2 -> {
-                                if (SDK < 33) {
-                                    context.toast(getString(R.string.battery_health_toast))
-                                    return@setItems
-                                }
-                                ShellUtils.execCommand("am start -n com.oplus.battery/com.oplus.powermanager.fuelgaue.BatteryHealthActivity", true)
-                            }
-                            3 -> jumpRunningApp(context)
-                            4 -> startActivity(Intent(Intent.ACTION_MAIN).setClassName("com.android.settings", "com.android.settings.Settings\$ReduceBrightColorsSettingsActivity"))
-                            5 -> ShellUtils.execCommand("am start -n com.android.systemui/.DemoMode", true)
-                            6 -> ShellUtils.execCommand("am start -n com.oplus.logkit/.activity.MainActivity", true)
-                            7 -> ShellUtils.execCommand("am start -a com.android.settings.APPLICATION_DEVELOPMENT_SETTINGS", true)
-                            8 -> ShellUtils.execCommand("am start -n com.oplus.games/business.compact.activity.GameBoxCoverActivity", true)
-                            9 -> ShellUtils.execCommand("am start -n com.oplus.games/business.compact.activity.GameDevelopOptionsActivity", true)
-                            10 -> {
-                                val intent = Intent()
-                                intent.setClassName("com.heytap.browser", "com.heytap.browser.settings.component.BrowserPreferenceActivity")
-                                intent.putExtra("key.fragment.name","com.heytap.browser.settings.homepage.HomepagePreferenceFragment")
-                                startActivity(intent)
-                            }
-                        }
-                    }
-                    .show()
-            }
+        binding.quickEntry.setOnClickListener {
+            findNavController().navigate(R.id.action_nav_other_to_systemQuickEntry, Bundle().apply {
+                putCharSequence("title_label", getString(R.string.quick_entry))
+            })
         }
 
         binding.remoteAdbDebugTitle.text = getString(R.string.remote_adb_debug_title)
@@ -87,7 +49,7 @@ class OtherFragment : Fragment() {
             setOnClickListener {
                 val getPort = ShellUtils.execCommand("getprop service.adb.tcp.port", true, true).successMsg
                 val getIP = ShellUtils.execCommand("ifconfig wlan0 | grep 'inet addr' | awk '{ print $2}' | awk -F: '{print $2}' 2>/dev/null", true, true).successMsg.let {
-                    if (it == "") "IP" else it
+                    it.ifEmpty { "IP" }
                 }
                 val adbDialog = MaterialAlertDialogBuilder(context).apply {
                     setCancelable(true)
@@ -150,6 +112,128 @@ class OtherFragment : Fragment() {
                     }
                 }
             }
+        }
+    }
+}
+
+@Obfuscate
+class SystemQuickEntry : ModulePreferenceFragment() {
+    override fun onCreatePreferencesInModuleApp(savedInstanceState: Bundle?, rootKey: String?) {
+        preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
+            addPreference(PreferenceCategory(context).apply {
+                title = "系统调试相关"
+                key = "SystemDebuggingRelated"
+                isIconSpaceReserved = false
+            })
+            addPreference(Preference(context).apply {
+                title = getString(R.string.engineering_mode)
+                isIconSpaceReserved = false
+                setOnPreferenceClickListener {
+                    jumpEngineermode(context)
+                    true
+                }
+            })
+            addPreference(Preference(context).apply {
+                title = getString(R.string.charging_test)
+                isIconSpaceReserved = false
+                setOnPreferenceClickListener {
+                    jumpBatteryInfo(context)
+                    true
+                }
+            })
+            addPreference(Preference(context).apply {
+                title = getString(R.string.developer_option)
+                isIconSpaceReserved = false
+                setOnPreferenceClickListener {
+                    ShellUtils.execCommand("am start -a com.android.settings.APPLICATION_DEVELOPMENT_SETTINGS", true)
+                    true
+                }
+            })
+            addPreference(Preference(context).apply {
+                title = getString(R.string.system_interface_adjustment)
+                isIconSpaceReserved = false
+                setOnPreferenceClickListener {
+                    ShellUtils.execCommand("am start -n com.android.systemui/.DemoMode", true)
+                    true
+                }
+            })
+            addPreference(PreferenceCategory(context).apply {
+                title = getString(R.string.HidePageRelated)
+                key = "HidePageRelated"
+                isIconSpaceReserved = false
+            })
+            addPreference(Preference(context).apply {
+                title = getString(R.string.process_manager)
+                isIconSpaceReserved = false
+                setOnPreferenceClickListener {
+                    jumpRunningApp(context)
+                    true
+                }
+            })
+            addPreference(Preference(context).apply {
+                title = getString(R.string.very_dark_mode)
+                isIconSpaceReserved = false
+                setOnPreferenceClickListener {
+                    Intent().apply {
+                        setClassName("com.android.settings", "com.android.settings.Settings\$ReduceBrightColorsSettingsActivity")
+                        startActivity(this)
+                    }
+                    true
+                }
+            })
+            addPreference(Preference(context).apply {
+                title = getString(R.string.battery_health)
+                isIconSpaceReserved = false
+                isVisible = SDK >= A13
+                setOnPreferenceClickListener {
+                    ShellUtils.execCommand("am start -n com.oplus.battery/com.oplus.powermanager.fuelgaue.BatteryHealthActivity", true)
+                    true
+                }
+            })
+            addPreference(Preference(context).apply {
+                title = getString(R.string.camera_algo_page)
+                isIconSpaceReserved = false
+                setOnPreferenceClickListener {
+                    ShellUtils.execCommand("am start -n com.oplus.camera/.ui.menu.algoswitch.AlgoSwitchActivity", true)
+                    true
+                }
+            })
+            addPreference(Preference(context).apply {
+                title = getString(R.string.browser_concise_mode)
+                isIconSpaceReserved = false
+                isVisible = context.checkPackName("com.heytap.browser")
+                setOnPreferenceClickListener {
+                    Intent().apply {
+                        setClassName("com.heytap.browser", "com.heytap.browser.settings.component.BrowserPreferenceActivity")
+                        putExtra("key.fragment.name","com.heytap.browser.settings.homepage.HomepagePreferenceFragment")
+                        startActivity(this)
+                    }
+                    true
+                }
+            })
+            addPreference(PreferenceCategory(context).apply {
+                title = getString(R.string.GameAssistantRelated)
+                isIconSpaceReserved = false
+                isVisible = context.checkPackName("com.oplus.games")
+            })
+            addPreference(Preference(context).apply {
+                title = getString(R.string.game_assistant_page)
+                isIconSpaceReserved = false
+                isVisible = context.checkPackName("com.oplus.games")
+                setOnPreferenceClickListener {
+                    ShellUtils.execCommand("am start -n com.oplus.games/business.compact.activity.GameBoxCoverActivity", true)
+                    true
+                }
+            })
+            addPreference(Preference(context).apply {
+                title = getString(R.string.game_assistant_develop_page)
+                isIconSpaceReserved = false
+                isVisible = context.checkPackName("com.oplus.games") && context.getBoolean(XposedPrefs,"enable_developer_page",false)
+                setOnPreferenceClickListener {
+                    ShellUtils.execCommand("am start -n com.oplus.games/business.compact.activity.GameDevelopOptionsActivity", true)
+                    true
+                }
+            })
         }
     }
 }

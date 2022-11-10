@@ -293,23 +293,25 @@
     <!-- Other -->
     <string name="quick_entry">System Quick Entry</string>
     <string name="quick_entry_summary">e.g. System UI reconciliation tools, process management, engineering mode, etc.</string>
-    <string name="engineering_mode">Project mode</string>
+    <string name="engineering_mode">Engineering Mode</string>
     <string name="charging_test">Charging Test</string>
     <string name="process_manager">Process management</string>
-    <string name="system_interface_adjustment">System UI Tuner</string>
-    <string name="feedback_toolbox">Feedback toolbox</string>
+    <string name="system_interface_adjustment">SystemUI adjustment</string>
+    <string name="developer_option">Developer Options</string>
+    <string name="HidePageRelated">Hide page related</string>
+    <string name="camera_algo_page">Camera Algorithms Page</string>
+    <string name="browser_concise_mode">Browser Concise Mode</string>
+    <string name="battery_health">Battery Health</string>
+    <string name="system_not_support">The current system does not support!</string>
+    <string name="very_dark_mode">Very dark mode</string>
+    <string name="GameAssistantRelated">Game Assistant Related</string>
     <string name="game_assistant_page">Game Assistant Page</string>
     <string name="game_assistant_develop_page">Game Assistant Developer Page</string>
-    <string name="developer_option">Developer Options</string>
     <string name="display_refresh_rate">Show Refresh Rate</string>
     <string name="remote_adb_debug_title">Remote ADB debugging</string>
     <string name="remote_adb_debug_summary">Please close it when not in use</string>
     <string name="adb_port">ADB Port</string>
     <string name="enable_remote_adb_debugging">Enable remote ADB debugging</string>
     <string name="adb_debug_port_cannot_null">ADB debug port cannot be null</string>
-    <string name="battery_health">Battery Health</string>
-    <string name="battery_health_toast">Only supports ColorOS13</string>
-    <string name="system_not_support">The current system does not support!</string>
-    <string name="very_dark_mode">Very dark mode</string>
 
 </resources>

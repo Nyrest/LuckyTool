@@ -20,7 +20,6 @@ import java.util.regex.Pattern
 import kotlin.math.roundToLong
 import kotlin.random.Random
 
-
 val SDK get() = Build.VERSION.SDK_INT
 val A11 get() = Build.VERSION_CODES.R
 val A12 get() = Build.VERSION_CODES.S
@@ -81,7 +80,10 @@ fun Context.checkKey(key: String?, keyList: Array<String>): String = safeOfNothi
 }
 
 /**
- * 判断APP是否存在
+ * 检测包名是否存在
+ * @receiver Context
+ * @param packName String
+ * @return Boolean
  */
 fun Context.checkPackName(packName: String) = safeOfFalse {
     @Suppress("SENSELESS_COMPARISON")
@@ -101,9 +103,8 @@ fun Context.getAppLabel(packName: String): CharSequence? = safeOf(default = null
     return PackageUtils(packageManager).getApplicationInfo(packName,0).loadLabel(packageManager)
 }
 
-/**
- * 检查隐藏活动是否存在
- */
+
+
 fun Context.checkResolveActivity(intent: Intent): Boolean = safeOf(default = false){
     return PackageUtils(packageManager).resolveActivity(intent, 0) != null
 }
@@ -161,32 +162,31 @@ val getGuid get() = ShellUtils.execCommand("cat /data/system/openid_config.xml |
 
 /**
  * 跳转工程模式
+ * @param context Context
  */
-fun jumpEngineermode(context: Context) {
+fun jumpEngineermode(context: Context){
     if (context.checkPackName("com.oppo.engineermode")) {
         ShellUtils.execCommand("am start -n com.oppo.engineermode/.EngineerModeMain", true)
     }else if (context.checkPackName("com.oplus.engineermode")) {
         ShellUtils.execCommand("am start -n com.oplus.engineermode/.EngineerModeMain", true)
     }
 }
+
 /**
  * 跳转充电测试
+ * @param context Context
  */
-fun jumpBatteryInfo(context: Context) {
+fun jumpBatteryInfo(context: Context){
     if (context.checkPackName("com.oppo.engineermode")) {
-        ShellUtils.execCommand(
-            "am start -n com.oppo.engineermode/.charge.modeltest.BatteryInfoShow",
-            true
-        )
+        ShellUtils.execCommand("am start -n com.oppo.engineermode/.charge.modeltest.BatteryInfoShow", true)
     }else if (context.checkPackName("com.oplus.engineermode")) {
-        ShellUtils.execCommand(
-            "am start -n com.oplus.engineermode/.charge.modeltest.BatteryInfoShow",
-            true
-        )
+        ShellUtils.execCommand("am start -n com.oplus.engineermode/.charge.modeltest.BatteryInfoShow", true)
     }
 }
+
 /**
  * 跳转进程管理
+ * @param context Context
  */
 fun jumpRunningApp(context: Context){
     val isoppoRunning = Intent().setClassName(
@@ -211,10 +211,12 @@ fun jumpRunningApp(context: Context){
 }
 
 /**
- * 显示/隐藏APP图标
+ * 设置桌面图标显示/隐藏
+ * @receiver Context
+ * @param value Boolean
  */
 fun Context.setDesktopIcon(value : Boolean){
-    packageManager.setComponentEnabledSetting(ComponentName(APPLICATION_ID, "${APPLICATION_ID}.Hide"),
+    packageManager.setComponentEnabledSetting(ComponentName(packageName, "${packageName}.Hide"),
         if (value) PackageManager.COMPONENT_ENABLED_STATE_DISABLED else PackageManager.COMPONENT_ENABLED_STATE_DEFAULT,
         PackageManager.DONT_KILL_APP
     )

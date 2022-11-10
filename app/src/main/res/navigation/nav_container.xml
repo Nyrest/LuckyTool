@@ -14,7 +14,15 @@
             android:id="@+id/nav_other"
             android:name="com.luckyzyx.luckytool.ui.fragment.OtherFragment"
             android:label="@string/nav_other"
-            tools:layout="@layout/fragment_other" />
+            tools:layout="@layout/fragment_other">
+        <action
+                android:id="@+id/action_nav_other_to_systemQuickEntry"
+                app:destination="@id/systemQuickEntry"
+                app:enterAnim="@anim/fragment_enter"
+                app:exitAnim="@anim/fragment_exit"
+                app:popEnterAnim="@anim/fragment_enter_pop"
+                app:popExitAnim="@anim/fragment_exit_pop" />
+    </fragment>
     <fragment
             android:id="@+id/nav_function"
             android:name="com.luckyzyx.luckytool.ui.fragment.XposedFragment"
@@ -255,8 +263,7 @@
     <fragment
             android:id="@+id/miscellaneous"
             android:name="com.luckyzyx.luckytool.ui.fragment.Miscellaneous"
-            android:label="{title_label}">
-    </fragment>
+            android:label="{title_label}" />
     <fragment
             android:id="@+id/alphaBackupPro"
             android:name="com.luckyzyx.luckytool.ui.fragment.AlphaBackupPro"
@@ -268,6 +275,10 @@
     <fragment
             android:id="@+id/dropDownStatusBarClock"
             android:name="com.luckyzyx.luckytool.ui.fragment.DropDownStatusBarClock"
+            android:label="{title_label}" />
+    <fragment
+            android:id="@+id/systemQuickEntry"
+            android:name="com.luckyzyx.luckytool.ui.fragment.SystemQuickEntry"
             android:label="{title_label}" />
 
 </navigation>

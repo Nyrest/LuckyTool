@@ -222,13 +222,13 @@
     <string name="remove_storage_limit_summary">Снять ограничение, на использование этой папки</string>
     <string name="media_volume_level">Уровень громкости мультимедиа</string>
     <string name="media_volume_level_summary">Установите 0, чтобы отключить функцию, и перезагрузите систему, чтобы она вступила в силу</string>
-    <string name="open_screen_power_save">Open battery screen power saving entrance</string>
-    <string name="open_screen_power_save_summary">Settings - Battery - More settings - Screen Power Saving</string>
-    <string name="open_battery_health">Open battery health entrance</string>
-    <string name="open_battery_health_summary">Settings - Battery - Battery Health</string>
+    <string name="open_screen_power_save">Открыть режим энергосбережения</string>
+    <string name="open_screen_power_save_summary">Настройки - Батарея - Дополнительные настройки - Энергосбережение экрана</string>
+    <string name="open_battery_health">Открыть вход состояния батареи</string>
+    <string name="open_battery_health_summary">Настройки - Аккумулятор - Состояние аккумулятора</string>
     <!--Camera-->
     <string name="remove_watermark_word_limit">Удалить ограничение на количество слов водяного знака</string>
-    <string name="enable_10_bit_image_support">Enable 10 bit Images Support</string>
+    <string name="enable_10_bit_image_support">Включить поддержку 10-битных изображений</string>
     <!--OplusGames-->
     <string name="remove_root_check">Удалить определение игрового фильтра</string>
     <string name="remove_root_check_summary">Удалить обнаружение рута из игровых фильтров</string>
@@ -296,19 +296,21 @@
     <string name="engineering_mode">Инженерный режим</string>
     <string name="charging_test">Тест зарядки</string>
     <string name="process_manager">Управление процессом</string>
-    <string name="system_interface_adjustment">Инструмент настройки системного интерфейса</string>
-    <string name="feedback_toolbox">Инструменты обратной связи</string>
+    <string name="system_interface_adjustment">SystemUI adjustment</string>
+    <string name="developer_option">Параметры разработчика</string>
+    <string name="HidePageRelated">Hide page related</string>
+    <string name="camera_algo_page">Camera Algorithms Page</string>
+    <string name="browser_concise_mode">Browser Concise Mode</string>
+    <string name="battery_health">Состояние батареи</string>
+    <string name="system_not_support">Текущее состояние не поддерживается!</string>
+    <string name="very_dark_mode">Темный режим</string>
+    <string name="GameAssistantRelated">Game Assistant Related</string>
     <string name="game_assistant_page">Страница игрового помощника</string>
     <string name="game_assistant_develop_page">Меню разработчика игрового помощника</string>
-    <string name="developer_option">Параметры разработчика</string>
     <string name="display_refresh_rate">Частота обновления экрана</string>
     <string name="remote_adb_debug_title">Удаленная отладка ADB</string>
     <string name="remote_adb_debug_summary">Пожалуйста, закройте его, когда он не используется</string>
     <string name="adb_port">Порт ADB</string>
     <string name="enable_remote_adb_debugging">Включить удаленную отладку ADB</string>
     <string name="adb_debug_port_cannot_null">Порт отладки ADB не может быть пустым</string>
-    <string name="battery_health">Состояние батареи</string>
-    <string name="battery_health_toast">Поддерживает только ColorOS13</string>
-    <string name="system_not_support">Текущее состояние не поддерживается!</string>
-    <string name="very_dark_mode">Темный режим</string>
 </resources>

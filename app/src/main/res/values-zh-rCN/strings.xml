@@ -294,18 +294,20 @@
     <string name="charging_test">充电测试</string>
     <string name="process_manager">进程管理</string>
     <string name="system_interface_adjustment">系统界面调节工具</string>
-    <string name="feedback_toolbox">反馈工具箱</string>
+    <string name="developer_option">开发者选项</string>
+    <string name="HidePageRelated">隐藏页面相关</string>
+    <string name="camera_algo_page">相机算法页面</string>
+    <string name="browser_concise_mode">浏览器简洁模式</string>
+    <string name="battery_health">电池健康度</string>
+    <string name="system_not_support">当前系统不支持!</string>
+    <string name="very_dark_mode">极暗模式</string>
+    <string name="GameAssistantRelated">游戏助手相关</string>
     <string name="game_assistant_page">游戏助手页面</string>
     <string name="game_assistant_develop_page">游戏助手开发者页面</string>
-    <string name="developer_option">开发者选项</string>
     <string name="display_refresh_rate">显示刷新率</string>
     <string name="remote_adb_debug_title">远程ADB调试</string>
     <string name="remote_adb_debug_summary">不使用时请及时关闭</string>
     <string name="adb_port">端口</string>
     <string name="enable_remote_adb_debugging">开启远程ADB调试</string>
     <string name="adb_debug_port_cannot_null">ADB调试端口不可为空</string>
-    <string name="battery_health">电池健康度</string>
-    <string name="battery_health_toast">仅支持ColorOS13</string>
-    <string name="system_not_support">当前系统不支持!</string>
-    <string name="very_dark_mode">极暗模式</string>
 </resources>
