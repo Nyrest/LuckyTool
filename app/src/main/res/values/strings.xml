@@ -293,6 +293,8 @@
     <!-- Other -->
     <string name="quick_entry">System Quick Entry</string>
     <string name="quick_entry_summary">e.g. System UI reconciliation tools, process management, engineering mode, etc.</string>
+    <string name="display_refresh_rate">Show Refresh Rate</string>
+    <string name="SystemDebuggingRelated">System Debugging Related</string>
     <string name="engineering_mode">Engineering Mode</string>
     <string name="charging_test">Charging Test</string>
     <string name="process_manager">Process management</string>
@@ -307,7 +309,8 @@
     <string name="GameAssistantRelated">Game Assistant Related</string>
     <string name="game_assistant_page">Game Assistant Page</string>
     <string name="game_assistant_develop_page">Game Assistant Developer Page</string>
-    <string name="display_refresh_rate">Show Refresh Rate</string>
+    <string name="AOSPSettingsPage">AOSP native settings page</string>
+    <!-- ADB相关 -->
     <string name="remote_adb_debug_title">Remote ADB debugging</string>
     <string name="remote_adb_debug_summary">Please close it when not in use</string>
     <string name="adb_port">ADB Port</string>

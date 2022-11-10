@@ -1,6 +1,5 @@
 package com.luckyzyx.luckytool.ui.adapter
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
@@ -11,9 +10,8 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.switchmaterial.SwitchMaterial
-import com.luckyzyx.luckytool.databinding.LayoutAppinfoItemBinding
+import com.luckyzyx.luckytool.databinding.LayoutMultiinfoItemBinding
 import com.luckyzyx.luckytool.utils.tools.XposedPrefs
-import com.luckyzyx.luckytool.utils.tools.checkPackName
 import com.luckyzyx.luckytool.utils.tools.getStringSet
 import com.luckyzyx.luckytool.utils.tools.putStringSet
 import java.io.Serializable
@@ -24,7 +22,7 @@ data class AppInfo(
     var packName: String,
 ) : Serializable
 
-class AppInfoViewAdapter(private val context: Context, datas: ArrayList<AppInfo>) : RecyclerView.Adapter<AppInfoViewAdapter.ViewHolder>() {
+class MultiInfoAdapter(private val context: Context, datas: ArrayList<AppInfo>) : RecyclerView.Adapter<MultiInfoAdapter.ViewHolder>() {
 
     private var allDatas = ArrayList<AppInfo>()
     private var filterDatas = ArrayList<AppInfo>()
@@ -33,8 +31,8 @@ class AppInfoViewAdapter(private val context: Context, datas: ArrayList<AppInfo>
 
     init {
         allDatas = datas
-        filterDatas = datas
         sortDatas()
+        filterDatas = datas
     }
 
     private fun sortDatas(){
@@ -45,16 +43,13 @@ class AppInfoViewAdapter(private val context: Context, datas: ArrayList<AppInfo>
             }
         }
         allDatas.forEach { its ->
-            enabledMulti.forEach {
-                if (!context.checkPackName(it)){
-                    enabledMulti.remove(it)
-                    context.putStringSet(XposedPrefs,"enabledMulti",enabledMulti.toSet())
-                }
-                if (its.packName == it){
-                    sortData.add(0,its)
-                }
-            }
+            if (enabledMulti.contains(its.packName)) sortData.add(0,its)
         }
+        enabledMulti.clear()
+        sortData.forEach {
+            enabledMulti.add(it.packName)
+        }
+        context.putStringSet(XposedPrefs,"enabledMulti",enabledMulti.toSet())
         allDatas.apply {
             sortData.forEach {
                 this.remove(it)
@@ -64,7 +59,7 @@ class AppInfoViewAdapter(private val context: Context, datas: ArrayList<AppInfo>
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = LayoutAppinfoItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        val binding = LayoutMultiinfoItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return ViewHolder(binding)
     }
 
@@ -113,15 +108,14 @@ class AppInfoViewAdapter(private val context: Context, datas: ArrayList<AppInfo>
             return filterResults
         }
 
-        @Suppress("UNCHECKED_CAST")
-        @SuppressLint("NotifyDataSetChanged")
         override fun publishResults(constraint: CharSequence, results: FilterResults?) {
+            @Suppress("UNCHECKED_CAST")
             filterDatas = results?.values as ArrayList<AppInfo>
             notifyDataSetChanged()
         }
     }
 
-    class ViewHolder(binding: LayoutAppinfoItemBinding) : RecyclerView.ViewHolder(binding.root){
+    class ViewHolder(binding: LayoutMultiinfoItemBinding) : RecyclerView.ViewHolder(binding.root){
         val appInfoView: ConstraintLayout = binding.root
         val appIcon: ImageView = binding.appIcon
         val appName: TextView = binding.appName

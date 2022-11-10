@@ -293,21 +293,24 @@
     <!-- Other -->
     <string name="quick_entry">Быстрый вход в систему</string>
     <string name="quick_entry_summary">Например, инструменты настройки системного интерфейса, управление процессами, режим проекта и т.д.</string>
+    <string name="display_refresh_rate">Частота обновления экрана</string>
+    <string name="SystemDebuggingRelated">Отладка системы связана</string>
     <string name="engineering_mode">Инженерный режим</string>
     <string name="charging_test">Тест зарядки</string>
     <string name="process_manager">Управление процессом</string>
-    <string name="system_interface_adjustment">SystemUI adjustment</string>
+    <string name="system_interface_adjustment">Настройки SystemUI</string>
     <string name="developer_option">Параметры разработчика</string>
-    <string name="HidePageRelated">Hide page related</string>
-    <string name="camera_algo_page">Camera Algorithms Page</string>
-    <string name="browser_concise_mode">Browser Concise Mode</string>
+    <string name="HidePageRelated">Скрыть связанные страницы</string>
+    <string name="camera_algo_page">Страница алгоритмов камеры</string>
+    <string name="browser_concise_mode">Режим настройки браузера</string>
     <string name="battery_health">Состояние батареи</string>
     <string name="system_not_support">Текущее состояние не поддерживается!</string>
     <string name="very_dark_mode">Темный режим</string>
-    <string name="GameAssistantRelated">Game Assistant Related</string>
+    <string name="GameAssistantRelated">Игровой помощник</string>
     <string name="game_assistant_page">Страница игрового помощника</string>
     <string name="game_assistant_develop_page">Меню разработчика игрового помощника</string>
-    <string name="display_refresh_rate">Частота обновления экрана</string>
+    <string name="AOSPSettingsPage">AOSP native settings page</string>
+    <!-- ADB相关 -->
     <string name="remote_adb_debug_title">Удаленная отладка ADB</string>
     <string name="remote_adb_debug_summary">Пожалуйста, закройте его, когда он не используется</string>
     <string name="adb_port">Порт ADB</string>

@@ -17,6 +17,10 @@ If you have problems, please bring the scope APK and LOG to the TG group for fee
 [优化] 快捷入口判断逻辑  
 [添加] 相机10亿色影像支持  
 [优化] 状态栏时钟间距  
+[优化] 快捷入口跳转页面  
+[修复] 应用分身搜索异常  
+[添加] 应用分身下拉刷新  
+[添加] AOSP原生设置入口  
 
 ### 3.2
 [更新] 捐赠名单  

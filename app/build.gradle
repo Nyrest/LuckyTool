@@ -79,8 +79,10 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
     //约束布局
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    //快速创建settings
+    //快速创建Settings
     implementation 'androidx.preference:preference:1.2.0'
+    //下拉刷新控件
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
     //Navigation
     //noinspection GradleDependency
     implementation 'androidx.navigation:navigation-fragment-ktx:2.4.2'

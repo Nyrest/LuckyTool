@@ -290,6 +290,8 @@
     <!-- Other -->
     <string name="quick_entry">系统快捷入口</string>
     <string name="quick_entry_summary">例如系统界面调节工具,进程管理,工程模式等</string>
+    <string name="display_refresh_rate">显示刷新率</string>
+    <string name="SystemDebuggingRelated">系统调试相关</string>
     <string name="engineering_mode">工程模式</string>
     <string name="charging_test">充电测试</string>
     <string name="process_manager">进程管理</string>
@@ -304,7 +306,8 @@
     <string name="GameAssistantRelated">游戏助手相关</string>
     <string name="game_assistant_page">游戏助手页面</string>
     <string name="game_assistant_develop_page">游戏助手开发者页面</string>
-    <string name="display_refresh_rate">显示刷新率</string>
+    <string name="AOSPSettingsPage">AOSP 原生设置页面</string>
+    <!-- ADB相关 -->
     <string name="remote_adb_debug_title">远程ADB调试</string>
     <string name="remote_adb_debug_summary">不使用时请及时关闭</string>
     <string name="adb_port">端口</string>
