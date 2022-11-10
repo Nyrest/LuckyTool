@@ -3,6 +3,9 @@
 出现问题请带上作用域 APK 和 LOG 前往 TG 群组反馈  
 If you have problems, please bring the scope APK and LOG to the TG group for feedback  
 
+### 3.4
+[移除] 检测更新时间  
+
 ### 3.3
 [更新] 捐赠名单  
 [添加] 移除状态栏移动数据图标  
