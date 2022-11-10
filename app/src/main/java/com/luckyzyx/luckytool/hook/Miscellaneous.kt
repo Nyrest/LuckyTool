@@ -1,11 +1,13 @@
 package com.luckyzyx.luckytool.hook
 
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
+import com.luckyzyx.luckytool.hook.apps.battery.BatteryHiddenEntrance
 import com.luckyzyx.luckytool.hook.apps.exsystemservice.RemoveWarningDialogThatAppRunsOnDesktop
 import com.luckyzyx.luckytool.hook.apps.externalstorage.RemoveStorageLimit
 import com.luckyzyx.luckytool.hook.apps.settings.DisableDPIRebootRecovery
 import com.luckyzyx.luckytool.hook.apps.systemui.*
 import com.luckyzyx.luckytool.utils.tools.*
+
 
 class Miscellaneous : YukiBaseHooker() {
     override fun onHook() {
@@ -77,6 +79,11 @@ class Miscellaneous : YukiBaseHooker() {
             if (prefs(XposedPrefs).getBoolean("remove_storage_limit",false)) {
                 loadHooker(RemoveStorageLimit())
             }
+        }
+
+        loadApp("com.oplus.battery") {
+            //屏幕省电,电池健康
+            loadHooker(BatteryHiddenEntrance())
         }
     }
 }

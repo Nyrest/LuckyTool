@@ -222,6 +222,10 @@
     <string name="remove_storage_limit_summary">Remove the restriction that this folder cannot be used</string>
     <string name="media_volume_level">Media volume level</string>
     <string name="media_volume_level_summary">Set to 0 to disable the function, and the system restarts to take effect</string>
+    <string name="open_screen_power_save">Open battery screen power saving entrance</string>
+    <string name="open_screen_power_save_summary">Settings - Battery - More settings - Screen Power Saving</string>
+    <string name="open_battery_health">Open battery health entrance</string>
+    <string name="open_battery_health_summary">Settings - Battery - Battery Health</string>
     <!--Camera-->
     <string name="remove_watermark_word_limit">Remove Watermark Limit</string>
     <!--OplusGames-->

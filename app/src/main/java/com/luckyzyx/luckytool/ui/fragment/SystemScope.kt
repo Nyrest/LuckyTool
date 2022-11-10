@@ -1097,6 +1097,24 @@ class Miscellaneous : ModulePreferenceFragment(){
                     isIconSpaceReserved = false
                 }
             )
+            addPreference(
+                SwitchPreference(context).apply {
+                    title = getString(R.string.open_screen_power_save)
+                    summary = getString(R.string.open_screen_power_save_summary)
+                    key = "open_screen_power_save"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(context).apply {
+                    title = getString(R.string.open_battery_health)
+                    summary = getString(R.string.open_battery_health_summary)
+                    key = "open_battery_health"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
         }
     }
 }

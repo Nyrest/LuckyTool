@@ -219,6 +219,10 @@
     <string name="remove_storage_limit_summary">移除无法使用此文件夹的限制</string>
     <string name="media_volume_level">媒体音量阶数</string>
     <string name="media_volume_level_summary">设置为0关闭功能，系统重启生效</string>
+    <string name="open_screen_power_save">打开电池屏幕省电入口</string>
+    <string name="open_screen_power_save_summary">设置-电池-更多设置-屏幕省电</string>
+    <string name="open_battery_health">打开电池健康入口</string>
+    <string name="open_battery_health_summary">设置-电池-电池健康</string>
     <!--Camera-->
     <string name="remove_watermark_word_limit">移除水印字数限制</string>
     <!--OplusGames-->

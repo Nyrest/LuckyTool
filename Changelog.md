@@ -11,6 +11,8 @@ If you have problems, please bring the scope APK and LOG to the TG group for fee
 [添加] 媒体音量阶数  
 [适配] 游戏助手v7.14.1  
 [更新] 捐赠名单  
+[添加] 电池屏幕省电入口  
+[添加] 电池健康入口  
 
 ### 3.2
 [更新] 捐赠名单  
