@@ -91,6 +91,14 @@ open class MainActivity : AppCompatActivity() {
         val status = packageManager.getComponentEnabledSetting(ComponentName(packageName, "${packageName}.Hide"))
         if(status == 2) return
         val shortcutManager = getSystemService(ShortcutManager::class.java)
+        val lsposed = ShortcutInfo.Builder(this, "lsposed").apply {
+            setShortLabel("LSPosed")
+            setIcon(Icon.createWithResource(packageName,R.mipmap.android_icon))
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.putExtra("Shortcut","lsposed")
+            intent.setClassName(packageName,"$packageName.ui.activity.ShortcutActivity")
+            setIntent(intent)
+        }.build()
         val oplusGames = ShortcutInfo.Builder(this, "oplusGames").apply {
             setShortLabel(getAppLabel("com.oplus.games").toString())
             setIcon(Icon.createWithResource(packageName,R.mipmap.oplusgames_icon))
@@ -115,7 +123,7 @@ open class MainActivity : AppCompatActivity() {
             intent.setClassName(packageName,"$packageName.ui.activity.ShortcutActivity")
             setIntent(intent)
         }.build()
-        shortcutManager.dynamicShortcuts = listOf(oplusGames,chargingTest,processManager)
+        shortcutManager.dynamicShortcuts = listOf(lsposed,oplusGames,chargingTest,processManager)
     }
 
     private fun initNavigationFragment(){
