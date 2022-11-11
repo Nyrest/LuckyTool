@@ -3,7 +3,9 @@
 出现问题请带上作用域 APK 和 LOG 前往 TG 群组反馈  
 If you have problems, please bring the scope APK and LOG to the TG group for feedback  
 ### 3.4
+[更新] 捐赠名单  
 [添加] LSPosed快捷方式  
+[添加] 检测更新下载次数  
 
 ### 3.3
 [更新] 捐赠名单  

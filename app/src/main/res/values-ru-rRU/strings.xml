@@ -270,6 +270,7 @@
     <string name="module_version">Версия модуля:</string>
     <string name="enable_module">Включить модуль</string>
     <string name="version_name">Название версии</string>
+    <string name="download_count">Количество загрузок</string>
     <string name="update_time">Время обновления</string>
     <string name="update_content">Обновить содержимое</string>
     <string name="check_update_hint">Обнаружена новая версия!</string>
@@ -309,7 +310,7 @@
     <string name="GameAssistantRelated">Игровой помощник</string>
     <string name="game_assistant_page">Страница игрового помощника</string>
     <string name="game_assistant_develop_page">Меню разработчика игрового помощника</string>
-    <string name="AOSPSettingsPage">AOSP native settings page</string>
+    <string name="AOSPSettingsPage">Вид настроек как в AOSP</string>
     <!-- ADB相关 -->
     <string name="remote_adb_debug_title">Удаленная отладка ADB</string>
     <string name="remote_adb_debug_summary">Пожалуйста, закройте его, когда он не используется</string>

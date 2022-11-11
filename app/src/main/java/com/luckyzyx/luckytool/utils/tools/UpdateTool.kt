@@ -32,6 +32,7 @@ object UpdateTool {
                 val fileName = getJSONArray("assets").getJSONObject(0).optString("name")
                 val downloadUrl = getJSONArray("assets").getJSONObject(0).optString("browser_download_url")
                 val downloadPage = optString("html_url")
+                val downloadCount = getJSONArray("assets").getJSONObject(0).optString("download_count")
 //                val updateTime = optString("published_at").replace("T", " ").replace("Z", "")
                 //版本号大于等于云端,提示最新版本
                 if (versionCode >= code.toInt()) {
@@ -47,7 +48,12 @@ object UpdateTool {
                                     MaterialTextView(context).apply {
                                         setPadding(20.dp, 0, 20.dp, 0)
 //                                        text = "${context.getString(R.string.version_name)}: $name($code)\n${context.getString(R.string.update_time)}: $updateTime\n${context.getString(R.string.update_content)}: \n$changeLog"
-                                        text = "${context.getString(R.string.version_name)}: $name($code)\n${context.getString(R.string.update_content)}: \n$changeLog"
+                                        text = """
+                                            ${context.getString(R.string.version_name)}: $name($code)
+                                            ${context.getString(R.string.download_count)}: $downloadCount
+                                            ${context.getString(R.string.update_content)}: 
+                                            $changeLog
+                                        """.trimIndent()
                                     }
                                 )
                             }

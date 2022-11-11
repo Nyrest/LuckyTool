@@ -33,6 +33,9 @@ object DonateData {
             add(DonateInfo("晨钟酱", 100.0))
             add(DonateInfo("小李.", 15.0))
             add(DonateInfo("yomol.", 18.0))
+            add(DonateInfo("miComet35P", 10.0))
+            add(DonateInfo("347aidan", 5.0))
+            add(DonateInfo("柳丝", 10.0))
         }
     }
 }

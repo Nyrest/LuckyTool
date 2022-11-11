@@ -270,6 +270,7 @@
     <string name="module_version">Module version:</string>
     <string name="enable_module">Enable Module</string>
     <string name="version_name">Version Name</string>
+    <string name="download_count">Download Count</string>
     <string name="update_time">Update Time</string>
     <string name="update_content">Update Content</string>
     <string name="check_update_hint">New version detected!</string>

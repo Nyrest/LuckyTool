@@ -133,8 +133,7 @@ class HomeFragment : Fragment() {
         }
 
         binding.systemInfo.apply {
-            text =
-                """
+            text = """
                 ${getString(R.string.brand)}: ${Build.BRAND}
                 ${getString(R.string.model)}: ${Build.MODEL}
                 ${getString(R.string.system)}: ${Build.VERSION.RELEASE}(${Build.VERSION.SDK_INT})[$getColorOSVersion]

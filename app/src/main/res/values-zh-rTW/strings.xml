@@ -267,6 +267,7 @@
     <string name="module_version">模块版本:</string>
     <string name="enable_module">启用模块</string>
     <string name="version_name">版本号</string>
+    <string name="download_count">下載次數</string>
     <string name="update_time">更新时间</string>
     <string name="update_content">更新内容</string>
     <string name="check_update_hint">检测到新版本!</string>
