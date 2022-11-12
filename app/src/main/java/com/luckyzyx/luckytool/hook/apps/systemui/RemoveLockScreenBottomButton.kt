@@ -7,6 +7,7 @@ import com.luckyzyx.luckytool.utils.tools.XposedPrefs
 
 class RemoveLockScreenBottomButton : YukiBaseHooker() {
     override fun onHook() {
+        //Source KeyguardBottomAreaView
         findClass("com.android.systemui.statusbar.phone.KeyguardBottomAreaView").hook {
             injectMember {
                 method {

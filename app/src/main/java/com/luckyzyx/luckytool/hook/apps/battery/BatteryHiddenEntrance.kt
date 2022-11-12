@@ -1,6 +1,7 @@
 package com.luckyzyx.luckytool.hook.apps.battery
 
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
+import com.highcapable.yukihookapi.hook.log.loggerD
 import com.highcapable.yukihookapi.hook.type.android.ContextClass
 import com.highcapable.yukihookapi.hook.type.java.IntType
 import com.highcapable.yukihookapi.hook.type.java.ListClass
@@ -27,7 +28,7 @@ class BatteryHiddenEntrance : YukiBaseHooker() {
             method {
                 returnType = IntType
             }.count(1..2)
-        }.get()?.hook {
+        }.get().takeIf { it != null }?.hook {
             injectMember {
                 method {
                     param(ContextClass)
@@ -37,6 +38,6 @@ class BatteryHiddenEntrance : YukiBaseHooker() {
                     if (openBatteryHealth) field { name = "w" }.get().setTrue()
                 }
             }
-        }
+        } ?: loggerD(msg = "$packageName\nError -> BatteryHiddenEntrance")
     }
 }

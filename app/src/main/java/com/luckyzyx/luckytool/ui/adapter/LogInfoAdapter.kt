@@ -16,10 +16,12 @@ import com.luckyzyx.luckytool.utils.tools.dp
 import com.luckyzyx.luckytool.utils.tools.getAppIcon
 import com.luckyzyx.luckytool.utils.tools.getAppLabel
 
-class LogInfoViewAdapter(val context: Context, private val data: ArrayList<YukiLoggerData>) : RecyclerView.Adapter<LogInfoViewAdapter.ViewHolder>() {
+class LogInfoViewAdapter(val context: Context, private val data: ArrayList<YukiLoggerData>) :
+    RecyclerView.Adapter<LogInfoViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = LayoutLoginfoItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        val binding =
+            LayoutLoginfoItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
@@ -36,7 +38,9 @@ class LogInfoViewAdapter(val context: Context, private val data: ArrayList<YukiL
                         addView(
                             MaterialTextView(context).apply {
                                 setPadding(20.dp, 0, 20.dp, 20.dp)
-                                text = data[position].msg+"\n\n"+data[position].throwable
+                                val msg = data[position].msg
+                                val throwable = data[position].throwable.toString()
+                                text = msg + if (throwable != "null") "\n\n$throwable" else ""
                             }
                         )
                     }
@@ -49,7 +53,7 @@ class LogInfoViewAdapter(val context: Context, private val data: ArrayList<YukiL
         return data.size
     }
 
-    class ViewHolder(binding: LayoutLoginfoItemBinding) : RecyclerView.ViewHolder(binding.root){
+    class ViewHolder(binding: LayoutLoginfoItemBinding) : RecyclerView.ViewHolder(binding.root) {
         val logRoot = binding.root
         val logIcon: ImageView = binding.logIcon
         val logTime: TextView = binding.logTime

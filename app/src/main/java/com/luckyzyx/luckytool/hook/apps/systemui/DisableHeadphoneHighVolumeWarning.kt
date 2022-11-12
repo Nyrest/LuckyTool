@@ -6,6 +6,7 @@ import com.highcapable.yukihookapi.hook.factory.current
 
 class DisableHeadphoneHighVolumeWarning : YukiBaseHooker() {
     override fun onHook() {
+        //Sourcce VolumeDialogImplEx
         findClass("com.oplusos.systemui.volume.VolumeDialogImplEx").hook {
             injectMember {
                 method {

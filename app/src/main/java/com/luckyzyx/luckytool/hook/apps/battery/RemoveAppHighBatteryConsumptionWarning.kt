@@ -2,6 +2,7 @@ package com.luckyzyx.luckytool.hook.apps.battery
 
 import android.app.NotificationManager
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
+import com.highcapable.yukihookapi.hook.log.loggerD
 import com.highcapable.yukihookapi.hook.type.android.HandlerClass
 import com.highcapable.yukihookapi.hook.type.java.BooleanType
 import com.highcapable.yukihookapi.hook.type.java.StringType
@@ -11,7 +12,7 @@ class RemoveAppHighBatteryConsumptionWarning : YukiBaseHooker() {
         // Source NotifyUtil
         // Search power_consumption_optimization_title / pco_notification_text / String \n String
         searchClass {
-            from("c4","com.oplus.a.g")
+            from("c4", "com.oplus.a.g")
             constructor {
                 paramCount = 1
             }.count(1)
@@ -22,10 +23,10 @@ class RemoveAppHighBatteryConsumptionWarning : YukiBaseHooker() {
                 type = HandlerClass
             }.count(1)
             method {
-                param(StringType,BooleanType)
+                param(StringType, BooleanType)
                 paramCount = 2
             }.count(4)
-        }.get()?.hook {
+        }.get().takeIf { it != null }?.hook {
             injectMember {
                 method {
                     param(StringType, BooleanType).index(0)
@@ -50,6 +51,6 @@ class RemoveAppHighBatteryConsumptionWarning : YukiBaseHooker() {
                 }
                 replaceTo(null)
             }
-        }
+        } ?: loggerD(msg = "$packageName\nError -> RemoveAppHighBatteryConsumptionWarning")
     }
 }

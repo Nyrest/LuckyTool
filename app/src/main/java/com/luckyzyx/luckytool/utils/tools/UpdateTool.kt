@@ -21,7 +21,8 @@ import org.json.JSONObject
 import java.io.File
 
 object UpdateTool {
-    fun checkUpdate(context: Context, @Suppress("UNUSED_PARAMETER") versionName: String, versionCode: Int, result: (String, Int, () -> Unit) -> Unit) {
+    @Suppress("UNUSED_PARAMETER")
+    fun checkUpdate(context: Context, versionName: String, versionCode: Int, result: (String, Int, () -> Unit) -> Unit) {
         scopeNet {
             val latestUrl = "https://api.github.com/repos/Xposed-Modules-Repo/com.luckyzyx.luckytool/releases/latest"
             val getJson = Get<String>(latestUrl).await()

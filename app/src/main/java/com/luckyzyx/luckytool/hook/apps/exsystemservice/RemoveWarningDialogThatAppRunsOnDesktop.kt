@@ -4,6 +4,7 @@ import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 
 class RemoveWarningDialogThatAppRunsOnDesktop : YukiBaseHooker() {
     override fun onHook() {
+        //Source UnTrustedTouchOcclusionService
         findClass("com.oplus.exsystemservice.untrustedtouch.UnTrustedTouchOcclusionService").hook {
             injectMember {
                 method {

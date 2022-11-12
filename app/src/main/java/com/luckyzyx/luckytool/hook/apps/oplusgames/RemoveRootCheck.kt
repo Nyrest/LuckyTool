@@ -2,6 +2,7 @@ package com.luckyzyx.luckytool.hook.apps.oplusgames
 
 import android.os.Bundle
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
+import com.highcapable.yukihookapi.hook.log.loggerD
 import com.highcapable.yukihookapi.hook.type.android.BundleClass
 import com.highcapable.yukihookapi.hook.type.java.BooleanType
 import com.highcapable.yukihookapi.hook.type.java.IntType
@@ -11,9 +12,9 @@ class RemoveRootCheck : YukiBaseHooker() {
     override fun onHook() {
         //Source COSASDKManager
         //Search -> dynamic_feature_cool_ex / getSupportCoolEx -> Method
-        //("isSafe")) : null; -> isSafe:0
+        //isSafe:null; -> isSafe:0
         searchClass {
-            from("com.oplus.x","com.oplus.f","com.oplus.a0","yp").absolute()
+            from("com.oplus.x", "com.oplus.f", "com.oplus.a0", "yp").absolute()
             field { type = StringType }.count(5..6)
             field { type = BooleanType }.count(2..3)
             field { type = IntType }.count(1..2)
@@ -21,7 +22,7 @@ class RemoveRootCheck : YukiBaseHooker() {
                 emptyParam()
                 returnType = BundleClass
             }.count(1)
-        }.get()?.hook {
+        }.get().takeIf { it != null }?.hook {
             injectMember {
                 method {
                     emptyParam()
@@ -31,6 +32,6 @@ class RemoveRootCheck : YukiBaseHooker() {
                     result<Bundle>()?.putInt("isSafe", 0)
                 }
             }
-        }
+        } ?: loggerD(msg = "$packageName\nError -> RemoveRootCheck")
     }
 }

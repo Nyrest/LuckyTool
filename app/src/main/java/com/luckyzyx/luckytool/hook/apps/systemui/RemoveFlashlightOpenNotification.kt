@@ -4,6 +4,7 @@ import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 
 class RemoveFlashlightOpenNotification : YukiBaseHooker() {
     override fun onHook() {
+        //Source FlashlightNotification
         findClass("com.oplusos.systemui.flashlight.FlashlightNotification").hook {
             injectMember {
                 method {
