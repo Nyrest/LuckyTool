@@ -26,7 +26,7 @@ class RemoveAppHighBatteryConsumptionWarning : YukiBaseHooker() {
                 param(StringType, BooleanType)
                 paramCount = 2
             }.count(4)
-        }.get().takeIf { it != null }?.hook {
+        }.get()?.hook {
             injectMember {
                 method {
                     param(StringType, BooleanType).index(0)

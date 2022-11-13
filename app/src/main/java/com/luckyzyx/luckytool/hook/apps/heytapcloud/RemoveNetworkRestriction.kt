@@ -25,7 +25,7 @@ class RemoveNetworkRestriction : YukiBaseHooker() {
                 emptyParam()
                 returnType = IntType
             }.count(1)
-        }.get().takeIf { it != null }?.hook {
+        }.get()?.hook {
             injectMember {
                 method {
                     modifiers { isPublic && isStatic }

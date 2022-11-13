@@ -22,7 +22,7 @@ class RemoveRootCheck : YukiBaseHooker() {
                 emptyParam()
                 returnType = BundleClass
             }.count(1)
-        }.get().takeIf { it != null }?.hook {
+        }.get()?.hook {
             injectMember {
                 method {
                     emptyParam()

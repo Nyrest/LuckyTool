@@ -16,8 +16,8 @@ class RemoveDropdownStatusbarMydevice : YukiBaseHooker() {
                     (field {
                         name = "mDeviceChildContainer"
                     }.get(instance).cast<View>())?.isVisible = false
-                    (instance as View).setOnClickListener(null)
-                    (instance as View).setOnLongClickListener(null)
+                    instance<View>().setOnClickListener(null)
+                    instance<View>().setOnLongClickListener(null)
                 }
             }
         }

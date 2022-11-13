@@ -28,7 +28,7 @@ class BatteryHiddenEntrance : YukiBaseHooker() {
             method {
                 returnType = IntType
             }.count(1..2)
-        }.get().takeIf { it != null }?.hook {
+        }.get()?.hook {
             injectMember {
                 method {
                     param(ContextClass)

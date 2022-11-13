@@ -37,7 +37,7 @@ class RemoveAlarmClockWidgetRedOne : YukiBaseHooker() {
     //                param(ContextClass, StringType)
     //                returnType = CharSequenceType
     //            }.count(1)
-        }.get().takeIf { it != null }?.field {
+        }.get()?.field {
             type(CharSequenceType).index().first()
         }?.get()?.set("") ?: loggerD(msg = "$packageName\nError -> RemoveAlarmClockWidgetRedOne")
     }
