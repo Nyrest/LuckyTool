@@ -135,6 +135,8 @@
     <string name="remove_wifi_data_inout">Remove WiFi data inout</string>
     <string name="remove_mobile_data_inout">Remove Mobile data inout</string>
     <string name="status_bar_icon_vertical_center">Statusbar icon vertical center</string>
+    <string name="enable_double_row_network_speed">Enable Double Row Network Speed</string>
+    <string name="set_network_speed_font_size">Set Network Speed Font Size</string>
     <!--StatusBarContent-->
     <string name="StatusBarContent">StatusBar Content</string>
     <string name="StatusBar_UI_Related">StatusBar UI Related</string>

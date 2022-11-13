@@ -11,9 +11,8 @@ class StatusBarIcon : YukiBaseHooker() {
         loadApp("com.android.systemui") {
             //状态栏图标
             //设置状态栏网速刷新率
-            if (prefs(XposedPrefs).getBoolean("set_network_speed", false)) {
-                loadHooker(NetworkSpeed())
-            }
+            loadHooker(NetworkSpeed())
+
             //移除状态栏电量百分号
             if (prefs(XposedPrefs).getBoolean("remove_statusbar_battery_percent", false)) loadHooker(
                 RemoveStatusBarBatteryPercent()

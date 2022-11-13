@@ -12,9 +12,7 @@ class LockScreenCentered : YukiBaseHooker() {
         //Source RedHorizontalSingleClockView
         findClass("com.oplusos.systemui.keyguard.clock.RedHorizontalSingleClockView").hook {
             injectMember {
-                method {
-                    name = "onFinishInflate"
-                }
+                method { name = "onFinishInflate" }
                 afterHook {
                     instance<LinearLayout>().setPadding(0, 20.dp, 0, 0)
 
@@ -24,7 +22,8 @@ class LockScreenCentered : YukiBaseHooker() {
                         }
                     }
 
-                    (field { name = "mTvColon" }.get(instance).cast<TextView>()?.parent as RelativeLayout).apply {
+                    (field { name = "mTvColon" }.get(instance)
+                        .cast<TextView>()?.parent as RelativeLayout).apply {
                         layoutParams = LinearLayout.LayoutParams(layoutParams).apply {
                             gravity = Gravity.CENTER_HORIZONTAL
                         }

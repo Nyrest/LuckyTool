@@ -136,6 +136,8 @@
     <string name="remove_wifi_data_inout">Удалить входящие Wi-Fi данные</string>
     <string name="remove_mobile_data_inout">Удалить входящие мобильные данные</string>
     <string name="status_bar_icon_vertical_center">Иконка строки состояния по вертикали в центре</string>
+    <string name="enable_double_row_network_speed">Enable Double Row Network Speed</string>
+    <string name="set_network_speed_font_size">Set Network Speed Font Size</string>
     <!--StatusBarContent-->
     <string name="StatusBarContent">Содержимое в строке состояния</string>
     <string name="StatusBar_UI_Related">Интерфейс строки состояния</string>
