@@ -99,7 +99,6 @@ class Android : ModulePreferenceFragment(), SharedPreferences.OnSharedPreference
 class StatusBar : ModulePreferenceFragment(){
     override fun onCreatePreferencesInModuleApp(savedInstanceState: Bundle?, rootKey: String?) {
         preferenceManager.sharedPreferencesName = XposedPrefs
-        findNavController()
         preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
             addPreference(
                 Preference(context).apply {
@@ -307,17 +306,17 @@ class StatusBarClock : ModulePreferenceFragment(){
                 }
             )
         }
-        preferenceScreen.findPreference<SwitchPreference>("statusbar_clock_show_year")?.dependency = "statusbar_clock_enable"
-        preferenceScreen.findPreference<SwitchPreference>("statusbar_clock_show_month")?.dependency = "statusbar_clock_enable"
-        preferenceScreen.findPreference<SwitchPreference>("statusbar_clock_show_day")?.dependency = "statusbar_clock_enable"
-        preferenceScreen.findPreference<SwitchPreference>("statusbar_clock_show_week")?.dependency = "statusbar_clock_enable"
-        preferenceScreen.findPreference<SwitchPreference>("statusbar_clock_show_period")?.dependency = "statusbar_clock_enable"
-        preferenceScreen.findPreference<SwitchPreference>("statusbar_clock_show_double_hour")?.dependency = "statusbar_clock_enable"
-        preferenceScreen.findPreference<SwitchPreference>("statusbar_clock_show_second")?.dependency = "statusbar_clock_enable"
-        preferenceScreen.findPreference<SwitchPreference>("statusbar_clock_hide_spaces")?.dependency = "statusbar_clock_enable"
-        preferenceScreen.findPreference<SwitchPreference>("statusbar_clock_show_doublerow")?.dependency = "statusbar_clock_enable"
-        preferenceScreen.findPreference<SeekBarPreference>("statusbar_clock_singlerow_fontsize")?.dependency = "statusbar_clock_enable"
-        preferenceScreen.findPreference<SeekBarPreference>("statusbar_clock_doublerow_fontsize")?.dependency = "statusbar_clock_show_doublerow"
+        findPreference<SwitchPreference>("statusbar_clock_show_year")?.dependency = "statusbar_clock_enable"
+        findPreference<SwitchPreference>("statusbar_clock_show_month")?.dependency = "statusbar_clock_enable"
+        findPreference<SwitchPreference>("statusbar_clock_show_day")?.dependency = "statusbar_clock_enable"
+        findPreference<SwitchPreference>("statusbar_clock_show_week")?.dependency = "statusbar_clock_enable"
+        findPreference<SwitchPreference>("statusbar_clock_show_period")?.dependency = "statusbar_clock_enable"
+        findPreference<SwitchPreference>("statusbar_clock_show_double_hour")?.dependency = "statusbar_clock_enable"
+        findPreference<SwitchPreference>("statusbar_clock_show_second")?.dependency = "statusbar_clock_enable"
+        findPreference<SwitchPreference>("statusbar_clock_hide_spaces")?.dependency = "statusbar_clock_enable"
+        findPreference<SwitchPreference>("statusbar_clock_show_doublerow")?.dependency = "statusbar_clock_enable"
+        findPreference<SeekBarPreference>("statusbar_clock_singlerow_fontsize")?.dependency = "statusbar_clock_enable"
+        findPreference<SeekBarPreference>("statusbar_clock_doublerow_fontsize")?.dependency = "statusbar_clock_show_doublerow"
     }
 }
 
@@ -535,6 +534,7 @@ class StatusBarIcon : ModulePreferenceFragment(){
                 }
             )
         }
+        findPreference<SeekBarPreference>("set_network_speed_font_size")?.dependency = "enable_double_row_network_speed"
     }
 }
 
@@ -696,14 +696,14 @@ class StatusBarContent : ModulePreferenceFragment(){
                 }
             )
         }
-        preferenceScreen.findPreference<SeekBarPreference>("tile_unexpanded_columns_vertical")?.dependency = "statusbar_tile_enable"
-        preferenceScreen.findPreference<SeekBarPreference>("tile_unexpanded_columns_horizontal")?.dependency = "statusbar_tile_enable"
-        preferenceScreen.findPreference<SeekBarPreference>("tile_expanded_columns_vertical")?.dependency = "statusbar_tile_enable"
-        preferenceScreen.findPreference<SeekBarPreference>("tile_expanded_columns_horizontal")?.dependency = "statusbar_tile_enable"
-        preferenceScreen.findPreference<SeekBarPreference>("tile_unexpanded_columns_vertical_c13")?.dependency = "statusbar_tile_enable"
-        preferenceScreen.findPreference<SeekBarPreference>("tile_expanded_rows_vertical_c13")?.dependency = "statusbar_tile_enable"
-        preferenceScreen.findPreference<SeekBarPreference>("tile_expanded_columns_vertical_c13")?.dependency = "statusbar_tile_enable"
-        preferenceScreen.findPreference<SeekBarPreference>("tile_columns_horizontal_c13")?.dependency = "statusbar_tile_enable"
+        findPreference<SeekBarPreference>("tile_unexpanded_columns_vertical")?.dependency = "statusbar_tile_enable"
+        findPreference<SeekBarPreference>("tile_unexpanded_columns_horizontal")?.dependency = "statusbar_tile_enable"
+        findPreference<SeekBarPreference>("tile_expanded_columns_vertical")?.dependency = "statusbar_tile_enable"
+        findPreference<SeekBarPreference>("tile_expanded_columns_horizontal")?.dependency = "statusbar_tile_enable"
+        findPreference<SeekBarPreference>("tile_unexpanded_columns_vertical_c13")?.dependency = "statusbar_tile_enable"
+        findPreference<SeekBarPreference>("tile_expanded_rows_vertical_c13")?.dependency = "statusbar_tile_enable"
+        findPreference<SeekBarPreference>("tile_expanded_columns_vertical_c13")?.dependency = "statusbar_tile_enable"
+        findPreference<SeekBarPreference>("tile_columns_horizontal_c13")?.dependency = "statusbar_tile_enable"
     }
 }
 
@@ -794,8 +794,8 @@ class Desktop : ModulePreferenceFragment() {
                 }
             )
         }
-        preferenceScreen.findPreference<SeekBarPreference>("launcher_layout_max_rows")?.dependency = "launcher_layout_enable"
-        preferenceScreen.findPreference<SeekBarPreference>("launcher_layout_max_columns")?.dependency = "launcher_layout_enable"
+        findPreference<SeekBarPreference>("launcher_layout_max_rows")?.dependency = "launcher_layout_enable"
+        findPreference<SeekBarPreference>("launcher_layout_max_columns")?.dependency = "launcher_layout_enable"
     }
 }
 
@@ -1022,7 +1022,7 @@ class Application : ModulePreferenceFragment(){
                 }
             )
         }
-        preferenceScreen.findPreference<Preference>("multi_app_custom_list")?.dependency = "multi_app_enable"
+        findPreference<Preference>("multi_app_custom_list")?.dependency = "multi_app_enable"
     }
 }
 
@@ -1201,6 +1201,16 @@ class OplusGames : ModulePreferenceFragment() {
                     key = "enable_eva_theme"
                     setDefaultValue(false)
                     isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(context).apply {
+                    title = getString(R.string.enable_genshin_impact_theme)
+                    summary = getString(R.string.enable_genshin_impact_theme_summary)
+                    key = "enable_genshin_impact_theme"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                    isVisible = false
                 }
             )
         }

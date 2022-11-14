@@ -48,10 +48,12 @@ class NetworkSpeed : YukiBaseHooker() {
                 }
             }
             injectMember {
-                method { name = "updateNetworkSpeed" }
+                method {
+                    name = "updateNetworkSpeed"
+                    paramCount = 2
+                }
                 beforeHook {
-                    instance<FrameLayout>().layoutParams.takeIf { it != null }?.width =
-                        LayoutParams.WRAP_CONTENT
+                    instance<FrameLayout>().layoutParams.takeIf { it != null }?.width = LayoutParams.WRAP_CONTENT
                     val mSpeedNumber =
                         field { name = "mSpeedNumber" }.get(instance).cast<TextView>()
                     val mSpeedUnit = field { name = "mSpeedUnit" }.get(instance).cast<TextView>()
@@ -78,7 +80,7 @@ class NetworkSpeed : YukiBaseHooker() {
     private var lastTimeStampTotalDown: Long = 0
 
     //获取总的上行速度
-    private fun getTotalUpSpeed(): String {//refreshTime : 刷新时间
+    private fun getTotalUpSpeed(): String {
         //换算后的上行速度
         var totalUpSpeed: Float = 0.00F
         val currentTotalTxBytes = TrafficStats.getTotalTxBytes()
