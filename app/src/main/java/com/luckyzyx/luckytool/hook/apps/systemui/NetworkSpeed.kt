@@ -96,7 +96,8 @@ class NetworkSpeed : YukiBaseHooker() {
         val mCurrentTotalUp = currentTotalTxBytes - mLastTotalUp
 
         //计算上传速度
-        val bytes = (mCurrentTotalUp * 1000) / ((nowTimeStampTotalUp - lastTimeStampTotalUp) * 1.0)
+        val bytes =
+            (mCurrentTotalUp * 1000) / ((nowTimeStampTotalUp - lastTimeStampTotalUp) * 1.0)
         var unit = ""
         if (bytes >= (1024 * 1024)) {
             totalUpSpeed =
@@ -106,7 +107,7 @@ class NetworkSpeed : YukiBaseHooker() {
             totalUpSpeed = BigDecimal(bytes / 1024).setScale(2, RoundingMode.HALF_UP).toFloat()
             unit = "KB/s"
         } else {
-            totalUpSpeed = BigDecimal(bytes).setScale(2, RoundingMode.HALF_UP).toFloat()
+            totalUpSpeed = BigDecimal(bytes / 1).setScale(2, RoundingMode.HALF_UP).toFloat()
             unit = "B/s"
         }
         //保存当前的流量总和和上次的时间戳
@@ -128,7 +129,8 @@ class NetworkSpeed : YukiBaseHooker() {
         val mCurrentTotalDown = currentTotalRxBytes - mLastTotalDown
 
         //计算下行速度
-        val bytes = (mCurrentTotalDown * 1000) / ((nowTimeStampTotalDown - lastTimeStampTotalDown) * 1.0)
+        val bytes =
+            (mCurrentTotalDown * 1000) / ((nowTimeStampTotalDown - lastTimeStampTotalDown) * 1.0)
         var unit = ""
         if (bytes >= (1024 * 1024)) {
             totalDownSpeed =
@@ -138,7 +140,7 @@ class NetworkSpeed : YukiBaseHooker() {
             totalDownSpeed = BigDecimal(bytes / 1024).setScale(2, RoundingMode.HALF_UP).toFloat()
             unit = "KB/s"
         } else {
-            totalDownSpeed = BigDecimal(bytes).setScale(2, RoundingMode.HALF_UP).toFloat()
+            totalDownSpeed = BigDecimal(bytes / 1).setScale(2, RoundingMode.HALF_UP).toFloat()
             unit = "B/s"
         }
         //保存当前的流量总和和上次的时间戳

@@ -12,7 +12,8 @@ If you have problems, please bring the scope APK and LOG to the TG group for fee
 [添加] 状态栏双行网速  
 [适配] C13高性能通知  
 [适配] 云服务移动网络限制  
-[优化] 电池隐藏入口逻辑  
+[添加] 电池性能模式与待机优化  
+[修复] 尝试修复双排网速异常  
 
 ### 3.3
 [更新] 捐赠名单  

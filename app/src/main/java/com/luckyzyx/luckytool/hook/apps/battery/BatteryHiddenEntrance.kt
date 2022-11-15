@@ -13,6 +13,7 @@ class BatteryHiddenEntrance : YukiBaseHooker() {
     override fun onHook() {
         val openScreenPowerSave = prefs(XposedPrefs).getBoolean("open_screen_power_save", false)
         val openBatteryHealth = prefs(XposedPrefs).getBoolean("open_battery_health", false)
+        val performanceModeStandbyOptimization = prefs(XposedPrefs).getBoolean("performance_mode_and_standby_optimization", false)
         val openBatteryOptimize = false
         //Source AppFeatureProviderUtils
         searchClass {
@@ -35,6 +36,7 @@ class BatteryHiddenEntrance : YukiBaseHooker() {
                 returnType = ListClass
             }.count(1)
         }.get()?.hook {
+            //输入String返回Boolean
             injectMember {
                 method {
                     param(ContentResolverClass, StringType)
@@ -48,9 +50,12 @@ class BatteryHiddenEntrance : YukiBaseHooker() {
                         "os.charge.settings.batterysettings.batteryhealth" -> if (openBatteryHealth) resultTrue()
                         //电池引擎优化
                         "com.oplus.battery.life.mode.notificate" -> if (openBatteryOptimize) resultTrue()
+                        //性能模式/待机优化
+                        "com.android.settings.device_rm" -> if (performanceModeStandbyOptimization) resultTrue()
                     }
                 }
             }
+            //输入Int返回Int
             injectMember {
                 method {
                     param(ContentResolverClass, StringType, IntType)
@@ -64,6 +69,20 @@ class BatteryHiddenEntrance : YukiBaseHooker() {
                     }
                 }
             }
+            //输入Boolean返回Boolean
+//            injectMember {
+//                method {
+//                    param(ContentResolverClass, StringType, BooleanType)
+//                    returnType = BooleanType
+//                }
+//                beforeHook {
+//                    val array = arrayOf(args(1).cast<String>(), args(2).cast<Boolean>())
+//                    when (array[0]) {
+//                        //睡眠待机优化
+//                        "com.oplus.battery.disable_deep_sleep" -> resultFalse()
+//                    }
+//                }
+//            }
         } ?: loggerD(msg = "$packageName\nError -> BatteryHiddenEntrance")
 
         //res/xml/battery_health_preference.xml

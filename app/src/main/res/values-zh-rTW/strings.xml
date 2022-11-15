@@ -225,6 +225,8 @@
     <string name="open_screen_power_save_summary">设置-电池-更多设置-屏幕省电</string>
     <string name="open_battery_health">打开电池健康入口</string>
     <string name="open_battery_health_summary">设置-电池-电池健康</string>
+    <string name="performance_mode_and_standby_optimization">性能模式和待机优化</string>
+    <string name="performance_mode_and_standby_optimization_summary">设置 - 电池 - 更多设置</string>
     <!--Camera-->
     <string name="remove_watermark_word_limit">移除水印字数限制</string>
     <string name="enable_10_bit_image_support">启用10亿色影像支持</string>

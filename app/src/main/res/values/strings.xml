@@ -228,6 +228,8 @@
     <string name="open_screen_power_save_summary">Settings - Battery - More settings - Screen Power Saving</string>
     <string name="open_battery_health">Open battery health entrance</string>
     <string name="open_battery_health_summary">Settings - Battery - Battery Health</string>
+    <string name="performance_mode_and_standby_optimization">Performance Mode and Standby Optimization</string>
+    <string name="performance_mode_and_standby_optimization_summary">Settings - Battery - More settings</string>
     <!--Camera-->
     <string name="remove_watermark_word_limit">Remove Watermark Limit</string>
     <string name="enable_10_bit_image_support">Enable 10 bit Images Support</string>

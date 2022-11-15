@@ -228,6 +228,8 @@
     <string name="open_screen_power_save_summary">Настройки - Батарея - Дополнительные настройки - Энергосбережение экрана</string>
     <string name="open_battery_health">Открыть вход состояния батареи</string>
     <string name="open_battery_health_summary">Настройки - Аккумулятор - Состояние аккумулятора</string>
+    <string name="performance_mode_and_standby_optimization">Performance Mode and Standby Optimization</string>
+    <string name="performance_mode_and_standby_optimization_summary">Settings - Battery - More settings</string>
     <!--Camera-->
     <string name="remove_watermark_word_limit">Удалить ограничение на количество слов водяного знака</string>
     <string name="enable_10_bit_image_support">Включить поддержку 10-битных изображений</string>
@@ -238,8 +240,8 @@
     <string name="enable_developer_page">Включить меню разработчика</string>
     <string name="enable_eva_theme">Включить тему EVA</string>
     <string name="enable_developer_page_summary">После включения этой функции и перезагрузки области\nможно перейти к ней через меню быстрого доступа</string>
-    <string name="enable_genshin_impact_theme">Enable Genshin Impact Limited Edition UI</string>
-    <string name="enable_genshin_impact_theme_summary">No need to set up in Game Assistant</string>
+    <string name="enable_genshin_impact_theme">Включить пользовательский интерфейс Genshin Impact Limited Edition</string>
+    <string name="enable_genshin_impact_theme_summary">Нет необходимости настраивать в игровом помощнике</string>
     <!--CloudService-->
     <string name="remove_network_limit">Удалить ограничения сети передачи данных</string>
     <string name="remove_network_limit_summary">Удалить ограничение, согласно которому резервное копирование/восстановление не может использовать мобильные данные</string>
