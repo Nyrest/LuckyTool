@@ -8,10 +8,8 @@ import android.widget.TextView
 import com.highcapable.yukihookapi.hook.bean.VariousClass
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 import com.luckyzyx.luckytool.utils.tools.XposedPrefs
-import java.math.BigDecimal
-import java.math.RoundingMode
+import java.text.DecimalFormat
 
-@Suppress("VARIABLE_WITH_REDUNDANT_INITIALIZER", "RedundantExplicitType")
 class NetworkSpeed : YukiBaseHooker() {
 
     override fun onHook() {
@@ -86,7 +84,7 @@ class NetworkSpeed : YukiBaseHooker() {
     //获取总的上行速度
     private fun getTotalUpSpeed(): String {
         //换算后的上行速度
-        var totalUpSpeed: Float = 0.00F
+        val totalUpSpeed: Float
         val currentTotalTxBytes = TrafficStats.getTotalTxBytes()
 
         /** 当前系统时间戳 */
@@ -97,29 +95,28 @@ class NetworkSpeed : YukiBaseHooker() {
 
         //计算上传速度
         val bytes =
-            (mCurrentTotalUp * 1000) / ((nowTimeStampTotalUp - lastTimeStampTotalUp) * 1.0)
-        var unit = ""
+            (mCurrentTotalUp * 1000) / ((nowTimeStampTotalUp - lastTimeStampTotalUp) * 1.0).toFloat()
+        val unit: String
         if (bytes >= (1024 * 1024)) {
-            totalUpSpeed =
-                BigDecimal(bytes / (1024 * 1024)).setScale(2, RoundingMode.HALF_UP).toFloat()
+            totalUpSpeed = DecimalFormat("0.0").format(bytes / (1024 * 1024)).toFloat()
             unit = "MB/s"
         } else if (bytes >= 1024) {
-            totalUpSpeed = BigDecimal(bytes / 1024).setScale(2, RoundingMode.HALF_UP).toFloat()
+            totalUpSpeed = DecimalFormat("0.0").format(bytes / 1024).toFloat()
             unit = "KB/s"
         } else {
-            totalUpSpeed = BigDecimal(bytes / 1).setScale(2, RoundingMode.HALF_UP).toFloat()
+            totalUpSpeed = DecimalFormat("0.0").format(bytes).toFloat()
             unit = "B/s"
         }
         //保存当前的流量总和和上次的时间戳
         mLastTotalUp = currentTotalTxBytes
         lastTimeStampTotalUp = nowTimeStampTotalUp
-        return "" + totalUpSpeed.toInt() + unit
+        return "" + totalUpSpeed.toString() + unit
     }
 
     //获取总的下行速度
     private fun getTotalDownloadSpeed(): String {
         //换算后的下行速度
-        var totalDownSpeed: Float = 0.00F
+        val totalDownSpeed: Float
         val currentTotalRxBytes = TrafficStats.getTotalRxBytes()
 
         /** 当前系统时间戳 */
@@ -130,23 +127,22 @@ class NetworkSpeed : YukiBaseHooker() {
 
         //计算下行速度
         val bytes =
-            (mCurrentTotalDown * 1000) / ((nowTimeStampTotalDown - lastTimeStampTotalDown) * 1.0)
-        var unit = ""
+            (mCurrentTotalDown * 1000) / ((nowTimeStampTotalDown - lastTimeStampTotalDown) * 1.0).toFloat()
+        val unit: String
         if (bytes >= (1024 * 1024)) {
-            totalDownSpeed =
-                BigDecimal(bytes / (1024 * 1024)).setScale(2, RoundingMode.HALF_UP).toFloat()
+            totalDownSpeed = DecimalFormat("0.0").format(bytes / (1024 * 1024)).toFloat()
             unit = "MB/s"
         } else if (bytes >= 1024) {
-            totalDownSpeed = BigDecimal(bytes / 1024).setScale(2, RoundingMode.HALF_UP).toFloat()
+            totalDownSpeed = DecimalFormat("0.0").format(bytes / 1024).toFloat()
             unit = "KB/s"
         } else {
-            totalDownSpeed = BigDecimal(bytes / 1).setScale(2, RoundingMode.HALF_UP).toFloat()
+            totalDownSpeed = DecimalFormat("0.0").format(bytes).toFloat()
             unit = "B/s"
         }
         //保存当前的流量总和和上次的时间戳
         mLastTotalDown = currentTotalRxBytes
         lastTimeStampTotalDown = nowTimeStampTotalDown
 
-        return "" + totalDownSpeed.toInt() + unit
+        return "" + totalDownSpeed.toString() + unit
     }
 }
