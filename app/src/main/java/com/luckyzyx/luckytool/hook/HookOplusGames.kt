@@ -1,7 +1,10 @@
 package com.luckyzyx.luckytool.hook
 
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
-import com.luckyzyx.luckytool.hook.apps.oplusgames.*
+import com.luckyzyx.luckytool.hook.apps.oplusgames.EnableDeveloperPage
+import com.luckyzyx.luckytool.hook.apps.oplusgames.EnableEVATheme
+import com.luckyzyx.luckytool.hook.apps.oplusgames.RemoveRootCheck
+import com.luckyzyx.luckytool.hook.apps.oplusgames.RemoveStartupAnimation
 import com.luckyzyx.luckytool.utils.tools.XposedPrefs
 
 class HookOplusGames : YukiBaseHooker() {
@@ -19,7 +22,7 @@ class HookOplusGames : YukiBaseHooker() {
         if (prefs(XposedPrefs).getBoolean("enable_eva_theme",false)) loadHooker(EnableEVATheme())
 
         //启用原神定制UI
-        if (prefs(XposedPrefs).getBoolean("enable_genshin_impact_theme",false)) loadHooker(EnableGenshinImpactTheme())
+//        if (prefs(XposedPrefs).getBoolean("enable_genshin_impact_theme",false)) loadHooker(EnableGenshinImpactTheme())
 
         //游戏变声VIP (作废)
 //        findClass("com.oplus.games.account.bean.VipInfoBean.VipInfosDTO").hook {
