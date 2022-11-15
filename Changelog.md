@@ -7,10 +7,12 @@ If you have problems, please bring the scope APK and LOG to the TG group for fee
 [添加] LSPosed快捷方式  
 [添加] 检测更新下载次数  
 [优化] 异常报错提示  
-[适配] 游戏助手v7.14.2  
+[适配] 游戏助手v7.14.2 v7.14.3  
 [适配] C13自启数量限制  
 [添加] 状态栏双行网速  
 [适配] C13高性能通知  
+[适配] 云服务移动网络限制  
+[优化] 电池隐藏入口逻辑  
 
 ### 3.3
 [更新] 捐赠名单  

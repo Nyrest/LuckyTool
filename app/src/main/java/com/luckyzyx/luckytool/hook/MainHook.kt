@@ -72,6 +72,8 @@ class MainHook : IYukiHookXposedInit {
         //其他APP
         loadApp(hooker = HookOtherApp())
 
+        //OTA
+        //AppointmentActivity
     }
 
     override fun onXposedEvent() {
