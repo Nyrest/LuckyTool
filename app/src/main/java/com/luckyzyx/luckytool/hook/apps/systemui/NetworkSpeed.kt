@@ -8,7 +8,8 @@ import android.widget.TextView
 import com.highcapable.yukihookapi.hook.bean.VariousClass
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 import com.luckyzyx.luckytool.utils.tools.XposedPrefs
-import java.text.DecimalFormat
+import java.math.BigDecimal
+import java.math.RoundingMode
 
 @Suppress("VARIABLE_WITH_REDUNDANT_INITIALIZER", "RedundantExplicitType")
 class NetworkSpeed : YukiBaseHooker() {
@@ -41,10 +42,12 @@ class NetworkSpeed : YukiBaseHooker() {
             injectMember {
                 method { name = "onFinishInflate" }
                 afterHook {
-                    field { name = "mSpeedNumber" }.get(instance).cast<TextView>()
-                        ?.setTextSize(TypedValue.COMPLEX_UNIT_DIP, getDoubleSize.toFloat())
-                    field { name = "mSpeedUnit" }.get(instance).cast<TextView>()
-                        ?.setTextSize(TypedValue.COMPLEX_UNIT_DIP, getDoubleSize.toFloat())
+                    field { name = "mSpeedNumber" }.get(instance).cast<TextView>()?.apply {
+                        setTextSize(TypedValue.COMPLEX_UNIT_DIP, getDoubleSize.toFloat())
+                    }
+                    field { name = "mSpeedUnit" }.get(instance).cast<TextView>()?.apply {
+                        setTextSize(TypedValue.COMPLEX_UNIT_DIP, getDoubleSize.toFloat())
+                    }
                 }
             }
             injectMember {
@@ -53,7 +56,8 @@ class NetworkSpeed : YukiBaseHooker() {
                     paramCount = 2
                 }
                 beforeHook {
-                    instance<FrameLayout>().layoutParams.takeIf { it != null }?.width = LayoutParams.WRAP_CONTENT
+                    instance<FrameLayout>().layoutParams.takeIf { it != null }?.width =
+                        LayoutParams.WRAP_CONTENT
                     val mSpeedNumber =
                         field { name = "mSpeedNumber" }.get(instance).cast<TextView>()
                     val mSpeedUnit = field { name = "mSpeedUnit" }.get(instance).cast<TextView>()
@@ -92,17 +96,17 @@ class NetworkSpeed : YukiBaseHooker() {
         val mCurrentTotalUp = currentTotalTxBytes - mLastTotalUp
 
         //计算上传速度
-        val bytes =
-            (mCurrentTotalUp * 1000) / ((nowTimeStampTotalUp - lastTimeStampTotalUp) * 1.0).toFloat()
+        val bytes = (mCurrentTotalUp * 1000) / ((nowTimeStampTotalUp - lastTimeStampTotalUp) * 1.0)
         var unit = ""
         if (bytes >= (1024 * 1024)) {
-            totalUpSpeed = DecimalFormat("0.0").format(bytes / (1024 * 1024)).toFloat()
+            totalUpSpeed =
+                BigDecimal(bytes / (1024 * 1024)).setScale(2, RoundingMode.HALF_UP).toFloat()
             unit = "MB/s"
         } else if (bytes >= 1024) {
-            totalUpSpeed = DecimalFormat("0.0").format(bytes / 1024).toFloat()
+            totalUpSpeed = BigDecimal(bytes / 1024).setScale(2, RoundingMode.HALF_UP).toFloat()
             unit = "KB/s"
         } else {
-            totalUpSpeed = DecimalFormat("0.0").format(bytes).toFloat()
+            totalUpSpeed = BigDecimal(bytes).setScale(2, RoundingMode.HALF_UP).toFloat()
             unit = "B/s"
         }
         //保存当前的流量总和和上次的时间戳
@@ -124,17 +128,17 @@ class NetworkSpeed : YukiBaseHooker() {
         val mCurrentTotalDown = currentTotalRxBytes - mLastTotalDown
 
         //计算下行速度
-        val bytes =
-            (mCurrentTotalDown * 1000) / ((nowTimeStampTotalDown - lastTimeStampTotalDown) * 1.0).toFloat()
+        val bytes = (mCurrentTotalDown * 1000) / ((nowTimeStampTotalDown - lastTimeStampTotalDown) * 1.0)
         var unit = ""
         if (bytes >= (1024 * 1024)) {
-            totalDownSpeed = DecimalFormat("0.0").format(bytes / (1024 * 1024)).toFloat()
+            totalDownSpeed =
+                BigDecimal(bytes / (1024 * 1024)).setScale(2, RoundingMode.HALF_UP).toFloat()
             unit = "MB/s"
         } else if (bytes >= 1024) {
-            totalDownSpeed = DecimalFormat("0.0").format(bytes / 1024).toFloat()
+            totalDownSpeed = BigDecimal(bytes / 1024).setScale(2, RoundingMode.HALF_UP).toFloat()
             unit = "KB/s"
         } else {
-            totalDownSpeed = DecimalFormat("0.0").format(bytes).toFloat()
+            totalDownSpeed = BigDecimal(bytes).setScale(2, RoundingMode.HALF_UP).toFloat()
             unit = "B/s"
         }
         //保存当前的流量总和和上次的时间戳
