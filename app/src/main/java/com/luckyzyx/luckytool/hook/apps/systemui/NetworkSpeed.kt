@@ -8,6 +8,7 @@ import android.widget.TextView
 import com.highcapable.yukihookapi.hook.bean.VariousClass
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 import com.luckyzyx.luckytool.utils.tools.XposedPrefs
+import com.luckyzyx.luckytool.utils.tools.dp
 import java.text.DecimalFormat
 
 class NetworkSpeed : YukiBaseHooker() {
@@ -45,10 +46,13 @@ class NetworkSpeed : YukiBaseHooker() {
                 afterHook {
                     field { name = "mSpeedNumber" }.get(instance).cast<TextView>()?.apply {
                         setTextSize(TypedValue.COMPLEX_UNIT_DIP, getDoubleSize.toFloat())
+                        layoutParams.width = LayoutParams.WRAP_CONTENT
                     }
                     field { name = "mSpeedUnit" }.get(instance).cast<TextView>()?.apply {
                         setTextSize(TypedValue.COMPLEX_UNIT_DIP, getDoubleSize.toFloat())
+                        layoutParams.width = LayoutParams.WRAP_CONTENT
                     }
+                    instance<FrameLayout>().setPadding(0, 0, 0, 2.dp)
                 }
             }
             injectMember {
@@ -95,6 +99,7 @@ class NetworkSpeed : YukiBaseHooker() {
 
         /** 当前总的上行流量 */
         val mCurrentTotalUp = currentTotalTxBytes - mLastTotalUp
+
         /** 当前总的间隔时间 */
         val mCurrentIntervals = nowTimeStampTotalUp - lastTimeStampTotalUp
 
@@ -130,6 +135,7 @@ class NetworkSpeed : YukiBaseHooker() {
 
         /** 当前总的下行流量 */
         val mCurrentTotalDown = currentTotalRxBytes - mLastTotalDown
+
         /** 当前总的间隔时间 */
         val mCurrentIntervals = nowTimeStampTotalDown - lastTimeStampTotalDown
 

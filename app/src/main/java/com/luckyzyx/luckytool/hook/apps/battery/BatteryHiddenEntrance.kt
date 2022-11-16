@@ -13,12 +13,12 @@ class BatteryHiddenEntrance : YukiBaseHooker() {
     override fun onHook() {
         val openScreenPowerSave = prefs(XposedPrefs).getBoolean("open_screen_power_save", false)
         val openBatteryHealth = prefs(XposedPrefs).getBoolean("open_battery_health", false)
-        val performanceModeStandbyOptimization = prefs(XposedPrefs).getBoolean("performance_mode_and_standby_optimization", false)
+        val performanceModeStandbyOptimization =
+            prefs(XposedPrefs).getBoolean("performance_mode_and_standby_optimization", false)
         val openBatteryOptimize = false
         //Source AppFeatureProviderUtils
         searchClass {
-            from("k4").absolute()
-            field().none()
+            from("com.oplus.b.a", "k4").absolute()
             method {
                 param(ContentResolverClass, StringType)
                 returnType = BooleanType
@@ -34,7 +34,7 @@ class BatteryHiddenEntrance : YukiBaseHooker() {
             method {
                 param(ContentResolverClass, StringType)
                 returnType = ListClass
-            }.count(1)
+            }.count(1..2)
         }.get()?.hook {
             //输入String返回Boolean
             injectMember {
