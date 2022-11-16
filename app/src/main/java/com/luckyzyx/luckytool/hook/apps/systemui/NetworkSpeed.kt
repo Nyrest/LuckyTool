@@ -36,7 +36,10 @@ class NetworkSpeed : YukiBaseHooker() {
         val getDoubleSize = prefs(XposedPrefs).getInt("set_network_speed_font_size", 7)
         if (!isDoubleRow) return
         //Source NetworkSpeedView
-        findClass("com.oplus.systemui.statusbar.phone.netspeed.widget.NetworkSpeedView").hook {
+        VariousClass(
+            "com.oplusos.systemui.statusbar.widget.NetworkSpeedView",
+            "com.oplus.systemui.statusbar.phone.netspeed.widget.NetworkSpeedView"
+        ).hook {
             injectMember {
                 method { name = "onFinishInflate" }
                 afterHook {

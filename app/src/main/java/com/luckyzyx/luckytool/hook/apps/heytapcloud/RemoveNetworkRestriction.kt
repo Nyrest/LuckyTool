@@ -8,7 +8,7 @@ import com.highcapable.yukihookapi.hook.type.java.IntType
 class RemoveNetworkRestriction : YukiBaseHooker() {
     override fun onHook() {
         //Source NetworkUtil
-        //Search -> Const.Callback.NetworkState.NetworkType.NETWORK_MOBILE -> Method
+        //Search -> equalsIgnoreCase Const.Callback.NetworkState.NetworkType.NETWORK_MOBILE -> Method
         searchClass {
             from("com.cloud.base.commonsdk.baseutils", "t2")
             constructor().none()
@@ -19,7 +19,7 @@ class RemoveNetworkRestriction : YukiBaseHooker() {
             }.count(6..7)
             method {
                 param(IntType)
-            }.count(5)
+            }.count(4..5)
             method {
                 modifiers { isPublic && isStatic }
                 emptyParam()

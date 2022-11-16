@@ -14,6 +14,7 @@ If you have problems, please bring the scope APK and LOG to the TG group for fee
 [适配] 云服务移动网络限制  
 [添加] 电池性能模式与待机优化  
 [修复] 尝试修复双排网速异常  
+[适配] C12双排网速  
 
 ### 3.3
 [更新] 捐赠名单  
