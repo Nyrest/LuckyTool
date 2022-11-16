@@ -1144,6 +1144,7 @@ class Miscellaneous : ModulePreferenceFragment(){
                     key = "performance_mode_and_standby_optimization"
                     setDefaultValue(false)
                     isIconSpaceReserved = false
+                    isVisible = SDK >= A13
                 }
             )
         }

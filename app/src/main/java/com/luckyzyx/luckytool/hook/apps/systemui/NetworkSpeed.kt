@@ -92,10 +92,13 @@ class NetworkSpeed : YukiBaseHooker() {
 
         /** 当前总的上行流量 */
         val mCurrentTotalUp = currentTotalTxBytes - mLastTotalUp
+        /** 当前总的间隔时间 */
+        val mCurrentIntervals = nowTimeStampTotalUp - lastTimeStampTotalUp
 
         //计算上传速度
-        val bytes =
-            (mCurrentTotalUp * 1000) / ((nowTimeStampTotalUp - lastTimeStampTotalUp) * 1.0).toFloat()
+        val bytes = ((mCurrentTotalUp * 1000) / (mCurrentIntervals * 1.0)).toFloat()
+        if (bytes.isInfinite() || bytes.isNaN()) return "0B/s"
+
         val unit: String
         if (bytes >= (1024 * 1024)) {
             totalUpSpeed = DecimalFormat("0.0").format(bytes / (1024 * 1024)).toFloat()
@@ -124,10 +127,12 @@ class NetworkSpeed : YukiBaseHooker() {
 
         /** 当前总的下行流量 */
         val mCurrentTotalDown = currentTotalRxBytes - mLastTotalDown
+        /** 当前总的间隔时间 */
+        val mCurrentIntervals = nowTimeStampTotalDown - lastTimeStampTotalDown
 
         //计算下行速度
-        val bytes =
-            (mCurrentTotalDown * 1000) / ((nowTimeStampTotalDown - lastTimeStampTotalDown) * 1.0).toFloat()
+        val bytes = ((mCurrentTotalDown * 1000) / (mCurrentIntervals * 1.0)).toFloat()
+        if (bytes.isInfinite() || bytes.isNaN()) return "0B/s"
         val unit: String
         if (bytes >= (1024 * 1024)) {
             totalDownSpeed = DecimalFormat("0.0").format(bytes / (1024 * 1024)).toFloat()
