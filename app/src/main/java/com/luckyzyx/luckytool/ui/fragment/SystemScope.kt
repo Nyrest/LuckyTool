@@ -533,8 +533,22 @@ class StatusBarIcon : ModulePreferenceFragment(){
                     isIconSpaceReserved = false
                 }
             )
+            addPreference(
+                SeekBarPreference(context).apply {
+                    title = getString(R.string.set_network_speed_padding_bottom)
+                    key = "set_network_speed_padding_bottom"
+                    setDefaultValue(2)
+                    max = 4
+                    min = 0
+                    seekBarIncrement = 1
+                    showSeekBarValue = true
+                    updatesContinuously = false
+                    isIconSpaceReserved = false
+                }
+            )
         }
         findPreference<SeekBarPreference>("set_network_speed_font_size")?.dependency = "enable_double_row_network_speed"
+        findPreference<SeekBarPreference>("set_network_speed_padding_bottom")?.dependency = "enable_double_row_network_speed"
     }
 }
 

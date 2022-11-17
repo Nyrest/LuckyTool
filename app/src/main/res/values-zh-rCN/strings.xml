@@ -135,6 +135,7 @@
     <string name="status_bar_icon_vertical_center">状态栏图标垂直居中</string>
     <string name="enable_double_row_network_speed">启用双行网速</string>
     <string name="set_network_speed_font_size">设置网速字体大小</string>
+    <string name="set_network_speed_padding_bottom">设置网速底部对齐</string>
     <!--StatusBarContent-->
     <string name="StatusBarContent">状态栏内容</string>
     <string name="StatusBar_UI_Related">状态栏UI相关</string>

@@ -35,6 +35,7 @@ class NetworkSpeed : YukiBaseHooker() {
         }
         val isDoubleRow = prefs(XposedPrefs).getBoolean("enable_double_row_network_speed", false)
         val getDoubleSize = prefs(XposedPrefs).getInt("set_network_speed_font_size", 7)
+        val getDoublePadding = prefs(XposedPrefs).getInt("set_network_speed_padding_bottom", 2)
         if (!isDoubleRow) return
         //Source NetworkSpeedView
         VariousClass(
@@ -52,7 +53,7 @@ class NetworkSpeed : YukiBaseHooker() {
                         setTextSize(TypedValue.COMPLEX_UNIT_DIP, getDoubleSize.toFloat())
                         layoutParams.width = LayoutParams.WRAP_CONTENT
                     }
-                    instance<FrameLayout>().setPadding(0, 0, 0, 2.dp)
+                    instance<FrameLayout>().setPadding(0, 0, 0, getDoublePadding.dp)
                 }
             }
             injectMember {

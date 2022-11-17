@@ -1,8 +1,10 @@
 # 更新日志 Changelog
 
 出现问题请带上作用域 APK 和 LOG 前往 TG 群组反馈  
-If you have problems, please bring the scope APK and LOG to the TG group for feedback  
+If you have problems, please bring the scope APK and LOG to the TG group for feedback
+
 ### 3.4
+
 [更新] 捐赠名单  
 [添加] LSPosed快捷方式  
 [添加] 检测更新下载次数  
@@ -12,11 +14,13 @@ If you have problems, please bring the scope APK and LOG to the TG group for fee
 [添加] 状态栏双排网速  
 [适配] C13高性能通知  
 [适配] 云服务移动网络限制  
-[添加] 电池性能模式与待机优化  
-[修复] 修复双排网速异常  
+[添加] 电池性能模式与待机优化
+
 [优化] 双排网速图标对齐和间距  
+[添加] 设置网速底部对齐
 
 ### 3.3
+
 [更新] 捐赠名单  
 [添加] 移除状态栏移动数据图标  
 [适配] 游戏助手v7.14.0/v7.14.1  
@@ -50,9 +54,10 @@ If you have problems, please bring the scope APK and LOG to the TG group for fee
 [Add] App multi-app drop-down refresh  
 [Add] AOSP native settings portal  
 [Fix] C12 battery screen power saving entrance  
-[Remove] Check update time  
+[Remove] Check update time
 
 ### 3.2
+
 [更新] 捐赠名单  
 [适配] C13高性能通知  
 [优化] 桌面时钟组件红一  
@@ -78,9 +83,10 @@ If you have problems, please bring the scope APK and LOG to the TG group for fee
 [Remove] Power menu related functions  
 [Fix] Remove high performance notifications  
 [Add] Status Bar Icon Vertical Centering  
-[Fix] Status bar clock switch issue  
+[Fix] Status bar clock switch issue
 
 ### 3.1
+
 [更新] 捐赠名单  
 [添加] 自动检查更新开关  
 [添加] 移除存储限制  
@@ -102,9 +108,10 @@ If you have problems, please bring the scope APK and LOG to the TG group for fee
 [Add] Enable Game Assistant EVA theme  
 [Fix] C13 disabled DPI restart recovery  
 [Fix] Status bar clock layout  
-[Remove] LightSpeed VM related features  
+[Remove] LightSpeed VM related features
 
 ### 3.0
+
 [更新] 捐赠名单列表  
 [添加] 移除游戏助手启动动画  
 [优化] 强制刷新率和检查更新对话框  
@@ -124,9 +131,10 @@ If you have problems, please bring the scope APK and LOG to the TG group for fee
 [Fix] C13 charging ripple  
 [Fix] C13 Remove High Performance Notification  
 [Fix] High performance notifications and power consumption exception notifications conflict  
-[Fix] C13 Desktop Clock Red One  
+[Fix] C13 Desktop Clock Red One
 
 ### v2.9
+
 [更新] 捐赠名单列表  
 [添加] 检测更新下载进度对话框  
 [添加] C13移除应用启动遮罩  
@@ -142,9 +150,10 @@ If you have problems, please bring the scope APK and LOG to the TG group for fee
 [Fix] C12 Remove power consumption exception optimization notification  
 [Add] Force refresh rate boot up  
 [Fix] Read function data exceptions  
-[Fix] C13 Disable DPI reboot recovery  
+[Fix] C13 Disable DPI reboot recovery
 
 ### v2.8
+
 [修复] C12桌面文件夹4x4  
 [修复] 应用分身异常问题  
 [适配] C12移除数据箭头  
@@ -154,9 +163,10 @@ If you have problems, please bring the scope APK and LOG to the TG group for fee
 [Fix] the application member exception problem  
 [Fix] C12 remove data arrow  
 [Fix] Cloud service mobile network restrictions  
-[Update] User Agreement and Privacy Policy  
+[Update] User Agreement and Privacy Policy
 
 ### v2.7
+
 [优化] 优化Log日志页面  
 [添加] 移除低电量对话框警告  
 [添加] 移除应用运行在桌面上警告对话框  
@@ -164,7 +174,7 @@ If you have problems, please bring the scope APK and LOG to the TG group for fee
 [Fix] optimize the Log log page  
 [Add] Remove low battery dialog warning  
 [Add] Remove the warning dialog box that the application runs on the desktop  
-[Add] User Agreement and Privacy Policy  
+[Add] User Agreement and Privacy Policy
 
 ### v2.6
 
@@ -181,7 +191,7 @@ If you have problems, please bring the scope APK and LOG to the TG group for fee
 [Add] Add the LOG page (under construction, it may be deleted later)  
 [Fix] the problem that the port can be modified when remote ADB debugging is started  
 [Add] Minimum Width (DPI) restart recovery is prohibited  
-[Fix] Exception in obtaining Commit data  
+[Fix] Exception in obtaining Commit data
 
 ### v2.5
 
@@ -206,7 +216,7 @@ If you have problems, please bring the scope APK and LOG to the TG group for fee
 [Fix] Partial exception error reporting problem  
 [Fix] Probable emptying of app split list  
 [Add] C13 remove SOS emergency contact button on unlock page  
-[Add] Remove high performance mode notification  
+[Add] Remove high performance mode notification
 
 ### v2.4
 
@@ -223,7 +233,7 @@ If you have problems, please bring the scope APK and LOG to the TG group for fee
 [Update] List of Donation Lists  
 [Fix] C13 Remove notification that VPN has been activated  
 [Add] Remove the button in the lower left corner of the lock screen  
-[Add] Desktop Folder Layout 4x4 (Open Layout)  
+[Add] Desktop Folder Layout 4x4 (Open Layout)
 
 ### v2.3
 
@@ -248,7 +258,7 @@ If you have problems, please bring the scope APK and LOG to the TG group for fee
 [Add] Remove the warning of turning on hot spots for a long time  
 [Add] Remove application background power consumption warning  
 [Fix] Core crack synchronization upstream  
-[Add] Settings - Hide XP page icon  
+[Add] Settings - Hide XP page icon
 
 ### v2.2
 
@@ -271,7 +281,7 @@ If you have problems, please bring the scope APK and LOG to the TG group for fee
 [Add] C13 battery health quick access  
 [Add] Check for Updates feature  
 [Fix] Check update parsing data exception  
-[Add] Donation reward function  
+[Add] Donation reward function
 
 ### v2.1
 

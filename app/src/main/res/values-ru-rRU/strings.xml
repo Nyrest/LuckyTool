@@ -138,6 +138,7 @@
     <string name="status_bar_icon_vertical_center">Иконка строки состояния по вертикали в центре</string>
     <string name="enable_double_row_network_speed">Скорость сети в два ряда</string>
     <string name="set_network_speed_font_size">Установить размер шрифта скорости сети</string>
+    <string name="set_network_speed_padding_bottom">Set Network Speed Padding Bottom</string>
     <!--StatusBarContent-->
     <string name="StatusBarContent">Содержимое в строке состояния</string>
     <string name="StatusBar_UI_Related">Интерфейс строки состояния</string>
@@ -228,8 +229,8 @@
     <string name="open_screen_power_save_summary">Настройки - Батарея - Дополнительные настройки - Энергосбережение экрана</string>
     <string name="open_battery_health">Открыть вход состояния батареи</string>
     <string name="open_battery_health_summary">Настройки - Аккумулятор - Состояние аккумулятора</string>
-    <string name="performance_mode_and_standby_optimization">Performance Mode and Standby Optimization</string>
-    <string name="performance_mode_and_standby_optimization_summary">Settings - Battery - More settings</string>
+    <string name="performance_mode_and_standby_optimization">Режим производительности и оптимизация режима ожидания</string>
+    <string name="performance_mode_and_standby_optimization_summary">Настройки - Аккумулятор - Дополнительные настройки</string>
     <!--Camera-->
     <string name="remove_watermark_word_limit">Удалить ограничение на количество слов водяного знака</string>
     <string name="enable_10_bit_image_support">Включить поддержку 10-битных изображений</string>

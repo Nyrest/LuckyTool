@@ -137,6 +137,7 @@
     <string name="status_bar_icon_vertical_center">Statusbar icon vertical center</string>
     <string name="enable_double_row_network_speed">Enable Double Row Network Speed</string>
     <string name="set_network_speed_font_size">Set Network Speed Font Size</string>
+    <string name="set_network_speed_padding_bottom">Set Network Speed Padding Bottom</string>
     <!--StatusBarContent-->
     <string name="StatusBarContent">StatusBar Content</string>
     <string name="StatusBar_UI_Related">StatusBar UI Related</string>
