@@ -189,8 +189,8 @@
     <string name="multi_app_enable">应用分身总开关</string>
     <string name="multi_app_enable_summary">重启生效</string>
     <string name="loading">正在加载</string>
-    <string name="multi_app_custom_list">设置自定义分身列表</string>
-    <string name="multi_app_custom_list_summary">建议数量不要过多，根据需求增减</string>
+    <string name="multi_app_custom_list">替换应用分身支持列表</string>
+    <string name="multi_app_custom_list_summary">开启功能后，原有的应用分身列表将被此列表替换，数量过多会造成卡顿</string>
     <!--AppInstallationRelated-->
     <string name="AppInstallationRelated">应用安装相关</string>
     <string name="skip_apk_scan">跳过Apk扫描</string>

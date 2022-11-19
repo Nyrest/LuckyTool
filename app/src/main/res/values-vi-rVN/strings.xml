@@ -1,64 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">LuckyTool</string>
-    
     <!-- Application -->
-    <string name="xposeddescription">Xposed module optimized for extensions to ColorOS</string>
+    <string name="xposeddescription">Mô-đun Xposed được tối ưu hóa cho các tiện ích mở rộng của ColorOS</string>
     <!-- Nav Menu -->
-    <string name="nav_function">Function</string>
-    <string name="nav_home">Home page</string>
-    <string name="nav_other">Other</string>
-    <string name="nav_log">Logs</string>
-    <string name="nav_setting">Settings</string>
-    <string name="fragment_source">SourceCode</string>
+    <string name="nav_function">Chức năng</string>
+    <string name="nav_home">Trang chủ</string>
+    <string name="nav_other">Khác</string>
+    <string name="nav_log">Nhật ký</string>
+    <string name="nav_setting">Cài đặt</string>
+    <string name="fragment_source">Mã nguồn</string>
     <!-- Settings -->
-    <string name="theme_title">Theme</string>
-    <string name="theme_title_summary">Page will be automatically refreshed</string>
-    <string name="use_dynamic_color">Dynamic colors</string>
-    <string name="use_dynamic_color_summary">Use dynamic colors</string>
-    <string name="dark_theme">Dark theme</string>
-    <string name="follow_system">Follow system</string>
-    <string name="privacy_agreement">Privacy Agreement</string>
-    <string name="auto_check_update">Automatically check for updates</string>
-    <string name="auto_check_update_summary">Automatically check for updates when opening the module home page</string>
-    <string name="read_agreement">You need to read and agree to the following content before you can use this module</string>
-    <string name="clear_all_data">Clear all data</string>
-    <string name="clear_all_data_summary">Clear all function data in the module</string>
-    <string name="clear_all_data_message">Make sure you want to clear all the function data of the module, and you need to reset the function after clearing?</string>
+    <string name="theme_title">Chủ đề</string>
+    <string name="theme_title_summary">Trang sẽ được tự động làm mới</string>
+    <string name="use_dynamic_color">Màu động</string>
+    <string name="use_dynamic_color_summary">Sử dụng màu động</string>
+    <string name="dark_theme">Chủ đề tối</string>
+    <string name="follow_system">Theo hệ thống</string>
+    <string name="privacy_agreement">Thỏa thuận bảo mật</string>
+    <string name="auto_check_update">Tự động kiểm tra cập nhật</string>
+    <string name="auto_check_update_summary">Tự động kiểm tra cập nhật khi mở trang chủ module</string>
+    <string name="read_agreement">Bạn cần đọc và đồng ý với các nội dung sau trước khi có thể sử dụng mô-đun này</string>
+    <string name="clear_all_data">Xóa tất cả dữ liệu</string>
+    <string name="clear_all_data_summary">Xóa tất cả dữ liệu chức năng trong mô-đun</string>
+    <string name="clear_all_data_message">Đảm bảo rằng bạn muốn xóa tất cả dữ liệu chức năng của mô-đun và bạn cần đặt lại chức năng sau khi xóa?</string>
     <!-- Other Settings -->
-    <string name="other_settings">Other settings</string>
-    <string name="hide_xp_page_icon">Hide XP Page Icon</string>
-    <string name="hide_desktop_appicon">Hide desktop app icon</string>
-    <string name="hide_desktop_appicon_summary">LSPosed must be turned off to force desktop icons</string>
+    <string name="other_settings">Tùy chỉnh khác</string>
+    <string name="hide_xp_page_icon">Ẩn biểu tượng trang XP</string>
+    <string name="hide_desktop_appicon">Ẩn biểu tượng ứng dụng trên màn hình chính</string>
+    <string name="hide_desktop_appicon_summary">LSPosed phải được tắt để buộc các biểu tượng trên màn hình</string>
     <!-- About -->
-    <string name="about_title">About</string>
-    <string name="about_author">Author</string>
-    <string name="donate">Donate reward</string>
-    <string name="donate_summary">Your donation will be the driving force for the module update\nBe sure to leave your nickname or ID when donating</string>
+    <string name="about_title">Thông tin</string>
+    <string name="about_author">Tác giả</string>
+    <string name="donate">Ủng hộ</string>
+    <string name="donate_summary">Khoản quyên góp của bạn sẽ là động lực để cập nhật mô-đun\nHãy nhớ để lại tên tài khoản hoặc ID của bạn khi quyên góp</string>
     <string name="qq">QQ</string>
     <string name="wechat">WeChat</string>
     <string name="alipay">AliPay</string>
-    <string name="donation_list">Donation List</string>
-    <string name="feedback_download">Feedback and Download</string>
-    <string name="feedback_download_summary">TG Channels, Groups, Repositories, etc.</string>
-    <string name="coolmarket">Cool Home Page</string>
-    <string name="telegram_channel">Telegram Channel</string>
-    <string name="telegram_group">Telegram Group</string>
+    <string name="donation_list">Danh sách ủng hộ</string>
+    <string name="feedback_download">Phản hồi và tải</string>
+    <string name="feedback_download_summary">Kênh TG, Nhóm, Repositories, vv.</string>
+    <string name="coolmarket">Trang chủ Cool</string>
+    <string name="telegram_channel">Kênh Telegram</string>
+    <string name="telegram_group">Nhóm Telegram</string>
     <string name="lsposed_repo">LSPosed Repository</string>
     <string name="github_repo">Github Repository</string>
-    <string name="open_source">Open Source</string>
-    <string name="open_source_summary">Click to view the open source list</string>
-    <string name="participate_translation">Participate in module translations</string>
-    <string name="participate_translation_summary">Go to Crowdin to contribute your translation</string>
+    <string name="open_source">Mã nguồn mở</string>
+    <string name="open_source_summary">Bấm để xem danh sách mã nguồn mở</string>
+    <string name="participate_translation">Tham gia dịch module</string>
+    <string name="participate_translation_summary">Truy cập Crowdin để đóng góp bản dịch của bạn</string>
     <!-- check Lsposed -->
-    <string name="unsupported_xposed">Please use the latest version of LS Posed to check the scope of the module.\n If you have completed the above, you can click OK to exit the App and open the module</string>
+    <string name="unsupported_xposed">Vui lòng sử dụng phiên bản LS Posed mới nhất để kiểm tra phạm vi của mô-đun.\n Nếu bạn đã hoàn thành các bước trên, bạn có thể nhấp vào OK để thoát khỏi ứng dụng và mở module</string>
     <!-- Menu -->
-    <string name="menu_reboot">Restart menu</string>
-    <string name="menu_settings">Set menu</string>
-    <string name="restart_scope">Restart fields</string>
-    <string name="restart_scope_message">Are you sure you want to restart all fields except the system framework?\nmodule is not available when it is not available!\nMake sure all the corresponding scopes are checked!</string>
-    <string name="reboot">Restart System</string>
-    <string name="fast_reboot">Fast reboot</string>
+    <string name="menu_reboot">Menu khởi động lại</string>
+    <string name="menu_settings">Menu cài đặt</string>
+    <string name="restart_scope">Khởi động lại các trường</string>
+    <string name="restart_scope_message">Bạn có chắc chắn muốn khởi động lại tất cả các trường ngoại trừ khung hệ thống không?\nmô-đun không khả dụng khi nó không khả dụng!\nĐảm bảo rằng tất cả các phạm vi tương ứng đều được chọn!</string>
+    <string name="reboot">Khởi động lại hệ thống</string>
+    <string name="fast_reboot">Khởi động nhanh</string>
     <string name="menu_versioninfo">Version Information</string>
     <string name="scope_version_info">Role domain version information</string>
     <!--Xposed-->
@@ -116,16 +114,16 @@
     <string name="remove_statusbar_top_notification_summary">Remove status bar \"This app is displayed on top of other apps\"</string>
     <string name="remove_vpn_active_notification">Remove VPN active</string>
     <string name="remove_vpn_active_notification_summary">Remove status bar VPN active</string>
-    <string name="remove_statusbar_bottom_networkwarn">Remove bottom network warning from statusbar</string>
-    <string name="remove_statusbar_bottom_networkwarn_summary">Remove bottom network information when the pulldown status bar is expanded</string>
-    <string name="remove_flashlight_open_notification">Remove flashlight is open notification</string>
-    <string name="remove_app_high_battery_consumption_warning">Remove app high battery consumption warning</string>
-    <string name="remove_app_high_battery_consumption_warning_summary">Removed the warning that the application\'s battery consumption is abnormal and needs to be optimized immediately</string>
-    <string name="remove_high_performance_mode_notifications">Remove high performance mode notifications</string>
+    <string name="remove_statusbar_bottom_networkwarn">Xóa cảnh báo mạng bên dưới thanh trạng thái</string>
+    <string name="remove_statusbar_bottom_networkwarn_summary">Xóa thông tin mạng bên dưới khi thanh trạng thái kéo xuống được mở rộng</string>
+    <string name="remove_flashlight_open_notification">Xóa thông báo mở đèn pin</string>
+    <string name="remove_app_high_battery_consumption_warning">Xóa cảnh báo ứng dụng tiêu thụ pin cao</string>
+    <string name="remove_app_high_battery_consumption_warning_summary">Đã xóa cảnh báo mức tiêu thụ pin bất thường của ứng dụng và cần được tối ưu hóa ngay lập tức</string>
+    <string name="remove_high_performance_mode_notifications">Xóa thông báo chế độ hiệu suất cao</string>
     <!--StatusBarIcon-->
-    <string name="StatusBarIcon">StatusBar Icon</string>
-    <string name="StatusBarIcon_summary">Status bar icon related</string>
-    <string name="StatusBarTopSmallIcon">StatusBar Top Small Icon</string>
+    <string name="StatusBarIcon">Biểu tượng thanh trạng thái</string>
+    <string name="StatusBarIcon_summary">Các biểu tượng thanh trạng thái</string>
+    <string name="StatusBarTopSmallIcon">Biểu tượng nhỏ trên cùng thanh trạng thái</string>
     <string name="StatusBarSmallIconStatus">StatusBar Small Icon Status</string>
     <string name="remove_mobile_data_icon">Remove mobile data icon</string>
     <string name="set_network_speed">Set status bar speed refresh rate 1 s</string>
@@ -142,7 +140,6 @@
     <string name="StatusBarContent">StatusBar Content</string>
     <string name="StatusBar_UI_Related">StatusBar UI Related</string>
     <string name="remove_drop_down_statusbar_mydevice">remove drop down statusbar my device</string>
-    
     <string name="StatusBar_Tile_Related">StatusBar Tile Related</string>
     <string name="statusbar_tile_enable">Total statusbar tiles switch</string>
     <string name="tile_unexpanded_columns_vertical">No tiles expanded (portrait)</string>
@@ -324,5 +321,4 @@
     <string name="adb_port">ADB Port</string>
     <string name="enable_remote_adb_debugging">Enable remote ADB debugging</string>
     <string name="adb_debug_port_cannot_null">ADB debug port cannot be null</string>
-
 </resources>

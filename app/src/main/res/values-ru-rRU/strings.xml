@@ -192,8 +192,8 @@
     <string name="multi_app_enable">Включить/отключить клонирование</string>
     <string name="multi_app_enable_summary">Перезапустите, чтобы изменения вступили в силу</string>
     <string name="loading">Загрузка</string>
-    <string name="multi_app_custom_list">Настроить список приложений для клонирования</string>
-    <string name="multi_app_custom_list_summary">Рекомендуется, чтобы количество не было слишком большим, увеличивалось или уменьшалось в зависимости от спроса</string>
+    <string name="multi_app_custom_list">Replace App Clone Support List</string>
+    <string name="multi_app_custom_list_summary">After the function is turned on, the original list of app clones will be replaced by this list, too many will cause lag</string>
     <!--AppInstallationRelated-->
     <string name="AppInstallationRelated">Установка приложения</string>
     <string name="skip_apk_scan">Пропустить сканирование APK</string>
