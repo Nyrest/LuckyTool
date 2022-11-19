@@ -98,15 +98,12 @@
     <string name="statusbar_clock_singlerow_fontsize">Single row font size</string>
     <string name="statusbar_clock_doublerow_fontsize">Double row font size</string>
     <string name="statusbar_clock_fontsize_summary">If it is 0, the font size will not be modified</string>
-    <!--DropDownStatusBarClock-->
-    <string name="DropDownStatusBarClock">DropDown StatusBar Clock</string>
-    <string name="dropdown_statusbar_clock_show_second">DropDown Statusbar Clock show second</string>
-    <string name="remove_dropdown_statusbar_clock_style_summary">Colon alignment, red number 1</string>
-    <string name="remove_dropdown_statusbar_clock_style">Remove dropdown statusbar clock style</string>
-    <!--StatusBarDate-->
-    <string name="StatusBarDate">StatusBar Date</string>
-    <string name="remove_statusbar_date_comma">Remove dropdown status bar date comma</string>
-    <string name="remove_statusbar_date_comma_summary">Guessing is limited to ZH users</string>
+    <!-- StatusBarNetWorkSpeed -->
+    <string name="StatusBarNetWorkSpeed">StatusBar NetWorkSpeed</string>
+    <string name="set_network_speed">Set status bar speed refresh rate 1 s</string>
+    <string name="enable_double_row_network_speed">Enable Double Row Network Speed</string>
+    <string name="set_network_speed_font_size">Set Network Speed Font Size</string>
+    <string name="set_network_speed_padding_bottom">Set Network Speed Padding Bottom</string>
     <!--StatusBarNotice-->
     <string name="StatusBarNotice">StatusBar Notifications</string>
     <string name="StatusBarNotice_summary">Status bar notification related</string>
@@ -128,19 +125,20 @@
     <string name="StatusBarTopSmallIcon">StatusBar Top Small Icon</string>
     <string name="StatusBarSmallIconStatus">StatusBar Small Icon Status</string>
     <string name="remove_mobile_data_icon">Remove mobile data icon</string>
-    <string name="set_network_speed">Set status bar speed refresh rate 1 s</string>
     <string name="remove_statusbar_securepayment_icon">Remove status bar payment protection icons</string>
     <string name="remove_statusbar_battery_percent">Remove battery percentage number in statusbar</string>
     <string name="remove_statusbar_user_switcher">Remove drop-down status bar multi-user icon</string>
     <string name="remove_wifi_data_inout">Remove WiFi data inout</string>
     <string name="remove_mobile_data_inout">Remove Mobile data inout</string>
     <string name="status_bar_icon_vertical_center">Statusbar icon vertical center</string>
-    <string name="enable_double_row_network_speed">Enable Double Row Network Speed</string>
-    <string name="set_network_speed_font_size">Set Network Speed Font Size</string>
-    <string name="set_network_speed_padding_bottom">Set Network Speed Padding Bottom</string>
-    <!--StatusBarContent-->
-    <string name="StatusBarContent">StatusBar Content</string>
+    <!--StatusBarControlCenter-->
+    <string name="StatusBarControlCenter">StatusBar ControlCenter</string>
     <string name="StatusBar_UI_Related">StatusBar UI Related</string>
+    <string name="dropdown_statusbar_clock_show_second">DropDown Statusbar Clock show second</string>
+    <string name="remove_dropdown_statusbar_clock_style_summary">Colon alignment, red number 1</string>
+    <string name="remove_dropdown_statusbar_clock_style">Remove dropdown statusbar clock style</string>
+    <string name="remove_statusbar_date_comma">Remove dropdown status bar date comma</string>
+    <string name="remove_statusbar_date_comma_summary">Guessing is limited to ZH users</string>
     <string name="remove_drop_down_statusbar_mydevice">remove drop down statusbar my device</string>
     
     <string name="StatusBar_Tile_Related">StatusBar Tile Related</string>

@@ -12,7 +12,6 @@ import com.luckyzyx.luckytool.utils.tools.XposedPrefs
 class StatusBarNotice : YukiBaseHooker() {
     override fun onHook() {
         loadApp("com.android.systemui") {
-            //状态栏通知
             //移除充电完成通知
             if (prefs(XposedPrefs).getBoolean("remove_charging_completed", false)) loadHooker(
                 RemoveChargingCompleted()

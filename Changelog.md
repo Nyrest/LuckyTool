@@ -1,7 +1,8 @@
 # 更新日志 Changelog
 
-出现问题请带上作用域 APK 和 LOG 前往 TG 群组反馈  
-If you have problems, please bring the scope APK and LOG to the TG group for feedback
+出现问题请带上作用域 APK 和模块 LOG 页面截图 前往 TG 群组反馈  
+If there is a problem, please bring a screenshot of the scope APK and module LOG page to the TG
+group for feedback
 
 ### 3.4
 
@@ -9,15 +10,24 @@ If you have problems, please bring the scope APK and LOG to the TG group for fee
 [添加] LSPosed快捷方式  
 [添加] 检测更新下载次数  
 [优化] 异常报错提示  
-[适配] 游戏助手v7.14.2 v7.14.3 v7.15.0  
+[适配] 游戏助手至v7.15.0  
 [适配] C13自启数量限制  
 [添加] 状态栏双排网速  
-[适配] C13高性能通知和耗电异常通知  
+[适配] C13高性能和耗电异常通知  
 [适配] 云服务移动网络限制  
 [添加] 电池性能模式与待机优化  
-
-[优化] 双排网速图标对齐和间距  
-[添加] 设置网速底部对齐
+[修改] 部分功能所属位置  
+[Update] Donation list  
+[Add] LSPosed shortcut  
+[Add] Detect update download times  
+[Optimize] Abnormal error message  
+[Fix] Game Assistant to v7.15.0  
+[Fix] C13 self-start quantity limit  
+[Add] Status bar double row network speed  
+[Fix] C13 high performance and abnormal power consumption notification  
+[Fix] Cloud service mobile network limitation  
+[Add] Battery performance mode and standby optimization  
+[Modify] Some functions belong to the location
 
 ### 3.3
 

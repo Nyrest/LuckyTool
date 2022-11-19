@@ -117,27 +117,13 @@ class StatusBar : ModulePreferenceFragment(){
             )
             addPreference(
                 Preference(context).apply {
-                    title = getString(R.string.DropDownStatusBarClock)
-                    summary = getString(R.string.dropdown_statusbar_clock_show_second)+","+getString(R.string.remove_dropdown_statusbar_clock_style)
-                    key = "DropDownStatusBarClock"
-                    isIconSpaceReserved = false
-                    setOnPreferenceClickListener {
-                        findNavController().navigate(R.id.action_statusBar_to_dropDownStatusBarClock,Bundle().apply {
-                            putCharSequence("title_label",title)
-                        })
-                        true
-                    }
-                }
-            )
-            addPreference(
-                Preference(context).apply {
-                    title = getString(R.string.StatusBarDate)
-                    summary = getString(R.string.remove_statusbar_date_comma)
-                    key = "StatusBarDate"
+                    title = getString(R.string.StatusBarNetWorkSpeed)
+                    summary = getString(R.string.enable_double_row_network_speed)+","+getString(R.string.set_network_speed)
+                    key = "StatusBarNetWorkSpeed"
                     isIconSpaceReserved = false
                     setOnPreferenceClickListener {
                         findNavController().navigate(
-                            R.id.action_statusBar_to_statusBarDate,Bundle().apply {
+                            R.id.action_statusBar_to_statusBarNetWorkSpeed,Bundle().apply {
                                 putCharSequence("title_label",title)
                             })
                         true
@@ -176,13 +162,13 @@ class StatusBar : ModulePreferenceFragment(){
             )
             addPreference(
                 Preference(context).apply {
-                    title = getString(R.string.StatusBarContent)
+                    title = getString(R.string.StatusBarControlCenter)
                     summary = getString(R.string.remove_drop_down_statusbar_mydevice)+","+getString(R.string.tile_unexpanded_columns_vertical)
-                    key = "StatusBarContent"
+                    key = "StatusBarControlCenter"
                     isIconSpaceReserved = false
                     setOnPreferenceClickListener {
                         findNavController().navigate(
-                            R.id.action_statusBar_to_statusBarTile,Bundle().apply {
+                            R.id.action_statusBar_to_statusBarControlCenter,Bundle().apply {
                                 putCharSequence("title_label",title)
                             })
                         true
@@ -320,45 +306,55 @@ class StatusBarClock : ModulePreferenceFragment(){
     }
 }
 
-class DropDownStatusBarClock : ModulePreferenceFragment(){
+class StatusBarNetWorkSpeed : ModulePreferenceFragment(){
     override fun onCreatePreferencesInModuleApp(savedInstanceState: Bundle?, rootKey: String?) {
         preferenceManager.sharedPreferencesName = XposedPrefs
         preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
             addPreference(
                 SwitchPreference(context).apply {
-                    title = getString(R.string.dropdown_statusbar_clock_show_second)
-                    key = "dropdown_statusbar_clock_show_second"
+                    title = getString(R.string.set_network_speed)
+                    key = "set_network_speed"
                     setDefaultValue(false)
                     isIconSpaceReserved = false
                 }
             )
             addPreference(
                 SwitchPreference(context).apply {
-                    title = getString(R.string.remove_dropdown_statusbar_clock_style)
-                    summary = getString(R.string.remove_dropdown_statusbar_clock_style_summary)
-                    key = "remove_dropdown_statusbar_clock_style"
+                    title = getString(R.string.enable_double_row_network_speed)
+                    key = "enable_double_row_network_speed"
                     setDefaultValue(false)
                     isIconSpaceReserved = false
                 }
             )
-        }
-    }
-}
-
-class StatusBarDate : ModulePreferenceFragment(){
-    override fun onCreatePreferencesInModuleApp(savedInstanceState: Bundle?, rootKey: String?) {
-        preferenceManager.sharedPreferencesName = XposedPrefs
-        preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
             addPreference(
-                SwitchPreference(context).apply {
-                    title = getString(R.string.remove_statusbar_date_comma)
-                    summary = getString(R.string.remove_statusbar_date_comma_summary)
-                    key = "remove_statusbar_date_comma"
-                    setDefaultValue(false)
+                SeekBarPreference(context).apply {
+                    title = getString(R.string.set_network_speed_font_size)
+                    key = "set_network_speed_font_size"
+                    setDefaultValue(7)
+                    max = 8
+                    min = 0
+                    seekBarIncrement = 1
+                    showSeekBarValue = true
+                    updatesContinuously = false
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SeekBarPreference(context).apply {
+                    title = getString(R.string.set_network_speed_padding_bottom)
+                    key = "set_network_speed_padding_bottom"
+                    setDefaultValue(2)
+                    max = 4
+                    min = 0
+                    seekBarIncrement = 1
+                    showSeekBarValue = true
+                    updatesContinuously = false
                     isIconSpaceReserved = false
                 }
             )
         }
+        findPreference<SeekBarPreference>("set_network_speed_font_size")?.dependency = "enable_double_row_network_speed"
+        findPreference<SeekBarPreference>("set_network_speed_padding_bottom")?.dependency = "enable_double_row_network_speed"
     }
 }
 
@@ -504,55 +500,11 @@ class StatusBarIcon : ModulePreferenceFragment(){
                     isIconSpaceReserved = false
                 }
             )
-            addPreference(
-                SwitchPreference(context).apply {
-                    title = getString(R.string.set_network_speed)
-                    key = "set_network_speed"
-                    setDefaultValue(false)
-                    isIconSpaceReserved = false
-                }
-            )
-            addPreference(
-                SwitchPreference(context).apply {
-                    title = getString(R.string.enable_double_row_network_speed)
-                    key = "enable_double_row_network_speed"
-                    setDefaultValue(false)
-                    isIconSpaceReserved = false
-                }
-            )
-            addPreference(
-                SeekBarPreference(context).apply {
-                    title = getString(R.string.set_network_speed_font_size)
-                    key = "set_network_speed_font_size"
-                    setDefaultValue(7)
-                    max = 8
-                    min = 0
-                    seekBarIncrement = 1
-                    showSeekBarValue = true
-                    updatesContinuously = false
-                    isIconSpaceReserved = false
-                }
-            )
-            addPreference(
-                SeekBarPreference(context).apply {
-                    title = getString(R.string.set_network_speed_padding_bottom)
-                    key = "set_network_speed_padding_bottom"
-                    setDefaultValue(2)
-                    max = 4
-                    min = 0
-                    seekBarIncrement = 1
-                    showSeekBarValue = true
-                    updatesContinuously = false
-                    isIconSpaceReserved = false
-                }
-            )
         }
-        findPreference<SeekBarPreference>("set_network_speed_font_size")?.dependency = "enable_double_row_network_speed"
-        findPreference<SeekBarPreference>("set_network_speed_padding_bottom")?.dependency = "enable_double_row_network_speed"
     }
 }
 
-class StatusBarContent : ModulePreferenceFragment(){
+class StatusBarControlCenter : ModulePreferenceFragment(){
     override fun onCreatePreferencesInModuleApp(savedInstanceState: Bundle?, rootKey: String?) {
         preferenceManager.sharedPreferencesName = XposedPrefs
         preferenceScreen = preferenceManager.createPreferenceScreen(requireActivity()).apply {
@@ -562,6 +514,32 @@ class StatusBarContent : ModulePreferenceFragment(){
                     key = "StatusBar_UI_Related"
                     isIconSpaceReserved = false
                     isVisible = SDK >= 33
+                }
+            )
+            addPreference(
+                SwitchPreference(context).apply {
+                    title = getString(R.string.dropdown_statusbar_clock_show_second)
+                    key = "dropdown_statusbar_clock_show_second"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(context).apply {
+                    title = getString(R.string.remove_dropdown_statusbar_clock_style)
+                    summary = getString(R.string.remove_dropdown_statusbar_clock_style_summary)
+                    key = "remove_dropdown_statusbar_clock_style"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
+            addPreference(
+                SwitchPreference(context).apply {
+                    title = getString(R.string.remove_statusbar_date_comma)
+                    summary = getString(R.string.remove_statusbar_date_comma_summary)
+                    key = "remove_statusbar_date_comma"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
                 }
             )
             addPreference(

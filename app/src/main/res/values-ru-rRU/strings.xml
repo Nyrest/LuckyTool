@@ -99,15 +99,12 @@
     <string name="statusbar_clock_singlerow_fontsize">Размер шрифта в одну строку</string>
     <string name="statusbar_clock_doublerow_fontsize">Размер шрифта в две строки</string>
     <string name="statusbar_clock_fontsize_summary">Если он равен 0, размер шрифта не будет изменен</string>
-    <!--DropDownStatusBarClock-->
-    <string name="DropDownStatusBarClock">Выпадающий список часов в строке состояния</string>
-    <string name="dropdown_statusbar_clock_show_second">Выпадающие часы в строке состояния показывают секунды</string>
-    <string name="remove_dropdown_statusbar_clock_style_summary">Выравнивание колонки, красное число 1</string>
-    <string name="remove_dropdown_statusbar_clock_style">Удалить стиль часов выпадающей строки состояния</string>
-    <!--StatusBarDate-->
-    <string name="StatusBarDate">Дата в строке состояния</string>
-    <string name="remove_statusbar_date_comma">Удалить запятую в строке состояния в раскрывающемся списке</string>
-    <string name="remove_statusbar_date_comma_summary">Удалить сводку даты и даты в строке состояния</string>
+    <!-- StatusBarNetWorkSpeed -->
+    <string name="StatusBarNetWorkSpeed">Скорость сети в строке состояния</string>
+    <string name="set_network_speed">Установить частоту обновления веб-скорости в строке состояния на 1 секунду</string>
+    <string name="enable_double_row_network_speed">Скорость сети в два ряда</string>
+    <string name="set_network_speed_font_size">Установить размер шрифта скорости сети</string>
+    <string name="set_network_speed_padding_bottom">Установите скорость сети, заполняя нижнюю часть</string>
     <!--StatusBarNotice-->
     <string name="StatusBarNotice">Уведомления в строке состояния</string>
     <string name="StatusBarNotice_summary">Верхняя строка состояния и раскрывающаяся строка состояния</string>
@@ -129,19 +126,20 @@
     <string name="StatusBarTopSmallIcon">Маленькая иконка в верхней части строки состояния</string>
     <string name="StatusBarSmallIconStatus">Статус маленькой иконки в строке состояния</string>
     <string name="remove_mobile_data_icon">Удалить иконку мобильных данных</string>
-    <string name="set_network_speed">Установить частоту обновления веб-скорости в строке состояния на 1 секунду</string>
     <string name="remove_statusbar_securepayment_icon">Удалить иконку защиты платежа в строке состояния</string>
     <string name="remove_statusbar_battery_percent">Удалить иконку процента заряда батареи из строки состояния</string>
     <string name="remove_statusbar_user_switcher">Удалить иконку многопользовательского режима в раскрывающемся списке</string>
     <string name="remove_wifi_data_inout">Удалить входящие Wi-Fi данные</string>
     <string name="remove_mobile_data_inout">Удалить входящие мобильные данные</string>
     <string name="status_bar_icon_vertical_center">Иконка строки состояния по вертикали в центре</string>
-    <string name="enable_double_row_network_speed">Скорость сети в два ряда</string>
-    <string name="set_network_speed_font_size">Установить размер шрифта скорости сети</string>
-    <string name="set_network_speed_padding_bottom">Set Network Speed Padding Bottom</string>
-    <!--StatusBarContent-->
-    <string name="StatusBarContent">Содержимое в строке состояния</string>
+    <!--StatusBarControlCenter-->
+    <string name="StatusBarControlCenter">Центр управления строки состояния</string>
     <string name="StatusBar_UI_Related">Интерфейс строки состояния</string>
+    <string name="dropdown_statusbar_clock_show_second">Выпадающие часы в строке состояния показывают секунды</string>
+    <string name="remove_dropdown_statusbar_clock_style_summary">Выравнивание колонки, красное число 1</string>
+    <string name="remove_dropdown_statusbar_clock_style">Удалить стиль часов выпадающей строки состояния</string>
+    <string name="remove_statusbar_date_comma">Удалить запятую в строке состояния в раскрывающемся списке</string>
+    <string name="remove_statusbar_date_comma_summary">Удалить сводку даты и даты в строке состояния</string>
     <string name="remove_drop_down_statusbar_mydevice">Удалить выпадающую строку состояния моего устройства</string>
     <string name="StatusBar_Tile_Related">Плитки строки состояния</string>
     <string name="statusbar_tile_enable">Включить/отключить плитки в строке состояния</string>
@@ -192,8 +190,8 @@
     <string name="multi_app_enable">Включить/отключить клонирование</string>
     <string name="multi_app_enable_summary">Перезапустите, чтобы изменения вступили в силу</string>
     <string name="loading">Загрузка</string>
-    <string name="multi_app_custom_list">Replace App Clone Support List</string>
-    <string name="multi_app_custom_list_summary">After the function is turned on, the original list of app clones will be replaced by this list, too many will cause lag</string>
+    <string name="multi_app_custom_list">Заменить список поддержки клонирования приложений</string>
+    <string name="multi_app_custom_list_summary">После включения функции исходный список клонов приложений будет заменен этим списком, слишком большое количество приведет к задержке</string>
     <!--AppInstallationRelated-->
     <string name="AppInstallationRelated">Установка приложения</string>
     <string name="skip_apk_scan">Пропустить сканирование APK</string>

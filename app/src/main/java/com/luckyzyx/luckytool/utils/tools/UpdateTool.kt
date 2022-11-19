@@ -48,13 +48,7 @@ object UpdateTool {
                                 addView(
                                     MaterialTextView(context).apply {
                                         setPadding(20.dp, 0, 20.dp, 0)
-//                                        text = "${context.getString(R.string.version_name)}: $name($code)\n${context.getString(R.string.update_time)}: $updateTime\n${context.getString(R.string.update_content)}: \n$changeLog"
-                                        text = """
-                                            ${context.getString(R.string.version_name)}: $name($code)
-                                            ${context.getString(R.string.download_count)}: $downloadCount
-                                            ${context.getString(R.string.update_content)}: 
-                                            $changeLog
-                                        """.trimIndent()
+                                        text = "${context.getString(R.string.version_name)}: $name($code)\n${context.getString(R.string.download_count)}: $downloadCount\n${context.getString(R.string.update_content)}:\n$changeLog"
                                     }
                                 )
                             }

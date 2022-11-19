@@ -40,14 +40,14 @@ class MainHook : IYukiHookXposedInit {
 
         //状态栏时钟
         loadApp(hooker = StatusBarClock())
-        //状态栏日期
-        loadApp(hooker = StatusBarDate())
+        //状态栏网速
+        loadApp(hooker = StatusBarNetWorkSpeed())
         //状态栏通知
         loadApp(hooker = StatusBarNotice())
         //状态栏图标
         loadApp(hooker = StatusBarIcon())
-        //状态栏内容
-        loadApp(hooker = StatusBarContent())
+        //状态栏控制中心
+        loadApp(hooker = StatusBarControlCenter())
 
         //桌面
         loadApp(hooker = Desktop())

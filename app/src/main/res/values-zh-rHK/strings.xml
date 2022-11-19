@@ -96,15 +96,12 @@
     <string name="statusbar_clock_singlerow_fontsize">单排字体大小</string>
     <string name="statusbar_clock_doublerow_fontsize">双排字体大小</string>
     <string name="statusbar_clock_fontsize_summary">若为0, 则不修改字体大小</string>
-    <!--DropDownStatusBarClock-->
-    <string name="DropDownStatusBarClock">下拉状态栏时钟</string>
-    <string name="dropdown_statusbar_clock_show_second">下拉状态栏时钟显秒</string>
-    <string name="remove_dropdown_statusbar_clock_style_summary">冒号对齐，红一</string>
-    <string name="remove_dropdown_statusbar_clock_style">移除下拉状态栏时钟样式</string>
-    <!--StatusBarDate-->
-    <string name="StatusBarDate">状态栏日期</string>
-    <string name="remove_statusbar_date_comma">移除下拉状态栏日期逗号</string>
-    <string name="remove_statusbar_date_comma_summary">猜测仅限于ZH</string>
+    <!-- StatusBarNetWorkSpeed -->
+    <string name="StatusBarNetWorkSpeed">状态栏网速</string>
+    <string name="set_network_speed">设置状态栏网速刷新率1s</string>
+    <string name="enable_double_row_network_speed">启用双行网速</string>
+    <string name="set_network_speed_font_size">设置网速字体大小</string>
+    <string name="set_network_speed_padding_bottom">设置网速底部对齐</string>
     <!--StatusBarNotice-->
     <string name="StatusBarNotice">状态栏通知</string>
     <string name="StatusBarNotice_summary">状态栏通知相关</string>
@@ -126,19 +123,20 @@
     <string name="StatusBarTopSmallIcon">状态栏顶部小图标</string>
     <string name="StatusBarSmallIconStatus">状态栏小图标状态</string>
     <string name="remove_mobile_data_icon">移除移动数据图标</string>
-    <string name="set_network_speed">设置状态栏网速刷新率1s</string>
     <string name="remove_statusbar_securepayment_icon">移除状态栏支付保护图标</string>
     <string name="remove_statusbar_battery_percent">移除状态栏电量百分号</string>
     <string name="remove_statusbar_user_switcher">移除下拉状态栏多用户图标</string>
     <string name="remove_wifi_data_inout">移除WiFi数据箭头</string>
     <string name="remove_mobile_data_inout">移除移动数据箭头</string>
     <string name="status_bar_icon_vertical_center">状态栏图标垂直居中</string>
-    <string name="enable_double_row_network_speed">启用双行网速</string>
-    <string name="set_network_speed_font_size">设置网速字体大小</string>
-    <string name="set_network_speed_padding_bottom">设置网速底部对齐</string>
-    <!--StatusBarContent-->
-    <string name="StatusBarContent">状态栏内容</string>
+    <!--StatusBarControlCenter-->
+    <string name="StatusBarControlCenter">状态栏控制中心</string>
     <string name="StatusBar_UI_Related">状态栏UI相关</string>
+    <string name="dropdown_statusbar_clock_show_second">下拉状态栏时钟显秒</string>
+    <string name="remove_dropdown_statusbar_clock_style_summary">冒号对齐，红一</string>
+    <string name="remove_dropdown_statusbar_clock_style">移除下拉状态栏时钟样式</string>
+    <string name="remove_statusbar_date_comma">移除下拉状态栏日期逗号</string>
+    <string name="remove_statusbar_date_comma_summary">猜测仅限于ZH</string>
     <string name="remove_drop_down_statusbar_mydevice">移除下拉状态栏我的设备</string>
     <string name="StatusBar_Tile_Related">状态栏磁贴相关</string>
     <string name="statusbar_tile_enable">状态栏磁贴总开关</string>

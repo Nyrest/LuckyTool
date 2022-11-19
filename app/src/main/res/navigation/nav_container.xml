@@ -153,8 +153,8 @@
             android:name="com.luckyzyx.luckytool.ui.fragment.StatusBarIcon"
             android:label="{title_label}" />
     <fragment
-            android:id="@+id/statusBarContent"
-            android:name="com.luckyzyx.luckytool.ui.fragment.StatusBarContent"
+            android:id="@+id/statusBarControlCenter"
+            android:name="com.luckyzyx.luckytool.ui.fragment.StatusBarControlCenter"
             android:label="{title_label}" />
     <fragment
             android:id="@+id/statusBarClock"
@@ -225,8 +225,8 @@
                 app:popEnterAnim="@anim/fragment_enter_pop"
                 app:popExitAnim="@anim/fragment_exit_pop" />
         <action
-                android:id="@+id/action_statusBar_to_statusBarTile"
-                app:destination="@id/statusBarContent"
+                android:id="@+id/action_statusBar_to_statusBarControlCenter"
+                app:destination="@id/statusBarControlCenter"
                 app:enterAnim="@anim/fragment_enter"
                 app:exitAnim="@anim/fragment_exit"
                 app:popEnterAnim="@anim/fragment_enter_pop"
@@ -246,15 +246,8 @@
                 app:popEnterAnim="@anim/fragment_enter_pop"
                 app:popExitAnim="@anim/fragment_exit_pop" />
         <action
-                android:id="@+id/action_statusBar_to_statusBarDate"
-                app:destination="@id/statusBarDate"
-                app:enterAnim="@anim/fragment_enter"
-                app:exitAnim="@anim/fragment_exit"
-                app:popEnterAnim="@anim/fragment_enter_pop"
-                app:popExitAnim="@anim/fragment_exit_pop" />
-        <action
-                android:id="@+id/action_statusBar_to_dropDownStatusBarClock"
-                app:destination="@id/dropDownStatusBarClock"
+                android:id="@+id/action_statusBar_to_statusBarNetWorkSpeed"
+                app:destination="@id/statusBarNetWorkSpeed"
                 app:enterAnim="@anim/fragment_enter"
                 app:exitAnim="@anim/fragment_exit"
                 app:popEnterAnim="@anim/fragment_enter_pop"
@@ -269,16 +262,12 @@
             android:name="com.luckyzyx.luckytool.ui.fragment.AlphaBackupPro"
             android:label="{title_label}" />
     <fragment
-            android:id="@+id/statusBarDate"
-            android:name="com.luckyzyx.luckytool.ui.fragment.StatusBarDate"
-            android:label="{title_label}" />
-    <fragment
-            android:id="@+id/dropDownStatusBarClock"
-            android:name="com.luckyzyx.luckytool.ui.fragment.DropDownStatusBarClock"
-            android:label="{title_label}" />
-    <fragment
             android:id="@+id/systemQuickEntry"
             android:name="com.luckyzyx.luckytool.ui.fragment.SystemQuickEntry"
+            android:label="{title_label}" />
+    <fragment
+            android:id="@+id/statusBarNetWorkSpeed"
+            android:name="com.luckyzyx.luckytool.ui.fragment.StatusBarNetWorkSpeed"
             android:label="{title_label}" />
 
 </navigation>

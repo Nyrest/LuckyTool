@@ -38,6 +38,7 @@ object DonateData {
             add(DonateInfo("柳丝", 10.0))
             add(DonateInfo("221115", 5.0))
             add(DonateInfo("余小鱼?9?5", 21.1))
+            add(DonateInfo("程", 20.0))
         }
     }
 }
