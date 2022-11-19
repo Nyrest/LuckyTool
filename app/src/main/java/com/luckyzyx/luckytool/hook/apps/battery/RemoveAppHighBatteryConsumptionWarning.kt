@@ -12,7 +12,7 @@ class RemoveAppHighBatteryConsumptionWarning : YukiBaseHooker() {
         // Source NotifyUtil
         // Search power_consumption_optimization_title / pco_notification_text / String \n String
         searchClass {
-            from("c4", "com.oplus.a.g")
+            from("com.oplus.a.g", "c4").absolute()
             constructor {
                 paramCount = 1
             }.count(1)
@@ -31,25 +31,25 @@ class RemoveAppHighBatteryConsumptionWarning : YukiBaseHooker() {
                 method {
                     param(StringType, BooleanType).index(0)
                 }
-                replaceTo(null)
+                intercept()
             }
             injectMember {
                 method {
                     param(StringType, BooleanType).index(1)
                 }
-                replaceTo(null)
+                intercept()
             }
             injectMember {
                 method {
                     param(StringType, BooleanType).index(2)
                 }
-                replaceTo(null)
+                intercept()
             }
             injectMember {
                 method {
                     param(StringType, BooleanType).index(3)
                 }
-                replaceTo(null)
+                intercept()
             }
         } ?: loggerD(msg = "$packageName\nError -> RemoveAppHighBatteryConsumptionWarning")
     }
