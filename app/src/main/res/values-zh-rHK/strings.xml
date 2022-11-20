@@ -238,6 +238,7 @@
     <string name="enable_developer_page_summary">启用此功能并重启作用域后\n即可通过快捷入口跳转进入</string>
     <string name="enable_genshin_impact_theme">启用原神定制UI</string>
     <string name="enable_genshin_impact_theme_summary">无需在游戏助手中设置</string>
+    <string name="enable_adreno_gpu_controller">启用Adreno GPU控制器</string>
     <!--CloudService-->
     <string name="remove_network_limit">移除数据网络限制</string>
     <string name="remove_network_limit_summary">移除备份/恢复无法使用移动数据的限制</string>

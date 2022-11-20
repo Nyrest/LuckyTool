@@ -1215,6 +1215,14 @@ class OplusGames : ModulePreferenceFragment() {
                     isVisible = false
                 }
             )
+            addPreference(
+                SwitchPreference(context).apply {
+                    title = getString(R.string.enable_adreno_gpu_controller)
+                    key = "enable_adreno_gpu_controller"
+                    setDefaultValue(false)
+                    isIconSpaceReserved = false
+                }
+            )
         }
     }
 }

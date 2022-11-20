@@ -241,6 +241,7 @@
     <string name="enable_developer_page_summary">После включения этой функции и перезагрузки области\nможно перейти к ней через меню быстрого доступа</string>
     <string name="enable_genshin_impact_theme">Включить пользовательский интерфейс Genshin Impact Limited Edition</string>
     <string name="enable_genshin_impact_theme_summary">Нет необходимости настраивать в игровом помощнике</string>
+    <string name="enable_adreno_gpu_controller">Включить контроллер графического процессора Adreno</string>
     <!--CloudService-->
     <string name="remove_network_limit">Удалить ограничения сети передачи данных</string>
     <string name="remove_network_limit_summary">Удалить ограничение, согласно которому резервное копирование/восстановление не может использовать мобильные данные</string>

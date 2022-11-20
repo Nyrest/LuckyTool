@@ -241,6 +241,7 @@
     <string name="enable_developer_page_summary">After enabling this feature and restarting the scope, \n can jump to it via the shortcut portal</string>
     <string name="enable_genshin_impact_theme">Enable Genshin Impact Limited Edition UI</string>
     <string name="enable_genshin_impact_theme_summary">No need to set up in Game Assistant</string>
+    <string name="enable_adreno_gpu_controller">Enable Adreno GPU Controller</string>
     <!--CloudService-->
     <string name="remove_network_limit">Remove Data Network Limit</string>
     <string name="remove_network_limit_summary">Remove backup/restore limitations that cannot use mobile data</string>
