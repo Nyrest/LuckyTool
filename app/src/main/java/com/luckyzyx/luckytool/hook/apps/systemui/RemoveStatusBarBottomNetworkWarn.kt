@@ -10,7 +10,7 @@ class RemoveStatusBarBottomNetworkWarn : YukiBaseHooker() {
                 method {
                     name = "handleRefreshState"
                 }
-                replaceTo(null)
+                intercept()
             }
         }
     }

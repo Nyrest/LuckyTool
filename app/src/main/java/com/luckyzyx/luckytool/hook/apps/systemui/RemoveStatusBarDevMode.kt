@@ -13,7 +13,7 @@ class RemoveStatusBarDevMode : YukiBaseHooker() {
                 method {
                     name = "updateDeveloperMode"
                 }
-                replaceTo(null)
+                intercept()
             }
         }
     }

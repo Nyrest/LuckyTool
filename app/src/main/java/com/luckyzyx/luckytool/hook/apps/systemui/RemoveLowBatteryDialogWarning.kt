@@ -10,13 +10,13 @@ class RemoveLowBatteryDialogWarning : YukiBaseHooker() {
                 method {
                     name = "createSavePowerDialog"
                 }
-                replaceTo(null)
+                intercept()
             }
             injectMember {
                 method {
                     name = "createSuperSavePowerDialog"
                 }
-                replaceTo(null)
+                intercept()
             }
         }
     }

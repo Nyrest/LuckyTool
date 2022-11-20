@@ -4,6 +4,14 @@
 If there is a problem, please bring a screenshot of the scope APK and module LOG page to the TG
 group for feedback
 
+### 3.5
+
+[更新] 核心破解同步上游v4.2  
+[适配] C13应用高耗电通知  
+[适配] C13高性能通知  
+
+[优化] 代码逻辑
+
 ### 3.4
 
 [更新] 捐赠名单  

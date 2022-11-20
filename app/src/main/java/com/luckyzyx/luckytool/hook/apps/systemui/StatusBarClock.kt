@@ -26,13 +26,16 @@ class StatusBarClock : YukiBaseHooker() {
     private val isDay = prefs(XposedPrefs).getBoolean("statusbar_clock_show_day", false)
     private val isWeek = prefs(XposedPrefs).getBoolean("statusbar_clock_show_week", false)
     private val isPeriod = prefs(XposedPrefs).getBoolean("statusbar_clock_show_period", false)
-    private val isDoubleHour = prefs(XposedPrefs).getBoolean("statusbar_clock_show_double_hour", false)
+    private val isDoubleHour =
+        prefs(XposedPrefs).getBoolean("statusbar_clock_show_double_hour", false)
     private val isSecond = prefs(XposedPrefs).getBoolean("statusbar_clock_show_second", false)
     private val isHideSpace = prefs(XposedPrefs).getBoolean("statusbar_clock_hide_spaces", false)
     private val isDoubleRow = prefs(XposedPrefs).getBoolean("statusbar_clock_show_doublerow", false)
 
-    private val singleRowFontSize = prefs(XposedPrefs).getInt("statusbar_clock_singlerow_fontsize", 0)
-    private val doubleRowFontSize = prefs(XposedPrefs).getInt("statusbar_clock_doublerow_fontsize", 0)
+    private val singleRowFontSize =
+        prefs(XposedPrefs).getInt("statusbar_clock_singlerow_fontsize", 0)
+    private val doubleRowFontSize =
+        prefs(XposedPrefs).getInt("statusbar_clock_doublerow_fontsize", 0)
 
     private var nowTime: Date? = null
     private var newline = ""
@@ -111,9 +114,7 @@ class StatusBarClock : YukiBaseHooker() {
         findClass("com.oplusos.systemui.statusbar.widget.StatClock").hook {
             injectMember {
                 method {
-                    if (SDK == A11) {
-                        name = "onConfigChanged"
-                    }
+                    if (SDK == A11) name = "onConfigChanged"
                     if (SDK > A11) name = "onConfigurationChanged"
                 }
                 if (isDoubleRow && doubleRowFontSize != 0) {

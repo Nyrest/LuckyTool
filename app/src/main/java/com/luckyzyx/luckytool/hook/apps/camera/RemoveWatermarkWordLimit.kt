@@ -27,7 +27,7 @@ class RemoveWatermarkWordLimit : YukiBaseHooker() {
                     paramCount = 6
                     returnType = CharSequenceType
                 }
-                replaceTo(null)
+                intercept()
             }
         }
     }

@@ -15,7 +15,7 @@ class RemoveStatusBarSecurePayment : YukiBaseHooker() {
                     name = "handlePaymentDetectionMessage"
                     paramCount = 1
                 }
-                replaceTo(null)
+                intercept()
             }
         }
     }

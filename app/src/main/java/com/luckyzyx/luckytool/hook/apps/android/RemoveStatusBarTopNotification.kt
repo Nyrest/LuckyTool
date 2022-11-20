@@ -10,7 +10,7 @@ class RemoveStatusBarTopNotification : YukiBaseHooker() {
                 method {
                     name = "onPostNotification"
                 }
-                if (prefs(XposedPrefs).getBoolean("remove_statusbar_top_notification", false)) replaceTo(null)
+                if (prefs(XposedPrefs).getBoolean("remove_statusbar_top_notification", false)) intercept()
             }
         }
     }

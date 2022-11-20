@@ -11,7 +11,7 @@ class RemoveStartupAnimation : YukiBaseHooker() {
                 method {
                     name = "c"
                 }
-                replaceTo(null)
+                intercept()
             }
         }
     }

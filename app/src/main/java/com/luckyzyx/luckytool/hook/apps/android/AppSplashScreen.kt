@@ -12,7 +12,7 @@ class AppSplashScreen : YukiBaseHooker() {
                     name = "showStartingWindow"
                     paramCount = 5
                 }
-                if (prefs(XposedPrefs).getBoolean("disable_splash_screen", false)) replaceTo(null)
+                if (prefs(XposedPrefs).getBoolean("disable_splash_screen", false)) intercept()
             }
         }
     }

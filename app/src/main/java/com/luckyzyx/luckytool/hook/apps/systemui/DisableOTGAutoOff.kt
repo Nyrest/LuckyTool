@@ -10,7 +10,7 @@ class DisableOTGAutoOff : YukiBaseHooker() {
                 method {
                     name = "setAutoCloseAlarm"
                 }
-                replaceTo(null)
+                intercept()
             }
         }
     }

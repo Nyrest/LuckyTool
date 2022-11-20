@@ -11,7 +11,7 @@ class RemoveFlashlightOpenNotification : YukiBaseHooker() {
                     name = "sendNotification"
                     paramCount = 1
                 }
-                replaceTo(null)
+                intercept()
             }
         }
     }

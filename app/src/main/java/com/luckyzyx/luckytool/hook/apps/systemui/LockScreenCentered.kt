@@ -1,6 +1,7 @@
 package com.luckyzyx.luckytool.hook.apps.systemui
 
 import android.view.Gravity
+import android.view.View
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
@@ -16,38 +17,28 @@ class LockScreenCentered : YukiBaseHooker() {
                 afterHook {
                     instance<LinearLayout>().setPadding(0, 20.dp, 0, 0)
 
-                    field { name = "mTvWeek" }.get(instance).cast<TextView>()?.apply {
-                        layoutParams = LinearLayout.LayoutParams(layoutParams).apply {
-                            gravity = Gravity.CENTER_HORIZONTAL
-                        }
-                    }
+                    field { name = "mTvWeek" }.get(instance).cast<TextView>()
+                        ?.setCenterHorizontally()
 
                     (field { name = "mTvColon" }.get(instance)
-                        .cast<TextView>()?.parent as RelativeLayout).apply {
-                        layoutParams = LinearLayout.LayoutParams(layoutParams).apply {
-                            gravity = Gravity.CENTER_HORIZONTAL
-                        }
-                    }
+                        .cast<TextView>()?.parent as RelativeLayout).setCenterHorizontally()
 
-                    field { name = "mTvDate" }.get(instance).cast<TextView>()?.apply {
-                        layoutParams = LinearLayout.LayoutParams(layoutParams).apply {
-                            gravity = Gravity.CENTER_HORIZONTAL
-                        }
-                    }
+                    field { name = "mTvDate" }.get(instance).cast<TextView>()
+                        ?.setCenterHorizontally()
 
-                    field { name = "mTvLunarCalendar" }.get(instance).cast<TextView>()?.apply {
-                        layoutParams = LinearLayout.LayoutParams(layoutParams).apply {
-                            gravity = Gravity.CENTER_HORIZONTAL
-                        }
-                    }
+                    field { name = "mTvLunarCalendar" }.get(instance).cast<TextView>()
+                        ?.setCenterHorizontally()
 
-                    field { name = "mTvExtraContent" }.get(instance).cast<TextView>()?.apply {
-                        layoutParams = LinearLayout.LayoutParams(layoutParams).apply {
-                            gravity = Gravity.CENTER_HORIZONTAL
-                        }
-                    }
+                    field { name = "mTvExtraContent" }.get(instance).cast<TextView>()
+                        ?.setCenterHorizontally()
                 }
             }
+        }
+    }
+
+    private fun View.setCenterHorizontally() {
+        layoutParams = LinearLayout.LayoutParams(layoutParams).apply {
+            gravity = Gravity.CENTER_HORIZONTAL
         }
     }
 }

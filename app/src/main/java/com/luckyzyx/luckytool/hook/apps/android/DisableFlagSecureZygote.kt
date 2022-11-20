@@ -13,8 +13,8 @@ class DisableFlagSecureZygote : YukiBaseHooker() {
                     name = "addView"
                 }
                 beforeHook {
-                    val params = args[1] as WindowManager.LayoutParams
-                    params.flags = params.flags and WindowManager.LayoutParams.FLAG_SECURE.inv()
+                    val params = args(1).cast<WindowManager.LayoutParams>()
+                    params?.flags = params?.flags?.and(WindowManager.LayoutParams.FLAG_SECURE.inv())
                 }
             }
             injectMember {
@@ -22,8 +22,8 @@ class DisableFlagSecureZygote : YukiBaseHooker() {
                     name = "updateViewLayout"
                 }
                 beforeHook {
-                    val params = args[1] as WindowManager.LayoutParams
-                    params.flags = params.flags and WindowManager.LayoutParams.FLAG_SECURE.inv()
+                    val params = args(1).cast<WindowManager.LayoutParams>()
+                    params?.flags = params?.flags?.and(WindowManager.LayoutParams.FLAG_SECURE.inv())
                 }
             }
         }
@@ -34,8 +34,8 @@ class DisableFlagSecureZygote : YukiBaseHooker() {
                     name = "setFlags"
                 }
                 beforeHook {
-                    var flags: Int = args[0] as Int
-                    flags = flags and WindowManager.LayoutParams.FLAG_SECURE.inv()
+                    var flags = args(0).cast<Int>()
+                    flags = flags?.and(WindowManager.LayoutParams.FLAG_SECURE.inv())
                     args(0).set(flags)
                 }
             }

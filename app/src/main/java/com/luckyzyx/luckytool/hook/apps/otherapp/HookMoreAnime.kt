@@ -8,7 +8,7 @@ class HookMoreAnime : YukiBaseHooker() {
     override fun onHook() {
         //跳过启动广告页
         if (prefs(XposedPrefs).getBoolean("skip_startup_page", false)) {
-            findClass(name = "com.east2d.haoduo.ui.activity.SplashActivity").hook {
+            findClass("com.east2d.haoduo.ui.activity.SplashActivity").hook {
                 injectMember {
                     method {
                         name = "isAdOpen"
@@ -20,7 +20,7 @@ class HookMoreAnime : YukiBaseHooker() {
         }
         //VIP 下载原图
         if(prefs(XposedPrefs).getBoolean("vip_download", false)) {
-            findClass(name = "com.east2d.haoduo.mvp.browerimages.FunctionImageMainActivity").hook {
+            findClass("com.east2d.haoduo.mvp.browerimages.FunctionImageMainActivity").hook {
                 injectMember {
                     method {
                         name = "isVip"
