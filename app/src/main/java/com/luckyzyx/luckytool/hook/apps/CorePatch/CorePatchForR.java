@@ -7,12 +7,14 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
+import android.util.Log;
 
 import com.luckyzyx.luckytool.BuildConfig;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Member;
 import java.lang.reflect.Method;
 import java.security.cert.Certificate;
 import java.security.cert.X509Certificate;
@@ -31,13 +33,13 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
 @SuppressWarnings("ALL")
 public class CorePatchForR extends XposedHelper implements IXposedHookLoadPackage, IXposedHookZygoteInit {
-
+    
     private static final String TAG = "CorePatch";
     XSharedPreferences prefs = new XSharedPreferences(BuildConfig.APPLICATION_ID, XposedPrefs);
     
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam loadPackageParam) throws IllegalAccessException, InvocationTargetException, InstantiationException {
-    
+
 //        Log.d(MainHook.TAG, "downgrade=" + prefs.getBoolean("downgrade", true));
 //        Log.d(MainHook.TAG, "authcreak=" + prefs.getBoolean("authcreak", true));
 //        Log.d(MainHook.TAG, "digestCreak=" + prefs.getBoolean("digestCreak", true));
@@ -49,15 +51,15 @@ public class CorePatchForR extends XposedHelper implements IXposedHookLoadPackag
                 "com.android.server.pm.parsing.pkg.AndroidPackage",
                 "android.content.pm.PackageInfoLite",
                 new ReturnConstant(prefs, "downgrade", null));
-
+        
         // exists on flyme 9(Android 11) only
 //        findAndHookMethod("com.android.server.pm.PackageManagerService", loadPackageParam.classLoader,
 //                "checkDowngrade",
 //                "android.content.pm.PackageInfoLite",
 //                "android.content.pm.PackageInfoLite",
 //                new ReturnConstant(prefs, "downgrade", true));
-
-
+        
+        
         // apk内文件修改后 digest校验会失败
         hookAllMethods("android.util.jar.StrictJarVerifier", loadPackageParam.classLoader, "verifyMessageDigest",
                 new ReturnConstant(prefs, "authcreak", true));
@@ -66,14 +68,14 @@ public class CorePatchForR extends XposedHelper implements IXposedHookLoadPackag
         //ClassNotFound -> ColorOS
         hookAllMethods("java.security.MessageDigest", loadPackageParam.classLoader, "isEqual",
                 new ReturnConstant(prefs, "authcreak", true));
-
+        
         // Targeting R+ (version " + Build.VERSION_CODES.R + " and above) requires"
         // + " the resources.arsc of installed APKs to be stored uncompressed"
         // + " and aligned on a 4-byte boundary
         // target >=30 的情况下 resources.arsc 必须是未压缩的且4K对齐
         hookAllMethods("android.content.res.AssetManager", loadPackageParam.classLoader, "containsAllocatedTable",
                 new ReturnConstant(prefs, "authcreak", false));
-
+        
         // No signature found in package of version " + minSignatureSchemeVersion
         // + " or newer for package " + apkPath
         findAndHookMethod("android.util.apk.ApkSignatureVerifier", loadPackageParam.classLoader, "getMinimumSignatureSchemeVersionForTargetSdk", int.class,
@@ -81,7 +83,7 @@ public class CorePatchForR extends XposedHelper implements IXposedHookLoadPackag
         //ClassNotFound -> ColorOS
         findAndHookMethod("com.android.apksig.ApkVerifier", loadPackageParam.classLoader, "getMinimumSignatureSchemeVersionForTargetSdk", int.class,
                 new ReturnConstant(prefs, "authcreak", 0));
-
+        
         // Package " + packageName + " signatures do not match previously installed version; ignoring!"
         // public boolean checkCapability(String sha256String, @CertCapabilities int flags) {
         // public boolean checkCapability(SigningDetails oldDetails, @CertCapabilities int flags)
@@ -98,7 +100,7 @@ public class CorePatchForR extends XposedHelper implements IXposedHookLoadPackag
                 }
             }
         });
-
+        
         // 当verifyV1Signature抛出转换异常时，替换一个签名作为返回值
         // 如果用户已安装apk，并且其定义了私有权限，则安装时会因签名与模块内硬编码的不一致而被拒绝。尝试从待安装apk中获取签名。如果其中apk的签名和已安装的一致（只动了内容）就没有问题。此策略可能有潜在的安全隐患。
         Class<?> pkc = XposedHelpers.findClass("sun.security.pkcs.PKCS7", loadPackageParam.classLoader);
@@ -117,12 +119,12 @@ public class CorePatchForR extends XposedHelper implements IXposedHookLoadPackag
         Object[] signingDetailsArgs = new Object[2];
         signingDetailsArgs[1] = 1;
         Class<?> parseResult = XposedHelpers.findClassIfExists("android.content.pm.parsing.result.ParseResult", loadPackageParam.classLoader);
-    
+        
         hookAllMethods("android.util.jar.StrictJarVerifier", loadPackageParam.classLoader, "verifyBytes", new XC_MethodHook() {
             public void afterHookedMethod(MethodHookParam param) throws Throwable {
                 super.afterHookedMethod(param);
                 if (prefs.getBoolean("digestCreak", true)) {
-                    if(!prefs.getBoolean("UsePreSig", false)) {
+                    if (!prefs.getBoolean("UsePreSig", false)) {
                         final Object block = constructor.newInstance(param.args[0]);
                         Object[] infos = (Object[]) XposedHelpers.callMethod(block, "getSignerInfos");
                         Object info = infos[0];
@@ -133,7 +135,7 @@ public class CorePatchForR extends XposedHelper implements IXposedHookLoadPackag
                 }
             }
         });
-    
+        
         hookAllMethods("android.util.apk.ApkSignatureVerifier", loadPackageParam.classLoader, "verifyV1Signature", new XC_MethodHook() {
             public void afterHookedMethod(MethodHookParam methodHookParam) throws Throwable {
                 if (prefs.getBoolean("authcreak", true)) {
@@ -186,7 +188,7 @@ public class CorePatchForR extends XposedHelper implements IXposedHookLoadPackag
                             signingDetailsArgs[0] = new Signature[]{new Signature(SIGNATURE)};
                         }
                         Object newInstance = findConstructorExact.newInstance(signingDetailsArgs);
-                    
+                        
                         //修复 java.lang.ClassCastException: Cannot cast android.content.pm.PackageParser$SigningDetails to android.util.apk.ApkSignatureVerifier$SigningDetailsWithDigests
                         Class<?> signingDetailsWithDigests = XposedHelpers.findClassIfExists("android.util.apk.ApkSignatureVerifier.SigningDetailsWithDigests", loadPackageParam.classLoader);
                         if (signingDetailsWithDigests != null) {
@@ -216,8 +218,8 @@ public class CorePatchForR extends XposedHelper implements IXposedHookLoadPackag
                 }
             }
         });
-
-
+        
+        
         //New package has a different signature
         //处理覆盖安装但签名不一致
         hookAllMethods(signingDetails, "checkCapability", new XC_MethodHook() {
@@ -246,6 +248,19 @@ public class CorePatchForR extends XposedHelper implements IXposedHookLoadPackag
                 }
             }
         });
+        
+        var utilClass = findClass("com.android.server.pm.PackageManagerServiceUtils", loadPackageParam.classLoader);
+        if (utilClass != null) {
+            for (var m : utilClass.getDeclaredMethods()) {
+                if ("verifySignatures".equals(m.getName())) {
+                    try {
+                        XposedBridge.class.getDeclaredMethod("deoptimizeMethod", Member.class).invoke(null, m);
+                    } catch (Throwable e) {
+                        Log.e("CorePatch", "deoptimizing failed", e);
+                    }
+                }
+            }
+        }
     }
     
     Class<?> getSigningDetails(ClassLoader classLoader) {
