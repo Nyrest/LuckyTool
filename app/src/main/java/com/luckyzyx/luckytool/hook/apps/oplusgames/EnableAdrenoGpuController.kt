@@ -1,6 +1,7 @@
 package com.luckyzyx.luckytool.hook.apps.oplusgames
 
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
+import com.highcapable.yukihookapi.hook.log.loggerD
 import com.highcapable.yukihookapi.hook.type.android.ContextClass
 import com.highcapable.yukihookapi.hook.type.java.BooleanType
 import com.highcapable.yukihookapi.hook.type.java.ListClass
@@ -11,7 +12,7 @@ class EnableAdrenoGpuController : YukiBaseHooker() {
         //Source GpuSettingHelper
         //Search isSupportGpuControlPanel
         searchClass {
-            //7143,7150
+            //714,715
             from("fc", "gc").absolute()
             field {
                 type = ListClass
@@ -38,6 +39,6 @@ class EnableAdrenoGpuController : YukiBaseHooker() {
                 }
                 replaceToTrue()
             }
-        }
+        } ?: loggerD(msg = "$packageName\nError -> EnableAdrenoGpuController")
     }
 }

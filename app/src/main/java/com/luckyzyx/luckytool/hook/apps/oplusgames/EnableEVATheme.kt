@@ -33,6 +33,7 @@ class EnableEVATheme : YukiBaseHooker() {
         //Search isEvaThemePhone
         findClass(member[0]).hook {
             injectMember {
+                constructor {  }
                 method {
                     name = member[1]
                     returnType = BooleanType

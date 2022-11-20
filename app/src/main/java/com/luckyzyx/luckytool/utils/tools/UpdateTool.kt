@@ -19,6 +19,7 @@ import com.google.android.material.textview.MaterialTextView
 import com.luckyzyx.luckytool.R
 import org.json.JSONObject
 import java.io.File
+import java.text.DecimalFormat
 
 object UpdateTool {
     @Suppress("UNUSED_PARAMETER")
@@ -34,6 +35,7 @@ object UpdateTool {
                 val downloadUrl = getJSONArray("assets").getJSONObject(0).optString("browser_download_url")
                 val downloadPage = optString("html_url")
                 val downloadCount = getJSONArray("assets").getJSONObject(0).optString("download_count")
+                val fileSize = getJSONArray("assets").getJSONObject(0).optString("size").toFloat()
 //                val updateTime = optString("published_at").replace("T", " ").replace("Z", "")
                 //版本号大于等于云端,提示最新版本
                 if (versionCode >= code.toInt()) {
@@ -48,7 +50,11 @@ object UpdateTool {
                                 addView(
                                     MaterialTextView(context).apply {
                                         setPadding(20.dp, 0, 20.dp, 0)
-                                        text = "${context.getString(R.string.version_name)}: $name($code)\n${context.getString(R.string.download_count)}: $downloadCount\n${context.getString(R.string.update_content)}:\n$changeLog"
+                                        val version = "${context.getString(R.string.version_name)}: $name($code)\n"
+                                        val count = "${context.getString(R.string.download_count)}: $downloadCount\n"
+                                        val size = "${context.getString(R.string.file_size)}: " + DecimalFormat("0.0").format(fileSize / (1024 * 1024)).toString() + "MB\n"
+                                        val changelog = "${context.getString(R.string.update_logs)}: \n$changeLog"
+                                        text = "${version}${count}${size}${changelog}"
                                     }
                                 )
                             }

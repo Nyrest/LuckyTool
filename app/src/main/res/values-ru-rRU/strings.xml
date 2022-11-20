@@ -158,8 +158,8 @@
     <string name="set_lock_screen_centered_summary">Только для систем, в которых экран блокировки нельзя отцентрировать в настройках</string>
     <string name="remove_lock_screen_bottom_sos_button">Удалить кнопку экстренного контакта SOS</string>
     <string name="remove_lock_screen_bottom_sos_button_summary">Кнопка экстренного контакта SOS внизу страницы разблокировки была удалена</string>
-    <string name="remove_72hour_password_verification">Удаление 72-часовой аутентификации по паролю (бета)</string>
-    <string name="remove_72hour_password_verification_summary">Эта функция может быть удалена в любое время\nВступит в силу после перезагрузки системы</string>
+    <string name="remove_72hour_password_verification">Удаление 72-часовой аутентификации по паролю</string>
+    <string name="remove_72hour_password_verification_summary">Removed the security restriction of not using a password to unlock within 72 hours after booting \n Effective after system restart</string>
     <!--Desktop-->
     <string name="Desktop">Рабочий стол</string>
     <string name="remove_alarmclock_widget_redone">Удалить красный компонент виджете часов на рабочем столе</string>
@@ -277,8 +277,9 @@
     <string name="enable_module">Включить модуль</string>
     <string name="version_name">Название версии</string>
     <string name="download_count">Количество загрузок</string>
+    <string name="file_size">Размер файла</string>
     <string name="update_time">Время обновления</string>
-    <string name="update_content">Обновить содержимое</string>
+    <string name="update_logs">Журналы обновления</string>
     <string name="check_update_hint">Обнаружена новая версия!</string>
     <string name="go_download_page">Перейти на страницу загрузки</string>
     <string name="copy_download_link">Скопируйте ссылку для загрузки</string>

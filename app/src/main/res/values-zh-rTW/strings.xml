@@ -155,8 +155,8 @@
     <string name="set_lock_screen_centered_summary">仅限于设置里无法设置锁屏居中的系统使用</string>
     <string name="remove_lock_screen_bottom_sos_button">移除SOS紧急联系按钮</string>
     <string name="remove_lock_screen_bottom_sos_button_summary">移除解锁页面底部的SOS紧急按钮</string>
-    <string name="remove_72hour_password_verification">移除72小时密码验证(Beta)</string>
-    <string name="remove_72hour_password_verification_summary">此功能随时可能被删除\n系统重启后生效</string>
+    <string name="remove_72hour_password_verification">移除72小时密码验证</string>
+    <string name="remove_72hour_password_verification_summary">移除开机后72小时内不使用密码解锁的安全限制 \n 系统重启生效</string>
     <!--Desktop-->
     <string name="Desktop">桌面相关</string>
     <string name="remove_alarmclock_widget_redone">移除桌面时钟组件红一</string>
@@ -274,8 +274,9 @@
     <string name="enable_module">启用模块</string>
     <string name="version_name">版本号</string>
     <string name="download_count">下載次數</string>
+    <string name="file_size">文件大小</string>
     <string name="update_time">更新时间</string>
-    <string name="update_content">更新内容</string>
+    <string name="update_logs">更新日誌</string>
     <string name="check_update_hint">检测到新版本!</string>
     <string name="go_download_page">跳转下载页面</string>
     <string name="copy_download_link">复制下载链接</string>

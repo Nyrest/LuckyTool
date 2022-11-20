@@ -97,7 +97,7 @@
     <string name="statusbar_clock_doublerow_fontsize">Cỡ chữ hàng kép</string>
     <string name="statusbar_clock_fontsize_summary">Nếu giá trị là 0, kích cỡ chữ sẽ không thay đổi</string>
     <!-- StatusBarNetWorkSpeed -->
-    <string name="StatusBarNetWorkSpeed">StatusBar NetWorkSpeed</string>
+    <string name="StatusBarNetWorkSpeed">Tốc độ mạng</string>
     <string name="set_network_speed">Đặt tốc độ làm mới thanh trạng thái là 1 giây</string>
     <string name="enable_double_row_network_speed">Kích hoạt tốc độ mạng kép</string>
     <string name="set_network_speed_font_size">Đặt kích thước phông chữ tốc độ mạng</string>
@@ -130,7 +130,7 @@
     <string name="remove_mobile_data_inout">Xóa biểu tượng dữ liệu di động</string>
     <string name="status_bar_icon_vertical_center">Biểu tượng thanh trạng thái trung tâm dọc</string>
     <!--StatusBarControlCenter-->
-    <string name="StatusBarControlCenter">StatusBar ControlCenter</string>
+    <string name="StatusBarControlCenter">Trung tâm điều khiển</string>
     <string name="StatusBar_UI_Related">Giao diện thanh trạng thái</string>
     <string name="dropdown_statusbar_clock_show_second">Đồng hồ thanh trạng thái thả xuống hiện giây</string>
     <string name="remove_dropdown_statusbar_clock_style_summary">Xóa tóm tắt kiểu đồng hồ trên thanh trạng thái thả xuống</string>
@@ -139,9 +139,9 @@
     <string name="remove_statusbar_date_comma_summary">Giới hạn đối với người TQ</string>
     <string name="remove_drop_down_statusbar_mydevice">xóa thanh trạng thái thả xuống thiết bị của tôi</string>
     <string name="StatusBar_Tile_Related">Thanh trạng thái</string>
-    <string name="statusbar_tile_enable">Total statusbar tiles switch</string>
-    <string name="tile_unexpanded_columns_vertical">No tiles expanded (portrait)</string>
-    <string name="tile_unexpanded_columns_horizontal">No tiles expanded (Landscape)</string>
+    <string name="statusbar_tile_enable">Số ô thanh trạng thái</string>
+    <string name="tile_unexpanded_columns_vertical">Không mở rộng ô (dọc)</string>
+    <string name="tile_unexpanded_columns_horizontal">Không mở rộng ô (ngang)</string>
     <string name="tile_expanded_columns_vertical">Expand sticker columns (portrait)</string>
     <string name="tile_expanded_columns_horizontal">Expand sticker columns (Landscape)</string>
     <string name="tile_expanded_rows_vertical">Expand tile rows (vertical)</string>
@@ -153,20 +153,20 @@
     <string name="remove_lock_screen_bottom_right_camera">Remove lockscreen bottom right camera</string>
     <string name="set_lock_screen_centered">Center the lockscreen component</string>
     <string name="set_lock_screen_centered_summary">Only for systems where the lock screen cannot be centered in the settings</string>
-    <string name="remove_lock_screen_bottom_sos_button">Remove SOS emergency contact button</string>
+    <string name="remove_lock_screen_bottom_sos_button">Xóa nút liên hệ khẩn cấp SOS</string>
     <string name="remove_lock_screen_bottom_sos_button_summary">Removed the SOS emergency button at the bottom of the unlock page</string>
-    <string name="remove_72hour_password_verification">Remove 72-hour password authentication (Beta)</string>
-    <string name="remove_72hour_password_verification_summary">This feature may be removed at any time \n Effective after system restart</string>
+    <string name="remove_72hour_password_verification">Remove 72-hour password authentication</string>
+    <string name="remove_72hour_password_verification_summary">Removed the security restriction of not using a password to unlock within 72 hours after booting \n Effective after system restart</string>
     <!--Desktop-->
     <string name="Desktop">Desktop Related</string>
     <string name="remove_alarmclock_widget_redone">Remove desktop clock component red one</string>
     <string name="remove_alarmclock_widget_redone_pro">Remove the desktop clock component Red One Enhanced Edition</string>
     <string name="remove_alarmclock_widget_redone_pro_summary">Only available when the regular version does not take effect, otherwise it will cause an inevitable error</string>
-    <string name="remove_appicon_dot">Remove API icon dots</string>
+    <string name="remove_appicon_dot">Xóa dấu API chấm biểu tượng</string>
     <string name="show_charging_ripple">Charging display charging texture waves</string>
     <string name="show_charging_ripple_summary">Valid only when connecting to charger</string>
     <string name="set_folder_layout_4x4">Set Folder Layout 4 x 4</string>
-    <string name="launcher_layout_related">Desktop Layout Related</string>
+    <string name="launcher_layout_related">Bố cục màn hình chính</string>
     <string name="launcher_layout_row_colume">Sets the maximum number of rows and columns supported by the desktop layout</string>
     <string name="launcher_layout_enable">Desktop icon layout general switch</string>
     <string name="launcher_layout_max_rows">Maximum number of lines in desktop layout</string>
@@ -181,28 +181,28 @@
     <string name="unlock_startup_limit_summary">Unlock app self-startup limit</string>
     <string name="unlock_task_locks">Unlocks the number of background tasks</string>
     <string name="AppStartupRelated">Application startup related</string>
-    <string name="disable_splash_screen">Disable splash screen</string>
+    <string name="disable_splash_screen">Vô hiệu hóa màn hình chớp</string>
     <!--MultiApp-->
-    <string name="MultiApp">App Stand Related</string>
+    <string name="MultiApp">Kệ ứng dụng</string>
     <string name="multi_app_enable">Total App Chart Switch</string>
-    <string name="multi_app_enable_summary">Restart to take effect</string>
-    <string name="loading">Loading</string>
-    <string name="multi_app_custom_list">Replace App Clone Support List</string>
+    <string name="multi_app_enable_summary">Khởi động lại để có hiệu lực</string>
+    <string name="loading">Đang tải</string>
+    <string name="multi_app_custom_list">Thay thế danh sách hỗ trợ bản sao ứng dụng</string>
     <string name="multi_app_custom_list_summary">After the function is turned on, the original list of app clones will be replaced by this list, too many will cause lag</string>
     <!--AppInstallationRelated-->
-    <string name="AppInstallationRelated">App Installation Related</string>
-    <string name="skip_apk_scan">Skip Apkscan</string>
-    <string name="skip_apk_scan_summary">Apk virus scanning related</string>
-    <string name="allow_downgrade_install">Allow downgrade installation</string>
+    <string name="AppInstallationRelated">Cài đặt ứng dụng</string>
+    <string name="skip_apk_scan">Bỏ qua Apkscan</string>
+    <string name="skip_apk_scan_summary">Quét vi-rút Apk</string>
+    <string name="allow_downgrade_install">Cho phép hạ cấp cài đặt</string>
     <string name="allow_downgrade_install_summary">Remove low/equivalent version of warnings, etc.</string>
-    <string name="disable_apk_signature_verification">Disable APK signature verification</string>
+    <string name="disable_apk_signature_verification">Tắt xác thực chữ ký APK</string>
     <string name="disable_apk_signature_verification_summary">Can install different signed APPs, use the core breakup</string>
-    <string name="remove_install_ads">Remove installation completed ads</string>
+    <string name="remove_install_ads">Xóa quảng cáo khi cài đặt khi hoàn tất</string>
     <string name="remove_install_ads_summary">Close Settings - Security App Recommendations</string>
-    <string name="replase_aosp_installer">Replace AOSP Installer</string>
-    <string name="replase_aosp_installer_summary">Replace with Google Native Installer</string>
+    <string name="replase_aosp_installer">Thay thế trình cài đặt AOSP</string>
+    <string name="replase_aosp_installer_summary">Thay thế bằng trình cài đặt Google</string>
     <!--Miscellaneous-->
-    <string name="Miscellaneous">Miscellaneous</string>
+    <string name="Miscellaneous">Khác</string>
     <string name="Miscellaneous_summary">Categories with difficulty will be placed here</string>
     <string name="disable_duplicate_floating_window">Disable Duplicate Window</string>
     <string name="disable_duplicate_floating_window_summary">Do not show heads up again when copying text</string>
@@ -225,12 +225,12 @@
     <string name="open_battery_health">Open battery health entrance</string>
     <string name="open_battery_health_summary">Settings - Battery - Battery Health</string>
     <string name="performance_mode_and_standby_optimization">Performance Mode and Standby Optimization</string>
-    <string name="performance_mode_and_standby_optimization_summary">Settings - Battery - More settings</string>
+    <string name="performance_mode_and_standby_optimization_summary">Cài đặt - Pin - Cài đặt khác</string>
     <!--Camera-->
-    <string name="remove_watermark_word_limit">Remove Watermark Limit</string>
-    <string name="enable_10_bit_image_support">Enable 10 bit Images Support</string>
+    <string name="remove_watermark_word_limit">Xóa giới hạn hình mờ</string>
+    <string name="enable_10_bit_image_support">Bật hỗ trợ hình ảnh 10 bit</string>
     <!--OplusGames-->
-    <string name="remove_root_check">Remove Game Filter Limit</string>
+    <string name="remove_root_check">Xóa giới hạn bộ lọc trò chơi</string>
     <string name="remove_root_check_summary">Remove Root Detection Limit for Game Filter</string>
     <string name="remove_startup_animation">Remove startup animation</string>
     <string name="enable_developer_page">Enable developer page</string>
@@ -254,14 +254,14 @@
     <string name="disable_flag_secure">Disable FLAG_SECURE</string>
     <string name="disable_flag_secure_summary">Resolve most APPs cannot capture, screen share, or record limits, add corresponding APP fields</string>
     <!--Everyimage-->
-    <string name="skip_startup_page">Skip startup page</string>
-    <string name="vip_download">Download original</string>
+    <string name="skip_startup_page">Bỏ qua trang khởi động</string>
+    <string name="vip_download">Tải xuống bản gốc</string>
     <!--AlphaBackupPro-->
-    <string name="remove_pro_license">Remove license detection</string>
+    <string name="remove_pro_license">Xóa phát hiện giấy phép</string>
     <!--Home-->
-    <string name="fps_title">Force refresh rate</string>
+    <string name="fps_title">Buộc tốc độ làm mới</string>
     <string name="fps_summary">Conflict with other dynamic refresh rate processes, such as “dpfs”</string>
-    <string name="brand">Brand</string>
+    <string name="brand">Nhãn hiệu</string>
     <string name="model">Model</string>
     <string name="flash">Flash</string>
     <string name="build_version">Build</string>
@@ -274,18 +274,19 @@
     <string name="enable_module">Enable Module</string>
     <string name="version_name">Version Name</string>
     <string name="download_count">Download Count</string>
+    <string name="file_size">File Size</string>
     <string name="update_time">Update Time</string>
-    <string name="update_content">Update Content</string>
+    <string name="update_logs">Update logs</string>
     <string name="check_update_hint">New version detected!</string>
     <string name="go_download_page">Go to the download page</string>
     <string name="copy_download_link">Copy the download link</string>
-    <string name="direct_update">Direct update</string>
-    <string name="install_apk_toast">Please enable unknown app installation permission!</string>
-    <string name="downloading">Downloading</string>
-    <string name="download_progress">Download Progress</string>
-    <string name="download_speed">Download Speed</string>
-    <string name="remain_size">Remain Size</string>
-    <string name="downloaded">Downloaded</string>
+    <string name="direct_update">Cập nhật trực tiếp</string>
+    <string name="install_apk_toast">Vui lòng bật quyền cài đặt ứng dụng không xác định!</string>
+    <string name="downloading">Đang tải xuống</string>
+    <string name="download_progress">Tiến độ tải xuống</string>
+    <string name="download_speed">Tốc độ tải về</string>
+    <string name="remain_size">Kích thước còn lại</string>
+    <string name="downloaded">Đã tải xuống</string>
     <string name="used_time">Used Time</string>
     <string name="remain_time">Remain Time</string>
     <string name="install_button">Install now</string>

@@ -158,8 +158,8 @@
     <string name="set_lock_screen_centered_summary">Only for systems where the lock screen cannot be centered in the settings</string>
     <string name="remove_lock_screen_bottom_sos_button">Remove SOS emergency contact button</string>
     <string name="remove_lock_screen_bottom_sos_button_summary">Removed the SOS emergency button at the bottom of the unlock page</string>
-    <string name="remove_72hour_password_verification">Remove 72-hour password authentication (Beta)</string>
-    <string name="remove_72hour_password_verification_summary">This feature may be removed at any time \n Effective after system restart</string>
+    <string name="remove_72hour_password_verification">Remove 72-hour password authentication</string>
+    <string name="remove_72hour_password_verification_summary">Removed the security restriction of not using a password to unlock within 72 hours after booting \n Effective after system restart</string>
     <!--Desktop-->
     <string name="Desktop">Desktop Related</string>
     <string name="remove_alarmclock_widget_redone">Remove desktop clock component red one</string>
@@ -277,8 +277,9 @@
     <string name="enable_module">Enable Module</string>
     <string name="version_name">Version Name</string>
     <string name="download_count">Download Count</string>
+    <string name="file_size">File Size</string>
     <string name="update_time">Update Time</string>
-    <string name="update_content">Update Content</string>
+    <string name="update_logs">Update logs</string>
     <string name="check_update_hint">New version detected!</string>
     <string name="go_download_page">Go to the download page</string>
     <string name="copy_download_link">Copy the download link</string>
