@@ -3,6 +3,7 @@ package com.luckyzyx.luckytool.hook.apps.packageinstaller
 import android.util.ArraySet
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 import com.highcapable.yukihookapi.hook.type.java.BooleanType
+import com.highcapable.yukihookapi.hook.type.java.IntType
 import com.luckyzyx.luckytool.utils.tools.XposedPrefs
 import java.util.*
 
@@ -46,7 +47,8 @@ class SkipApkScan : YukiBaseHooker() {
             injectMember {
                 method {
                     name = member[1]
-                    returnType = BooleanType
+                    if (member[0] == OPIA) returnType = BooleanType
+                    if (member[0] == ADRU) returnType = IntType
                 }
                 if (member[0] == OPIA) replaceToFalse()
                 if (member[0] == ADRU) replaceTo(9)
