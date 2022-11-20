@@ -12,7 +12,7 @@ class RemoveAppHighBatteryConsumptionWarning : YukiBaseHooker() {
         // Source NotifyUtil
         // Search power_consumption_optimization_title / pco_notification_text / String \n String
         searchClass {
-            from("com.oplus.a.g", "c4").absolute()
+            from("com.oplus.a.g", "c4", "a4").absolute()
             constructor {
                 paramCount = 1
             }.count(1)
