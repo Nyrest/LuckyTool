@@ -55,8 +55,8 @@
     <!-- Menu -->
     <string name="menu_reboot">Restart menu</string>
     <string name="menu_settings">Set menu</string>
-    <string name="restart_scope">Restart fields</string>
-    <string name="restart_scope_message">Are you sure you want to restart all fields except the system framework?\nmodule is not available when it is not available!\nMake sure all the corresponding scopes are checked!</string>
+    <string name="restart_scope">Restart scoped processes</string>
+    <string name="restart_scope_message">Are you sure you want to restart all scoped processes except the system framework?\nUse this if the module isn't working!\nMake sure all the relevant scopes are checked!</string>
     <string name="reboot">Restart System</string>
     <string name="fast_reboot">Fast reboot</string>
     <string name="menu_versioninfo">Version Information</string>
@@ -68,9 +68,9 @@
     <string name="package_name">Package Name</string>
     <string name="version">Version</string>
     <!-- CorePatch -->
-    <string name="corepatch">Core Break</string>
-    <string name="corepatch_summary">Uninstall Limit, Android 11–13</string>
-    <string name="downgr">Allow downgrade install apps</string>
+    <string name="corepatch">Core Patch</string>
+    <string name="corepatch_summary">Remove install limits, supports Android 11–13</string>
+    <string name="downgr">Allow downgrade apps</string>
     <string name="downgr_summary">Allows the app to override older versions if new versions are installed.</string>
     <string name="authcreak">Disable package manager signature validation</string>
     <string name="authcreak_summary">Signature verification when installing apps can be installed.</string>
@@ -176,11 +176,11 @@
     <string name="launcher_layout_max_columns">Maximum Desktop Layout Columns</string>
     <string name="remove_recent_task_list_clear_button">Remove recent task list clear button</string>
     <!--Application-->
-    <string name="Application">Apply related</string>
-    <string name="ApplyOtherRestrictions">Apply Other Limit</string>
+    <string name="Application">Application related</string>
+    <string name="ApplyOtherRestrictions">Other Limits</string>
     <string name="remove_adb_install_confirm">Remove ADB installation confirmation</string>
     <string name="remove_adb_install_confirm_summary">Use ADB to install APP without tapping</string>
-    <string name="unlock_startup_limit">Unlock Auto-Enabled Limit</string>
+    <string name="unlock_startup_limit">Unlock Self-Startup Limit</string>
     <string name="unlock_startup_limit_summary">Unlock app self-startup limit</string>
     <string name="unlock_task_locks">Unlocks the number of background tasks</string>
     <string name="AppStartupRelated">Application startup related</string>
@@ -217,12 +217,12 @@
     <string name="disable_dpi_reboot_recovery_summary">This module is not responsible for any failure to boot due to the setting of too large DPI value\nTo restore the default DPI, you need to enable this feature and reset the default DPI value after restarting the scope</string>
     <string name="remove_low_battery_dialog_warning">Remove low battery dialog warning</string>
     <string name="remove_low_battery_dialog_warning_summary">Remove warning dialogs for power save mode and super power save</string>
-    <string name="remove_warning_dialog_that_app_runs_on_desktop">Remove warning dialog that app runs on desktop</string>
-    <string name="remove_warning_dialog_that_app_runs_on_desktop_summary">Warning dialog box found that an application is running on the system desktop</string>
+    <string name="remove_warning_dialog_that_app_runs_on_desktop">Remove warning dialog that app displaying over the desktop</string>
+    <string name="remove_warning_dialog_that_app_runs_on_desktop_summary">Warning dialog box found that an application displaying over the system desktop</string>
     <string name="remove_storage_limit">Remove storage limit</string>
     <string name="remove_storage_limit_summary">Remove the restriction that this folder cannot be used</string>
     <string name="media_volume_level">Media volume level</string>
-    <string name="media_volume_level_summary">Set to 0 to disable the function, and the system restarts to take effect</string>
+    <string name="media_volume_level_summary">Set to 0 to disable this function, restart the system to take effect</string>
     <string name="open_screen_power_save">Open battery screen power saving entrance</string>
     <string name="open_screen_power_save_summary">Settings - Battery - More settings - Screen Power Saving</string>
     <string name="open_battery_health">Open battery health entrance</string>
@@ -230,7 +230,7 @@
     <string name="performance_mode_and_standby_optimization">Performance Mode and Standby Optimization</string>
     <string name="performance_mode_and_standby_optimization_summary">Settings - Battery - More settings</string>
     <!--Camera-->
-    <string name="remove_watermark_word_limit">Remove Watermark Limit</string>
+    <string name="remove_watermark_word_limit">Remove Watermark Word Length Limit</string>
     <string name="enable_10_bit_image_support">Enable 10 bit Images Support</string>
     <!--OplusGames-->
     <string name="remove_root_check">Remove Game Filter Limit</string>
