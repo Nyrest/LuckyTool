@@ -47,8 +47,8 @@ val getColorOSVersion
 fun Context.getAppVersion(packName: String): ArrayList<String> = safeOf(default = ArrayList()) {
     val arrayList = ArrayList<String>()
     val arraySet = ArraySet<String>()
-    val packageInfo = PackageUtils(packageManager).getPackageInfo(packName,0)
-    val commitInfo = PackageUtils(packageManager).getApplicationInfo(packName,128)
+    val packageInfo = PackageUtils(packageManager).getPackageInfo(packName, 0)
+    val commitInfo = PackageUtils(packageManager).getApplicationInfo(packName, 128)
     val versionName = safeOf(default = "null") { packageInfo.versionName }
     arrayList.add(versionName)
     arraySet.add("0.$versionName")
@@ -59,7 +59,7 @@ fun Context.getAppVersion(packName: String): ArrayList<String> = safeOf(default 
     val versionCommit = safeOf(default = "null") { commitInfo.metaData.get("versionCommit") }
     arrayList.add(versionCommit.toString())
     arraySet.add("2.$versionCommit")
-    putStringSet(XposedPrefs,packName,arraySet)
+    putStringSet(XposedPrefs, packName, arraySet)
     return arrayList
 }
 
@@ -87,25 +87,45 @@ fun Context.checkKey(key: String?, keyList: Array<String>): String = safeOfNothi
  */
 fun Context.checkPackName(packName: String) = safeOfFalse {
     @Suppress("SENSELESS_COMPARISON")
-    PackageUtils(packageManager).getPackageInfo(packName,0) != null
+    PackageUtils(packageManager).getPackageInfo(packName, 0) != null
 }
 
 /**
  * 获取APP图标
  */
 fun Context.getAppIcon(packName: String): Drawable? = safeOf(default = null) {
-    return PackageUtils(packageManager).getApplicationInfo(packName,0).loadIcon(packageManager)
+    return PackageUtils(packageManager).getApplicationInfo(packName, 0).loadIcon(packageManager)
 }
+
+/**
+ * 获取APP版本名
+ * @receiver Context
+ * @param packName String
+ * @return String?
+ */
+fun Context.getAppVersionName(packName: String): String? = safeOf(default = null) {
+    return PackageUtils(packageManager).getPackageInfo(packName, 0).versionName
+}
+
+/**
+ * 获取APP版本号
+ * @receiver Context
+ * @param packName String
+ * @return Long?
+ */
+fun Context.getAppVersionCode(packName: String): Long? = safeOf(default = null){
+    return PackageUtils(packageManager).getPackageInfo(packName, 0).longVersionCode
+}
+
 /**
  * 获取APP名称
  */
 fun Context.getAppLabel(packName: String): CharSequence? = safeOf(default = null) {
-    return PackageUtils(packageManager).getApplicationInfo(packName,0).loadLabel(packageManager)
+    return PackageUtils(packageManager).getApplicationInfo(packName, 0).loadLabel(packageManager)
 }
 
 
-
-fun Context.checkResolveActivity(intent: Intent): Boolean = safeOf(default = false){
+fun Context.checkResolveActivity(intent: Intent): Boolean = safeOf(default = false) {
     return PackageUtils(packageManager).resolveActivity(intent, 0) != null
 }
 
@@ -128,23 +148,23 @@ internal fun Context.toast(name: String, long: Boolean? = false): Any = if (long
 fun Context.getFpsMode(): Array<String> {
     val command =
         "dumpsys display | grep -A 1 'mSupportedModesByDisplay' | tail -1 | tr '}' '\\n' | cut -f2 -d '{' | while read row; do\n" +
-        "  if [[ -n \$row ]]; then\n" +
-        "    echo \$row | tr ',' '\\n' | while read col; do\n" +
-        "      case \$col in\n" +
-        "      'width='*)\n" +
-        "        echo -n \$(echo \${col:6})\n" +
-        "        ;;\n" +
-        "      'height='*)\n" +
-        "        echo -n x\$(echo \${col:7})\n" +
-        "        ;;\n" +
-        "      'fps='*)\n" +
-        "        echo ' '\$(echo \${col:4} | cut -f1 -d '.')Hz\n" +
-        "        ;;\n" +
-        "      esac\n" +
-        "    done\n" +
-        "    echo -e '@'\n" +
-        "  fi\n" +
-        "done"
+                "  if [[ -n \$row ]]; then\n" +
+                "    echo \$row | tr ',' '\\n' | while read col; do\n" +
+                "      case \$col in\n" +
+                "      'width='*)\n" +
+                "        echo -n \$(echo \${col:6})\n" +
+                "        ;;\n" +
+                "      'height='*)\n" +
+                "        echo -n x\$(echo \${col:7})\n" +
+                "        ;;\n" +
+                "      'fps='*)\n" +
+                "        echo ' '\$(echo \${col:4} | cut -f1 -d '.')Hz\n" +
+                "        ;;\n" +
+                "      esac\n" +
+                "    done\n" +
+                "    echo -e '@'\n" +
+                "  fi\n" +
+                "done"
     return ShellUtils.execCommand(command, true, true).successMsg.let {
         it.takeIf { e -> e.isNotEmpty() }?.substring(0, it.length - 1)?.split("@")
             ?.toMutableList()
@@ -156,18 +176,23 @@ fun Context.getFpsMode(): Array<String> {
  * 获取GUID
  * /data/system/openid_config.xml
  */
-val getGuid get() = ShellUtils.execCommand("cat /data/system/openid_config.xml | sed  -n '3p'", true, true).successMsg.let {
-    it.takeIf { e -> e.isNotEmpty() }?.split("\"")?.get(3) ?: "null"
-}
+val getGuid
+    get() = ShellUtils.execCommand(
+        "cat /data/system/openid_config.xml | sed  -n '3p'",
+        true,
+        true
+    ).successMsg.let {
+        it.takeIf { e -> e.isNotEmpty() }?.split("\"")?.get(3) ?: "null"
+    }
 
 /**
  * 跳转工程模式
  * @param context Context
  */
-fun jumpEngineermode(context: Context){
+fun jumpEngineermode(context: Context) {
     if (context.checkPackName("com.oppo.engineermode")) {
         ShellUtils.execCommand("am start -n com.oppo.engineermode/.EngineerModeMain", true)
-    }else if (context.checkPackName("com.oplus.engineermode")) {
+    } else if (context.checkPackName("com.oplus.engineermode")) {
         ShellUtils.execCommand("am start -n com.oplus.engineermode/.EngineerModeMain", true)
     }
 }
@@ -176,11 +201,17 @@ fun jumpEngineermode(context: Context){
  * 跳转充电测试
  * @param context Context
  */
-fun jumpBatteryInfo(context: Context){
+fun jumpBatteryInfo(context: Context) {
     if (context.checkPackName("com.oppo.engineermode")) {
-        ShellUtils.execCommand("am start -n com.oppo.engineermode/.charge.modeltest.BatteryInfoShow", true)
-    }else if (context.checkPackName("com.oplus.engineermode")) {
-        ShellUtils.execCommand("am start -n com.oplus.engineermode/.charge.modeltest.BatteryInfoShow", true)
+        ShellUtils.execCommand(
+            "am start -n com.oppo.engineermode/.charge.modeltest.BatteryInfoShow",
+            true
+        )
+    } else if (context.checkPackName("com.oplus.engineermode")) {
+        ShellUtils.execCommand(
+            "am start -n com.oplus.engineermode/.charge.modeltest.BatteryInfoShow",
+            true
+        )
     }
 }
 
@@ -188,7 +219,7 @@ fun jumpBatteryInfo(context: Context){
  * 跳转进程管理
  * @param context Context
  */
-fun jumpRunningApp(context: Context){
+fun jumpRunningApp(context: Context) {
     val isoppoRunning = Intent().setClassName(
         "com.android.settings",
         "com.coloros.settings.feature.process.RunningApplicationActivity"
@@ -215,8 +246,9 @@ fun jumpRunningApp(context: Context){
  * @receiver Context
  * @param value Boolean
  */
-fun Context.setDesktopIcon(value : Boolean){
-    packageManager.setComponentEnabledSetting(ComponentName(packageName, "${packageName}.Hide"),
+fun Context.setDesktopIcon(value: Boolean) {
+    packageManager.setComponentEnabledSetting(
+        ComponentName(packageName, "${packageName}.Hide"),
         if (value) PackageManager.COMPONENT_ENABLED_STATE_DISABLED else PackageManager.COMPONENT_ENABLED_STATE_DEFAULT,
         PackageManager.DONT_KILL_APP
     )
@@ -225,8 +257,9 @@ fun Context.setDesktopIcon(value : Boolean){
 /**
  * 获取闪存信息(移除字符前空格)
  */
-fun getFlashInfo(): String = safeOf(default = "null"){
-    val info = ShellUtils.execCommand("cat /sys/class/block/sda/device/inquiry", true, true).successMsg
+fun getFlashInfo(): String = safeOf(default = "null") {
+    val info =
+        ShellUtils.execCommand("cat /sys/class/block/sda/device/inquiry", true, true).successMsg
     val pattern = Pattern.compile("\\p{L}")
     val matcher = pattern.matcher(info)
     if (!matcher.find()) return@safeOf "null"
@@ -288,15 +321,15 @@ val dialogCentered get() = com.google.android.material.R.style.ThemeOverlay_Mate
 /**
  * 判断是否显示Preference图标
  */
-fun Context.getXPIcon(resource: Any?,result:(Drawable?,Boolean) -> Unit) {
-    if (getBoolean(SettingsPrefs,"hide_xp_page_icon",false)){
-        result(null,false)
+fun Context.getXPIcon(resource: Any?, result: (Drawable?, Boolean) -> Unit) {
+    if (getBoolean(SettingsPrefs, "hide_xp_page_icon", false)) {
+        result(null, false)
         return
     }
-    when(resource){
-        is Int -> result(getDrawable(resource),true)
-        is Drawable -> result(resource,true)
-        is String -> result(getAppIcon(resource),true)
+    when (resource) {
+        is Int -> result(getDrawable(resource), true)
+        is Drawable -> result(resource, true)
+        is String -> result(getAppIcon(resource), true)
     }
 }
 

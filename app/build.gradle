@@ -25,7 +25,7 @@ android {
         minSdk 30
         targetSdk 33
         versionCode currentVersionCode
-        versionName "3.5_beta"
+        versionName "3.6_beta"
     }
     buildTypes {
         release {

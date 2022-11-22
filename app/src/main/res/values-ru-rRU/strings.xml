@@ -159,11 +159,11 @@
     <string name="remove_lock_screen_bottom_sos_button">Удалить кнопку экстренного контакта SOS</string>
     <string name="remove_lock_screen_bottom_sos_button_summary">Кнопка экстренного контакта SOS внизу страницы разблокировки была удалена</string>
     <string name="remove_72hour_password_verification">Удаление 72-часовой аутентификации по паролю</string>
-    <string name="remove_72hour_password_verification_summary">Removed the security restriction of not using a password to unlock within 72 hours after booting \n Effective after system restart</string>
+    <string name="remove_72hour_password_verification_summary">Удалено ограничение безопасности, запрещающее использовать пароль для разблокировки в течение 72 часов после загрузки. \n Вступит в силу после перезагрузки системы</string>
     <!--Desktop-->
     <string name="Desktop">Рабочий стол</string>
-    <string name="remove_alarmclock_widget_redone">Удалить красный компонент виджете часов на рабочем столе</string>
-    <string name="remove_alarmclock_widget_redone_pro">Удалить красный компонент виджете часов на рабочем столе</string>
+    <string name="remove_alarmclock_widget_redone">Удалить красные часы в виджете часов на рабочем столе</string>
+    <string name="remove_alarmclock_widget_redone_pro">Удалить красные часы в виджете часов на рабочем столе</string>
     <string name="remove_alarmclock_widget_redone_pro_summary">Доступно только тогда, когда обычная версия не помогает, иначе это вызовет неизбежную ошибку</string>
     <string name="remove_appicon_dot">Удалить точку с иконки приложения</string>
     <string name="show_charging_ripple">Пульсация зарядки</string>
@@ -220,7 +220,7 @@
     <string name="remove_warning_dialog_that_app_runs_on_desktop">Удалить диалоговое окно с предупреждением о том, что приложение запускается на рабочем столе</string>
     <string name="remove_warning_dialog_that_app_runs_on_desktop_summary">Диалоговое окно с предупреждением обнаружило, что приложение запущено на системном рабочем столе</string>
     <string name="remove_storage_limit">Удалить ограничение хранилища</string>
-    <string name="remove_storage_limit_summary">Снять ограничение, на использование этой папки</string>
+    <string name="remove_storage_limit_summary">Снять ограничение, на использование хранилища</string>
     <string name="media_volume_level">Уровень громкости мультимедиа</string>
     <string name="media_volume_level_summary">Установите 0, чтобы отключить функцию, и перезагрузите систему, чтобы она вступила в силу</string>
     <string name="open_screen_power_save">Открыть режим энергосбережения</string>
@@ -238,10 +238,11 @@
     <string name="remove_startup_animation">Удалить стартовую анимацию</string>
     <string name="enable_developer_page">Включить меню разработчика</string>
     <string name="enable_eva_theme">Включить тему EVA</string>
-    <string name="enable_developer_page_summary">После включения этой функции и перезагрузки области\nможно перейти к ней через меню быстрого доступа</string>
+    <string name="enable_developer_page_summary">После включения этой функции и перезагрузки, \nможно перейти к ней через меню быстрого доступа</string>
     <string name="enable_genshin_impact_theme">Включить пользовательский интерфейс Genshin Impact Limited Edition</string>
     <string name="enable_genshin_impact_theme_summary">Нет необходимости настраивать в игровом помощнике</string>
     <string name="enable_adreno_gpu_controller">Включить контроллер графического процессора Adreno</string>
+    <string name="enable_support_competition_mode">Включить поддержку режима соревнования</string>
     <!--CloudService-->
     <string name="remove_network_limit">Удалить ограничения сети передачи данных</string>
     <string name="remove_network_limit_summary">Удалить ограничение, согласно которому резервное копирование/восстановление не может использовать мобильные данные</string>

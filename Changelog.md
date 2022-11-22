@@ -10,12 +10,22 @@ group for feedback
 [适配] C13应用高耗电通知  
 [适配] C13高性能通知  
 [适配] C13应用包安装程序  
-[添加] 启用AdrenoGPU控制器  
+[添加] 游戏助手AdrenoGPU控制器  
 [添加] 检测更新文件大小  
 [更改] 部分功能文字描述  
 [修复] AOSP安装器调用问题  
-
-[优化] 代码逻辑  
+[添加] 游戏助手赛事支持模式  
+[修复] 尝试修复72小时密码验证(Beta)  
+[Update] Core Crack Sync Upstream v4.2  
+[Fix] C13 application high power consumption notification  
+[Fix] C13 High Performance Notification  
+[Fix] C13 application package installer  
+[Add] Game assistant AdrenoGPU controller  
+[Add] Detect update file size  
+[Change] Text description of some functions  
+[Fix] AOSP installer calling problem  
+[Add] Game assistant event support mode  
+[Fix] Try to fix 72 hours password authentication (Beta)  
 
 ### 3.4
 
