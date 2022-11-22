@@ -4,15 +4,13 @@ import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 
 class Remove72HourPasswordVerification : YukiBaseHooker() {
     override fun onHook() {
-        //Source LockSettingsStrongAuth
-        findClass("com.android.server.locksettings.LockSettingsStrongAuth").hook {
+        //Source LockSettingsStrongAuth -> StrongAuthTimeoutAlarmListener
+        findClass("com.android.server.locksettings.LockSettingsStrongAuth\$StrongAuthTimeoutAlarmListener").hook {
             injectMember {
                 method {
-                    name = "rescheduleStrongAuthTimeoutAlarm"
+                    name = "onAlarm"
                 }
-                beforeHook {
-                    args(0).set(0L)
-                }
+                intercept()
             }
         }
     }
