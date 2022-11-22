@@ -29,6 +29,10 @@ class HookOplusGames : YukiBaseHooker() {
         if (prefs(XposedPrefs).getBoolean("enable_adreno_gpu_controller", false)) loadHooker(
             EnableAdrenoGpuController()
         )
+        //启用赛事支持模式
+        if (prefs(XposedPrefs).getBoolean("enable_support_competition_mode", false)) loadHooker(
+            EnableSupportCompetitionMode()
+        )
 
         //游戏变声VIP (作废)
 //        findClass("com.oplus.games.account.bean.VipInfoBean.VipInfosDTO").hook {
